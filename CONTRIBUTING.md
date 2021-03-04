@@ -19,7 +19,7 @@
 ## How disagreements and conflicts will be solved
 - Handle these at Daily Scrum
 - If issues continue to persist after 2 Daily Scrum meetings, bring the issue up with Jaya or Prof
-- 
+
 
 ## Instructions for setting up the local development environment
 - TBD
