@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-# Project Repository
-<<<<<<< HEAD
-
-This repository will be used for team projects. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./project-setup-instructions.md)
-
-See the [Sprint Planning instructions](./sprint-planning-instructions.md) once the basic Project Kickoff tasks have been completed.
-=======
 # Project: Waitlisted?
 
 ## Project Vision Statement
@@ -49,4 +41,4 @@ a short history of how the project came to be and information about how to contr
 instructions for building and testing the project (update with that information once the project reaches that stage)
 links to any additional Markdown documents or web pages that may be relevant reading about the project
 anything else you think is important to communicate to people viewing the project
->>>>>>> d2196d1 (drafted some stuff for readme)
+
