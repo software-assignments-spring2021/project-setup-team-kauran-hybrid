@@ -18,8 +18,8 @@ Students also have the optionality to choose to have their searches retained and
 
 ## Core Team Members
 - Sophie Pan: https://github.com/sophiepan1
-- Evelyn Zhang https://github.com/EvlZhang
-- Olivia Zhang
+- Evelyn Zhang: https://github.com/EvlZhang
+- Olivia Zhang: https://github.com/OliviaZhang2198
 - Tanya Wang
 - Hrithik Vemparala
 
