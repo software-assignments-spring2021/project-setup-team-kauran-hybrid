@@ -70,4 +70,4 @@ have to set up the Sprint task board in recommended fashion.
 Once you start working on tasks, you will move them to the other columns
 depending on their current status.
 
-------
+----------------------
