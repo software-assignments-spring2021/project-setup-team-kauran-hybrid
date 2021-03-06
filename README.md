@@ -21,7 +21,7 @@ Students also have the optionality to choose to have their searches retained and
 - Evelyn Zhang: https://github.com/EvlZhang
 - Olivia Zhang: https://github.com/OliviaZhang2198
 - Tanya Wang
-- Hrithik Vemparala
+- Hrithik Vemparala: https://github.com/hrithikv
 
 ## History of the Project and How to Contribute
 The project idea was inspired by NYU and Albert's lack of transparency regarding class sizes and waitlists and overall poor registration system.  As a student, it is difficult to gauge whether you should stay on a waitlist or choose to find another elective earlier on given these issues.  We aim to fix this.  You can find the original project proposal here: https://github.com/agile-dev-assignments/project-proposal-evlz/blob/main/README.md
