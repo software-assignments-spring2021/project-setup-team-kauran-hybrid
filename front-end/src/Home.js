@@ -1,10 +1,15 @@
-function home(){
+import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+//import Home from './Home'
+
+function Home(){
     return (
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
-              Edit <code>src/App.js</code> and save to reload.{'\n'} Test
+              Home page haha
             </p>
             <a
               className="App-link"
@@ -18,3 +23,5 @@ function home(){
         </div>
       );
 };
+
+export default Home;
