@@ -2,7 +2,7 @@
 
 ## Project's Values and Team Norms
 - Communicate
-- Meet at least 2x a week
+- Meet at least 3x a week:  Tuesday at 11 am (https://nyu.zoom.us/j/98251028819), Wednesday at 4:45 pm (https://nyu.zoom.us/j/97231855503), Friday 3:30 pm (https://nyu.zoom.us/j/96305288187)
 - "Done" means that the function is working properly and integrated with everyone else's code
 
 ## Git workflow rules
