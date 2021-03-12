@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
+    //this is kept for reference
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
@@ -28,6 +29,15 @@ function App() {
           <Route path="/">
             <Home />
           </Route>
+
+          <Route path="/results">
+            <Results />
+          </Route>
+
+          <Route path="/dropdown">
+            <Dropdown />
+          </Route>
+
 
         </Switch>
       </Router>
