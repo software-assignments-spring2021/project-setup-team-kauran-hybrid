@@ -5,18 +5,12 @@ import Results from './Results';
 
 const LoginForm=(props)=> {
 
-    // constructor(props){
-    //   super(props);
-    //   this.state = { email: '', position:'', number:'' };
-    //   this.handleChange = this.handleChange.bind(this);
-    //   //this.handleSubmit = this.handleSubmit.bind(this);
-    // }
-    const [email,setEmail]=useState();
-    const [position,setPosition]=useState();
-    const [number,setNumber]=useState();
+    
+    const [email,setEmail]=useState("Enter your email");
+    const [position,setPosition]=useState("Enter your waitlist position");
+    const [number,setNumber]=useState("Enter your class number");
     const handleChange = ({ target }) => {
       setEmail( target.value );
-
     };
     const handlePosition=({target})=>{
         setPosition(target.value);
@@ -24,7 +18,15 @@ const LoginForm=(props)=> {
     const handleNumber=({target})=>{
         setNumber(target.value)
     };
-    
+    const handleClickEmail = e =>{
+      setEmail('');
+    };
+    const handleClickPosition = ({target}) =>{
+      setPosition('');
+    };
+    const handleClickNumber = ({target}) =>{
+      setNumber('');
+    };
 
     //render() {
       return (
@@ -36,9 +38,10 @@ const LoginForm=(props)=> {
                   <input className="inputs"
                   type="email"
                   name="email"
-                  placeholder="Enter your email"
                   value={email}
+                  onClick={handleClickEmail}
                   onChange={handleChange}
+                  
                   />
               </p>
             
@@ -47,9 +50,11 @@ const LoginForm=(props)=> {
                   <input className="inputs"
                   type="position"
                   name="position"
-                  placeholder="Enter your waitlist position"
+                  
                   value={position}
+                  onCLick={handleClickPosition}
                   onChange={handlePosition}
+                  
                   />
               </p>
 
@@ -58,9 +63,11 @@ const LoginForm=(props)=> {
                 <input className="inputs"
                 type="2"
                 name="number"
-                placeholder="Enter your class number"
+                
                 value={number}
+                onCLick={handleClickNumber}
                 onChange={handleNumber}
+                
                 />
               </p>          
             

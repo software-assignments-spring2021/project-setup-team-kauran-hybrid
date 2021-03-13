@@ -8,13 +8,10 @@ import LoginForm from'./LoginForm'
 // import Button from './Button'
 
 const Home=(props)=>{
-    // constructor(props){
-    //   super(props);
-    // };
-    //render(){
       return(
         <div className="App">
           <header className="App-header">
+            
             <img src={logo} className="App-logo" alt="logo" />
             <p>
               Waitlisted?
@@ -36,17 +33,12 @@ const Home=(props)=>{
         </div>
       )
       
-    //}
+
         
       
 };
 
 
-//  ReactDOM.render(
-//    //<Home/>,
-   
-//    document.getElementById('root')
-//  );
 
 
 export default Home;

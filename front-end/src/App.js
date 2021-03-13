@@ -31,16 +31,17 @@ function App() {
         <Switch>
 
           <Route exact path="/" component={Home} />
-          <Route exact path="/results" component={Results} />
+          <Route  path="/results" component={Results} />
 
           {/* <Route path="/">
             <Home />
-          </Route>
+          </Route> 
 
           <Route path="/results">
             <Results />
           </Route> */}
-{/* 
+
+          {/* 
           <Route path="/dropdown">
             <Dropdown />
           </Route> */}
