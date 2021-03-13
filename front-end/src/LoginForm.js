@@ -11,9 +11,9 @@ const LoginForm=(props)=> {
     //   this.handleChange = this.handleChange.bind(this);
     //   //this.handleSubmit = this.handleSubmit.bind(this);
     // }
-    const [email,setEmail]=useState('Enter your email');
-    const [position,setPosition]=useState('Enter your waitlist position');
-    const [number,setNumber]=useState('Enter your class number');
+    const [email,setEmail]=useState();
+    const [position,setPosition]=useState();
+    const [number,setNumber]=useState();
     const handleChange = ({ target }) => {
       setEmail( target.value );
 
@@ -36,6 +36,7 @@ const LoginForm=(props)=> {
                   <input className="inputs"
                   type="email"
                   name="email"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={handleChange}
                   />
@@ -46,6 +47,7 @@ const LoginForm=(props)=> {
                   <input className="inputs"
                   type="position"
                   name="position"
+                  placeholder="Enter your waitlist position"
                   value={position}
                   onChange={handlePosition}
                   />
@@ -56,6 +58,7 @@ const LoginForm=(props)=> {
                 <input className="inputs"
                 type="2"
                 name="number"
+                placeholder="Enter your class number"
                 value={number}
                 onChange={handleNumber}
                 />
@@ -66,7 +69,7 @@ const LoginForm=(props)=> {
               </button> */}
 
               <Link to="/Results">
-                <button > Go! </button>
+                <button className="goButton"> Go! </button>
               </Link>
 
             </form>
