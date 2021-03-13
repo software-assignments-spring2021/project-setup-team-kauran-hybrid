@@ -18,15 +18,16 @@ const LoginForm=(props)=> {
     const handleNumber=({target})=>{
         setNumber(target.value)
     };
-    const handleClickEmail = e =>{
+    const handleClickEmail = () => {
       setEmail('');
     };
-    const handleClickPosition = ({target}) =>{
-      setPosition('');
-    };
-    const handleClickNumber = ({target}) =>{
+    const handleClickNumber = () => {
       setNumber('');
     };
+    const handleClickPos = () => {
+      setPosition('');
+    };
+    
 
     //render() {
       return (
@@ -41,7 +42,7 @@ const LoginForm=(props)=> {
                   value={email}
                   onClick={handleClickEmail}
                   onChange={handleChange}
-                  
+                  onClick={handleClickEmail}
                   />
               </p>
             
@@ -50,11 +51,10 @@ const LoginForm=(props)=> {
                   <input className="inputs"
                   type="position"
                   name="position"
-                  
                   value={position}
                   onCLick={handleClickPosition}
                   onChange={handlePosition}
-                  
+                  onClick={handleClickPos}
                   />
               </p>
 
@@ -67,7 +67,7 @@ const LoginForm=(props)=> {
                 value={number}
                 onCLick={handleClickNumber}
                 onChange={handleNumber}
-                
+                onClick={handleClickNumber}
                 />
               </p>          
             
