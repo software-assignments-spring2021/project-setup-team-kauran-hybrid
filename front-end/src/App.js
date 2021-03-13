@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react'
 import Home from './Home'
 import Results from './Results'
+import ClassInfo from './ClassInfo';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // import Dropdown from './Dropdown'
 
@@ -32,6 +33,7 @@ function App() {
 
           <Route exact path="/" component={Home} />
           <Route  path="/results" component={Results} />
+          <Route  path="/ClassInfo" component={ClassInfo} />
 
           {/* <Route path="/">
             <Home />
