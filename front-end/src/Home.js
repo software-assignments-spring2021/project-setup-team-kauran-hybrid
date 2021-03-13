@@ -5,30 +5,25 @@ import ReactDOM from 'react-dom';
 import App from './App'
 import './Home.css'
 import LoginForm from'./LoginForm'
+import { Link } from 'react-router-dom';
 // import Button from './Button'
+import MenuBar from './MenuBar';
 
 const Home=(props)=>{
       return(
-        <div className="App">
-          <header className="App-header">
+        <div className="App-page">
+          <MenuBar>
+
+          </MenuBar>
             
-            <img src={logo} className="App-logo" alt="logo" />
+             
             <p>
               Waitlisted?
             </p>
             <LoginForm/>
 
-            {/* <Button/> */}
-
-            {/* <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a> */ }
-          </header>
+            
+          {/* </header> */}
           
         </div>
       )

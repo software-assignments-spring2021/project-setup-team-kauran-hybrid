@@ -1,0 +1,27 @@
+.Menu-bar{
+    
+    background-color: #57068C;
+    height:8rem;
+    width: 110rem;
+    top:-120px;
+    position: relative;
+    
+}
+.Account{
+    height:9rem;
+    position: relative;
+    left: auto;
+    line-height:10px;
+    top:-175px;
+    font-size: 1.5rem;
+    color: white;
+}
+.Login{
+    color: white;
+    height:9rem;
+    position: relative;
+    left: 20px;
+    line-height:10px;
+    top:-175px;
+    font-size: 1.5rem;
+}

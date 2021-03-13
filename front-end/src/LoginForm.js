@@ -18,7 +18,7 @@ const LoginForm=(props)=> {
     const handleNumber=({target})=>{
         setNumber(target.value)
     };
-    const handleClickEmail = () => {
+    const handleClickEmail = (e) => {
       setEmail('');
     };
     const handleClickNumber = () => {
@@ -40,7 +40,7 @@ const LoginForm=(props)=> {
                   type="email"
                   name="email"
                   value={email}
-                  onClick={handleClickEmail}
+
                   onChange={handleChange}
                   onClick={handleClickEmail}
                   />
@@ -52,7 +52,7 @@ const LoginForm=(props)=> {
                   type="position"
                   name="position"
                   value={position}
-                  onCLick={handleClickPosition}
+
                   onChange={handlePosition}
                   onClick={handleClickPos}
                   />
@@ -65,7 +65,7 @@ const LoginForm=(props)=> {
                 name="number"
                 
                 value={number}
-                onCLick={handleClickNumber}
+
                 onChange={handleNumber}
                 onClick={handleClickNumber}
                 />
@@ -76,7 +76,10 @@ const LoginForm=(props)=> {
               </button> */}
 
               <Link to="/Results">
-                <button className="goButton"> Go! </button>
+                <center>
+                 <button className="goButton"> Go! </button>
+                </center>
+                
               </Link>
 
             </form>
