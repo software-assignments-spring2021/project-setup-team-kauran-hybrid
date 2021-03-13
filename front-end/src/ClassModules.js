@@ -8,21 +8,20 @@ function ClassModules(props){
     }
     return(
         <ol>
-            <li>
+            <li className='List-item'>
                 <Link to='./ClassInfo'>
-                    <p></p>
                     Class 1
                 </Link>
             </li>
-            <li>
+            <li className='List-item'>
                 <Link to='./ClassInfo'>
-                    <p></p>
+                    
                     Class 2
                 </Link>
             </li>
-            <li>
+            <li className='List-item'>
                 <Link to='./ClassInfo'>
-                    <p></p>
+                    
                     Class 3
                 </Link>
             </li>

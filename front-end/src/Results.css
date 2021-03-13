@@ -1,4 +1,7 @@
 .results-page{
+    border-style: solid;
+    border-color: white;
+    border:10px;
     background-color: #57068C;
     min-height: 100vh;
     display: flex;
