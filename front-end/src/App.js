@@ -2,9 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import Home from './Home'
+import Results from './Results'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // import Dropdown from './Dropdown'
-// import Result from './Result'
+
 
 function App() {
   return (
@@ -32,10 +33,10 @@ function App() {
             <Home />
           </Route>
 
-          {/* <Route path="/results">
+          <Route path="/results">
             <Results />
           </Route>
-
+{/* 
           <Route path="/dropdown">
             <Dropdown />
           </Route> */}

@@ -1,6 +1,7 @@
 import React,{useState} from'react';
 import './LoginForm.css'
 import { Link } from 'react-router-dom';
+import Results from './Results';
 
 const LoginForm=(props)=> {
 
@@ -28,7 +29,7 @@ const LoginForm=(props)=> {
     //render() {
       return (
         <React.Fragment>
-          <body>
+          {/* <body> */}
             <form className="box">
               <p>
                 {/* <label htmlFor="email">Email</label> */}
@@ -60,15 +61,19 @@ const LoginForm=(props)=> {
                 onChange={handleNumber}
                 />
               </p>          
-              <button 
-                type="submit" 
-                className="btn btn-primary"
-              >Go!
-              </button>
+            
+              {/* <button to="./Results" renderAs={Link}>
+                Go!
+              </button> */}
+
+              <Link to="/Results">
+                <button > Go! </button>
+              </Link>
+
             </form>
    
             <h1>Your username is: {email}</h1>
-          </body>
+          {/* </body> */}
         </React.Fragment>
 
       );

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './App'
 import './Home.css'
 import LoginForm from'./LoginForm'
+// import Button from './Button'
 
 const Home=(props)=>{
     // constructor(props){
@@ -19,6 +20,9 @@ const Home=(props)=>{
               Waitlisted?
             </p>
             <LoginForm/>
+
+            {/* <Button/> */}
+
             {/* <a
               className="App-link"
               href="https://reactjs.org"
