@@ -1,5 +1,6 @@
 import React,{useState} from'react';
 import './LoginForm.css'
+import { Link } from 'react-router-dom';
 
 const LoginForm=(props)=> {
 
@@ -22,33 +23,35 @@ const LoginForm=(props)=> {
     const handleNumber=({target})=>{
         setNumber(target.value)
     };
+    
+
     //render() {
       return (
         <React.Fragment>
+          <body>
+            <form className="box">
+              <p>
+                {/* <label htmlFor="email">Email</label> */}
+                  <input className="inputs"
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
 
-        
-          <form className="box">
-            <p>
-              {/* <label htmlFor="email">Email</label> */}
-                <input className="inputs"
-                type="email"
-                name="email"
-                value={email}
-                onChange={handleChange}
-                />
-            </p>
+                  />
+              </p>
             
-            <p>
-            {/* <label htmlFor="position">position</label> */}
-                <input className="inputs"
-                type="position"
-                name="position"
-                value={position}
-                onChange={handlePosition}
-                />
-            </p>
-            
-            <p>
+              <p>
+              {/* <label htmlFor="position">position</label> */}
+                  <input className="inputs"
+                  type="position"
+                  name="position"
+                  value={position}
+                  onChange={handlePosition}
+                  />
+              </p>
+
+              <p>
                 {/* <label htmlFor="number">number</label> */}
                 <input className="inputs"
                 type="2"
@@ -56,13 +59,21 @@ const LoginForm=(props)=> {
                 value={number}
                 onChange={handleNumber}
                 />
-            </p>
-            
-          </form>
+              </p>          
+              <button 
+                type="submit" 
+                className="btn btn-primary"
+              >Go!
+              </button>
+              
+            </form>
    
-          <h1>Your username is: {email}</h1>
+            <h1>Your username is: {email}</h1>
+          </body>
         </React.Fragment>
+
       );
+    
     //}
    }
 export default LoginForm
