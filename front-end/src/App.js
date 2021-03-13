@@ -29,13 +29,17 @@ function App() {
     <div className="container">
       <Router>
         <Switch>
-          <Route path="/">
+
+          <Route exact path="/" component={Home} />
+          <Route exact path="/results" component={Results} />
+
+          {/* <Route path="/">
             <Home />
           </Route>
 
           <Route path="/results">
             <Results />
-          </Route>
+          </Route> */}
 {/* 
           <Route path="/dropdown">
             <Dropdown />

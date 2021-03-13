@@ -38,7 +38,6 @@ const LoginForm=(props)=> {
                   name="email"
                   value={email}
                   onChange={handleChange}
-
                   />
               </p>
             
