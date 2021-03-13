@@ -65,7 +65,6 @@ const LoginForm=(props)=> {
                 className="btn btn-primary"
               >Go!
               </button>
-              
             </form>
    
             <h1>Your username is: {email}</h1>
