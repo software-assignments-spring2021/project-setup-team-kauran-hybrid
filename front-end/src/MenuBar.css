@@ -1,7 +1,7 @@
 .Menu-bar{
     
     background-color: #57068C;
-    height:20%;
+    height:5%;
     width: 100%;
  
     margin-top: -30%;
@@ -29,4 +29,20 @@ a{
     line-height:10px;
     top: -80%;
     font-size: 1.5rem;
+}
+.btn {
+    background-color: #57068C;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    /* top: 0rem; */
+    right: 100%;
+    /* bottom: 100%; */
+}
+
+.btn:hover {
+    background-color: #360358;
 }

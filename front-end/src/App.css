@@ -17,8 +17,8 @@
 .App-page {
   background-color: #57068C;
   /* min-height: 100vh; */
-  height: 70rem;
-  width: 100%;
+  height: 60rem;
+  width: 110rem;
   display: flex;
   flex-direction: column;
   align-items: center;
