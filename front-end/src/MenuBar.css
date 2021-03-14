@@ -2,9 +2,10 @@
     
     background-color: #57068C;
     height:8rem;
-    width: 110rem;
-    top:-120px;
-    position: relative;
+    width: 105%;
+    margin-top: -960px;
+    margin-bottom: 30px;
+    position: absolute;
     
 }
 a{
@@ -13,9 +14,9 @@ a{
 .Account{
     height:9rem;
     position: relative;
-    left: auto;
+    margin-left: 5rem;
     line-height:10px;
-    top:-175px;
+    top: -11rem;
     font-size: 1.5rem;
     color: white;
 }
@@ -23,8 +24,8 @@ a{
     color: white;
     height:9rem;
     position: relative;
-    left: 20px;
+    margin-left: 5rem;
     line-height:10px;
-    top:-175px;
+    top: -11rem;
     font-size: 1.5rem;
 }

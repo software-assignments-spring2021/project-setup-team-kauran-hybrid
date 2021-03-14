@@ -1,5 +1,6 @@
 .ClassModules{
-    /* color: white; */
+    position: relative;
+    /* margin-top: 15rem; */
 }
 a:link{
     color: white;
@@ -9,10 +10,15 @@ a:link{
 a{
     color:white
 }
-.List-item{
-    border: 2px;
+.search-item{
+    position: relative;
+    width: 80rem;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    border: 1px;
     border-style: solid;
     border-color: white;
-
+    background-color: gray;
     margin-bottom: 2rem;
 }

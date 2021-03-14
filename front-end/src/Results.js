@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import MenuBar from './MenuBar';
 import './Results.css';
 import './MenuBar.css';
+import './ClassModules.css';
 import ClassModules from'./ClassModules';
 import {Link,Switch} from 'react-router-dom';
 
