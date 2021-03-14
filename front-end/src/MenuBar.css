@@ -1,32 +1,57 @@
 .Menu-bar{
     
-    background-color: #57068C;
-    height:20%;
+    background-color: red;
+    height:5%;
     width: 100%;
- 
-    margin-top: -30%;
-    margin-bottom: 30%;
+    flex: 1;
+    top: 10%;
+    left: 0%;
+    /* right: 100%; */
+    /* margin-top: -50%; */
+    margin-bottom: 50%;
     position: absolute;
     
 }
 a{
     color: white;
 }
-.Account{
-    height:10%;
+
+.App-logo {
     position: relative;
+    margin-bottom: 10%;
+    height: 20vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+.HomeLink {
+    background-color: aqua;
+    font-size: 120px;
+    flex: 1;
+    position: relative;
+    margin-bottom: 10%;
+}
+
+.Account{
+    /* height:10%; */
+    flex: 1;
+    position: absolute;
     margin-left: 2.5%;
-    line-height:10px;
-    top: -80%;
+    top: 10%;
     font-size: 1.5rem;
     color: white;
 }
 .Login{
-    color: white;
-    height:10%;
-    position: relative;
-    margin-left: 2.5%;
-    line-height:10px;
-    top: -80%;
+    /* height:10%; */
+    flex: 1;
+    position: absolute;
+    margin-left: 15%;
+    top: 10%;
     font-size: 1.5rem;
+    color: white;
 }

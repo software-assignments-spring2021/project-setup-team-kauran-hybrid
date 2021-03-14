@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-//import './App.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import "./MenuBar.css";
 const MenuBar=()=>{
     return (
+
         <header className="Menu-bar">
         <center>
         <Link to="/" className="HomeLink">
@@ -24,6 +25,7 @@ const MenuBar=()=>{
         <Link to="/Login" className="Login">Login/Logout</Link>
 
         </header>
+
     )
     
 }

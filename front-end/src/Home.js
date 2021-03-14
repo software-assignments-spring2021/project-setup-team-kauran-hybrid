@@ -15,7 +15,7 @@ const Home=(props)=>{
           <MenuBar>
 
           </MenuBar>
-            
+           
              
             <p>
               Waitlisted?
