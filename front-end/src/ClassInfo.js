@@ -1,11 +1,10 @@
 import React from'react';
-import ReactDOM from 'react-dom';
 import MenuBar from './MenuBar';
 import './ClassInfo.css';
 import './MenuBar.css';
 import './App.css';
 import ProfInfo from'./ProfInfo';
-import {Link,Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function ClassInfo(props){
     
@@ -26,17 +25,23 @@ function ClassInfo(props){
             <p className="prereq">
                 Prerequisites
             </p>
-            <p className="prof">
+            <p>
                 <Link to = "/ProfInfo">
-                    Professor Information
+                    <button className="prof-info">
+                        Professor Information
+                    </button>
                 </Link>
             </p>
-            
-
+            <p>
+                <Link to ="/Results">
+                    <button className="back-results-button">
+                        Return to view other recommended courses
+                    </button>
+                </Link>
+            </p>
         </div>
 
     )
 }
-
 
 export default ClassInfo;
