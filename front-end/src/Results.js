@@ -15,7 +15,9 @@ const Results=(props)=>{
             <MenuBar>
 
             </MenuBar>
-            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             
+            </link>
             <p>Your possibility of getting into this class is: 0% haha{'\n'}
 
                 Here are some alternative classes.
@@ -23,7 +25,18 @@ const Results=(props)=>{
             <ClassModules>
 
             </ClassModules>
-
+            <p> Would you like to login and store this search?</p>
+            <header>
+            
+            <Link to ="./Login">
+            
+                <button className="results-button">YES!</button>
+            </Link>
+            <Link to ="/">
+                <button className="results-button">NO! Go Back</button>
+                
+            </Link>
+            </header>
         </div>
 
     )
