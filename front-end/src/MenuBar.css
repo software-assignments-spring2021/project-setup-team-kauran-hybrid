@@ -3,11 +3,11 @@
     background-color: #57068C;
     height:5%;
     width: 100%;
- 
+    display: flex;
     margin-top: -30%;
     margin-bottom: 30%;
     position: absolute;
-    
+    right: 100%;
 }
 a{
     color: white;
