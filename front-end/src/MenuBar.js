@@ -9,21 +9,42 @@ import { Link } from 'react-router-dom';
 import "./MenuBar.css";
 const MenuBar=()=>{
     return (
-        <header className="Menu-bar">
-        <center>
-        <Link to="/" className="HomeLink">
+        // <header className="Menu-bar">
+        // <center>
+        // <Link to="/" className="HomeLink">
 
-        <img src={logo} className="App-logo" alt="logo"/>
+        // <img src={logo} className="App-logo" alt="logo"/>
               
-        </Link>
+        // </Link>
 
-        </center>
+        // </center>
              
-        <Link to="/Account" className="Account">My Account</Link>
+        // <Link to="/Account" className="Account">My Account</Link>
 
-        <Link to="/Login" className="Login">Login/Logout</Link>
+        // <Link to="/Login" className="Login">Login/Logout</Link>
 
-        </header>
+        // </header>
+        <div>
+            <header>
+            
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             
+            </link> 
+            
+            <Link to="./Results">
+            <button className="btn"><i className="fa fa-home"></i> Home</button> 
+            </Link>
+            <button className="btn"><i class="fa fa-trash"></i> Trash</button>
+            <button className="btn"><i class="fa fa-close"></i> Close</button>
+            <button className="btn"><i class="fa fa-folder"></i> Folder</button>
+            
+
+            </header>
+            <center>
+            <img src={logo} className="App-logo" alt="logo" />
+            </center>
+        </div>
+        
     )
     
 }

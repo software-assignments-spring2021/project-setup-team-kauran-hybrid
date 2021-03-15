@@ -13,3 +13,21 @@
     white-space: pre-wrap;
 
 }
+.results-button{
+    background-color: teal;
+    border: solid;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 16px;
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 5rem;
+    /* top: 0rem; */
+    /* right: 100%; */
+    /* bottom: 100%; */
+
+}
+.results-button:hover {
+    background-color: #360358;
+}

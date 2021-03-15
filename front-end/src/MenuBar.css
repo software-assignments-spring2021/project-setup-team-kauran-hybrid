@@ -1,10 +1,11 @@
 .Menu-bar{
     
     background-color: #57068C;
-    height:8rem;
-    width: 105%;
-    margin-top: -960px;
-    margin-bottom: 30px;
+    height:5%;
+    width: 100%;
+ 
+    margin-top: -30%;
+    margin-bottom: 30%;
     position: absolute;
     
 }
@@ -12,20 +13,36 @@ a{
     color: white;
 }
 .Account{
-    height:9rem;
+    height:10%;
     position: relative;
-    margin-left: 5rem;
+    margin-left: 2.5%;
     line-height:10px;
-    top: -11rem;
+    top: -80%;
     font-size: 1.5rem;
     color: white;
 }
 .Login{
     color: white;
-    height:9rem;
+    height:10%;
     position: relative;
-    margin-left: 5rem;
+    margin-left: 2.5%;
     line-height:10px;
-    top: -11rem;
+    top: -80%;
     font-size: 1.5rem;
+}
+.btn {
+    background-color: #57068C;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    /* top: 0rem; */
+    right: 100%;
+    /* bottom: 100%; */
+}
+
+.btn:hover {
+    background-color: #360358;
 }
