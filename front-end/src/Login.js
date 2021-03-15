@@ -5,6 +5,7 @@ import './Login.css'
 import './MenuBar.css';
 import { Link } from 'react-router-dom';
 import Account from './Account';
+import './Account.css';
 
 const Login=(props)=> {
 
@@ -44,6 +45,8 @@ const Login=(props)=> {
       return (
         <React.Fragment>
           {}
+          <MenuBar>
+          </MenuBar>
             <form className="box">
               <p>
                 {}
