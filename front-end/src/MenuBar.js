@@ -34,8 +34,12 @@ const MenuBar=()=>{
             <Link to="./Results">
             <button className="btn"><i className="fa fa-home"></i> Home</button> 
             </Link>
-            <button className="btn"><i class="fa fa-trash"></i> Trash</button>
-            <button className="btn"><i class="fa fa-close"></i> Close</button>
+            <Link to="./Account">
+            <button className="btn">My Account</button>
+            </Link>
+            <Link to="./Login">
+            <button className="btn">Login/Logout</button>
+            </Link>
             <button className="btn"><i class="fa fa-folder"></i> Folder</button>
             
 
