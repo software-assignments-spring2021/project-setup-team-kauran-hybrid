@@ -2,6 +2,7 @@ import React from'react';
 import MenuBar from './MenuBar';
 import './ClassInfo.css';
 import './MenuBar.css';
+import './App.css';
 import ProfInfo from'./ProfInfo';
 import {Link} from 'react-router-dom';
 
@@ -9,7 +10,7 @@ function ClassInfo(props){
     
     return(
 
-        <div className="classinfo">
+        <div className="App-page">
             <MenuBar>
             </MenuBar>
             <p>

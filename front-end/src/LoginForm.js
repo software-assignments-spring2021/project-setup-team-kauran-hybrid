@@ -75,6 +75,7 @@ const LoginForm=(props)=> {
                 Go!
               </button> */}
 
+              
               <Link to="/Results">
                 <center>
                  <button className="goButton"> Go! </button>

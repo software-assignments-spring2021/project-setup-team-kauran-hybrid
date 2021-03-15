@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import MenuBar from './MenuBar';
 import './Results.css';
 import './MenuBar.css';
+import './App.css';
 import './ClassModules.css';
 import ClassModules from'./ClassModules';
 import {Link,Switch} from 'react-router-dom';
@@ -11,7 +12,7 @@ const Results=(props)=>{
     
     return(
        
-        <div className="results-page">
+        <div className="App-page">
             <MenuBar>
 
             </MenuBar>

@@ -16,16 +16,17 @@
 
 .App-page {
   background-color: #57068C;
-  /* min-height: 100vh; */
-  height: 60rem;
-  width: 110rem;
+  min-height: 100vh;
+  /* max-height: 200vh; */
+  /* height: 100vh; */
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  position: relative;
+  position: relatve;
   /* margin-top: 15rem; */
 }
 
