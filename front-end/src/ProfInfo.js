@@ -20,6 +20,10 @@ const ProfInfo=(props)=>{
         )
       }
       const HashTags = ["lots of hw", "lecture heavy", "no quiz"]
+
+      const goBack = () => {
+        window.history.back();
+      }
     
     return(
       <div className="App-page">
@@ -57,10 +61,12 @@ const ProfInfo=(props)=>{
               <section>
               <ClassModules></ClassModules>
               </section>
-              {/* <ClassModules>
+              <center>
               
-
-            </ClassModules> */}
+                  
+                  <button className='Button' onclick={goBack}>Go Back</button>
+            
+              </center>
               
           </div>
 
