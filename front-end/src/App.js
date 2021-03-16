@@ -39,6 +39,7 @@ function App() {
           <Route  exact path="/ClassInfo" component={ClassInfo} />
           <Route  exact path="/Account" component={Account} />
           <Route exact path="/Login" component={Login} />
+          <Route exact path="/ProfInfo" component={ProfInfo} />
 
           {/* <Route path="/">
             <Home />

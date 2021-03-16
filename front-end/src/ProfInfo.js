@@ -26,7 +26,7 @@ const ProfInfo=(props)=>{
       }
     
     return(
-      <div className="App-page">
+      <div className="prof-page">
         <MenuBar>
 
         </MenuBar>
