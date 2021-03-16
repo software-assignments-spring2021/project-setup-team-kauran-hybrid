@@ -13,8 +13,8 @@ import MenuBar from './MenuBar';
 const ProfInfo=(props)=>{
     const Item = (props) => {
         return (
-          <article>
-            <h1>{props.heading}</h1>
+          <article className="prof-article">
+            <h1 className="prof-h1">{props.heading}</h1>
             <p className="Score">{props.paragraph}</p>
           </article>
         )
