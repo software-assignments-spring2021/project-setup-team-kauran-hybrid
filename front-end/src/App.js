@@ -4,6 +4,7 @@ import React from 'react'
 import Home from './Home'
 import Results from './Results'
 import ClassInfo from './ClassInfo';
+import ProfInfo from './ProfInfo';
 import Account from './Account';
 import Login from './Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -38,6 +39,7 @@ function App() {
           <Route  exact path="/ClassInfo" component={ClassInfo} />
           <Route  exact path="/Account" component={Account} />
           <Route exact path="/Login" component={Login} />
+          <Route  exact path="/ProfInfo" component={ProfInfo} />
 
           {/* <Route path="/">
             <Home />
