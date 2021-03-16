@@ -1,6 +1,7 @@
 .LoginLogout{
     position: relative;
 }
+
 .inputs{
     align-self: center;
     border: 3px solid #7851A9;
@@ -10,25 +11,30 @@
     background-color: white;
     text-align: center;
     align-content: center;
-    font-size: 20px;
+    font-size: calc(10px + 2vmin);
+    border-style: solid;
+    border-color: white;
+
 
 }
 
 .submit-button{
+    padding: 12px 16px;
     background-color: teal;
     border: solid;
     border-radius: 10px;
     color: white;
-    padding: 12px 16px;
-    font-size: 30px;
+    font-size: 28px;
     cursor: pointer;
     position: relative;
-    margin-left: 5rem;
-
 }
+
+
+
 .submit-button:hover {
     background-color: #360358;
 }
+
 
 .center{
     justify-self: center;
