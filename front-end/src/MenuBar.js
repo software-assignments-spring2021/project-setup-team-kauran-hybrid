@@ -31,7 +31,7 @@ const MenuBar=()=>{
              
             </link> 
             
-            <Link to="./Results">
+            <Link to="/">
             <button className="btn"><i className="fa fa-home"></i> Home</button> 
             </Link>
             <Link to="./Account">
