@@ -7,30 +7,22 @@ import ClassInfo from './ClassInfo';
 import ProfInfo from './ProfInfo';
 import Account from './Account';
 import Login from './Login';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import ReactDOM from 'react-dom';
+import DeviceEmulator from 'react-device-emulator';
+import 'react-device-emulator/lib/styles/style.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Dropdown from './Dropdown'
 
 
 function App() {
   return (
-    //this is kept for reference
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.{'\n'} Test
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+
     <div className="container">
+      <DeviceEmulator type="tab" with DeviceSwitch withRotator>
+
+      </DeviceEmulator>
+      <DeviceEmulator type="mobile" withDeviceSwitch withRotator url="www.worksfair.com"></DeviceEmulator>
+      <DeviceEmulator type="tab" withoutChrome url="www.worksfair.com"></DeviceEmulator>
       <Router>
         <Switch>
 
