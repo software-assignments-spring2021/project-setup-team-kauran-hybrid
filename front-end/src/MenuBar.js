@@ -21,11 +21,11 @@ const MenuBar=()=>{
                 {/* <button className="btn"><i className="fa fa-home"></i> Home</button>  */}
                 </Link>
 
-                <Link to="./Account" classname="menu-links"> MyAccount
+                <Link to="./Account" className="menu-links"> MyAccount
                 {/* <button className="btn">My Account</button> */}
                 </Link>
                 
-                <Link to="./Login" classname="menu-links"> Login/Logout
+                <Link to="./Login" className="menu-links"> Login/Logout
                 {/* <button className="btn">Login/Logout</button> */}
                 </Link>
 
