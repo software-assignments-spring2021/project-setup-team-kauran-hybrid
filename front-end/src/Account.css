@@ -1,19 +1,12 @@
-
-
 .account-page {
-    position: relative;
-    border-style: solid;
-    border-color: white;
-    border:10px;
-    background-color: #57068C;
-    /* min-height: 100vh; */
-    height: 70rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    white-space: pre-wrap;
+  background-color: #57068C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: relative;
+  width: 100vw; 
 }
+

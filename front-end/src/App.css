@@ -16,9 +16,6 @@
 
 .App-page {
   background-color: #57068C;
-  /* min-height: 100vh; */
-  height: 60rem;
-  width: 110rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +23,6 @@
   font-size: calc(10px + 2vmin);
   color: white;
   position: relative;
-  /* margin-top: 15rem; */
 }
 
 .App-link {

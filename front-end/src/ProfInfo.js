@@ -26,16 +26,14 @@ const ProfInfo=(props)=>{
       }
     
     return(
-      <div className="prof-page">
-        <MenuBar>
+      <div>
+        <div className = "menu">
+          <MenuBar>
 
-        </MenuBar>
- 
-          <p>
-            Waitlisted?
-          </p>
-          
-          <div>
+          </MenuBar>
+        </div>
+        <div className="prof-page">
+
               <center className="Name">
                   Professor Name
               </center>
@@ -58,9 +56,9 @@ const ProfInfo=(props)=>{
               <section>
                      Offered Classes:
               </section>
-              {/* <section> */}
+
               <ClassModules></ClassModules>
-              {/* </section> */}
+
               <center>
               
                   <Link to='./ClassInfo'>
@@ -69,9 +67,6 @@ const ProfInfo=(props)=>{
               </center>
               
           </div>
-
-          
-        {/* </header> */}
         
       </div>
     )

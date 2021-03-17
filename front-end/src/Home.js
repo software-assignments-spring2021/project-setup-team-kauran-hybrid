@@ -11,26 +11,20 @@ import MenuBar from './MenuBar';
 
 const Home=(props)=>{
       return(
-        <div className="App-page">
-          <MenuBar>
+        <div>
+          <div className = "menu">
+            <MenuBar>
 
-          </MenuBar>
-            
-             
-            <p>
-              Waitlisted?
-            </p>
+            </MenuBar>
+          </div>
+          <div className="Home">
+
             <LoginForm/>
-
-            
-          {/* </header> */}
           
+          </div>
         </div>
       )
-      
-
-        
-      
+   
 };
 
 

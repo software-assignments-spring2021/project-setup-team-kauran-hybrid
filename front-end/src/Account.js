@@ -9,18 +9,26 @@ import {Link,Switch} from 'react-router-dom';
 
 const Account = (props) => {
     return (
-
-        <div className = "account-page">
+     <div>
+         <div className = "menu">
             <MenuBar>
 
             </MenuBar>
-            <p>
+            </div>
+<div className = "account-page">
+            
+            {/* <p>
               Waitlisted?
-            </p>
-            <ClassModules>
+            </p> */}
+            <p>
+                <ClassModules>
 
-            </ClassModules>
+                </ClassModules>
+            </p>
+            
         </div>
+     </div>
+        
 
     )
 }

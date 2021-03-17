@@ -9,23 +9,8 @@ import { Link } from 'react-router-dom';
 import "./MenuBar.css";
 const MenuBar=()=>{
     return (
-        // <header className="Menu-bar">
-        // <center>
-        // <Link to="/" className="HomeLink">
-
-        // <img src={logo} className="App-logo" alt="logo"/>
-              
-        // </Link>
-
-        // </center>
-             
-        // <Link to="/Account" className="Account">My Account</Link>
-
-        // <Link to="/Login" className="Login">Login/Logout</Link>
-
-        // </header>
-        <div>
-            <header>
+        
+        <div classname="menu">
             
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
@@ -41,11 +26,13 @@ const MenuBar=()=>{
             <button className="btn">Login/Logout</button>
             </Link>
             <button className="btn"><i class="fa fa-folder"></i> Folder</button>
-            
 
-            </header>
             <center>
             <img src={logo} className="App-logo" alt="logo" />
+            <p>
+                Waitlisted?
+            </p>
+            
             </center>
         </div>
         
