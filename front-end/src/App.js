@@ -18,11 +18,11 @@ function App() {
   return (
 
     <div className="container">
-      <DeviceEmulator type="tab" with DeviceSwitch withRotator>
+      {/* <DeviceEmulator type="tab" with DeviceSwitch withRotator> */}
 
-      </DeviceEmulator>
+      {/* </DeviceEmulator> */}
       <DeviceEmulator type="mobile" withDeviceSwitch withRotator url="www.worksfair.com"></DeviceEmulator>
-      <DeviceEmulator type="tab" withoutChrome url="www.worksfair.com"></DeviceEmulator>
+      {/* // <DeviceEmulator type="tab" withoutChrome url="www.worksfair.com"></DeviceEmulator> */}
       <Router>
         <Switch>
 
