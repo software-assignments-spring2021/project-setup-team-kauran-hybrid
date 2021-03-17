@@ -11,6 +11,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   white-space: pre-wrap;
+  width: 100vw;
 }
 
 .Name {
@@ -19,7 +20,6 @@
 }
 
 section {
-  /* border: 1px solid red; */
   display: flex;
   padding: 10px;
   width: 80rem;
@@ -28,7 +28,6 @@ section {
 
 .prof-article {
   flex: auto;
-  /* border: 1px dotted yellow; */
   background-color: white;
   height: 80px;
   width: 250px;
@@ -40,7 +39,6 @@ section {
   color: black;
   font-weight: bold;
   background-color: rgb(154, 67, 236);
-  /* border: 1px solid black; */
   font-size: 30px;
   text-align: center;
   margin: 0px;
@@ -50,10 +48,8 @@ section {
 .Score {
   color: rgb(189, 13, 13);
   font-weight: bolder;
-  /* font-family: Gill Sans; */
   text-align: center;
   font-size: 30px;
-  /* padding: 30px; */
   margin: 10px;
   padding: 5px;
 }
@@ -79,7 +75,6 @@ h2 {
   font-size: 30px;
   cursor: pointer;
   position: relative;
-  /* margin-left: 5rem; */
 }
 
 .Button:hover {
