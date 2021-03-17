@@ -18,3 +18,18 @@
 .btn:hover {
     background-color: #360358;
 }
+a.link{
+    color:white;
+}
+.many-links{
+    
+    width:100vw;
+    align-items: left;
+    
+}
+.menu-links{
+    margin-left: 10px;
+    padding: 20px;
+    color:  white;
+    
+}

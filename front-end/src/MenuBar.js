@@ -15,17 +15,24 @@ const MenuBar=()=>{
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
             </link> 
+            <div className="many-links"> 
             
-            <Link to="/">
-            <button className="btn"><i className="fa fa-home"></i> Home</button> 
-            </Link>
-            <Link to="./Account">
-            <button className="btn">My Account</button>
-            </Link>
-            <Link to="./Login">
-            <button className="btn">Login/Logout</button>
-            </Link>
-            {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
+                <Link to="/" className="menu-links"> Home
+                {/* <button className="btn"><i className="fa fa-home"></i> Home</button>  */}
+                </Link>
+
+                <Link to="./Account" className="menu-links"> MyAccount
+                {/* <button className="btn">My Account</button> */}
+                </Link>
+                
+                <Link to="./Login" className="menu-links"> Login/Logout
+                {/* <button className="btn">Login/Logout</button> */}
+                </Link>
+
+                {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
+            
+            </div>
+           
 
             <center>
             <Link to ="/">
