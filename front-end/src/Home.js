@@ -17,7 +17,7 @@ const Home=(props)=>{
           <div className = "menu">
             <MenuBar/>
 
-            <Dropdown/>
+            {/* <Dropdown/> */}
           </div>
       
             
