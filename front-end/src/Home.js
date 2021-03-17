@@ -12,16 +12,17 @@ import Dropdown from './Dropdown';
 
 const Home=(props)=>{
       return(
+        // Need to use this separate outside div for positioning purposes
         <div>
           <div className = "menu">
-            <MenuBar>
+            <MenuBar/>
 
-            </MenuBar>
-
-            <dd-wrapper>
-             
-            </dd-wrapper>
+            <Dropdown/>
           </div>
+      
+            
+          
+          {/* This makes it so that the top menu part does not move around */}
           <div className="Home">
 
             <LoginForm/>

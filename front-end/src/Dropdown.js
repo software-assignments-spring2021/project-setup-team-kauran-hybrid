@@ -8,11 +8,11 @@ const Dropdown=(props)=>{
             <div className="dd-header">
                 <div className="dd-header"></div>
             </div>
-            <div className="dd-menu">
-                <button className="dd-list-item">Home</button>
-                <button className="dd-list-item">MyAccount</button>
-                <button className="dd-list-item">Login/Logout</button>
-            </div>
+            <ul className="dd-menu">
+                <li> <button className="dd-list-item">Home</button> </li>
+                <li> <button className="dd-list-item">MyAccount</button> </li>
+                <li> <button className="dd-list-item">Login/Logout</button> </li>
+            </ul>
 </div>
     )
 }
