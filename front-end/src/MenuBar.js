@@ -25,10 +25,13 @@ const MenuBar=()=>{
             <Link to="./Login">
             <button className="btn">Login/Logout</button>
             </Link>
-            <button className="btn"><i class="fa fa-folder"></i> Folder</button>
+            {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
 
             <center>
+            <Link to ="/">
             <img src={logo} className="App-logo" alt="logo" />
+            </Link>
+            
             <p>
                 Waitlisted?
             </p>
