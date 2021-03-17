@@ -6,7 +6,13 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    
+    width: 100vw;
 }
+.class-name {
+    font-weight: bolder;
+    font-size: 32px;
+  }
 .time-place{
     position: relative;
     width: 60rem;

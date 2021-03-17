@@ -9,23 +9,22 @@ import LoginLogout from'./LoginLogout'
 import { Link, Switch } from 'react-router-dom';
 
 const Login=(props)=>{
-      return(
-        <div className="Login-page">
-            <MenuBar>
+  return(
+    <div>
+      <div className = "menu">
+        <MenuBar>
 
-            </MenuBar>  
-            <p>
-              Waitlisted?
-            </p>
-            <LoginLogout/>
+        </MenuBar>
+      </div>
+      <div className = "Login-page">
 
-            
-          {/* </header> */}
+        <LoginLogout/>
           
-        </div>
-      )
-      
-      
+      </div>
+    </div>
+        
+  )
+         
 };
 
 export default Login;

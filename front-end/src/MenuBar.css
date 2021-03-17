@@ -1,35 +1,8 @@
-.Menu-bar{
-    
+.menu{
     background-color: #57068C;
-    height:5%;
-    width: 100%;
- 
-    margin-top: -30%;
-    margin-bottom: 30%;
-    position: absolute;
-    
+    width: 100vw;
 }
-a{
-    color: white;
-}
-.Account{
-    height:10%;
-    position: relative;
-    margin-left: 2.5%;
-    line-height:10px;
-    top: -80%;
-    font-size: 1.5rem;
-    color: white;
-}
-.Login{
-    color: white;
-    height:10%;
-    position: relative;
-    margin-left: 2.5%;
-    line-height:10px;
-    top: -80%;
-    font-size: 1.5rem;
-}
+
 .btn {
     background-color: #57068C;
     border: none;
@@ -38,9 +11,8 @@ a{
     font-size: 16px;
     cursor: pointer;
     position: relative;
-    /* top: 0rem; */
+
     right: 100%;
-    /* bottom: 100%; */
 }
 
 .btn:hover {

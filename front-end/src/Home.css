@@ -1,9 +1,14 @@
 .Home{
-    text-align: center;
-    white-space: pre-wrap;
-    align-content: center;
-    align-items: center;
-    vertical-align: center;
+    background-color: #57068C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: relative;
+  height: 65vh;
+  width: 100vw;
 }
 
 .textField{
