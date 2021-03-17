@@ -6,13 +6,14 @@ const Dropdown=(props)=>{
     return(
         <div className="dd-wrapper">
             <div className="dd-header">
-                <div className="dd-header-title"></div>
+                <div className="dd-header"></div>
             </div>
-            <div className="dd-list">
-                <button className="dd-list-item"></button>
-                <button className="dd-list-item"></button>
-                <button className="dd-list-item"></button>
+            <div className="dd-menu">
+                <button className="dd-list-item">Home</button>
+                <button className="dd-list-item">MyAccount</button>
+                <button className="dd-list-item">Login/Logout</button>
             </div>
 </div>
     )
 }
+export default Dropdown

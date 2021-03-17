@@ -8,32 +8,17 @@ import ProfInfo from './ProfInfo';
 import Account from './Account';
 import Login from './Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// import Dropdown from './Dropdown'
+import Dropdown from './Dropdown'
 
 
 function App() {
   return (
-    //this is kept for reference
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.{'\n'} Test
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+
     <div className="container">
       <Router>
         <Switch>
 
+          <Route exact path="/dropdown" component={Dropdown}/>
           <Route  exact path="/" component={Home} />
           <Route  exact path="/results" component={Results} />
           <Route  exact path="/ClassInfo" component={ClassInfo} />
