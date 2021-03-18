@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 //import './App.css';
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
 import './ProfInfo.css'
@@ -9,22 +9,36 @@ import { Link } from 'react-router-dom';
 import ClassModules from'./ClassModules';
 // import Button from './Button'
 import MenuBar from './MenuBar';
+import Professor from './Professor'
+import axios from "axios";
 
 const ProfInfo=(props)=>{
-    const Item = (props) => {
-        return (
-          <article className="prof-article">
-            <h1 className="prof-h1">{props.heading}</h1>
-            <p className="Score">{props.paragraph}</p>
-          </article>
-        )
-      }
-      const HashTags = ["lots of hw", "lecture heavy", "no quiz"]
 
-      const goBack = () => {
-        window.history.back();
-      }
-    
+  const goBack = () => {
+    window.history.back();
+  }
+  
+  const [profinfo, setProfInfo] = useState([]);
+  const prof_info = [profinfo];
+  useEffect(() => {
+    // a nested function that fetches the data
+    async function fetchData() {
+      // axios is a 3rd-party module for fetching data from servers
+      const result = await axios(
+        // retrieving some mock data about animals for sale
+        "https://my.api.mockaroo.com/professor.json?key=2f789220"
+      );
+      // set the state variable
+      // this will cause a re-render of this component
+      setProfInfo(result.data);
+    }
+    // fetch the data!
+    fetchData();
+
+  // the blank array below causes this callback to be executed only once on component load
+}, []);
+  
+
     return(
       <div>
         <div className = "menu">
@@ -32,41 +46,20 @@ const ProfInfo=(props)=>{
 
           </MenuBar>
         </div>
-        <div className="prof-page">
+        
+        <div className='prof-page'>
 
-              <center className="Name">
-                  Professor Name
-              </center>
-              <section>
-                  <Item heading="Overall Rating" paragraph="4/5"></Item>
-                  <Item heading="Level of Difficulty" paragraph="4/5"></Item>
-                  <Item heading="Would take again" paragraph="40%"></Item>
-              </section>
-              <section>
-                      Top #HashTags:
-              </section>
-              <section>
-                  
-                  {HashTags.map(item => (
-                      <h2>
-                          {item}
-                      </h2>
-                  ))}
-              </section>
-              <section>
-                     Offered Classes:
-              </section>
-
-              <ClassModules></ClassModules>
-
-              <center>
+          {prof_info.map(item => (
+              <Professor key={item.id} details={item} />
+          ))}
+          <center>
               
-                  <Link to='./ClassInfo'>
-                  <button className='Button' onclick={goBack}>Go Back</button>
-                  </Link>
-              </center>
-              
-          </div>
+              <Link to='./ClassInfo'>
+              <button className='Button' onclick={goBack}>Go Back</button>
+              </Link>
+          </center>
+
+        </div>
         
       </div>
     )
