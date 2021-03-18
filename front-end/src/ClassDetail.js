@@ -8,24 +8,24 @@ function ClassDetail(props){
     return(
         <div>
 
-            <div className="class-detail">
+            <div>
                 <center className="class-name">
-                    Class Name: {props.details.class_name};
+                    (Class Number) {props.details.class_number} (Class Name) {props.details.class_name}
                 </center>
-                <p className="time-place">
-                    Time and Place: {props.details.time};
-                    {props.details.place};
+                <p className="class-info">
+                    (Time and Place) {props.details.time}
+                    {props.details.place}
                 </p>
-                <p className="intro">
-                    Brief introdcution of class: {props.details.class_intro};
+                <p className="class-detail">
+                    (Brief introdcution of class) {props.details.class_intro}
                 </p>
-                <p className="prereq">
-                    Prerequisites: {props.details.prereq};
+                <p className="class-detail">
+                    (Prerequisites) {props.details.prereq}
                 </p>
                 <p>
                     <Link to = "/ProfInfo">
                         <button className="prof-info">
-                            Professor: {props.details.prof_name};
+                            (Professor) {props.details.prof_name}
                         </button>
                     </Link>
                 </p>
