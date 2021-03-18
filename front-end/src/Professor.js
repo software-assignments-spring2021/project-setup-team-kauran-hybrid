@@ -16,6 +16,9 @@ const Professor=(props)=>{
           </article>
         )
       }
+    const rate = props.details.rate + ' / 5'
+    const difficulty = props.details.difficulty + ' / 5'
+    const retake = props.details.retake + ' %'
     const HashTags = [props.details.tag1,props.details.tag2,props.details.tag3]
     // const classes = [props.details.class1, props.details.class2]
 
@@ -29,9 +32,9 @@ const Professor=(props)=>{
               </center>
               
               <section>
-                  <Item heading="Overall Rating" paragraph={props.details.rate}></Item>
-                  <Item heading="Level of Difficulty" paragraph={props.details.difficulty}></Item>
-                  <Item heading="Would take again" paragraph={props.details.retake}></Item>
+                  <Item heading="Overall Rating" paragraph={rate}></Item>
+                  <Item heading="Level of Difficulty" paragraph={difficulty}></Item>
+                  <Item heading="Would take again" paragraph={retake}></Item>
               </section>
 
               <section>
