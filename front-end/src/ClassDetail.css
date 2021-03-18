@@ -1,10 +1,12 @@
 .class-name {
     font-weight: bolder;
     font-size: 32px;
+    padding: 10px;
   }
-.time-place{
+ 
+.class-info{
     position: relative;
-    width: 60rem;
+    width: 65rem;
     height: 5rem;
     line-height: 5rem;
     text-align: center;
@@ -15,9 +17,10 @@
     border-radius: 10px;
     margin-bottom: 2rem;
 }
-.intro{
+
+.class-detail{
     position: relative;
-    width: 60rem;
+    width: 65rem;
     height: 10rem;
     line-height: 5rem;
     text-align: center;
@@ -28,20 +31,9 @@
     border-radius: 10px;
     margin-bottom: 2rem;
 }
-.prereq{
-    position: relative;
-    width: 60rem;
-    height: 5rem;
-    line-height: 5rem;
-    text-align: center;
-    border: 1px;
-    border-style: solid;
-    background-color: teal;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-}
+
 .prof-info{
-    width: 60rem;
+    width: 65rem;
     height: 5rem;
     background-color: teal;
     border: solid;
@@ -51,6 +43,7 @@
     cursor: pointer;
     position: relative;
 }
+
 .back-results-button{
     padding: 12px 16px;
     background-color: teal;

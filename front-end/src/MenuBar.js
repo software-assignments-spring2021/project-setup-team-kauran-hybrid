@@ -7,7 +7,9 @@ import './Home.css'
 import LoginForm from'./LoginForm'
 import { Link } from 'react-router-dom';
 import "./MenuBar.css";
+
 const MenuBar=()=>{
+    
     return (
         
         <div classname="menu">
@@ -40,7 +42,7 @@ const MenuBar=()=>{
             </Link>
             
             <p>
-                Waitlisted?
+                Waitlist Hopper
             </p>
             
             </center>

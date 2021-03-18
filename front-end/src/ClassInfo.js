@@ -38,7 +38,7 @@ function ClassInfo(props){
             </div>
             <div className = "classinfo">
             {class_info.map(item => (
-              <ClassDetail key={item.class_name} details={item} />
+              <ClassDetail key={item.class_number} details={item} />
             ))}
             </div>
         </div>
