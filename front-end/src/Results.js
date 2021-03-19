@@ -31,14 +31,14 @@ const Results=(props)=>{
                 <p> Would you like to login and store this search?</p>
                 <header>
             
-                <Link to ="./Login">
+
             
-                    <button className="results-button">YES!</button>
-                </Link>
-                <Link to ="/">
-                    <button className="results-button">NO! Go Back</button>
+                    <a href="/Login" className="results-button">YES!</a>
+
+
+                    <a href="/" className="results-button">NO! Go Back</a>
                 
-                </Link>
+
                 </header>
             </div>
         </div>

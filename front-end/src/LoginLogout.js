@@ -68,19 +68,24 @@ const LoginLogout=(props)=> {
             
               {}
 
-              <Link to="/Account">
-                <center>
-                 <button className="submit-button"> Login </button>
-                </center>
-                
-              </Link>
+              <div>
+                 <center>
 
-              <Link to="/Account">
-                <center>
-                 <button className="submit-button"> Signup </button>
-                </center>
+                 
+                 <a href="./Account" className="submit-button"> Login </a>
                 
-              </Link>
+                
+
+
+
+                
+                 <a href="./Account" className="submit-button"> Signup </a>
+                 </center>
+
+              </div>
+                
+                
+
 
             </form>   
           {}

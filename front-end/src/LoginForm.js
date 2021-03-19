@@ -75,12 +75,13 @@ const LoginForm=(props)=> {
                 Go!
               </button> */}
 
-              <Link to="/Results">
-                <center>
-                 <button className="goButton"> Go! </button>
-                </center>
-                
-              </Link>
+              <center>
+                <a href="./Results" class="goButton">
+                  Let's Hop!!! 
+                  
+                </a>
+              </center>
+             
 
             </form>
    
