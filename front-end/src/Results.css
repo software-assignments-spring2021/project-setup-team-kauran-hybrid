@@ -11,15 +11,21 @@
     width: 100vw;
 }
 .results-button{
-    background-color: teal;
-    border: solid;
-    border-radius: 10px;
-    color: white;
-    padding: 12px 16px;
-    font-size: 30px;
-    cursor: pointer;
+    padding: 10px 20px;
+    top: 40px;
+    margin-left:80px;
+    margin-right:80px;
+    border: 2.5px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 150px / 200px;
+    font-size: 20px;
+    background-color: #57068C;
+    color:white; 
     position: relative;
-    margin-left: 5rem;
+    cursor:pointer;
+    font-family:fantasy;
+    font-size: 30px;
 
 }
 .results-button:hover {
