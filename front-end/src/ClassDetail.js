@@ -5,8 +5,7 @@ import './ClassDetail.css'
 
 function ClassDetail(props){
     return(
-        <div>
-            <div>
+            <div className="class-details">
                 <center className="class-name">
                     (Class Number) {props.details.class_number} (Class Name) {props.details.class_name}
                 </center>
@@ -35,7 +34,6 @@ function ClassDetail(props){
                     </center>
                 </p>
             </div>
-        </div>
     )
 }
 export default ClassDetail

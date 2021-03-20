@@ -1,3 +1,7 @@
+.class-details {
+    height: 110vh;
+}
+
 .class-name {
     font-weight: bolder;
     font-size: 32px;

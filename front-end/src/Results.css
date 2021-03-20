@@ -7,12 +7,12 @@
     font-size: calc(10px + 2vmin);
     color: white;
     white-space: pre-wrap;
-    min-height: 200vh;
+    min-height: 190vh;
     width: 100vw;
 }
 .results-button{
     padding: 10px 20px;
-    top: 40px;
+    /* top: 40px; */
     margin-left:80px;
     margin-right:80px;
     border: 2.5px;
