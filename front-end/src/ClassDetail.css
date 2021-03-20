@@ -48,7 +48,7 @@
     position: relative;
 }
 
-back-results-button:hover{
+.back-results-button:hover{
     background-color:white;
     color:black;
 }
