@@ -2,9 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+For the time being, some pages may have invisible class information because of the Mockaroo API having limited API calls per day.
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Run this command before doing anything.
 
 ### `npm start`
 

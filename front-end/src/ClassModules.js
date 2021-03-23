@@ -1,69 +1,63 @@
 
-import React,{useState} from'react';
+import React,{useState,useEffect} from'react';
+import axios from "axios";
 import './ClassModules.css';
 import {Link} from 'react-router-dom';
 import ClassInfo from './ClassInfo';
+import Course from "./Course";
 
-const searchHistory = [
-    { courseNum: "123", semester: "Fall 2020", waitlistPos: 10 },
-    { courseNum: "456", semester: "Spring 2020", waitlistPos: 28 },
-    { courseNum: "789", semester: "Fall 2019", waitlistPos: 17 },
-    { courseNum: "000", semester: "Spring 2019", waitlistPos: 99 }
-  ];
 
-const Search = ({ courseNum, semester, waitlistPos }) => (
-    <div className = "search-item">
-        <Link to = "/ClassInfo">
-        Course Number: {courseNum}{"\t"}|{"\t"}Semester: {semester}{"\t"}|{"\t"}Waitlist Position: {waitlistPos}
-        </Link>
-    </div>
-  );
+
+
+
+
 
 
 function ClassModules(props){
+  const [history, setHistory] = useState([]);
+    useEffect(() => {
+      // a nested function that fetches the data
+      async function fetchData() {
+        // axios is a 3rd-party module for fetching data from servers
+        const result = await axios(
 
+          // retrieving some mock data about animals for sale
+          "https://my.api.mockaroo.com/search_history.json?key=7fa4d720"
+        );
+        //console.log(result.data);
+        // set the state variable
+        // this will cause a re-render of this component
+        setHistory(result.data);
+      }
+
+      // fetch the data!
+      fetchData();
+
+    // the blank array below causes this callback to be executed only once on component load
+  }, []);
     return (
-        <div className = "ClassModules">
-          {searchHistory.map((p, i) => (
-            <Search {...p} key={i} />
-          ))}
-        </div>
+        
+        <>
+        {/* <h1>Animals For Sale</h1> */}
+          <div className="ClassModules">
+            {history.map(item => (
+              <Course key={item.class_num} details={item} />
+            ))}
+          </div>
+        </>
       );
-    // return (
-    //     <React.Fragment>
-    //         <div>
-    //         value = {list}
-    //         onChange={handleChange}
-    //         </div>
-    //     </React.Fragment>
-    // )
-        
-        
-        
 
-
-    // return(
-        
-    //     <ol>
-    //         <li className='List-item'>
-    //             <Link to='./ClassInfo'>
-    //                 Class 1
-    //             </Link>
-    //         </li>
-    //         <li className='List-item'>
-    //             <Link to='./ClassInfo'>
-                    
-    //                 Class 2
-    //             </Link>
-    //         </li>
-    //         <li className='List-item'>
-    //             <Link to='./ClassInfo'>
-                    
-    //                 Class 3
-    //             </Link>
-    //         </li>
-    //     </ol>
-    // )
 }
-
+// const Search = ({ courseNum, semester, waitlistPos }) => (
+//     <div className = "search-item">
+//         <Link to = "/ClassInfo">
+//         Course Number: {courseNum}{"\t"}|{"\t"}Semester: {semester}{"\t"}|{"\t"}Waitlist Position: {waitlistPos}
+//         </Link>
+//     </div>
+//   );
+        // <div className = "ClassModules">
+        //   {searchHistory.map((p, i) => (
+        //     <Search {...p} key={i} />
+        //   ))}
+        // </div>
 export default ClassModules

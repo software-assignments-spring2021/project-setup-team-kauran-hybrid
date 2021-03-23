@@ -19,22 +19,27 @@
 }
 
 .submit-button{
-    padding: 12px 16px;
-    background-color: teal;
-    border: solid;
-    border-radius: 10px;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
+    padding: 10px 20px;
+    top: 40px;
+    margin-left:60px;
+    margin-right:60px;
+    border: 2.5px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 150px / 200px;
+    font-size: 20px;
+    background-color: #57068C;
+    color:white; 
     position: relative;
+    cursor:pointer;
+    font-family:fantasy;
+    font-size: 30px;
 }
-
 
 
 .submit-button:hover {
     background-color: #360358;
 }
-
 
 .center{
     justify-self: center;

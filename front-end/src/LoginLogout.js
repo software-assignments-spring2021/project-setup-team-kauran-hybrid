@@ -1,6 +1,5 @@
 import React,{useState} from'react';
 import './LoginLogout.css'
-import { Link } from 'react-router-dom';
 import Account from './Account';
 
 const LoginLogout=(props)=> {
@@ -67,20 +66,14 @@ const LoginLogout=(props)=> {
               </p>
             
               {}
-
-              <Link to="/Account">
-                <center>
-                 <button className="submit-button"> Login </button>
-                </center>
+              <div>
+                 <center>
+                  <a href="./Account" className="submit-button"> Login </a>
                 
-              </Link>
+                  <a href="./Account" className="submit-button"> Signup </a>
+                 </center>
 
-              <Link to="/Account">
-                <center>
-                 <button className="submit-button"> Signup </button>
-                </center>
-                
-              </Link>
+              </div>
 
             </form>   
           {}

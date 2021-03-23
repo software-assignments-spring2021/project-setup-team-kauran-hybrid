@@ -1,0 +1,70 @@
+.class-details {
+    height: 110vh;
+}
+
+.class-name {
+    font-weight: bolder;
+    font-size: 32px;
+    padding: 10px;
+  }
+ 
+.class-info{
+    position: relative;
+    width: 65rem;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+    background-color: teal;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.class-detail{
+    position: relative;
+    width: 65rem;
+    height: 10rem;
+    line-height: 5rem;
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+    background-color: teal;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.prof-info{
+    top: 10px;
+    padding: 10px 392px;
+    background-color: teal;
+    border: solid;
+    border-radius: 10px;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    position: relative;
+}
+
+.back-results-button:hover{
+    background-color:white;
+    color:black;
+}
+.back-results-button{
+    padding: 10px 20px;
+    top: 40px;
+    margin-left:15px;
+    border: 2.5px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 150px / 200px;
+    font-size: 20px;
+    background-color: #57068C;
+    color:white; 
+    position: relative;
+    cursor:pointer;
+    font-family:fantasy;
+    font-size: 30px;
+}

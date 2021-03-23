@@ -1,0 +1,25 @@
+.a{
+    position: relative;
+    width: 80rem;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    border: 3px;
+    border-style: solid;
+    border-color: white;
+    background-color: teal;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    
+}
+  /* styles for h2 HTML elements within each animal */
+  h2 {
+    font-family: georgia;
+    text-transform: uppercase;
+  }
+  strong {
+    display: block;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+  

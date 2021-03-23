@@ -1,0 +1,24 @@
+.dd-wrapper{
+    color: pink;
+    background-color: red;
+    height: 20vh;
+    width: 100vw;
+}
+
+.dd-header{
+    color: blue;
+    background-color: aqua;
+    height: 0vh;
+    width: 100vw;
+}
+
+.dd-list-item   {
+    color: beige;
+    background-color: grey;
+    height: 5vh;
+    width: 10vw;
+}
+
+.dd-menu {
+    list-style-type: none;
+}
