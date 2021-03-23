@@ -40,26 +40,28 @@ const ProfInfo=(props)=>{
   
 
     return(
-      <div>
+      <div className='prof-page'>
         <div className = "menu">
           <MenuBar>
 
           </MenuBar>
         </div>
         
-        <div className='prof-page'>
+        {/* <div className='prof-page'> */}
 
           {prof_info.map(item => (
               <Professor key={item.id} details={item} />
           ))}
+          <div className='classes'>
           <center>
               
-              <Link to='./ClassInfo'>
-              <button className='Button' onclick={goBack}>Go Back</button>
-              </Link>
+              {/* <a className='Button' onclick={goBack}>Go Back</a> */}
+              <a className='Button' href='./ClassInfo'>Return to the Class Info page</a> 
+              
           </center>
+          </div>
 
-        </div>
+        {/* </div> */}
         
       </div>
     )

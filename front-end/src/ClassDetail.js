@@ -1,14 +1,11 @@
 import React from "react";
 import './MenuBar.css';
 import ProfInfo from'./ProfInfo';
-import {Link} from 'react-router-dom';
 import './ClassDetail.css'
 
 function ClassDetail(props){
     return(
-        <div>
-
-            <div>
+            <div className="class-details">
                 <center className="class-name">
                     (Class Number) {props.details.class_number} (Class Name) {props.details.class_name}
                 </center>
@@ -23,23 +20,20 @@ function ClassDetail(props){
                     (Prerequisites) {props.details.prereq}
                 </p>
                 <p>
-                    <Link to = "/ProfInfo">
-                        <button className="prof-info">
+                    <center>
+                        <a href="./ProfInfo" class="prof-info"> 
                             (Professor) {props.details.prof_name}
-                        </button>
-                    </Link>
+                        </a>
+                    </center>
                 </p>
                 <p>
                     <center>
-                    <Link to ="/Results">
-                        <button className="back-results-button">
-                            Return to view other recommended courses
-                        </button>
-                    </Link>
+                    <a href="./Results" class="back-results-button"> 
+                        Return to view other recommended courses
+                    </a>
                     </center>
                 </p>
             </div>
-        </div>
     )
 }
 export default ClassDetail

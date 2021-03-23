@@ -1,5 +1,6 @@
 import logo from './logo.svg';
-//import './App.css';
+import './App.css';
+//import Button from 'react-bootstrap/Button';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
@@ -7,33 +8,36 @@ import './Home.css'
 import LoginForm from'./LoginForm'
 import { Link } from 'react-router-dom';
 import "./MenuBar.css";
-
+// import 'bootstrap/dist/css/bootstrap.min.css';
 const MenuBar=()=>{
     
     return (
         
         <div classname="menu">
-            
+            {/* <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+                integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+                crossorigin="anonymous"
+                /> */}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
             </link> 
-            <div className="many-links"> 
-            
-                <Link to="/" className="menu-links"> Home
-                {/* <button className="btn"><i className="fa fa-home"></i> Home</button>  */}
-                </Link>
-
-                <Link to="./Account" className="menu-links"> MyAccount
-                {/* <button className="btn">My Account</button> */}
-                </Link>
                 
-                <Link to="./Login" className="menu-links"> Login/Logout
-                {/* <button className="btn">Login/Logout</button> */}
-                </Link>
+            <nav className="many-links"> 
+            <a href="./" class="goodButton">Home</a>
+
+
+            <a href="./Account" class="goodButton">MyAccount</a>
+
+                
+            <a href="./Login" class="goodButton">Login/Logout</a>
+
+                
 
                 {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
             
-            </div>
+            </nav>
            
 
             <center>

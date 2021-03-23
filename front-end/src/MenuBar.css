@@ -1,39 +1,57 @@
 .menu{
     background-color: #57068C;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
-.btn {
-    background-color: #57068C;
-    border: none;
-    color: white;
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    position: relative;
-
-    right: 100%;
-}
-
-.btn:hover {
-    background-color: #360358;
-}
-a.link{
-    color:white;
+.menu-link:hover{
+    color:black;
 }
 .many-links{
     
-    width:100vw;
-    align-items: left;
-    
+    /* width:100vw;
+    align-items: left; */
+
+
+}
+nav a:hover{
+    backgroud-color:white;
 }
 .menu-links{
-    margin-left: 10px;
+    /* margin-left: 10px;
     padding: 20px;
-    color:  white;
+    color:  white; */
+    margin-left: 10px;
+    position:relative;
+    padding:5px;
+    border: 1px;
+    border: solid;
+    border-color:white;
+
+    /* right: 100%; */
+    /* background-color:white; */
     
 }
-
+.goodButton:hover{
+    background-color:white;
+    color:black;
+}
+.goodButton{
+    padding: 5px 10px;
+    top: 10px;
+    margin-left:15px;
+    border: 2.5px;
+    border-color: white;
+    border-style: solid;
+    font-size: 20px;
+    /* border-radius: 10%; */
+    background-color: #57068C;
+    color:white; 
+    right:100%;
+    position: relative;
+    cursor:pointer;
+    font-family:fantasy;
+    
+}
 .App-name{
     font-size: 28px;
 }

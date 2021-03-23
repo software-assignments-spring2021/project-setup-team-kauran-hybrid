@@ -1,11 +1,9 @@
 import React from'react';
-import ReactDOM from 'react-dom';
 import MenuBar from './MenuBar';
 import './Results.css';
 import './MenuBar.css';
 import './ClassModules.css';
 import ClassModules from'./ClassModules';
-import {Link,Switch} from 'react-router-dom';
 
 const Results=(props)=>{
     
@@ -29,17 +27,13 @@ const Results=(props)=>{
 
                 </ClassModules>
                 <p> Would you like to login and store this search?</p>
-                <header>
-            
-                <Link to ="./Login">
-            
-                    <button className="results-button">YES!</button>
-                </Link>
-                <Link to ="/">
-                    <button className="results-button">NO! Go Back</button>
+                <p>
+
+                    <a href="/Login" className="results-button">YES!</a>
+
+                    <a href="/" className="results-button">NO! Go Back</a>
                 
-                </Link>
-                </header>
+                </p>
             </div>
         </div>
 
