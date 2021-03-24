@@ -33,20 +33,15 @@ const LoginForm=(props)=> {
       {
         // fetch some mock data about animals for sale
 
-        axios('http://localhost:3000/home_login')
-
-            const backupData = [
-              {
-                id: 2,
-                title: 'Numbat',
-                country: 'Russia',
-                price: '$2.37',
-                description:
-                  'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.',
-              },
-            ]
-    
+        
+            axios.post('http://localhost:3000/home_login',{
+              email:email,
+              position:position,
+              number:number
+              }
+            );
             //etData(backupData[0])
+            console.log("triggered");
           
       }
 
@@ -101,6 +96,8 @@ const LoginForm=(props)=> {
 
               <center>
                 <a href="./Results" class="goButton">
+
+                  onClick={handleClickSubmit}
                   Let's Hop!!! 
                   
                 </a>
