@@ -1,0 +1,27 @@
+{
+  "name": "project-setup-team-kauran-hybrid",
+  "version": "1.0.0",
+  "description": "## Project Vision Statement",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "concurrently": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agile-dev-assignments/project-setup-team-kauran-hybrid.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agile-dev-assignments/project-setup-team-kauran-hybrid/issues"
+  },
+  "homepage": "https://github.com/agile-dev-assignments/project-setup-team-kauran-hybrid#readme"
+}

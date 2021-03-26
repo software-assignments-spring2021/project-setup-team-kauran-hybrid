@@ -3,6 +3,7 @@ import './LoginForm.css'
 import { Link } from 'react-router-dom';
 import Results from './Results';
 import axios from 'axios';
+
 //import "../back-end/app.js";
 const LoginForm=(props)=> {
 
@@ -29,24 +30,18 @@ const LoginForm=(props)=> {
     const handleClickPos = () => {
       setPosition('');
     };
-    const handleClickSubmit =() =>{
+    const  handleClickSubmit =async() =>{
       {
-        // fetch some mock data about animals for sale
-
-        axios('http://localhost:3000/home_login')
-
-            const backupData = [
-              {
-                id: 2,
-                title: 'Numbat',
-                country: 'Russia',
-                price: '$2.37',
-                description:
-                  'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.',
-              },
-            ]
-    
-            //etData(backupData[0])
+        
+            await axios.post('http://localhost:3000/home_login',{
+              
+              email:email,
+              position:position,
+              number:number
+              }
+            );
+          
+            console.log("triggered");
           
       }
 
@@ -100,10 +95,13 @@ const LoginForm=(props)=> {
               </button> */}
 
               <center>
-                <a href="./Results" class="goButton">
-                  Let's Hop!!! 
-                  
+             
+                <a href="/Results" className="goButton" onClick={handleClickSubmit}>
+                  Let's Hop  
+                      
                 </a>
+                
+             
               </center>
              
 
