@@ -45,7 +45,16 @@ app.post("/home_login", (req, res) => {
   const number = req.body.number
   // now do something amazing with this data...
   // ... then send a response of some kind
-  res.send("hello")
+  res.send("/home_login")
+})
+
+app.get("/home_login", (req, res) => {
+  const email = req.body.email
+  const position = req.body.your_position
+  const number = req.body.number
+  // now do something amazing with this data...
+  // ... then send a response of some kind
+  res.send("hi")
 })
   
 module.exports = app

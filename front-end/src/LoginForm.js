@@ -3,6 +3,7 @@ import './LoginForm.css'
 import { Link } from 'react-router-dom';
 import Results from './Results';
 import axios from 'axios';
+
 //import "../back-end/app.js";
 const LoginForm=(props)=> {
 
@@ -31,10 +32,9 @@ const LoginForm=(props)=> {
     };
     const handleClickSubmit =() =>{
       {
-        // fetch some mock data about animals for sale
-
         
             axios.post('http://localhost:3000/home_login',{
+              method: 'post',  
               email:email,
               position:position,
               number:number
@@ -95,12 +95,13 @@ const LoginForm=(props)=> {
               </button> */}
 
               <center>
-                <a href="./Results" class="goButton">
-
-                  onClick={handleClickSubmit}
-                  Let's Hop!!! 
-                  
+             
+                <a href="./Results" className="goButton" onClick={handleClickSubmit}>
+                  Let's Hop  
+                      
                 </a>
+                
+             
               </center>
              
 
