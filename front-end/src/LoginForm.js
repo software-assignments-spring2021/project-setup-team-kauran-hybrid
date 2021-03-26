@@ -34,13 +34,13 @@ const LoginForm=(props)=> {
       {
         
             await axios.post('http://localhost:3000/home_login',{
-              //method: 'post',  
+              
               email:email,
               position:position,
               number:number
               }
             );
-            //etData(backupData[0])
+          
             console.log("triggered");
           
       }

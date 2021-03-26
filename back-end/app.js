@@ -61,5 +61,15 @@ app.get("/home_login", (req, res) => {
   // ... then send a response of some kind
   res.send("hi")
 })
+
+app.get("/class_modules", (req,res, next) => {
+  // use axios to make a request to an API for our class history data
+  axios
+    .get("https://my.api.mockaroo.com/search_history.json?key=7fa4d720")
+    .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
+    .catch(err => next(err)) // pass any errors to express
+})
+
+
   
 module.exports = app
