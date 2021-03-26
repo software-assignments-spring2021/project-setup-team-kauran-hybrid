@@ -49,7 +49,8 @@ app.post("/home_login", (req, res) => {
   // now do something amazing with this data...
   // ... then send a response of some kind
   res.status(200).json({ok:true})
-  console.log("loging");
+  //res.send("hello")
+  console.log(email);
 })
 
 app.get("/home_login", (req, res) => {
