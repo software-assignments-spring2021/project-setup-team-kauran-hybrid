@@ -8,6 +8,9 @@ const multer =require("multer")
 const axios = require("axios")
 const morgan=require("morgan")
 
+
+var cors = require('cors')
+app.use(cors())
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nice concise color-coded style
 
@@ -45,7 +48,8 @@ app.post("/home_login", (req, res) => {
   const number = req.body.number
   // now do something amazing with this data...
   // ... then send a response of some kind
-  res.send("/home_login")
+  res.status(200).json({ok:true})
+  console.log("loging");
 })
 
 app.get("/home_login", (req, res) => {

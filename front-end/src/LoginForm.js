@@ -30,11 +30,11 @@ const LoginForm=(props)=> {
     const handleClickPos = () => {
       setPosition('');
     };
-    const handleClickSubmit =() =>{
+    const  handleClickSubmit =async() =>{
       {
         
-            axios.post('http://localhost:3000/home_login',{
-              method: 'post',  
+            await axios.post('http://localhost:3000/home_login',{
+              //method: 'post',  
               email:email,
               position:position,
               number:number
@@ -96,7 +96,7 @@ const LoginForm=(props)=> {
 
               <center>
              
-                <a href="./Results" className="goButton" onClick={handleClickSubmit}>
+                <a href="/Results" className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
                       
                 </a>
