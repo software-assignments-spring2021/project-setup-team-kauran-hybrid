@@ -80,18 +80,25 @@ h2 {
 }
 
 .Button {
+  padding: 10px 20px;
   top: 40px;
-  background-color: white;
-  border: solid;
-  border-radius: 10px;
-  color: black;
-  padding: 12px 16px;
-  font-size: 30px;
-  cursor: pointer;
+  margin-left:15px;
+  border: 2.5px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 150px / 200px;
+  font-size: 20px;
+  background-color: #57068C;
+  color:white; 
   position: relative;
+  cursor:pointer;
+  font-family:fantasy;
+  font-size: 30px;
+
   /* margin-left: 5rem; */
 }
 
 .Button:hover {
-  background-color: gray;
+  background-color: white;
+  color: black;
 }
