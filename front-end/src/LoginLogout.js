@@ -1,11 +1,14 @@
 import React,{useState} from'react';
 import './LoginLogout.css'
+import { Link } from 'react-router-dom';
 import Account from './Account';
+import axios from 'axios';
 
 const LoginLogout=(props)=> {
 
     const [email,setEmail]=useState("Enter your Email");
     const [password,setPassword]=useState("Enter your password");
+    const [submit, setSubmit]=useState();
 
 /* function submitLogin(e) {
     axios 
@@ -36,11 +39,27 @@ const LoginLogout=(props)=> {
     const handleClickPassword = () => {
       setPassword('');
     };
+
+    const  handleClickSubmit =async() =>{
+      {
+        
+            await axios.post('http://localhost:3000/login_logout',{
+              
+              email:email,
+              password:password,
+              }
+            );
+          
+            console.log("checkingg");
+          
+      }
+
+    };
     
       return (
         <React.Fragment>
           {}
-            <form className="box">
+            <form action="login_logout" method="POST" className="box">
               <p>
                 {}
                   <input className="inputs"
@@ -68,9 +87,9 @@ const LoginLogout=(props)=> {
               {}
               <div>
                  <center>
-                  <a href="./Account" className="submit-button"> Login </a>
+                  <a href="./Account" className="submit-button" onClick={handleClickSubmit}> Login </a>
                 
-                  <a href="./Account" className="submit-button"> Signup </a>
+                  <a href="./Account" className="submit-button" onClick={handleClickSubmit}> Signup </a>
                  </center>
 
               </div>

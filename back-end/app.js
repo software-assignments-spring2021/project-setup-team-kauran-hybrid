@@ -78,4 +78,17 @@ app.get("/class_info", (req,res, next) => {
     .catch(err => next(err)) // pass any errors to express
 })
 
+app.post("/login_logout", (req, res) => {
+  const email = req.body.email
+  const password = req.body.your_password
+  res.status(200).json({ok:true})
+  console.log(email);
+})
+
+app.get("/login_logout", (req, res) => {
+  const email = req.body.email
+  const password = req.body.your_password
+  res.send("hey there")
+})
+
 module.exports = app
