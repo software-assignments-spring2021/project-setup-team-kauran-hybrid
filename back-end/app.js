@@ -7,7 +7,7 @@ const app = express() // instantiate an Express object
 const multer =require("multer")
 const axios = require("axios")
 const morgan=require("morgan")
-
+const scraper=require("./scraper")
 
 var cors = require('cors')
 app.use(cors())
@@ -69,7 +69,9 @@ app.get("/class_modules", (req,res, next) => {
     .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
     .catch(err => next(err)) // pass any errors to express
 })
-
-
+app.get("/prof_scraper",(req,res)=>{
+  scraper.prof_scraper();
+  res.send("scraper site");
+})
   
 module.exports = app

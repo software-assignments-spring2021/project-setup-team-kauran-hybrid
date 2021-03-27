@@ -1,0 +1,8 @@
+{
+    "emmet.excludeLanguages": [
+
+        "markdown"
+    ],
+    "editor.fontFamily": "JetBrainsMono-Bold",
+    "editor.fontSize": 15
+}
