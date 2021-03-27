@@ -91,4 +91,12 @@ app.get("/login_logout", (req, res) => {
   res.send("hey there")
 })
 
+app.get("/prof_info", (req,res, next) => {
+    // use axios to make a request to an API for our class info data
+    axios
+      .get("https://my.api.mockaroo.com/professor.json?key=2f789220")
+      .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
+      .catch(err => next(err)) // pass any errors to express
+  })
+
 module.exports = app
