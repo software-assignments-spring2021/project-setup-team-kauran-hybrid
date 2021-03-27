@@ -16,7 +16,7 @@ function ClassInfo(props){
         // axios is a 3rd-party module for fetching data from servers
         const result = await axios(
           // retrieving some mock data about animals for sale
-          "https://my.api.mockaroo.com/class_prof_info.json?key=01e62b90"
+          'http://localhost:3000/class_info'
         );
         // set the state variable
         // this will cause a re-render of this component

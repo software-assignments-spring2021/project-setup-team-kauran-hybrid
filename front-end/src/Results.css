@@ -29,5 +29,6 @@
 
 }
 .results-button:hover {
-    background-color: #360358;
+    background-color:white;
+    color:black;
 }
