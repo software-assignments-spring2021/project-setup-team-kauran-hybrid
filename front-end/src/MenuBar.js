@@ -13,7 +13,7 @@ const MenuBar=()=>{
     
     return (
         
-        <div classname="menu">
+        <div className="menu">
             {/* <link
                 rel="stylesheet"
                 href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -25,13 +25,13 @@ const MenuBar=()=>{
             </link> 
                 
             <nav className="many-links"> 
-            <a href="./" class="goodButton">Home</a>
+            <a href="./" className="goodButton">Home</a>
 
 
-            <a href="./Account" class="goodButton">MyAccount</a>
+            <a href="./Account" className="goodButton">MyAccount</a>
 
                 
-            <a href="./Login" class="goodButton">Login/Logout</a>
+            <a href="./Login" className="goodButton">Login/Logout</a>
 
                 
 
