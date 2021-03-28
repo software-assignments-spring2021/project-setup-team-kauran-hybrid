@@ -6,9 +6,10 @@ const fetch= require('node-fetch');
 
 const puppeteer=require('puppeteer');
 
+//scraper for rateMyProf
 const prof_scraper=async(parameters)=>{
 
-    const profName="Amos Bloomberg";
+    const profName="Amos";
     const school="New York University";
     const browser=await puppeteer.launch({headless:false});
     const page=await browser.newPage();
@@ -40,5 +41,10 @@ const prof_scraper=async(parameters)=>{
 
 
 }
+//scraper for Albert, might use BUGs NYU api
+const albert_scraper=async(parameters)=>{
+
+}
+
 
 module.exports = {prof_scraper:prof_scraper};
