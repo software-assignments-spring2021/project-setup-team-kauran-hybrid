@@ -10,6 +10,7 @@ const morgan=require("morgan")
 const scraper=require("./scraper")
 
 var cors = require('cors')
+const { albert_scraper } = require("./scraper")
 app.use(cors())
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev")) // morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -73,5 +74,9 @@ app.get("/prof_scraper",(req,res)=>{
   scraper.prof_scraper();
   res.send("scraper site");
 })
-  
+app.get("/albert_scraper",(req,res)=>{
+  scraper.albert_scraper();
+  res.send("albert_scraper");
+
+})
 module.exports = app

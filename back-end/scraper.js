@@ -3,6 +3,7 @@ const axios=require('axios');
 const cheerio=require('cheerio');
 
 const fetch= require('node-fetch');
+const nodemon = require('nodemon');
 
 const puppeteer=require('puppeteer');
 
@@ -13,6 +14,7 @@ const prof_scraper=async(parameters)=>{
     const school="New York University";
     const browser=await puppeteer.launch({headless:false});
     const page=await browser.newPage();
+    page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
     await page.goto('https://www.ratemyprofessors.com/campusRatings.jsp?sid=675');
     //select input
@@ -41,10 +43,19 @@ const prof_scraper=async(parameters)=>{
 
 
 }
+
 //scraper for Albert, might use BUGs NYU api
 const albert_scraper=async(parameters)=>{
-
+    const year=2021;
+    const semester="su";
+    const school="College of Arts and Science";
+    const subject="Computer Science";
+    const url='https://schedge.a1liu.com/'+''+'${school}'+'${subject}'
+    await fetch("https://schedge.a1liu.com/2021/su/UA/CSCI")
+        .then(res=>res.json())
+        .then(json=>console.log(json));
+        
 }
 
 
-module.exports = {prof_scraper:prof_scraper};
+module.exports = {prof_scraper:prof_scraper,albert_scraper};
