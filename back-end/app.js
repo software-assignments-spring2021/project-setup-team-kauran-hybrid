@@ -43,10 +43,19 @@ app.get("/json-example", (req, res) => {
   // send the response as JSON to the client
   res.json(body)
 })
+
+
+let email
+let position
+let number
+
 app.post("/home_login", (req, res) => {
-  const email = req.body.email
-  const position = req.body.your_position
-  const number = req.body.number
+  email = req.body.email
+  position = req.body.position
+  number = req.body.number
+  // const email = req.body.email
+  // const position = req.body.position
+  // const number = req.body.number
   // now do something amazing with this data...
   // ... then send a response of some kind
   res.status(200).json({ok:true})
@@ -55,9 +64,9 @@ app.post("/home_login", (req, res) => {
 })
 
 app.get("/home_login", (req, res) => {
-  const email = req.body.email
-  const position = req.body.your_position
-  const number = req.body.number
+  // const email = req.body.email
+  // const position = req.body.position
+  // const number = req.body.number
   // now do something amazing with this data...
   // ... then send a response of some kind
   res.send("hi")
@@ -78,5 +87,50 @@ app.get("/albert_scraper",(req,res)=>{
   scraper.albert_scraper();
   res.send("albert_scraper");
 
+const calcProbGetIn = (position, number) => {
+  // console.log(position, number)
+  // need another function to pull class size based on the class number
+  // need another function or algorithm to calculate the probability
+  return (100 - position) / 100 // this is a dummy return
+}
+
+app.get("/results", (req, res) => {
+  // call some function that takes email, position, number that the user entered on the home page
+  // this function returns the probability that the student gets into the class
+  // console.log( calcProbGetIn(position, number) )
+  const probGetIn = (calcProbGetIn(position, number) * 100).toString()
+  // console.log( probGetIn )
+  res.send(probGetIn) // we have to send a string here so we convert the probGetIn type to string above
+})
+
+
+app.get("/class_info", (req,res, next) => {
+  // use axios to make a request to an API for our class info data
+  axios
+    .get("https://my.api.mockaroo.com/class_prof_info.json?key=01e62b90")
+    .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
+    .catch(err => next(err)) // pass any errors to express
+})
+
+app.post("/login_logout", (req, res) => {
+  const email = req.body.email
+  const password = req.body.your_password
+  res.status(200).json({ok:true})
+  console.log(email);
+})
+
+app.get("/login_logout", (req, res) => {
+  const email = req.body.email
+  const password = req.body.your_password
+  res.send("hey there")
+})
+
+app.get("/prof_info", (req,res, next) => {
+    // use axios to make a request to an API for our class info data
+    axios
+      .get("https://my.api.mockaroo.com/professor.json?key=2f789220")
+      .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
+      .catch(err => next(err)) // pass any errors to express
+  })
 })
 module.exports = app
