@@ -105,6 +105,7 @@ app.get("/results", (req, res) => {
 
 
 app.get("/class_info", (req,res, next) => {
+  scraper.albert_scraper();
   // use axios to make a request to an API for our class info data
   axios
     .get("https://my.api.mockaroo.com/class_prof_info.json?key=01e62b90")
