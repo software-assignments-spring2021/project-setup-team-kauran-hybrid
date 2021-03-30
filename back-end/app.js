@@ -8,6 +8,9 @@ const multer =require("multer")
 const axios = require("axios")
 const morgan=require("morgan")
 const scraper=require("./scraper")
+const mocha=require("mocha")
+const chai=require("chai")
+
 
 var cors = require('cors')
 const { albert_scraper } = require("./scraper")
@@ -42,6 +45,7 @@ app.get("/json-example", (req, res) => {
 
   // send the response as JSON to the client
   res.json(body)
+  res.status(200).json({ok:true})
 })
 
 
@@ -70,6 +74,7 @@ app.get("/home_login", (req, res) => {
   // now do something amazing with this data...
   // ... then send a response of some kind
   res.send("hi")
+  res.status(200).json({ok:true})
 })
 
 app.get("/class_modules", (req,res, next) => {
@@ -78,14 +83,8 @@ app.get("/class_modules", (req,res, next) => {
     .get("https://my.api.mockaroo.com/search_history.json?key=7fa4d720")
     .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
     .catch(err => next(err)) // pass any errors to express
+  res.status(200).json({ok:true})
 })
-app.get("/prof_scraper",(req,res)=>{
-  scraper.prof_scraper();
-  res.send("scraper site");
-})
-app.get("/albert_scraper",(req,res)=>{
-  scraper.albert_scraper();
-  res.send("albert_scraper");
 
 const calcProbGetIn = (position, number) => {
   // console.log(position, number)
@@ -93,7 +92,17 @@ const calcProbGetIn = (position, number) => {
   // need another function or algorithm to calculate the probability
   return (100 - position) / 100 // this is a dummy return
 }
-
+app.get("/prof_scraper",(req,res)=>{
+  scraper.prof_scraper();
+  res.send("scraper site");
+  res.status(200).json({ok:true})
+})
+app.get("/albert_scraper",(req,res)=>{
+  scraper.albert_scraper();
+  res.send("albert_scraper");
+  res.status(200).json({ok:true})
+  
+})
 app.get("/results", (req, res) => {
   // call some function that takes email, position, number that the user entered on the home page
   // this function returns the probability that the student gets into the class
@@ -101,6 +110,7 @@ app.get("/results", (req, res) => {
   const probGetIn = (calcProbGetIn(position, number) * 100).toString()
   // console.log( probGetIn )
   res.send(probGetIn) // we have to send a string here so we convert the probGetIn type to string above
+  res.status(200).json({ok:true})
 })
 
 
@@ -111,6 +121,7 @@ app.get("/class_info", (req,res, next) => {
     .get("https://my.api.mockaroo.com/class_prof_info.json?key=01e62b90")
     .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
     .catch(err => next(err)) // pass any errors to express
+    res.status(200).json({ok:true})
 })
 
 app.post("/login_logout", (req, res) => {
@@ -118,12 +129,14 @@ app.post("/login_logout", (req, res) => {
   const password = req.body.your_password
   res.status(200).json({ok:true})
   console.log(email);
+  res.status(200).json({ok:true})
 })
 
 app.get("/login_logout", (req, res) => {
   const email = req.body.email
   const password = req.body.your_password
   res.send("hey there")
+  res.status(200).json({ok:true})
 })
 
 app.get("/prof_info", (req,res, next) => {
@@ -134,7 +147,7 @@ app.get("/prof_info", (req,res, next) => {
       .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
       .catch(err => next(err)) // pass any errors to express
 
-  })
-})
+    res.status(200).json({ok:true})
+}) 
 
 module.exports = app
