@@ -10,7 +10,7 @@ const puppeteer=require('puppeteer');
 //scraper for rateMyProf
 const prof_scraper=async(parameters)=>{
 
-    const profName="Amos";
+    const profName="Amos Bloomberg";
     const school="New York University";
     const browser=await puppeteer.launch({headless:false});
     const page=await browser.newPage();
