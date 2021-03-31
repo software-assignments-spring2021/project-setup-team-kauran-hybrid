@@ -48,10 +48,15 @@ const prof_scraper=async(parameters)=>{
 const albert_scraper=async(parameters)=>{
     const year=2021;
     const semester="su";
-    const school="College of Arts and Science";
-    const subject="Computer Science";
-    const url='https://schedge.a1liu.com/'+''+'${school}'+'${subject}'
-    await fetch("https://schedge.a1liu.com/2021/su/UA/CSCI")
+    const school="UA";
+    const subject="CSCI";
+    //const regis=0;
+    const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+school+'/'+subject;
+    //const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+regis;
+
+    console.log(url)
+    //"https://schedge.a1liu.com/2021/su/UA/CSCI"
+    await fetch(url)
         .then(res=>res.json())
         .then(json=>console.log(json));
         
