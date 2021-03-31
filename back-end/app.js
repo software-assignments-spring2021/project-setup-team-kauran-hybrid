@@ -83,7 +83,7 @@ app.get("/class_modules", (req,res, next) => {
     .get("https://my.api.mockaroo.com/search_history.json?key=7fa4d720")
     .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
     .catch(err => next(err)) // pass any errors to express
-  res.status(200).json({ok:true})
+  //res.status(200).json({ok:true})
 })
 
 const calcProbGetIn = (position, number) => {
