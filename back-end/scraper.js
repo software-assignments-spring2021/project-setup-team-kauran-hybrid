@@ -8,9 +8,11 @@ const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
 
 //scraper for rateMyProf
+//works for Linux and Windows
+//Mac users maybe need to click close out of ad before scraper runs
 const prof_scraper=async(parameters)=>{
 
-    const profName="Amos";
+    const profName="Amos Bloomberg";
     const school="New York University";
     const browser=await puppeteer.launch({headless:false});
     const page=await browser.newPage();
