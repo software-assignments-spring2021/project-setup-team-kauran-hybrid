@@ -152,4 +152,5 @@ app.get("/prof_info", (req,res, next) => {
     //res.status(200).json({ok:true})
 }) 
 
-module.exports = app
+app.calcProbGetIn = calcProbGetIn;
+module.exports = app;

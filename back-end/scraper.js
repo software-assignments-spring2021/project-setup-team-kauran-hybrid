@@ -8,6 +8,7 @@ const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
 
 //scraper for rateMyProf using only puppeteer
+//Works for all systems with good hardware
 
 const prof_scraper=async(parameters)=>{
 
