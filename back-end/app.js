@@ -93,6 +93,7 @@ const calcProbGetIn = (position, number) => {
   return (100 - position) / 100 // this is a dummy return
 }
 app.get("/prof_scraper",(req,res)=>{
+  //scraper.prof_scraper();
   scraper.prof_scraper();
   res.send("scraper site");
  // res.status(200).json({ok:true})
