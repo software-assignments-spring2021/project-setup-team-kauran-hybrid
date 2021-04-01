@@ -12,7 +12,7 @@ const prof_scraper=async(parameters)=>{
 
     const profName="Amos Bloomberg";
     const school="New York University";
-    const browser=await puppeteer.launch({headless:false});
+    const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
     page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
@@ -39,27 +39,35 @@ const prof_scraper=async(parameters)=>{
         }
 
     }
-    console.log({results});
+    return results;
 
 
 }
 
 //scraper for Albert, might use BUGs NYU api
-const albert_scraper=async(parameters)=>{
+const albert_scraper=async()=>{
     const year=2021;
     const semester="su";
     const school="UA";
-    const subject="CSCI";
+    const subject="DS";
     //const regis=0;
     const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+school+'/'+subject;
     //const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+regis;
 
     console.log(url)
     //"https://schedge.a1liu.com/2021/su/UA/CSCI"
-    await fetch(url)
+    const result = await fetch(url)
         .then(res=>res.json())
         .then(json=>console.log(json));
-        
+    
+    //axios
+    //  .get(url)
+    //  .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
+    //  .catch(err => next(err)) // pass any errors to express
+
+    //console.log(JSON.parse(JSON.stringify(result)))
+    
+    //res.send(result)    
 }
 
 
