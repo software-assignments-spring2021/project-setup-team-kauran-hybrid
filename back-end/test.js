@@ -27,7 +27,9 @@ describe('Scraping function for professors', function() {
   it('should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)', async function() {
     this.timeout(30000);
     // setTimeout(done,30000);
-    const res= await scraper.prof_scraper('Amos Bloomberg', 'New York University');
+    const res= {
+      await scraper.prof_scraper('Amos Bloomberg', 'New York University');
+    }
 
     assert.equal(res.q, '3.9');
     assert.equal(res.d, '3.2');

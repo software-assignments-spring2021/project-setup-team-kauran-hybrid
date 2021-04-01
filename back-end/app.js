@@ -13,14 +13,16 @@ const chai=require('chai');
 
 
 const cors = require('cors');
-const {albert_scraper} = require('./scraper');
+// const {albert_scraper} = require('./scraper');
 app.use(cors());
 // use the morgan middleware to log all incoming http requests
-app.use(morgan('dev')); // morgan has a few logging default styles - dev is a nice concise color-coded style
+app.use(morgan('dev')); 
+
 
 // use the bodyparser middleware to parse any data included in a request
 app.use(express.json()); // decode JSON-formatted incoming POST data
-app.use(express.urlencoded({extended: true})); // decode url-encoded incoming POST data
+app.use(express.urlencoded({extended: true})); 
+
 
 // make 'public' directory publicly readable with static content
 app.use('/static', express.static('public'));
