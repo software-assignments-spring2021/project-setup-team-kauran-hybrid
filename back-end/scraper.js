@@ -75,9 +75,21 @@ const prof_scraper=async(parameters)=>{
     console.log("difficulty "+difficulty);
     console.log("number of ratings "+ratingNums);
     console.log("would take again "+takeAgain);
-    results = {"quality":quality, "rate": ratingNums, "difficulty": difficulty, "takeAgain": takeAgain}
+    const body = {
+        quality: quality, 
+        rate: ratingNums, 
+        difficulty: difficulty, 
+        takeAgain: takeAgain,
+    };
+//       const body = {
+//     title: "Hello!",
+//     heading: "Hello!",
+//     message: "Welcome to this JSON document, served up by Express",
+//     //imagePath: "/static/images/donkey.jpg",
+//   }
+    
 
-    return results;
+    return body;
  
 
 }
