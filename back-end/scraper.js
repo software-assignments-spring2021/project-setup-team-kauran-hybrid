@@ -10,11 +10,11 @@ const puppeteer=require('puppeteer');
 //scraper for rateMyProf using only puppeteer
 //Works for all systems with good hardware
 
-const prof_scraper=async(parameters)=>{
+const prof_scraper=async(prof,ischool)=>{
 
-    const profName="Amos Bloomberg";
+    const profName=prof
     const school="New York University";
-    const browser=await puppeteer.launch({headless:true});
+    const browser=await puppeteer.launch({headless:false});
     const page=await browser.newPage();
     page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
@@ -75,13 +75,13 @@ const prof_scraper=async(parameters)=>{
     console.log("difficulty "+difficulty);
     console.log("number of ratings "+ratingNums);
     console.log("would take again "+takeAgain);
-
-    return(quality,ratingNums,difficulty,takeAgain);
+    
+    return({q:quality,r:ratingNums,d:difficulty,t:takeAgain});
  
 
 }
 //hybrid puppeteer + cheerio model, obselete as of now.
-//Do not write unit testing for this!!!!!!!!!!!!!!!!!!!!
+//Do not write unit tests for this!!!!!!!!!!!!!!!!!!!!
 const cheerio_prof=async(parameters)=>{
     const profName="Amos Bloomberg";
     const school="New York University";
