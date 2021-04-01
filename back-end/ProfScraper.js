@@ -9,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 router.get("/",(req,res)=>{
-  scraper.prof_scraper()
+  scraper.prof_scraper(prof='Amos Bloomberg')
          .then(data=>(res.send(data)))
   //res.send("scraper site");
  // res.status(200).json({ok:true})

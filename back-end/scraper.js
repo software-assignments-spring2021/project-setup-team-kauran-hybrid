@@ -14,7 +14,7 @@ const prof_scraper=async(prof,ischool)=>{
 
     const profName=prof
     const school="New York University";
-    const browser=await puppeteer.launch({headless:false});
+    const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
     page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
@@ -75,21 +75,8 @@ const prof_scraper=async(prof,ischool)=>{
     console.log("difficulty "+difficulty);
     console.log("number of ratings "+ratingNums);
     console.log("would take again "+takeAgain);
-    const body = {
-        quality: quality, 
-        rate: ratingNums, 
-        difficulty: difficulty, 
-        takeAgain: takeAgain,
-    };
-//       const body = {
-//     title: "Hello!",
-//     heading: "Hello!",
-//     message: "Welcome to this JSON document, served up by Express",
-//     //imagePath: "/static/images/donkey.jpg",
-//   }
     
-
-    return body;
+    return ({q:quality,r:ratingNums,d:difficulty,t:takeAgain});
  
 
 }
@@ -129,33 +116,25 @@ const cheerio_prof=async(parameters)=>{
     })
 
 
-    console.log(containers);;
+    console.log(containers);
 
 }
 //scraper for Albert, might use BUGs NYU api
-const albert_scraper=async()=>{
+const albert_scraper=async(parameters)=>{
     const year=2021;
     const semester="su";
     const school="UA";
-    const subject="DS";
+    const subject="CSCI";
     //const regis=0;
     const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+school+'/'+subject;
     
 
     console.log(url)
     //"https://schedge.a1liu.com/2021/su/UA/CSCI"
-    const result = await fetch(url)
+    await fetch(url)
         .then(res=>res.json())
         .then(json=>console.log(json));
-    
-    //axios
-    //  .get(url)
-    //  .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
-    //  .catch(err => next(err)) // pass any errors to express
-
-    //console.log(JSON.parse(JSON.stringify(result)))
-    
-    //res.send(result)    
+        
 }
 
 
