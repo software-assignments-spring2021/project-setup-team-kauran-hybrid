@@ -14,7 +14,7 @@ const prof_scraper=async(parameters)=>{
 
     const profName="Amos Bloomberg";
     const school="New York University";
-    const browser=await puppeteer.launch({headless:false});
+    const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
     page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
