@@ -6,6 +6,7 @@ const scraper=require('./scraper')
 const app=require('./app')
 
 
+
 // dummy example
 describe('Array', function() {
     describe('#indexOf()', function() {
@@ -20,6 +21,20 @@ describe('Calculate Probability of Getting Into Course', function() {
     it('should return (100-position)/100 for now', function() {
       assert.strictEqual(app.calcProbGetIn(7,100), .93);
     });
+});
+
+describe('Scraping function for professors',function(){
+  this.timeout(30000);
+  it("should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)",async function(){
+    this.timeout(30000);
+    //setTimeout(done,30000);
+    let res= await scraper.prof_scraper("Amos Bloomberg","New York University");
+    
+    assert.strictEqual(res.q,'3.9');
+    assert.strictEqual(res.d,'3.2');
+    assert.strictEqual(res.r,'61');
+    assert.strictEqual(res.t,"66%");
+  });
 });
 
 
