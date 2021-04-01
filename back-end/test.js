@@ -30,10 +30,10 @@ describe('Scraping function for professors',function(){
     //setTimeout(done,30000);
     let res= await scraper.prof_scraper("Amos Bloomberg","New York University");
     
-    assert.equal(res.q,'3.9');
-    assert.equal(res.d,'3.2');
-    assert.equal(res.r,'61');
-    assert.equal(res.t,"66%");
+    assert.strictEqual(res.q,'3.9');
+    assert.strictEqual(res.d,'3.2');
+    assert.strictEqual(res.r,'61');
+    assert.strictEqual(res.t,"66%");
   });
 });
 
