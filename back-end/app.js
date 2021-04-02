@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 // Import your routes here
 app.use("/home_login", require("./Home"));
 app.use("/class_modules", require("./ClassModules"));
-app.use("/results", require("./Results"));
+app.use("/results", require("./Results").router);
 app.use("/albert_scraper", require("./AlbertScraper"));
 app.use("/class_info", require("./ClassInfo"));
 app.use("/login_logout", require("./LoginLogout"));

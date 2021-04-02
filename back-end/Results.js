@@ -27,4 +27,7 @@ router.get("/", (req, res) => {
   //res.status(200).json({ok:true})
 })
 
-module.exports = router;
+module.exports = {
+  router:router, 
+  calcProbGetIn:calcProbGetIn,
+};

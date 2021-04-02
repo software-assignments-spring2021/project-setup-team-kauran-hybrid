@@ -4,6 +4,7 @@ const chai=require('chai')
 const assert=require('assert')
 const scraper=require('./scraper')
 const app=require('./app')
+const results = require('./Results')
 
 
 
@@ -17,9 +18,10 @@ describe('Array', function() {
   });
 
 // test the dummy probability calculation for now
+
 describe('Calculate Probability of Getting Into Course', function() {
     it('should return (100-position)/100 for now', function() {
-      assert.strictEqual(app.calcProbGetIn(7,100), .93);
+      assert.strictEqual(results.calcProbGetIn(7,100), .93);
     });
 });
 
