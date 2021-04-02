@@ -4,7 +4,8 @@ const chai=require('chai')
 const assert=require('assert')
 const scraper=require('./scraper')
 const app=require('./app')
-
+const expect = require("chai").expect;
+const request = require("supertest");
 
 
 // dummy example
@@ -38,3 +39,40 @@ describe('Scraping function for professors',function(){
 });
 
 
+describe('GET /class_modules', function () {
+  it('should respond with classes from API', function (done) {
+    request(require('./app.js'))
+      .get('/class_modules')
+      .expect(200, function (err, res) {
+        expect(res.body).to.not.equal({});
+        done();
+      });
+  });
+});
+
+describe('POST /home_login', function() {
+  it('responds with json of email, position, number', function(done) {
+    request(app)
+      .post('/home_login')
+      .send({email: '123@nyu.edu', position: 22, number: 2790})
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) return done(err);
+        return done();
+      });
+  });
+});
+
+describe('GET /prof_info', function () {
+  this.timeout(30000);
+  it('should respond with prof from API', async function () {
+    request(require('./app.js'))
+      .get('/prof_info')
+      .expect(200, function (err, res) {
+        expect(res.body).to.equal({q:'3.9',r:'3.2',d:'61',t:'66%'});
+        done();
+      });
+  });
+});
