@@ -28,12 +28,12 @@ const prof_scraper=async(prof,ischool)=>{
     await inputProf.type(profName);
     //press down and then enter
    // await page.keyboard.press("ArrowDown");
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(5000);
     await page.keyboard.press("Enter");
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(5000);
     const res=(await page.$$('a'));
-
     await page.waitForTimeout(500);
+
     const results=[];
     for(result of res){
         let thisRes=await page.evaluate(el=>el.textContent,result);
@@ -42,6 +42,7 @@ const prof_scraper=async(prof,ischool)=>{
         }
 
     }
+
     let wantedRow=results[2][0];
     wantedRow=wantedRow.replace(/[a-zA-Z]/g,"");
     //wantedRow=wantedRow.replace(/\s/g, '');
