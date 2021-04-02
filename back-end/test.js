@@ -27,7 +27,7 @@ describe('Calculate Probability of Getting Into Course', function() {
 describe('Scraping function for professors',function(){
   this.timeout(30000);
   it("should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)",async function(){
-    this.timeout(30000);
+    this.timeout(300000);
     //setTimeout(done,30000);
     let res= await scraper.prof_scraper("Amos Bloomberg","New York University");
     
@@ -66,7 +66,7 @@ describe('POST /home_login', function() {
 });
 
 describe('GET /prof_info', function () {
-  this.timeout(30000);
+  this.timeout(300000);
   it('should respond with prof from API', async function () {
     request(require('./app.js'))
       .get('/prof_info')
