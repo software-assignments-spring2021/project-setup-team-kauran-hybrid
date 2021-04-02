@@ -129,12 +129,15 @@ const albert_scraper=async(parameters)=>{
     const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+school+'/'+subject;
     
 
-    console.log(url)
+    //console.log(url)
     //"https://schedge.a1liu.com/2021/su/UA/CSCI"
-    await fetch(url)
+    const result=await fetch(url)
         .then(res=>res.json())
-        .then(json=>console.log(json));
-        
+        //.then(json=>console.log(json));
+
+    
+    console.log(result[0].sections[0].instructors);
+    return result;
 }
 
 
