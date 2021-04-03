@@ -92,6 +92,7 @@ const calcProbGetIn = (position, number) => {
   // need another function or algorithm to calculate the probability
   return (100 - position) / 100 // this is a dummy return
 }
+
 app.get("/prof_scraper",(req,res)=>{
   //scraper.prof_scraper();
   scraper.prof_scraper("Amos Bloomberg","New York University");
@@ -152,5 +153,14 @@ app.get("/prof_info", (req,res, next) => {
     //res.status(200).json({ok:true})
 }) 
 
+const confirmId = (id) => {
+  var ok_now = /^[0-9a-zA-Z_]+$/;                      
+  if ((id.match(ok_now)) || id != null) 
+    return true;
+  else
+    return false; 
+}
+
+app.confirmId = confirmId
 app.calcProbGetIn = calcProbGetIn;
 module.exports = app;

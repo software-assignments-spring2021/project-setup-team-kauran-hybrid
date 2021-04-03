@@ -38,7 +38,6 @@ describe('Scraping function for professors',function(){
   });
 });
 
-
 describe('GET /class_modules', function () {
   it('should respond with classes from API', function (done) {
     request(require('./app.js'))
@@ -75,4 +74,39 @@ describe('GET /prof_info', function () {
         done();
       });
   });
+});
+
+describe("GET /login", function(){
+  it("login return status code 200", function(){
+    request(require('./app.js'))
+
+      .get("http://localhost:3000/login_logout", function(error, response, body){
+          assert.equal(200, response.statusCode);
+          done();
+      });
+  });
+});
+
+describe("GET /signin", function(){
+  it("signin returns status code 200", function(){
+    request(require('./app.js'))
+      .get("http://localhost:3000/login_logout", function(error, response, body){
+
+          assert.equal(200, response.statusCode);
+          done();
+      });
+  });
+});
+
+
+describe("confirmID", function () {
+  it('Confirms the first userid "cs_nyu"', () => {
+      assert.equal(app.confirmId('cs_nyu'), true);
+  });
+  it('confirms another userid "courant nyu"', () => {
+    assert.equal(app.confirmId('courant nyu'), true);
+  });
+  it('Confirms final userid "$$$"', () => {
+      assert.equal(app.confirmId('$$$'), true);
+    });
 });
