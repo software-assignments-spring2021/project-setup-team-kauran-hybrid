@@ -38,7 +38,6 @@ describe('Scraping function for professors',function(){
   });
 });
 
-
 describe('GET /class_modules', function () {
   it('should respond with classes from API', function (done) {
     request(require('./app.js'))
@@ -74,5 +73,44 @@ describe('GET /prof_info', function () {
         expect(res.body).to.equal({q:'3.9',r:'3.2',d:'61',t:'66%'});
         done();
       });
+  });
+});
+
+describe('GET /login', function() {
+  it('should respond with giving us the return status code 200 which we will assert.equal', function(){
+    request(require('./app.js'))
+    .get('localhost:3000/logout_login', function(err, res){
+      assert.equal(200, res.statusCode);
+      done();
+    });
+  });
+});
+
+describe('GET /signin', function() {
+  it('should respond with giving us return status code 200 which will assert.equal again', function(){
+    request(require('./app.js'))
+    .get('localhost:3000/logout_login', function(err, res){
+      assert.equal(200, res.statusCode);
+      done();
+    });
+  });
+});
+
+//Junk, will remove once the login checker is better.. check the enterTheID function...
+describe('login success checker', function() {
+  it('should simply tell whether the details we have entered are acceptable or not', function(){
+    assert.ok(app.loginSuccessChecker("junk_id", "junk_checker"), "junk_pswd");
+  });
+});
+
+describe('enterTheID', function() {
+  it('First lets attempt the most simple userid and make sure that its accepted', function(){
+    assert.equal(app.enterTheID('cs_nyu_edu'), true);
+  });
+  it('Now lets try a more unique type of userid and check if its accepted as well', function(){
+    assert.equal(app.enterTheID("$$$"), true);
+  })
+  it('Now lets not enter anything, and check it its rejected or not', function(){
+    assert.equal(app.enterTheID(""), false);
   });
 });
