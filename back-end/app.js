@@ -134,6 +134,29 @@ app.post("/login_logout", (req, res) => {
   res.status(200).json({ok:true})
 })
 
+const enterTheID = (details) => {
+  var acceptable_input = /^[0-9_$a-z]+/;
+  if ((details.match(acceptable_input))){
+    if (details != null){
+      return true
+    }
+  }
+  else{
+    return false
+  }
+}
+
+const loginSuccessChecker = (username, pwd) => {
+  if (username != null && pwd != null){
+      if (typeof username != undefined && typeof pwd != undefined){
+        return true
+      }
+    }
+  else{
+      return false
+  }
+}
+
 app.get("/login_logout", (req, res) => {
   const email = req.body.email
   const password = req.body.your_password
@@ -152,5 +175,7 @@ app.get("/prof_info", (req,res, next) => {
     //res.status(200).json({ok:true})
 }) 
 
+app.loginSuccessChecker = loginSuccessChecker;
+app.enterTheID = enterTheID;
 app.calcProbGetIn = calcProbGetIn;
 module.exports = app;
