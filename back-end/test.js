@@ -69,12 +69,13 @@ describe('POST /home_login', function() {
 });
 
 describe('GET /prof_info', function() {
-  this.timeout(300000);
-  it('should respond with prof from API', async function() {
+  this.timeout(3000);
+  it('should respond with prof from API', function(done) {
+    this.timeout(300000);
     request(require('./app.js'))
         .get('/prof_info')
         .expect(200, function(err, res) {
-          expect(res.body).to.equal({q: '3.9', r: '3.2', d: '61', t: '66%'});
+          expect(res.body).to.eql({q: '3.9', r: '61', d: '3.2', t: '66%'});
           done();
         });
   });
