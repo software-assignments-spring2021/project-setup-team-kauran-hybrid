@@ -109,7 +109,7 @@ app.get('/results', (req, res) => {
   scraper.albert_scraper();
   // call some function that takes email, position, number that the user entered on the home page
   // this function returns the probability that the student gets into the class
-
+  const probGetIn = calcProbGetIn(position, number).toString();
   res.send(probGetIn) // we have to send a string here so we convert the probGetIn type to string above
   //res.status(200).json({ok:true})
 });

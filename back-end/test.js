@@ -127,3 +127,14 @@ describe('enterTheID', function() {
     assert.equal(app.enterTheID(""), false);
   });
 });
+
+// unit test to see if the albert scraper runs an appropriate value at a certain index of the expected json object
+describe('Scraping function for Albert',function(){
+  this.timeout(30000);
+  it("result[0].sections[0].instructors[0] should return 'Staff'",async function(){
+    this.timeout(300000);
+    //setTimeout(done,30000);
+    let res= await scraper.albert_scraper();
+    assert.equal(res[0].sections[0].instructors[0],"Staff");
+  });
+});
