@@ -16,12 +16,12 @@ const cors = require('cors');
 // const {albert_scraper} = require('./scraper');
 app.use(cors());
 // use the morgan middleware to log all incoming http requests
-app.use(morgan('dev')); 
+app.use(morgan('dev'));
 
 
 // use the bodyparser middleware to parse any data included in a request
 app.use(express.json()); // decode JSON-formatted incoming POST data
-app.use(express.urlencoded({extended: true})); 
+app.use(express.urlencoded({extended: true}));
 
 
 // make 'public' directory publicly readable with static content
@@ -110,8 +110,8 @@ app.get('/results', (req, res) => {
   // call some function that takes email, position, number that the user entered on the home page
   // this function returns the probability that the student gets into the class
   const probGetIn = calcProbGetIn(position, number).toString();
-  res.send(probGetIn) // we have to send a string here so we convert the probGetIn type to string above
-  //res.status(200).json({ok:true})
+  res.send(probGetIn); // we have to send a string here so we convert the probGetIn type to string above
+  // res.status(200).json({ok:true})
 });
 
 
@@ -120,50 +120,29 @@ app.post('/login_logout', (req, res) => {
   const password = req.body.your_password;
   res.status(200).json({ok: true});
   console.log(email);
-  res.status(200).json({ok:true})
-})
+  res.status(200).json({ok: true});
+});
 
 const enterTheID = (details) => {
-  var acceptable_input = /^[0-9_$a-z]+/;
-  if ((details.match(acceptable_input))){
-    if (details != null){
-      return true
+  const acceptable_input = /^[0-9_$a-z]+/;
+  if ((details.match(acceptable_input))) {
+    if (details != null) {
+      return true;
     }
+  } else {
+    return false;
   }
-  else{
-    return false
-  }
-}
+};
 
 const loginSuccessChecker = (username, pwd) => {
-  if (username != null && pwd != null){
-      if (typeof username != undefined && typeof pwd != undefined){
-        return true
-      }
+  if (username != null && pwd != null) {
+    if (typeof username != undefined && typeof pwd != undefined) {
+      return true;
     }
-  else{
-      return false
+  } else {
+    return false;
   }
-}
-
-app.get("/login_logout", (req, res) => {
-  const email = req.body.email
-  const password = req.body.your_password
-  res.send("hey there")
-  //res.status(200).json({ok:true})
-})
-
-app.get("/prof_info", (req,res, next) => {
-    // use axios to make a request to an API for our class info data
-    scraper.prof_scraper("Amos Bloomberg","New York University")
-    // axios
-    //   .get("https://my.api.mockaroo.com/professor.json?key=2f789220")
-    //   .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
-    //   .catch(err => next(err)) // pass any errors to express
-
-    //res.status(200).json({ok:true})
-}) 
-  
+};
 
 app.get('/login_logout', (req, res) => {
   const email = req.body.email;
@@ -175,10 +154,29 @@ app.get('/login_logout', (req, res) => {
 app.get('/prof_info', (req, res, next) => {
   // use axios to make a request to an API for our class info data
   scraper.prof_scraper('Amos Bloomberg', 'New York University');
-//   axios
-//       .get('https://my.api.mockaroo.com/professor.json?key=2f789220')
-//       .then((apiResponse) => res.json(apiResponse.data)) // pass data along directly to client
-//       .catch((err) => next(err)); // pass any errors to express
+  // axios
+  //   .get("https://my.api.mockaroo.com/professor.json?key=2f789220")
+  //   .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
+  //   .catch(err => next(err)) // pass any errors to express
+
+  // res.status(200).json({ok:true})
+});
+
+
+app.get('/login_logout', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.your_password;
+  res.send('hey there');
+  // res.status(200).json({ok:true})
+});
+
+app.get('/prof_info', (req, res, next) => {
+  // use axios to make a request to an API for our class info data
+  scraper.prof_scraper('Amos Bloomberg', 'New York University');
+  //   axios
+  //       .get('https://my.api.mockaroo.com/professor.json?key=2f789220')
+  //       .then((apiResponse) => res.json(apiResponse.data)) // pass data along directly to client
+  //       .catch((err) => next(err)); // pass any errors to express
 
   // res.status(200).json({ok:true})
 });
