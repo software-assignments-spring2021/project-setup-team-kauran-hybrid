@@ -44,27 +44,26 @@ const prof_scraper=async(prof,ischool)=>{
         }
 
     }
+  }
 
-    let wantedRow=results[2][0];
-    wantedRow=wantedRow.replace(/[a-zA-Z]/g,"");
-    //wantedRow=wantedRow.replace(/\s/g, '');
+  let wantedRow=results[2][0];
+  wantedRow=wantedRow.replace(/[a-zA-Z]/g, '');
+  // wantedRow=wantedRow.replace(/\s/g, '');
 
-    let quality=wantedRow.substring(0,3);
-    //ratingNumbs isn't 100% correct, but I am not sure if we need it anyway
-    let ratingNums=wantedRow.substring(3,7);
-    ratingNums=ratingNums.replace(/\s/g, '');
-    ratingNums=ratingNums.replace(/'.'/g, '');
-    //wantedRow=wantedRow.replace(/\D/g, "");;
+  const quality=wantedRow.substring(0, 3);
+  // ratingNumbs isn't 100% correct, but I am not sure if we need it anyway
+  let ratingNums=wantedRow.substring(3, 7);
+  ratingNums=ratingNums.replace(/\s/g, '');
+  ratingNums=ratingNums.replace(/'.'/g, '');
+  // wantedRow=wantedRow.replace(/\D/g, "");;
 
-    let splinter=wantedRow.split(" ");
-    let takeAgain;
-    for(cell in splinter){
-        if (cell>0&&splinter[cell]!=""){
-            takeAgain=splinter[cell];
-            console.log(takeAgain);
-            break;
-        }
-        //console.log("splinterCell "+cell+ " "+splinter[cell]);
+  const splinter=wantedRow.split(' ');
+  let takeAgain;
+  for (cell in splinter) {
+    if (cell>0&&splinter[cell]!='') {
+      takeAgain=splinter[cell];
+      console.log(takeAgain);
+      break;
     }
     
 
