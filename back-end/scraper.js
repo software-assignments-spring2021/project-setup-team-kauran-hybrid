@@ -7,6 +7,8 @@ const nodemon = require('nodemon');
 
 const puppeteer=require('puppeteer');
 
+const Sheets=require('./sheets');
+
 //scraper for rateMyProf using only puppeteer
 //Works for all systems with good hardware
 
@@ -124,21 +126,53 @@ const cheerio_prof=async(parameters)=>{
 const albert_scraper=async(parameters)=>{
     const year=2021;
     const semester="su";
-    const school="UA";
+    //const school="UU";
     const subject="CSCI";
-    //const regis=0;
-    const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+school+'/'+subject;
     
 
-    //console.log(url)
-    //"https://schedge.a1liu.com/2021/su/UA/CSCI"
-    const result=await fetch(url)
+    const schools_url = 'https://schedge.a1liu.com/schools';
+    const schools_result=await fetch(schools_url)
         .then(res=>res.json())
-        //.then(json=>console.log(json));
 
+    //console.log(Object.keys(schools_result))
+    const schools_list = Object.keys(schools_result);
+
+    for (school in schools_list) {
+        // must have 'query=something' at the end for the API to run properly
+        const url = `https://schedge.a1liu.com/${year}/${semester}/search?query=${schools_list[school]}&full=true`;
+        //console.log(url)
+
+        const result=await fetch(url)
+            .then(res=>res.json())
+            //.then(json=>console.log(json));
+
+        const sheets = new Sheets();
+
+        for (key in result) {
+            const subject_code = result[key].subjectCode;
+            const sections = result[key].sections;
+            for (section in sections) {
+                await sheets.load();
+                await sheets.addRow(
+                    {
+                        'subjectCodeCode': subject_code.code,
+                        'subjectCodeSchool': subject_code.school,
+                        'deptCourseId': result[key].deptCourseId, 
+                        'sectionsCode': sections[section].code
+                    }
+
+                );
+            }
+            
+
+            
+        }
+    }
     
-    // console.log(result[0].sections[0].instructors[0]);
-
+    // console.log(result);
+    // console.log(subject_code);
+    // console.log(sections);
+    
     return result;
 }
 

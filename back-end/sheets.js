@@ -1,8 +1,9 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
-module.exports = class Sheet{
+module.exports = class Sheets{
+
     constructor(){
-        this.doc = new GoogleSpreadsheet('1_bl8F8i0guHGdry6kWwN9Tqkk-Qz9Vwm7p2dyq95dyU');
+        this.doc = new GoogleSpreadsheet('1trWmLh6ndqdPRI5fyWlUfm6WvSvbtlG8V5EpPAH86mI');
 
     }
     async load(){
@@ -10,8 +11,9 @@ module.exports = class Sheet{
 
         await this.doc.loadInfo(); // loads document properties and worksheets
     }
-    async addRows(rows){
+    async addRow(row){
         const sheet = this.doc.sheetsByIndex[0]; // or use doc.sheetsById[id]
-        await sheet.addRows(rows);
+        // const sheet1 = await this.doc.addSheet({ headerValues: ['deptCourseId', 'subjectCode'] });
+        await sheet.addRow(row);
     }
 }
