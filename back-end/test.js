@@ -8,15 +8,6 @@ const expect = require("chai").expect;
 const request = require("supertest");
 
 
-// dummy example
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  });
-});
-
 // test the dummy probability calculation for now
 describe('Calculate Probability of Getting Into Course', function() {
   it('should return (100-position)/100 for now', function() {
