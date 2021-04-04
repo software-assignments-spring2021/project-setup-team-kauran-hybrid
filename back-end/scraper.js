@@ -14,7 +14,7 @@ const prof_scraper=async(prof,ischool)=>{
 
     const profName=prof
     const school="New York University";
-    const browser=await puppeteer.launch({headless:false});
+    const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
     page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
@@ -137,13 +137,14 @@ const albert_scraper=async(parameters)=>{
         //.then(json=>console.log(json));
 
     
-    console.log(result[0].sections[0].instructors);
+    // console.log(result[0].sections[0].instructors[0]);
+
     return result;
 }
 
 
 module.exports = {
-    prof_scraper:prof_scraper,
-    albert_scraper:albert_scraper,
-    cheerio_prof:cheerio_prof
+  prof_scraper: prof_scraper,
+  albert_scraper: albert_scraper,
+  cheerio_prof: cheerio_prof,
 };

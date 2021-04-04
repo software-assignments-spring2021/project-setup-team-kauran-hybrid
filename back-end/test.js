@@ -8,20 +8,23 @@ const expect = require("chai").expect;
 const request = require("supertest");
 
 
-// dummy example
-describe('Array', function() {
-    describe('#indexOf()', function() {
-      it('should return -1 when the value is not present', function() {
-        assert.equal([1, 2, 3].indexOf(4), -1);
-      });
-    });
-  });
-
 // test the dummy probability calculation for now
 describe('Calculate Probability of Getting Into Course', function() {
-    it('should return (100-position)/100 for now', function() {
-      assert.strictEqual(app.calcProbGetIn(7,100), .93);
-    });
+  it('should return (100-position)/100 for now', function() {
+    assert.strictEqual(app.calcProbGetIn(7, 100), .93);
+  });
+});
+
+// test that the results page functions
+describe('GET /results', function () {
+  it('should send the expected probability to the results page', function (done) {
+    request(require('./app.js'))
+      .get('/results')
+      .expect(200, function (err, res) {
+        expect(res.body).to.not.equal({});
+        done();
+      });
+  });
 });
 
 describe('Scraping function for professors',function(){
@@ -31,10 +34,11 @@ describe('Scraping function for professors',function(){
     //setTimeout(done,30000);
     let res= await scraper.prof_scraper("Amos Bloomberg","New York University");
     
-    assert.equal(res.q,'3.9');
-    assert.equal(res.d,'3.2');
-    assert.equal(res.r,'61');
-    assert.equal(res.t,"66%");
+
+    assert.equal(res.q, '3.9');
+    assert.equal(res.d, '3.2');
+    assert.equal(res.r, '61');
+    assert.equal(res.t, '66%');
   });
 });
 
@@ -112,5 +116,16 @@ describe('enterTheID', function() {
   })
   it('Now lets not enter anything, and check it its rejected or not', function(){
     assert.equal(app.enterTheID(""), false);
+  });
+});
+
+// unit test to see if the albert scraper runs an appropriate value at a certain index of the expected json object
+describe('Scraping function for Albert',function(){
+  this.timeout(30000);
+  it("result[0].sections[0].instructors[0] should return 'Staff'",async function(){
+    this.timeout(300000);
+    //setTimeout(done,30000);
+    let res= await scraper.albert_scraper();
+    assert.equal(res[0].sections[0].instructors[0],"Staff");
   });
 });
