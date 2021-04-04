@@ -126,4 +126,4 @@ typings/
 **/_site/
 
 ## Credentials ##
-credentials.json
+./back-end/credentials.json
