@@ -130,3 +130,15 @@ describe('Scraping function for Albert', function() {
     assert.equal(res[0].sections[0].instructors[0], 'Staff');
   });
 });
+
+// unit test for class info
+describe('GET /class_info', function() {
+  it('should respond with detailed class info from API', function(done) {
+    request(require('./app.js'))
+        .get('/class_info')
+        .expect(200, function(err, res) {
+          expect(res.body).to.not.equal({});
+          done();
+        });
+  });
+});
