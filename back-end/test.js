@@ -24,6 +24,18 @@ describe('Calculate Probability of Getting Into Course', function() {
     });
 });
 
+// test that the results page functions
+describe('GET /results', function () {
+  it('should send the expected probability to the results page', function (done) {
+    request(require('./app.js'))
+      .get('/results')
+      .expect(200, function (err, res) {
+        expect(res.body).to.not.equal({});
+        done();
+      });
+  });
+});
+
 describe('Scraping function for professors',function(){
   this.timeout(30000);
   it("should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)",async function(){
