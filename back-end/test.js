@@ -69,12 +69,13 @@ describe('POST /home_login', function() {
 });
 
 describe('GET /prof_info', function() {
-  this.timeout(300000);
-  it('should respond with prof from API', async function() {
+  this.timeout(3000);
+  it('should respond with prof from API', function(done) {
+    this.timeout(300000);
     request(require('./app.js'))
         .get('/prof_info')
         .expect(200, function(err, res) {
-          expect(res.body).to.equal({q: '3.9', r: '3.2', d: '61', t: '66%'});
+          expect(res.body).to.eql({q: '3.9', r: '61', d: '3.2', t: '66%'});
           done();
         });
   });
@@ -127,5 +128,17 @@ describe('Scraping function for Albert', function() {
     // setTimeout(done,30000);
     const res= await scraper.albert_scraper();
     assert.equal(res[0].sections[0].instructors[0], 'Staff');
+  });
+});
+
+// unit test for class info
+describe('GET /class_info', function() {
+  it('should respond with detailed class info from API', function(done) {
+    request(require('./app.js'))
+        .get('/class_info')
+        .expect(200, function(err, res) {
+          expect(res.body).to.not.equal({});
+          done();
+        });
   });
 });
