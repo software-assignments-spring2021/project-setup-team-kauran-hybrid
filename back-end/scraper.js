@@ -44,7 +44,7 @@ const prof_scraper=async(prof,ischool)=>{
         }
 
     }
-  }
+  
 
   let wantedRow=results[2][0];
   wantedRow=wantedRow.replace(/[a-zA-Z]/g, '');
@@ -60,12 +60,12 @@ const prof_scraper=async(prof,ischool)=>{
   const splinter=wantedRow.split(' ');
   let takeAgain;
   for (cell in splinter) {
-    if (cell>0&&splinter[cell]!='') {
-      takeAgain=splinter[cell];
-      console.log(takeAgain);
-      break;
-    }
-    
+        if (cell>0&&splinter[cell]!='') {
+        takeAgain=splinter[cell];
+        console.log(takeAgain);
+        break;
+        }
+    }  
 
     let difRow=wantedRow.replace(/\s/g, '');
     let difficulty=difRow.substring(difRow.length-3,difRow.length);
@@ -80,7 +80,7 @@ const prof_scraper=async(prof,ischool)=>{
     
     return({q:quality,r:ratingNums,d:difficulty,t:takeAgain});
  
-
+    
 }
 //hybrid puppeteer + cheerio model, obselete as of now.
 //Do not write unit tests for this!!!!!!!!!!!!!!!!!!!!
