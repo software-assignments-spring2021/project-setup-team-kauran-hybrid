@@ -107,7 +107,7 @@ const LoginForm=(props)=> {
 
             </form>
    
-            <h1>Your username is: {email}</h1>
+            {/* <h1>Your username is: {email}</h1> */}
           {/* </body> */}
         </React.Fragment>
 
