@@ -7,6 +7,27 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
+const enterTheID = (details) => {
+  const acceptable_input = /^[0-9_$a-z]+/;
+  if ((details.match(acceptable_input))) {
+    if (details != null) {
+      return true;
+    }
+  } else {
+    return false;
+  }
+};
+
+const loginSuccessChecker = (username, pwd) => {
+  if (username != null && pwd != null) {
+    if (typeof username != undefined && typeof pwd != undefined) {
+      return true;
+    }
+  } else {
+    return false;
+  }
+};
+
 router.post("/", (req, res) => {
   const email = req.body.email
   const password = req.body.your_password
@@ -22,4 +43,8 @@ router.get("/", (req, res) => {
   //res.status(200).json({ok:true})
 })
 
-module.exports = router;
+module.exports = {
+  router:router,
+  enterTheID:enterTheID,
+  loginSuccessChecker:loginSuccessChecker,
+};
