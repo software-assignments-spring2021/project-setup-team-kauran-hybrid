@@ -16,7 +16,7 @@ router.get("/", (req,res, next) => {
     //   .get("https://my.api.mockaroo.com/professor.json?key=2f789220")
     //   .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
     //   .catch(err => next(err)) // pass any errors to express
-    res.send('scraper running in the background')
+    
     //res.status(200).json({ok:true})
 }) 
 
