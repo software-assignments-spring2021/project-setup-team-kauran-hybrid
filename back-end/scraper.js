@@ -9,6 +9,7 @@ const puppeteer=require('puppeteer');
 
 const Sheets=require('./sheets');
 
+const mongoScript=require('./mongo/mongo.js');
 //scraper for rateMyProf using only puppeteer
 
 const prof_scraper=async(prof,ischool)=>{

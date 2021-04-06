@@ -1,10 +1,10 @@
 const mongoose=require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
 
+const pwd=process.env.mongoPWD;
+const user=process.env.mongoUSER;
 //copy pasted from mongoDB
 const mongoScript=async()=>{
-    const pwd=process.env.mongoPWD;
-    const user=process.env.mongoUSER;
 
     const uri = `mongodb+srv://whDev:${pwd}@clusterwh.bhiht.mongodb.net/sample_airbnb?retryWrites=true&w=majority`;
     const client = await new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -22,6 +22,9 @@ const mongoScript=async()=>{
         
     });
     client.close();
-}
+};
+const mongoInster=async(mongoURL)=>{
+    
+};
 
 module.exports={mongoScript}
