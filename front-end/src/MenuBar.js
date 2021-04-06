@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import newLogo from './Logos/color-correct-icon.png';
 import './App.css';
 //import Button from 'react-bootstrap/Button';
 import React from 'react';
@@ -42,11 +43,11 @@ const MenuBar=()=>{
 
             <center>
             <Link to ="/">
-            <img src={logo} className="App-logo" alt="logo" />
+            <img src={newLogo} className="App-logo" alt="logo" />
             </Link>
             
             <p>
-                Waitlist Hopper
+                {/* Waitlist Hopper */}
             </p>
             
             </center>
