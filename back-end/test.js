@@ -106,7 +106,7 @@ describe('GET /signin', function() {
 });
 
 describe('POST /login_logout', function() {
-  it('responds with json of email, position, number', function(done) {
+  it('responds with json of email, password', function(done) {
     request(app)
         .post('/login_logout')
         .send({email: '123@nyu.edu', password: 000000})
