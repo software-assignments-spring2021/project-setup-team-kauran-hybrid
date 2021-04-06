@@ -142,6 +142,8 @@ const albert_scraper=async(parameters)=>{
             const subject_code = result[key].subjectCode;
             const sections = result[key].sections;
             for (section in sections) {
+              //mongoDb should insert here!!!!!!!!!!!!!!!!!!!!!!!!!
+              //instead of google sheets api
                 await sheets.load();
                 await sheets.addRow(
                     {
@@ -153,6 +155,7 @@ const albert_scraper=async(parameters)=>{
                 );
             }
         }
+        
     }
     
     // console.log(result);
