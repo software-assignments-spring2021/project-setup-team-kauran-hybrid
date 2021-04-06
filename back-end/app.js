@@ -27,13 +27,13 @@ app.get("/", (req, res) => {
     res.send("bye!")
 })
 // Import your routes here
-app.use("/home_login", require("./Home"));
-app.use("/class_modules", require("./ClassModules"));
-app.use("/results", require("./Results").router);
+app.use("/home_login", require("./home"));
+app.use("/class_modules", require("./class_modules"));
+app.use("/results", require("./results").router);
 
-app.use("/class_info", require("./ClassInfo"));
-app.use("/login_logout", require("./LoginLogout").router);
-app.use("/prof_info", require("./ProfInfo"));
+app.use("/class_info", require("./class_info"));
+app.use("/login_logout", require("./login_logout").router);
+app.use("/prof_info", require("./prof_info"));
 
 
 

@@ -4,8 +4,8 @@ const chai=require('chai')
 const assert=require('assert')
 const scraper=require('./scraper')
 const app=require('./app')
-const results = require('./Results')
-const login = require('./LoginLogout')
+const results = require('./results')
+const login = require('./login_logout')
 
 const expect = require("chai").expect;
 const request = require("supertest");
