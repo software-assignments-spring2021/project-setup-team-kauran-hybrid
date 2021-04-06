@@ -10,9 +10,11 @@ const morgan=require('morgan');
 const scraper=require('./scraper');
 const mocha=require('mocha');
 const chai=require('chai');
+const generator=require('./mock_data/generator.js');
 
 
 const cors = require('cors');
+const { Console } = require('console');
 // const {albert_scraper} = require('./scraper');
 app.use(cors());
 // use the morgan middleware to log all incoming http requests
@@ -172,7 +174,11 @@ app.get("/class_info", (req,res, next) => {
     .then(apiResponse => res.json(apiResponse.data)) // pass data along directly to client
     .catch(err => next(err)) // pass any errors to express
 })
-
+app.get('/py_script',(req,res,next) => {
+  generator.generate();
+  res.send('python');
+  
+});
 app.loginSuccessChecker = loginSuccessChecker;
 app.enterTheID = enterTheID;
 app.calcProbGetIn = calcProbGetIn;
