@@ -11,7 +11,9 @@ const scraper=require('./scraper');
 const mocha=require('mocha');
 const chai=require('chai');
 const generator=require('./mock_data/generator.js');
-
+const mongoScript=require('./mongo/mongo.js');
+const dotenv=require('dotenv');
+dotenv.config();
 
 const cors = require('cors');
 const { Console } = require('console');
@@ -176,6 +178,9 @@ app.get("/class_info", (req,res, next) => {
 })
 app.get('/py_script',(req,res,next) => {
   generator.generate();
+  mongoScript.mongoScript();
+  // console.log(process.env.mongoUSER);
+  // console.log(process.env.mongoPWD);
   res.send('python');
   
 });
