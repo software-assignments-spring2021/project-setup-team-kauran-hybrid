@@ -1,5 +1,7 @@
 const mongoose=require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
+const express = require("express");
+const router = express.Router();
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
@@ -24,7 +26,14 @@ const mongoScript=async()=>{
     client.close();
 };
 const mongoInster=async(mongoURL)=>{
-    
-};
 
-module.exports={mongoScript}
+};
+router.get("/",(req,res)=>{
+
+    res.send('mongo_router');
+});
+
+module.exports={
+    mongoScript,
+    router:router
+}

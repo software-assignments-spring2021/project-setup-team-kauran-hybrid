@@ -1,17 +1,21 @@
-const axios=require('axios');
-const mocha=require('mocha');
-const chai=require('chai');
-const assert=require('assert');
-const scraper=require('./scraper');
-const app=require('./app');
-const expect = require('chai').expect;
-const request = require('supertest');
+const axios=require('axios')
+const mocha=require('mocha')
+const chai=require('chai')
+const assert=require('assert')
+const scraper=require('./scraper')
+const app=require('./app')
+const results = require('./results')
+const login = require('./login_logout')
+
+const expect = require("chai").expect;
+const request = require("supertest");
 
 
 // test the dummy probability calculation for now
+
 describe('Calculate Probability of Getting Into Course', function() {
   it('should return (100-position)/100 for now', function() {
-    assert.strictEqual(app.calcProbGetIn(7, 100), .93);
+    assert.strictEqual(results.calcProbGetIn(7, 100), .93);
   });
 });
 
@@ -84,9 +88,9 @@ describe('GET /prof_info', function() {
 describe('GET /login', function() {
   it('should respond with giving us the return status code 200 which we will assert.equal', function() {
     request(require('./app.js'))
-        .get('localhost:3000/logout_login', function(err, res) {
+        .get('localhost:3000/login_logout', function(err, res) {
           assert.equal(200, res.statusCode);
-          done();
+          //done();
         });
   });
 });
@@ -94,9 +98,24 @@ describe('GET /login', function() {
 describe('GET /signin', function() {
   it('should respond with giving us return status code 200 which will assert.equal again', function() {
     request(require('./app.js'))
-        .get('localhost:3000/logout_login', function(err, res) {
+        .get('localhost:3000/login_login', function(err, res) {
           assert.equal(200, res.statusCode);
-          done();
+          //done();
+        });
+  });
+});
+
+describe('POST /login_logout', function() {
+  it('responds with json of email, password', function(done) {
+    request(app)
+        .post('/login_logout')
+        .send({email: '123@nyu.edu', password: 000000})
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) return done(err);
+          return done();
         });
   });
 });
@@ -104,19 +123,19 @@ describe('GET /signin', function() {
 // Junk, will remove once the login checker is better.. check the enterTheID function...
 describe('login success checker', function() {
   it('should simply tell whether the details we have entered are acceptable or not', function() {
-    assert.ok(app.loginSuccessChecker('junk_id', 'junk_checker'), 'junk_pswd');
+    assert.ok(login.loginSuccessChecker('junk_id', 'junk_checker'), 'junk_pswd');
   });
 });
 
 describe('enterTheID', function() {
   it('First lets attempt the most simple userid and make sure that its accepted', function() {
-    assert.equal(app.enterTheID('cs_nyu_edu'), true);
+    assert.equal(login.enterTheID('cs_nyu_edu'), true);
   });
   it('Now lets try a more unique type of userid and check if its accepted as well', function() {
-    assert.equal(app.enterTheID('$$$'), true);
+    assert.equal(login.enterTheID('$$$'), true);
   });
   it('Now lets not enter anything, and check it its rejected or not', function() {
-    assert.equal(app.enterTheID(''), false);
+    assert.equal(login.enterTheID(''), false);
   });
 });
 

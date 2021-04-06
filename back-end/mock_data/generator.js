@@ -1,5 +1,7 @@
 const { getQueryHandlerAndSelector } = require('puppeteer');
 const {PythonShell}=require('python-shell');
+const express = require("express");
+const router = express.Router();
 
 let options={
     mode: 'text',
@@ -23,5 +25,12 @@ const generate=(parameters)=>{
         // console.log('finished');
     });
 };
+router.get("/",(req,res)=>{
+    generate();
+    res.send('py_script_router');
+});
 
-module.exports={generate};
+module.exports={
+    generate:generate,
+    router:router
+};
