@@ -7,14 +7,15 @@ const nodemon = require('nodemon');
 
 const puppeteer=require('puppeteer');
 
+const Sheets=require('./sheets');
+
 //scraper for rateMyProf using only puppeteer
-//Works for all systems with good hardware
 
 const prof_scraper=async(prof,ischool)=>{
 
     const profName=prof
     const school="New York University";
-    const browser=await puppeteer.launch({headless:false});
+    const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
     page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
@@ -42,34 +43,31 @@ const prof_scraper=async(prof,ischool)=>{
         }
 
     }
+  
 
-    let wantedRow=results[2][0];
-    wantedRow=wantedRow.replace(/[a-zA-Z]/g,"");
-    //wantedRow=wantedRow.replace(/\s/g, '');
+  let wantedRow=results[2][0];
+  wantedRow=wantedRow.replace(/[a-zA-Z]/g, '');
+  // wantedRow=wantedRow.replace(/\s/g, '');
 
-    let quality=wantedRow.substring(0,3);
-    //ratingNumbs isn't 100% correct, but I am not sure if we need it anyway
-    let ratingNums=wantedRow.substring(3,7);
-    ratingNums=ratingNums.replace(/\s/g, '');
-    ratingNums=ratingNums.replace(/'.'/g, '');
-    //wantedRow=wantedRow.replace(/\D/g, "");;
+  const quality=wantedRow.substring(0, 3);
+  // ratingNumbs isn't 100% correct, but I am not sure if we need it anyway
+  let ratingNums=wantedRow.substring(3, 7);
+  ratingNums=ratingNums.replace(/\s/g, '');
+  ratingNums=ratingNums.replace(/'.'/g, '');
+  // wantedRow=wantedRow.replace(/\D/g, "");;
 
-    let splinter=wantedRow.split(" ");
-    let takeAgain;
-    for(cell in splinter){
-        if (cell>0&&splinter[cell]!=""){
-            takeAgain=splinter[cell];
-            console.log(takeAgain);
-            break;
+  const splinter=wantedRow.split(' ');
+  let takeAgain;
+  for (cell in splinter) {
+        if (cell>0&&splinter[cell]!='') {
+        takeAgain=splinter[cell];
+        break;
         }
-        //console.log("splinterCell "+cell+ " "+splinter[cell]);
-    }
-    
+    }  
 
     let difRow=wantedRow.replace(/\s/g, '');
     let difficulty=difRow.substring(difRow.length-3,difRow.length);
 
-    
     //console.log(results);
     //console.log(wantedRow);
     console.log("quality "+quality);
@@ -78,7 +76,6 @@ const prof_scraper=async(prof,ischool)=>{
     console.log("would take again "+takeAgain);
     
     return({q:quality,r:ratingNums,d:difficulty,t:takeAgain});
- 
 
 }
 //hybrid puppeteer + cheerio model, obselete as of now.
@@ -95,11 +92,11 @@ const cheerio_prof=async(parameters)=>{
     await page.waitForSelector('input');
 
     const inputProf=(await page.$$('input'))[1];
-    //await inputProf.click();
+
     //type profName
     await inputProf.type(profName);
     //press down and then enter
-   // await page.keyboard.press("ArrowDown");
+
     await page.waitForTimeout(500);
     await page.keyboard.press("Enter");
 
@@ -115,35 +112,59 @@ const cheerio_prof=async(parameters)=>{
         const active=$(c);
         const score=active.find('.CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 fJKuZx').text();
     })
-
-
     console.log(containers);;
-
 }
 //scraper for Albert, might use BUGs NYU api
 const albert_scraper=async(parameters)=>{
     const year=2021;
     const semester="su";
-    const school="UA";
+    //const school="UU";
     const subject="CSCI";
-    //const regis=0;
-    const url='https://schedge.a1liu.com/'+year+'/'+semester+'/'+school+'/'+subject;
-    
-
-    //console.log(url)
-    //"https://schedge.a1liu.com/2021/su/UA/CSCI"
-    const result=await fetch(url)
+    const schools_url = 'https://schedge.a1liu.com/schools';
+    const schools_result=await fetch(schools_url)
         .then(res=>res.json())
-        //.then(json=>console.log(json));
 
+    //console.log(Object.keys(schools_result))
+    const schools_list = Object.keys(schools_result);
+
+    for (school in schools_list) {
+        // must have 'query=something' at the end for the API to run properly
+        const url = `https://schedge.a1liu.com/${year}/${semester}/search?query=${schools_list[school]}&full=true`;
+        //console.log(url)
+
+        const result=await fetch(url)
+            .then(res=>res.json())
+            //.then(json=>console.log(json));
+
+        const sheets = new Sheets();
+
+        for (key in result) {
+            const subject_code = result[key].subjectCode;
+            const sections = result[key].sections;
+            for (section in sections) {
+                await sheets.load();
+                await sheets.addRow(
+                    {
+                        'subjectCodeCode': subject_code.code,
+                        'subjectCodeSchool': subject_code.school,
+                        'deptCourseId': result[key].deptCourseId, 
+                        'sectionsCode': sections[section].code
+                    }
+                );
+            }
+        }
+    }
     
-    console.log(result[0].sections[0].instructors);
+    // console.log(result);
+    // console.log(subject_code);
+    // console.log(sections);
+    
     return result;
 }
 
 
 module.exports = {
-    prof_scraper:prof_scraper,
-    albert_scraper:albert_scraper,
-    cheerio_prof:cheerio_prof
+  prof_scraper: prof_scraper,
+  albert_scraper: albert_scraper,
+  cheerio_prof: cheerio_prof,
 };
