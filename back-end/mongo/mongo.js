@@ -47,7 +47,7 @@ const mongoInsertAccount=async(mongoURL,username,password)=>{
     mongoose.disconnect();
 
 };
-//this is for updating user search history
+//this is for updating user history OR creating user account along side search history
 const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPos)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the correct userAccount
@@ -84,7 +84,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
     
 };
 
-//this is for inserting OR update classes from albert
+//this is for creating OR updating classes from albert
 const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the course if it exists
@@ -105,6 +105,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize)=>{
             console.log('Query exists, updating');
             const newCourseSize=courseSize;
             const newWaitlistSize=waitlistSize;
+            //updating this part isn't working correctly !!!
             results.save({
                 courseSize:newCourseSize,
                 waitlistSize:newWaitlistSize
@@ -113,7 +114,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize)=>{
 
         console.log(results);
     });
-    
+    mongoose.disconnect();
 };
 
 
@@ -122,13 +123,17 @@ router.post("/add_user_account", async(req, res) => {
     const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     mongoInsertAccount(uri,req.body.username,req.body.password);
 });
+router.post('/add_courses',async(req,res)=>{
+    const uri=`mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
+    mongoSaveCourses(uri,req.body.courseNum,req.body.courseSize,req.body.waitlistSize);
+});
 
 router.get("/",(req,res)=>{
 
     const userURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
     //mongoSaveUserHistory(userURL,'sp',12345,'Cyber',888);
-    mongoSaveCourses(courseURL,'CSCI007',100,10);
+    mongoSaveCourses(courseURL,'CSCI007',90,10);
     res.send('mongo_router');
 
 });
