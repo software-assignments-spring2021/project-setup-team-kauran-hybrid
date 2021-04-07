@@ -32,15 +32,13 @@ const mongoScript=async()=>{
     client.close();
 };
 
-const mongoInsert=(mongoURL)=>{
+const mongoInsert=async(mongoURL)=>{
     
     // console.log(user, pwd)
-    mongoose.connect(mongoURL, function(err) {
+    await mongoose.connect(mongoURL, function(err) {
         if(err) throw err;
+        
     })
-    // .catch(err => {
-    //     res.status(400).send("unable to connect to database");
-    // })
 
     let userAccountSchema = new mongoose.Schema({
         username: String,
@@ -49,7 +47,12 @@ const mongoInsert=(mongoURL)=>{
 
     const Account = mongoose.model('Account', userAccountSchema)
     const exAcc = new Account ({username: 'abc', password: 'def'})
-    exAcc.save().then(() => console.log('account saved'));
+    await exAcc.save()
+        .then(() => console.log('account saved'))
+        // .then(() => mongoose.disconnect())
+
+    // need to figure out how to allow all saves to execute before disconnect
+    // mongoose.disconnect()
 
 };
 
@@ -65,7 +68,7 @@ router.get("/",(req,res)=>{
 
     const uri = `mongodb+srv://whDev:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     mongoInsert(uri);
-
+    
     res.send('mongo_router');
 
 });
