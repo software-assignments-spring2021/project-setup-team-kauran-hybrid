@@ -3,6 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 const express = require("express");
 const router = express.Router();
 const dotenv=require('dotenv');
+const userAccounts=require('./mongoSchemas.js');
 dotenv.config();
 
 const pwd=process.env.mongoPWD;
@@ -31,23 +32,23 @@ const mongoScript=async()=>{
     });
     client.close();
 };
-mongoose.Promise=global.Promise;
+//mongoose.Promise=global.Promise;
 const mongoInsert=async(mongoURL)=>{
     
     // console.log(user, pwd)
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
 
-    let userAccountSchema = new mongoose.Schema({
-        username: String,
-        password: String
-    });
-    const Account = mongoose.model('Account', userAccountSchema)
-    const exAcc = new Account ({username: 'abc', password: 'def'})
+    // const userAccountSchema = new mongoose.Schema({
+    //     username: String,
+    //     password: String
+    // });
+    
+    const exAcc = new userAccounts ({username:'zyh',password:123})
     await exAcc.save()
         .then(() => console.log('account saved'));
 
     // need to figure out how to allow all saves to execute before disconnect
-     mongoose.disconnect();
+    mongoose.disconnect();
 
 };
 
