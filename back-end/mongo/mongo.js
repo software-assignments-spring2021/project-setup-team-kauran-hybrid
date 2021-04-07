@@ -31,28 +31,23 @@ const mongoScript=async()=>{
     });
     client.close();
 };
-
+mongoose.Promise=global.Promise;
 const mongoInsert=async(mongoURL)=>{
     
     // console.log(user, pwd)
-    await mongoose.connect(mongoURL, function(err) {
-        if(err) throw err;
-        
-    })
+    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
 
     let userAccountSchema = new mongoose.Schema({
         username: String,
         password: String
     });
-
     const Account = mongoose.model('Account', userAccountSchema)
     const exAcc = new Account ({username: 'abc', password: 'def'})
     await exAcc.save()
-        .then(() => console.log('account saved'))
-        // .then(() => mongoose.disconnect())
+        .then(() => console.log('account saved'));
 
     // need to figure out how to allow all saves to execute before disconnect
-    // mongoose.disconnect()
+     mongoose.disconnect();
 
 };
 
@@ -66,7 +61,7 @@ const mongoInsert=async(mongoURL)=>{
 
 router.get("/",(req,res)=>{
 
-    const uri = `mongodb+srv://whDev:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     mongoInsert(uri);
     
     res.send('mongo_router');
