@@ -9,8 +9,8 @@ const puppeteer=require('puppeteer');
 
 const Sheets=require('./sheets');
 
+const mongoScript=require('./mongo/mongo.js');
 //scraper for rateMyProf using only puppeteer
-//Works for all systems with good hardware
 
 const prof_scraper=async(prof,ischool)=>{
 
@@ -62,7 +62,6 @@ const prof_scraper=async(prof,ischool)=>{
   for (cell in splinter) {
         if (cell>0&&splinter[cell]!='') {
         takeAgain=splinter[cell];
-        console.log(takeAgain);
         break;
         }
     }  
@@ -70,7 +69,6 @@ const prof_scraper=async(prof,ischool)=>{
     let difRow=wantedRow.replace(/\s/g, '');
     let difficulty=difRow.substring(difRow.length-3,difRow.length);
 
-    
     //console.log(results);
     //console.log(wantedRow);
     console.log("quality "+quality);
@@ -79,8 +77,7 @@ const prof_scraper=async(prof,ischool)=>{
     console.log("would take again "+takeAgain);
     
     return({q:quality,r:ratingNums,d:difficulty,t:takeAgain});
- 
-    
+
 }
 //hybrid puppeteer + cheerio model, obselete as of now.
 //Do not write unit tests for this!!!!!!!!!!!!!!!!!!!!
@@ -96,11 +93,11 @@ const cheerio_prof=async(parameters)=>{
     await page.waitForSelector('input');
 
     const inputProf=(await page.$$('input'))[1];
-    //await inputProf.click();
+
     //type profName
     await inputProf.type(profName);
     //press down and then enter
-   // await page.keyboard.press("ArrowDown");
+
     await page.waitForTimeout(500);
     await page.keyboard.press("Enter");
 
@@ -116,10 +113,7 @@ const cheerio_prof=async(parameters)=>{
         const active=$(c);
         const score=active.find('.CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 fJKuZx').text();
     })
-
-
     console.log(containers);;
-
 }
 //scraper for Albert, might use BUGs NYU api
 const albert_scraper=async(parameters)=>{
@@ -127,8 +121,6 @@ const albert_scraper=async(parameters)=>{
     const semester="su";
     //const school="UU";
     const subject="CSCI";
-    
-
     const schools_url = 'https://schedge.a1liu.com/schools';
     const schools_result=await fetch(schools_url)
         .then(res=>res.json())
@@ -151,6 +143,8 @@ const albert_scraper=async(parameters)=>{
             const subject_code = result[key].subjectCode;
             const sections = result[key].sections;
             for (section in sections) {
+              //mongoDb should insert here!!!!!!!!!!!!!!!!!!!!!!!!!
+              //instead of google sheets api
                 await sheets.load();
                 await sheets.addRow(
                     {
@@ -159,13 +153,10 @@ const albert_scraper=async(parameters)=>{
                         'deptCourseId': result[key].deptCourseId, 
                         'sectionsCode': sections[section].code
                     }
-
                 );
             }
-            
-
-            
         }
+        
     }
     
     // console.log(result);

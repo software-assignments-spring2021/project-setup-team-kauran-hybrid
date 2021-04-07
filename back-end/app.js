@@ -10,17 +10,21 @@ const morgan=require('morgan');
 const scraper=require('./scraper');
 const mocha=require('mocha');
 const chai=require('chai');
-
+const generator=require('./mock_data/generator.js');
+const mongoScript=require('./mongo/mongo.js');
+const machineJs=require('./machine/machine.js');
+const dotenv=require('dotenv');
+const { Console } = require('console');
 const express = require("express");
 const app = express();
-app.use(morgan("dev"))
 const cors = require("cors"); // allow requests between localhost
 const bodyParser = require("body-parser");
-//require("dotenv").config({ silent: true }); // save private data in .env file
 
+//require("dotenv").config({ silent: true }); // save private data in .env file
+dotenv.config();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(morgan("dev"))
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -30,11 +34,12 @@ app.get("/", (req, res) => {
 app.use("/home_login", require("./home"));
 app.use("/class_modules", require("./class_modules"));
 app.use("/results", require("./results").router);
-
+app.use("/py_script",require("./mock_data/generator").router);
+app.use("/mongo_script",require("./mongo/mongo").router);
+app.use('/machine',require("./machine/machine.js").router);
 app.use("/class_info", require("./class_info"));
 app.use("/login_logout", require("./login_logout").router);
 app.use("/prof_info", require("./prof_info"));
-
 
 
 module.exports = app;
