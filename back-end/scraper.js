@@ -9,6 +9,7 @@ const puppeteer=require('puppeteer');
 
 const Sheets=require('./sheets');
 
+const mongoScript=require('./mongo/mongo.js');
 //scraper for rateMyProf using only puppeteer
 const prof_scraper=async(prof,ischool)=>{
 
@@ -141,6 +142,8 @@ const albert_scraper=async(parameters)=>{
                 for (lecture in lectures) {
                 const lecTime = lecture.beginDate.substring(11, 18);
                 const lecLocation = lecture.location;
+              //mongoDb should insert here!!!!!!!!!!!!!!!!!!!!!!!!!
+              //instead of google sheets api
                 await sheets.load();
                     await sheets.addRow(
                         {
@@ -168,6 +171,13 @@ const albert_scraper=async(parameters)=>{
             }
         }
         console.log('done');
+        
+    }
+    
+    // console.log(result);
+    // console.log(subject_code);
+    // console.log(sections);
+    
     return result;
 }
 

@@ -43,14 +43,14 @@ const LoginLogout=(props)=> {
     const  handleClickSubmit =async() =>{
       {
         
-            await axios.post('http://localhost:3000/login_logout',{
+            await axios.post('http://localhost:3000/mongo_script/add_user_account',{
               
-              email:email,
+              username:email,
               password:password,
               }
             );
           
-            console.log("checkingg");
+            console.log("checking");
           
       }
 
