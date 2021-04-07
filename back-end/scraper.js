@@ -10,7 +10,6 @@ const puppeteer=require('puppeteer');
 const Sheets=require('./sheets');
 
 //scraper for rateMyProf using only puppeteer
-
 const prof_scraper=async(prof,ischool)=>{
 
     const profName=prof
@@ -44,17 +43,14 @@ const prof_scraper=async(prof,ischool)=>{
 
     }
   
-
   let wantedRow=results[2][0];
   wantedRow=wantedRow.replace(/[a-zA-Z]/g, '');
-  // wantedRow=wantedRow.replace(/\s/g, '');
 
   const quality=wantedRow.substring(0, 3);
   // ratingNumbs isn't 100% correct, but I am not sure if we need it anyway
   let ratingNums=wantedRow.substring(3, 7);
   ratingNums=ratingNums.replace(/\s/g, '');
   ratingNums=ratingNums.replace(/'.'/g, '');
-  // wantedRow=wantedRow.replace(/\D/g, "");;
 
   const splinter=wantedRow.split(' ');
   let takeAgain;
@@ -64,12 +60,9 @@ const prof_scraper=async(prof,ischool)=>{
         break;
         }
     }  
-
     let difRow=wantedRow.replace(/\s/g, '');
     let difficulty=difRow.substring(difRow.length-3,difRow.length);
 
-    //console.log(results);
-    //console.log(wantedRow);
     console.log("quality "+quality);
     console.log("difficulty "+difficulty);
     console.log("number of ratings "+ratingNums);
@@ -114,46 +107,61 @@ const cheerio_prof=async(parameters)=>{
     })
     console.log(containers);;
 }
+
 //scraper for Albert, might use BUGs NYU api
 const albert_scraper=async(parameters)=>{
-    const year=2021;
-    const semester="su";
-    //const school="UU";
-    const subject="CSCI";
-    const schools_url = 'https://schedge.a1liu.com/schools';
-    const schools_result=await fetch(schools_url)
-        .then(res=>res.json())
+    console.log('yes 0');
+    // const year=2021;
+    const semester='su';
+    const subject='MATH';
+    // const schools_url = 'https://schedge.a1liu.com/schools';
+    // const schools_result=await fetch(schools_url)
+    //     .then(res=>res.json())
 
-    //console.log(Object.keys(schools_result))
-    const schools_list = Object.keys(schools_result);
+    // const schools_list = Object.keys(schools_result);
+    const school='UA';
 
-    for (school in schools_list) {
+    // for (school in schools_list) {
         // must have 'query=something' at the end for the API to run properly
-        const url = `https://schedge.a1liu.com/${year}/${semester}/search?query=${schools_list[school]}&full=true`;
-        //console.log(url)
-
-        const result=await fetch(url)
+        // const url = `https://schedge.a1liu.com/${year}/${semester}/search?query=${school}&full=true`;
+        const url1 = `https://schedge.a1liu.com/current/${semester}/search?query=${school}/${subject}&full=true`;
+        // const result=await fetch(url)
+        //     .then(res=>res.json())
+        console.log('yes 1');
+        const result=await fetch(url1)
             .then(res=>res.json())
-            //.then(json=>console.log(json));
-
         const sheets = new Sheets();
-
+        console.log('yes 2');
         for (key in result) {
-            const subject_code = result[key].subjectCode;
+            // const subject_code = result[key].subjectCode;
+            const class_name = result[key].name;
+            const deptCourseId = result[key].deptCourseId;
             const sections = result[key].sections;
+            
             for (section in sections) {
-                await sheets.load();
-                await sheets.addRow(
-                    {
-                        'subjectCodeCode': subject_code.code,
-                        'subjectCodeSchool': subject_code.school,
-                        'deptCourseId': result[key].deptCourseId, 
-                        'sectionsCode': sections[section].code
-                    }
-                );
+                const lecture = section.meetings;
+                const recitations = section.recitations;
+                for (recitation in recitations) {
+                    await sheets.load();
+                    await sheets.addRow(
+                        {
+                            'className': class_name,
+                            'deptCourseId': deptCourseId,
+                            'lectureCode': sections[section].code,
+                            'lectureBeginDate': lecture.beginDate,
+                            'lectureDuration': lecture.minutesDuration,
+                            'lectureEndDate': lecture.endDate,
+                            'recitationCode': recitation.code,
+                            'recitationDuration': recitation.minutesDuration,
+                            'recitationEndDate': recitation.endDate,
+                            'location': sections[section].location
+                        }
+                    );
+                }
+                
             }
         }
-    }
+    // }
     
     // console.log(result);
     // console.log(subject_code);
