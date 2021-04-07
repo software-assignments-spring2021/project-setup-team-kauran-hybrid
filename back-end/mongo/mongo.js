@@ -2,17 +2,19 @@ const mongoose=require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
 const express = require("express");
 const router = express.Router();
+const dotenv=require('dotenv');
+dotenv.config();
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
 let bodyParser = require('body-parser');
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
+// router.use(bodyParser.json());
+// router.use(bodyParser.urlencoded({ extended: true }));
 
 //copy pasted from mongoDB
 const mongoScript=async()=>{
 
-    const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/sample_airbnb?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     const client = await new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     await client.connect(err => {
         
@@ -30,42 +32,38 @@ const mongoScript=async()=>{
     client.close();
 };
 
-mongoose.Promise = global.Promise;
-
-const mongoInsert=async(mongoURL)=>{
+const mongoInsert=(mongoURL)=>{
     
-    mongoose.connect(mongoURL)
-        .catch(err => {
-            res.status(400).send("unable to connect to database");
-        })
+    // console.log(user, pwd)
+    mongoose.connect(mongoURL, function(err) {
+        if(err) throw err;
+    })
+    // .catch(err => {
+    //     res.status(400).send("unable to connect to database");
+    // })
+
+    let userAccountSchema = new mongoose.Schema({
+        username: String,
+        password: String
+    });
+
+    const Account = mongoose.model('Account', userAccountSchema)
+    const exAcc = new Account ({username: 'abc', password: 'def'})
+    exAcc.save().then(() => console.log('account saved'));
 
 };
 
-let userAccountSchema = new mongoose.Schema({
-    username: String,
-    password: String
-});
+// router.get("/add_user_account", (req, res) => {
+//     res.send("add user account");
+// });
 
-let User = mongoose.model("User", userAccountSchema);
-
-router.get("/add_user_account", (req, res) => {
-    res.send("add user account");
-});
-
-router.post("/add_user_account", (req, res) => {
-    let myUser = new User(req.body);
-    myUser.save()
-        .then(item => {
-            res.send("item saved to database");
-        })
-        .catch(err => {
-            res.status(400).send("unable to save to database");
-        })
-});
+// router.post("/add_user_account", async(req, res) => {
+//     const mongoURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+// });
 
 router.get("/",(req,res)=>{
 
-    const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/sample_airbnb?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://whDev:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     mongoInsert(uri);
 
     res.send('mongo_router');
