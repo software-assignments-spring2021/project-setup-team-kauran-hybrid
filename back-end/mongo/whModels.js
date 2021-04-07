@@ -9,7 +9,7 @@ const userAccountSchema = new mongoose.Schema({
 const courseSchema=new mongoose.Schema({
     courseNum:String,
     courseSize:Number,
-    waitlistSize:Number
+    waitlistSize:Number,
 });
 
 //must decalre mongoose models here!

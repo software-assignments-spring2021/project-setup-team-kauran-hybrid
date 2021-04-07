@@ -73,6 +73,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
             //update the account with the new parameters
             results.save({
                 username:username,
+                password:password,
                 courseNum:newCourseNum,
                 waitlistPos:newWaitlistPos
             });
@@ -95,7 +96,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize)=>{
                 courseNum:courseNum,
                 courseSize:courseSize,
                 waitlistSize:waitlistSize
-                
+
             });
             newCourse.save()
                 .then(()=>console.log('Course created'));
@@ -132,8 +133,8 @@ router.get("/",(req,res)=>{
 
     const userURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
-    //mongoSaveUserHistory(userURL,'sp',12345,'Cyber',888);
-    mongoSaveCourses(courseURL,'CSCI007',90,10);
+    mongoSaveUserHistory(userURL,'sp',789,'Cyber',888);
+    //mongoSaveCourses(courseURL,'CSCI480',100,20);
     res.send('mongo_router');
 
 });
