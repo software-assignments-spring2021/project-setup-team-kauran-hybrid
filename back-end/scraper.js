@@ -110,9 +110,8 @@ const cheerio_prof=async(parameters)=>{
 
 //scraper for Albert, might use BUGs NYU api
 const albert_scraper=async(parameters)=>{
-    console.log('yes 0');
-    // const year=2021;
-    const semester='su';
+    const year=2021;
+    const semester='sp';
     const subject='MATH';
     // const schools_url = 'https://schedge.a1liu.com/schools';
     // const schools_result=await fetch(schools_url)
@@ -123,53 +122,54 @@ const albert_scraper=async(parameters)=>{
 
     // for (school in schools_list) {
         // must have 'query=something' at the end for the API to run properly
-        // const url = `https://schedge.a1liu.com/${year}/${semester}/search?query=${school}&full=true`;
-        const url1 = `https://schedge.a1liu.com/current/${semester}/search?query=${school}/${subject}&full=true`;
+        //const url = `https://schedge.a1liu.com/${year}/${semester}/search?query=${school}&full=true`;
+        const url1 = `https://schedge.a1liu.com/${year}/${semester}/${school}/${subject}`;
         // const result=await fetch(url)
         //     .then(res=>res.json())
-        console.log('yes 1');
         const result=await fetch(url1)
             .then(res=>res.json())
+        
         const sheets = new Sheets();
-        console.log('yes 2');
         for (key in result) {
             // const subject_code = result[key].subjectCode;
             const class_name = result[key].name;
             const deptCourseId = result[key].deptCourseId;
             const sections = result[key].sections;
-            
+            //console.log(result[key].name);
             for (section in sections) {
-                const lecture = section.meetings;
-                const recitations = section.recitations;
-                for (recitation in recitations) {
-                    await sheets.load();
+                const lectures = section.meetings;
+                for (lecture in lectures) {
+                const lecTime = lecture.beginDate.substring(11, 18);
+                const lecLocation = lecture.location;
+                await sheets.load();
                     await sheets.addRow(
                         {
                             'className': class_name,
                             'deptCourseId': deptCourseId,
                             'lectureCode': sections[section].code,
-                            'lectureBeginDate': lecture.beginDate,
-                            'lectureDuration': lecture.minutesDuration,
-                            'lectureEndDate': lecture.endDate,
-                            'recitationCode': recitation.code,
-                            'recitationDuration': recitation.minutesDuration,
-                            'recitationEndDate': recitation.endDate,
-                            'location': sections[section].location
+                            'lectureTime': lecTime,
+                            'lectureLocation': lecLocation,
                         }
                     );
                 }
-                
+                const recitations = section.recitations;
+                for (recitation in recitations) {
+                    const recTime = recitation.beginDate.substring(11, 18);
+                    const recLocation = recitation.location;
+                    await sheets.load();
+                    await sheets.addRow(
+                        {
+                            'recitationCode': recitation.code,
+                            'recitationTime': recTime,
+                            'recitationLocation': recLocation
+                        }
+                    );
+                }   
             }
         }
-    // }
-    
-    // console.log(result);
-    // console.log(subject_code);
-    // console.log(sections);
-    
+        console.log('done');
     return result;
 }
-
 
 module.exports = {
   prof_scraper: prof_scraper,
