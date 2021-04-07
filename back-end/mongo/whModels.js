@@ -15,6 +15,7 @@ const courseSchema=new mongoose.Schema({
 //must decalre mongoose models here!
 const userAccounts=mongoose.model("userAccounts",userAccountSchema);
 const courses=mongoose.model("courses",courseSchema);
+
 module.exports={
     userAccounts:userAccounts,
     courses:courses
