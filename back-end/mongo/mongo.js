@@ -13,6 +13,7 @@ let bodyParser = require('body-parser');
 // router.use(bodyParser.urlencoded({ extended: true }));
 
 //copy pasted from mongoDB
+//leave as an example but we probably won't use mongodb as opposed to mongoose
 const mongoScript=async()=>{
 
     const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
@@ -32,38 +33,41 @@ const mongoScript=async()=>{
     });
     client.close();
 };
-//mongoose.Promise=global.Promise;
-const mongoInsert=async(mongoURL)=>{
+//this is for inserting user accounts
+const mongoInsertAccount=async(mongoURL,username,password)=>{
     
     // console.log(user, pwd)
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
 
-    // const userAccountSchema = new mongoose.Schema({
-    //     username: String,
-    //     password: String
-    // });
-    
-    const exAcc = new userAccounts ({username:'zyh',password:123})
+    const exAcc = new userAccounts.userAccounts({username:username,password:password})
     await exAcc.save()
         .then(() => console.log('account saved'));
 
-    // need to figure out how to allow all saves to execute before disconnect
+
     mongoose.disconnect();
 
 };
+//this is for inserting user search history
+const mongoInsertUserHistory=async(mongoURL,username,courseNum,waitlistPos)=>{
 
-// router.get("/add_user_account", (req, res) => {
-//     res.send("add user account");
-// });
+};
 
-// router.post("/add_user_account", async(req, res) => {
-//     const mongoURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-// });
+//this is for inserting classes from albert
+const mongoInsertCourses=async(mongoURL,courseNum,waitlistSize,waitlistPos)=>{
+
+};
+
+
+//post request for inserting user accounts
+router.post("/add_user_account", async(req, res) => {
+    const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+    mongoInsertAccount(uri,req.body.username,req.body.password);
+});
 
 router.get("/",(req,res)=>{
 
     const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-    mongoInsert(uri);
+    // mongoInsertAccount(uri);
     
     res.send('mongo_router');
 
