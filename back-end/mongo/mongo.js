@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 const express = require("express");
 const router = express.Router();
 const dotenv=require('dotenv');
-const whModels=require('./whModels.js');
+const whModels=require('./wh_models.js');
 dotenv.config();
 
 const pwd=process.env.mongoPWD;
