@@ -162,6 +162,8 @@ const albert_scraper=async(parameters)=>{
                 //console.log(recitationCode);
                 const recitationInstructors = recitation.instructors;
                 //console.log(recitationInstructors);
+                const status = section.status;
+                //console.log(status);
                 //const recTime = recitation.meetings[0].beginDate.substring(11, 16);
                 const recTime = recitation.meetings[0].beginDate;
                 //console.log(recTime);
