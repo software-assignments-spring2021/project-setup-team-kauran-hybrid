@@ -10,7 +10,7 @@ router.use(bodyParser.json());
 
 router.get("/", (req,res, next) => {
     // use axios to make a request to an API for our class info data
-    
+    // scraper.run().then(console.log);
     scraper.prof_scraper('Amos Bloomberg', 'New York University').then(response=>res.json(response))
     // axios
     //   .get("https://my.api.mockaroo.com/professor.json?key=2f789220")

@@ -18,7 +18,7 @@ const prof_scraper=async(prof,ischool)=>{
     const school="New York University";
     const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
-    page. setDefaultTimeout (100000)
+    page. setDefaultTimeout (1000000)
     //this goes to nyu school page on RMP
     await page.goto('https://www.ratemyprofessors.com/campusRatings.jsp?sid=675');
     //select input
@@ -33,8 +33,19 @@ const prof_scraper=async(prof,ischool)=>{
     await page.waitForTimeout(5000);
     await page.keyboard.press("Enter");
     await page.waitForTimeout(5000);
+
+    // await page.click('div.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx');
+    
+    //span.Tag-bs9vf4-0.hHOVKF
     const res=(await page.$$('a'));
     await page.waitForTimeout(500);
+    //console.log(res);
+    // const [response] = await Promise.all([
+        
+    //     page.waitForNavigation() // This will set the promise to wait for navigation events
+    //   // Then the page will be send POST and navigate to target page
+    //   ]);
+    
 
     const results=[];
     for(result of res){
@@ -44,8 +55,13 @@ const prof_scraper=async(prof,ischool)=>{
         }
 
     }
+
+    console.log(page.url());
+    //console.log(results);
   
 
+  //console.log(results)
+  
   let wantedRow=results[2][0];
   wantedRow=wantedRow.replace(/[a-zA-Z]/g, '');
   // wantedRow=wantedRow.replace(/\s/g, '');
@@ -75,10 +91,27 @@ const prof_scraper=async(prof,ischool)=>{
     console.log("difficulty "+difficulty);
     console.log("number of ratings "+ratingNums);
     console.log("would take again "+takeAgain);
-    
-    return({q:quality,r:ratingNums,d:difficulty,t:takeAgain});
+
+    await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
+    await page.waitForTimeout(5000);
+
+    let urls = await page.evaluate(() => {
+        let l = [];
+        let items = document.querySelectorAll('span.Tag-bs9vf4-0.hHOVKF');
+        items.forEach((item) => {
+            l.push(item.innerText);
+        });
+        
+        return l;
+    })
+    browser.close();
+    return({q:quality,r:ratingNums,d:difficulty,t:takeAgain,tags:urls});
 
 }
+
+
+
+
 //hybrid puppeteer + cheerio model, obselete as of now.
 //Do not write unit tests for this!!!!!!!!!!!!!!!!!!!!
 const cheerio_prof=async(parameters)=>{
