@@ -3,7 +3,6 @@ const cheerio=require('cheerio');
 const fetch= require('node-fetch');
 const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
-const Sheets=require('./sheets');
 const mongoScript=require('./mongo/mongo.js');
 
 //scraper for rateMyProf using only puppeteer
@@ -41,7 +40,6 @@ const prof_scraper=async(prof,ischool)=>{
     //   // Then the page will be send POST and navigate to target page
     //   ]);
     
-
     const results=[];
     for(result of res){
         let thisRes=await page.evaluate(el=>el.textContent,result);
@@ -49,32 +47,45 @@ const prof_scraper=async(prof,ischool)=>{
             results.push([thisRes]);
         }
     }
-
-    console.log(page.url());
-  
-  let wantedRow=results[2][0];
-  wantedRow=wantedRow.replace(/[a-zA-Z]/g, '');
-
-  const quality=wantedRow.substring(0, 3);
-  // ratingNumbs isn't 100% correct, but I am not sure if we need it anyway
-  let ratingNums=wantedRow.substring(3, 7);
-  ratingNums=ratingNums.replace(/\s/g, '');
-  ratingNums=ratingNums.replace(/'.'/g, '');
-
-  const splinter=wantedRow.split(' ');
-  let takeAgain;
-  for (cell in splinter) {
-        if (cell>0&&splinter[cell]!='') {
-        takeAgain=splinter[cell];
-        break;
+    //geting quality score
+    let rats=await page.$$('div.CardNumRating__CardNumRatingNumber-sc-17t4b9u-2.fJKuZx');
+    let ratings=[];
+    for(rat of rats){
+        let thisRat=await page.evaluate(el=>el.textContent,rat);
+        if (thisRat){
+            ratings.push(thisRat);
         }
-    }  
-    let difRow=wantedRow.replace(/\s/g, '');
-    let difficulty=difRow.substring(difRow.length-3,difRow.length);
-
+    }
+    const quality=ratings[0];
+    //console.log(ratings);
+    //getting nubmer of ratings
+    rats=await page.$$('div.CardNumRating__CardNumRatingCount-sc-17t4b9u-3.jMRwbg');
+    ratings=[];
+    for(rat of rats){
+        let thisRat=await page.evaluate(el=>el.textContent,rat);
+        if (thisRat){
+            ratings.push(thisRat);
+        }
+    }
+    const ratingNums=ratings[0];
+    //console.log(ratings);
+    //getting would tak again and difficulty
+    rats=await page.$$('div.CardFeedback__CardFeedbackNumber-lq6nix-2.hroXqf');
+    ratings=[];
+    for(rat of rats){
+        let thisRat=await page.evaluate(el=>el.textContent,rat);
+        if (thisRat){
+            ratings.push(thisRat);
+        }
+    }
+     
+    const takeAgain=ratings[0];
+    const difficulty=ratings[1];
+    //console.log(ratings);
+    //console.log(page.url());
     console.log("quality "+quality);
     console.log("difficulty "+difficulty);
-    console.log("number of ratings "+ratingNums);
+    console.log("There are "+ratingNums);
     console.log("would take again "+takeAgain);
 
     await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
