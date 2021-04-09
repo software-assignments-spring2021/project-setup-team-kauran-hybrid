@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const dotenv=require('dotenv');
 const whModels=require('./wh_models.js');
+// const converter=require('./converter.js');
 dotenv.config();
 
 const pwd=process.env.mongoPWD;
@@ -91,7 +92,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
     //find the course if it exists
     await whModels.courses.findOne({'courseNum':courseNum},function(err,results){
         if(err) throw err;
-        if(results==null){
+        if(results == null){
             const newCourse=new whModels.courses({
                 courseNum:courseNum,
                 courseSizes:[courseSize],
@@ -108,13 +109,33 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
             results=newCourse
         }
         else{
-            console.log('Query exists, updating');
-            
-            const newCourseSizes=results.courseSizes.push(courseSize);
-            const newWaitlistSizes=results.waitlistSizes.push(waitlistSize);
-            const newLectureTimes=results.lectureTimes.push(lectureTime);
-            const newLectureLocations=results.lectureLocations.push(lectureLocation);
-            const newInstructors=results.instructors.push(instructor);
+            //console.log('Query exists, updating');
+            //console.log(results);
+            let newCourseSizes;
+            let newWaitlistSizes;
+            let newLectureTimes;
+            let newLectureLocations;
+            let newInstructors;
+            if (courseSize) {
+                newCourseSizes=results.courseSizes.push(courseSize);
+            }
+
+            if (waitlistSize) {
+                newWaitlistSizes=results.waitlistSizes.push(waitlistSize);
+            }
+
+            if (lectureTime) {
+                newLectureTimes=results.lectureTimes.push(lectureTime);
+            }
+
+            if (lectureLocation) {
+                newLectureLocations=results.lectureLocations.push(lectureLocation);
+            }
+
+            if (instructor) {
+                newInstructors=results.instructors.push(instructor);
+            }
+
             const newStatus=status;
             //updating, this part isn't working correctly !!!
             results.save({
@@ -128,7 +149,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
             });
         }
 
-        console.log(results);
+        //console.log(results);
     });
     mongoose.disconnect();
 };
@@ -149,12 +170,14 @@ router.get("/",(req,res)=>{
     const userURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
     //mongoSaveUserHistory(userURL,'sp',789,'Cyber',888);
-    mongoSaveCourses(courseURL,'Cyber',100,20);
+    // mongoSaveCourses(courseURL,'Cyber',100,20);
+    
     res.send('mongo_router');
 
 });
 
 module.exports={
     mongoScript,
+    mongoSaveCourses: mongoSaveCourses,
     router:router
 }
