@@ -8,8 +8,13 @@ const userAccountSchema = new mongoose.Schema({
 });
 const courseSchema=new mongoose.Schema({
     courseNum:String,
-    courseSize:Number,
-    waitlistSize:Number,
+    courseSizes:Array,
+    waitlistSizes:Array,
+    lectureTimes:Array,
+    lectureLocations:Array,
+    instructors:Array,
+    status:String
+
 });
 
 //must decalre mongoose models here!
