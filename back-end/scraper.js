@@ -141,44 +141,55 @@ const albert_scraper=async(parameters)=>{
     const url = `https://schedge.a1liu.com/${year}/${semester}/${school}/${subject}`;
     const result=await fetch(url)
         .then(res=>res.json())
-    const sheets = new Sheets();
 
     for (key in result) {
         // Loop through each class
         const sections = result[key].sections;
         for (s in sections) {
             const class_name = result[key].name;
-            //console.log(class_name);
             const deptCourseId = result[key].deptCourseId;
             //console.log(deptCourseId);
             const section = sections[s];
+            const lectureCode = section.code;
+            //console.log(lectureCode);
+            const lecName = subject + '-' + school + ' ' + deptCourseId + ' ' + class_name;
+            //console.log(lecName);
             const lectures = section.meetings;
             const instructors = section.instructors;
             //console.log(instructors);
-            const lectureCode = section.code;
-            //console.log(lectureCode);
             const status = section.status;
             //console.log(status);
             const lecLocation = section.location;
             //console.log(lecLocation);
-            //const lecTime = lectures[0].beginDate.substring(11, 16);
-            const lecTime = lectures[0].beginDate;
-            //console.log(lecTime);
 
-            //mongoDb should insert here!!!!!!!!!!!!!!!!!!!!!!!!!
-            //instead of google sheets api
-            await sheets.load();
-            await sheets.addRow(
-            {
-                'className': class_name,
-                'deptCourseId': deptCourseId,
-                'lectureCode': lectureCode,
-                'instructors': instructors,
-                'lectureTime': lecTime,
-                'lectureLocation': lecLocation,
-                'status': status
+            var lecTimeStamp = 'N/A';
+            var lecStartTime = 'N/A';
+            var lecTime = 'N/A';
+            var lecDate = 'N/A';
+            var lecDay = 'N/A';
+            if (lectures !== null) {
+                lecTimeStamp = lectures[0].beginDate;
+                var d = new Date(lecTimeStamp);
+                lecStartTime = lectures[0].beginDate.substring(11, 16);
+                lecDate = d.getDay();
+                if (lecDate == 1) {
+                    lecDay = 'Mon';
                 }
-            );
+                else if (lecDate == 2) {
+                    lecDay = 'Tue';
+                }
+                else if (lecDate == 3) {
+                    lecDay = 'Wed';
+                }
+                else if (lecDate == 4) {
+                    lecDay = 'Thu';
+                }
+                else if (lecDate == 5) {
+                    lecDay = 'Fri';
+                }
+                lecTime = lecDay + ' ' + lecStartTime;
+            }
+            //console.log(lecTime);
             
             const recitations = section.recitations;
             // Loop through each recitation for a class
@@ -190,24 +201,42 @@ const albert_scraper=async(parameters)=>{
                 //console.log(recitationInstructors);
                 const status = section.status;
                 //console.log(status);
-                //const recTime = recitation.meetings[0].beginDate.substring(11, 16);
-                const recTime = recitation.meetings[0].beginDate;
+                const recMeeting = recitation.meetings;
                 //console.log(recTime);
                 const recLocation = recitation.location;
                 //console.log(recLocation);
-                await sheets.load();
-                await sheets.addRow(
-                    {
-                        'recitationCode': recitationCode,
-                        'recitationInstructors': recitationInstructors,
-                        'recitationTime': recTime,
-                        'recitationLocation': recLocation
+
+                var recTimeStamp = 'N/A';
+                var recStartTime = 'N/A';
+                var recTime = 'N/A';
+                var recDate = 'N/A';
+                var recDay = 'N/A';
+                if (recMeeting !== null) {
+                    recTimeStamp = recMeeting[0].beginDate;
+                    var d = new Date(recTimeStamp);
+                    recStartTime = recMeeting[0].beginDate.substring(11, 16);
+                    recDate = d.getDay();
+                    if (recDate == 1) {
+                        recDay = 'Mon';
                     }
-                );
+                    else if (recDate == 2) {
+                        recDay = 'Tue';
+                    }
+                    else if (recDate == 3) {
+                        recDay = 'Wed';
+                    }
+                    else if (recDate == 4) {
+                        recDay = 'Thu';
+                    }
+                    else if (recDate == 5) {
+                        recDay = 'Fri';
+                    }
+                    recTime = recDay + ' ' + recStartTime;
+                }
+                //console.log(recTime);
             }   
         }
     }
-    console.log('done');
     return result;
 }
 
