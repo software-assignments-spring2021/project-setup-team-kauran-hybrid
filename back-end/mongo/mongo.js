@@ -153,7 +153,22 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
     });
     mongoose.disconnect();
 };
-
+//method for finding a query
+//in the router there is an example for how to use this!!
+const mongoGetCourses=async(mongoURL,courseNum)=>{
+    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    
+    let ret=await whModels.courses.find({'courseNum':courseNum},function(err,results){
+        if(err) throw err;
+        
+        return results;
+        
+    });
+    
+    mongoose.disconnect();
+    //console.log(ret);
+    return ret;
+};
 
 //post request for inserting user accounts
 router.post("/add_user_account", async(req, res) => {
@@ -171,6 +186,11 @@ router.get("/",(req,res)=>{
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
     //mongoSaveUserHistory(userURL,'sp',789,'Cyber',888);
     // mongoSaveCourses(courseURL,'Cyber',100,20);
+    let val=mongoGetCourses(courseURL,'MATH-UA120').then(val=>{
+        console.log(val);
+    });
+    
+    
     
     res.send('mongo_router');
 
