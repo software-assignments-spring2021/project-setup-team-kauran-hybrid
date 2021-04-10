@@ -87,7 +87,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureTime,lectureLocation,status,instructor)=>{
+const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSize,lectureTime,lectureLocation,status,instructor)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the course if it exists
     await whModels.courses.findOne({'courseNum':courseNum},function(err,results){
@@ -95,13 +95,14 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
         if(results == null){
             const newCourse=new whModels.courses({
                 courseNum:courseNum,
+                courseName:courseName,
                 courseSizes:[courseSize],
                 waitlistSizes:[waitlistSize],
                 lectureTimes:[lectureTime],
                 lectureLocations:[lectureLocation],
                 instructors:[instructor],
-
-                status:status
+                //status: status
+                statuses:[status]
 
             });
             newCourse.save()
@@ -116,6 +117,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
             let newLectureTimes;
             let newLectureLocations;
             let newInstructors;
+            let newStatuses;
             if (courseSize) {
                 newCourseSizes=results.courseSizes.push(courseSize);
             }
@@ -136,7 +138,11 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
                 newInstructors=results.instructors.push(instructor);
             }
 
-            const newStatus=status;
+            if (status) {
+                newStatuses=results.statuses.push(status);
+            }
+
+            //const newStatus=status;
             //updating, this part isn't working correctly !!!
             results.save({
                 courseSizes:newCourseSizes,
@@ -144,7 +150,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
                 lectureTimes:newLectureTimes,
                 lectureLocations:newLectureLocations,
                 instructors:newInstructors,
-                status:newStatus
+                status:newStatuses
 
             });
         }
