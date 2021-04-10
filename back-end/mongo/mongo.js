@@ -158,13 +158,25 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
 const mongoGetCourses=async(mongoURL,courseNum)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     
-    let ret=await whModels.courses.find({'courseNum':courseNum},function(err,results){
-        if(err) throw err;
-        
-        return results;
-        
-    });
-    
+    let ret;
+    //if specified courseNum
+    if(courseNum){
+        ret=await whModels.courses.find({'courseNum':courseNum},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+    }
+    //if getting all courses
+    else{
+        ret=await whModels.courses.find({},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+    }
     mongoose.disconnect();
     //console.log(ret);
     return ret;
@@ -186,7 +198,7 @@ router.get("/",(req,res)=>{
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
     //mongoSaveUserHistory(userURL,'sp',789,'Cyber',888);
     // mongoSaveCourses(courseURL,'Cyber',100,20);
-    let val=mongoGetCourses(courseURL,'MATH-UA120').then(val=>{
+    let val=mongoGetCourses(courseURL).then(val=>{
         console.log(val);
     });
     
