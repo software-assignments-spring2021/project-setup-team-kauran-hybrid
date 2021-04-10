@@ -149,7 +149,7 @@ const albert_scraper=async(parameters)=>{
     const subject='MATH';
     const school='UA';
 
-    const url = `https://schedge.a1liu.com/${year}/${semester}/${school}/${subject}`;
+    const url = `https://schedge.a1liu.com/current/${semester}/${school}/${subject}`;
     const result=await fetch(url)
         .then(res=>res.json())
 
@@ -157,14 +157,15 @@ const albert_scraper=async(parameters)=>{
         // Loop through each class
         const sections = result[key].sections;
         for (s in sections) {
-            const class_name = result[key].name;
+            const lecName = result[key].name;
+            console.log(lecName);
             const deptCourseId = result[key].deptCourseId;
             //console.log(deptCourseId);
             const section = sections[s];
             const lectureCode = section.code;
             //console.log(lectureCode);
-            const lecName = subject + '-' + school + ' ' + deptCourseId + ' ' + class_name;
-            //console.log(lecName);
+            const lecNum = subject + '-' + school + deptCourseId;
+            console.log(lecNum);
             const lectures = section.meetings;
             const instructors = section.instructors;
             //console.log(instructors);
@@ -202,6 +203,7 @@ const albert_scraper=async(parameters)=>{
             }
             //console.log(lecTime);
             
+            // Get all recitations for a section
             const recitations = section.recitations;
             // Loop through each recitation for a class
             for (i in recitations) {
@@ -242,7 +244,7 @@ const albert_scraper=async(parameters)=>{
                     else if (recDate == 5) {
                         recDay = 'Fri';
                     }
-                    recTime = recDay + ' ' + recStartTime;
+                    recTime = recDay + recStartTime;
                 }
                 //console.log(recTime);
             }   

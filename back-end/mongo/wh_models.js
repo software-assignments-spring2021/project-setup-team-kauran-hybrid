@@ -8,6 +8,7 @@ const userAccountSchema = new mongoose.Schema({
 });
 const courseSchema=new mongoose.Schema({
     courseNum:String,
+    courseName:String,
     courseSizes:Array,
     waitlistSizes:Array,
     lectureTimes:Array,
