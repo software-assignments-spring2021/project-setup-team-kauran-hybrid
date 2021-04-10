@@ -14,7 +14,7 @@ const courseSchema=new mongoose.Schema({
     lectureTimes:Array,
     lectureLocations:Array,
     instructors:Array,
-    status:String
+    status:Array
 
 });
 
