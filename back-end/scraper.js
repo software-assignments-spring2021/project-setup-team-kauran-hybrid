@@ -4,6 +4,11 @@ const fetch= require('node-fetch');
 const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
 const mongoScript=require('./mongo/mongo.js');
+const dotenv=require('dotenv');
+dotenv.config({path:__dirname+'/./../../.env'});
+
+const pwd=process.env.mongoPWD;
+const user=process.env.mongoUSER;
 
 //scraper for rateMyProf using only puppeteer
 const prof_scraper=async(prof,ischool)=>{
@@ -152,24 +157,31 @@ const albert_scraper=async(parameters)=>{
     const url = `https://schedge.a1liu.com/current/${semester}/${school}/${subject}`;
     const result=await fetch(url)
         .then(res=>res.json())
+    
+    const secURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`; 
 
     for (key in result) {
         // Loop through each class
+        // console.log(result[key])
         const sections = result[key].sections;
+        let sec;
+        let recs=[];
         for (s in sections) {
             const lecName = result[key].name;
-            console.log(lecName);
+            // console.log(lecName);
             const deptCourseId = result[key].deptCourseId;
             //console.log(deptCourseId);
             const section = sections[s];
-            const lectureCode = section.code;
+            // console.log(section);
+            let lectureCode = section.code;
+            lectureCode = lectureCode.replace(/^0+/, '');
             //console.log(lectureCode);
             const lecNum = subject + '-' + school + deptCourseId;
-            console.log(lecNum);
+            // console.log(lecNum);
             const lectures = section.meetings;
             const instructors = section.instructors;
             //console.log(instructors);
-            const status = section.status;
+            const lecStatus = section.status;
             //console.log(status);
             const lecLocation = section.location;
             //console.log(lecLocation);
@@ -202,17 +214,18 @@ const albert_scraper=async(parameters)=>{
                 lecTime = lecDay + ' ' + lecStartTime;
             }
             //console.log(lecTime);
-            
+            let rec;
             // Get all recitations for a section
             const recitations = section.recitations;
             // Loop through each recitation for a class
             for (i in recitations) {
                 const recitation = recitations[i];
-                const recitationCode = recitation.code;
+                let recitationCode = recitation.code;
+                recitationCode = recitationCode.replace(/^0+/, '');
                 //console.log(recitationCode);
                 const recitationInstructors = recitation.instructors;
                 //console.log(recitationInstructors);
-                const status = section.status;
+                const recStatus = section.status;
                 //console.log(status);
                 const recMeeting = recitation.meetings;
                 //console.log(recTime);
@@ -247,7 +260,27 @@ const albert_scraper=async(parameters)=>{
                     recTime = recDay + recStartTime;
                 }
                 //console.log(recTime);
-            }   
+                rec = {
+                    recCode:recitationCode,
+                    recInstructors:recitationInstructors,
+                    recStatus:recStatus,
+                    recTime:recTime,
+                    recLoc: recLocation
+                }
+                recs.push(rec);
+            }
+            sec = {
+                secCode:lectureCode,
+                secYear:year,
+                secSem:semester,
+                secInstructors:instructors,
+                secStatus:lecStatus,
+                secTime:lecTime,
+                secLoc:lecLocation,
+                recs:recs
+            }
+            
+            await mongoScript.mongoSaveSections(secURL,lecNum,lecName,sec,year,semester);  
         }
     }
     return result;
