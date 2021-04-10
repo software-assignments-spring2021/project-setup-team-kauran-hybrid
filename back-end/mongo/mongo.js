@@ -219,5 +219,6 @@ module.exports={
     mongoSaveUserHistory:mongoSaveUserHistory,
     mongoInsertAccount:mongoInsertAccount,
     mongoSaveCourses: mongoSaveCourses,
+    mongoGetCourses:mongoGetCourses,
     router:router
 }

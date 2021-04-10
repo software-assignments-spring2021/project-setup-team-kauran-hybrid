@@ -14,16 +14,19 @@ const courseSchema=new mongoose.Schema({
     lectureTimes:Array,
     lectureLocations:Array,
     instructors:Array,
-    status:String
+    status:Array
 
 });
+
 
 //must decalre mongoose models here!
 const userAccounts=mongoose.model("userAccounts",userAccountSchema);
 const courses=mongoose.model("courses",courseSchema);
-
+const testingCourses=mongoose.model('testingCourses',courseScheme);
+const trainingCourses=mongoose.model('trainingCourses',courseSchema);
 module.exports={
     userAccounts:userAccounts,
-    courses:courses
-
+    courses:courses,
+    trainingCourses:trainingCourses,
+    testingCourses:testingCrouses,
 }
