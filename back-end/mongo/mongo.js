@@ -216,6 +216,8 @@ router.get("/",(req,res)=>{
 
 module.exports={
     mongoScript,
+    mongoSaveUserHistory:mongoSaveUserHistory,
+    mongoInsertAccount:mongoInsertAccount,
     mongoSaveCourses: mongoSaveCourses,
     router:router
 }
