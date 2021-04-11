@@ -88,7 +88,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSize,lectureTime,lectureLocation,status,instructor)=>{
+const mongoSaveCourses=async(mongoURL,courseNum,courseName,sizeCap,courseSize,waitlistSize,droppedSize,status)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the course if it exists
     await whModels.courses.findOne({'courseNum':courseNum},function(err,results){
@@ -97,11 +97,10 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
             const newCourse=new whModels.courses({
                 courseNum:courseNum,
                 courseName:courseName,
+                sizeCaps:sizeCap,
                 courseSizes:[courseSize],
                 waitlistSizes:[waitlistSize],
-                lectureTimes:[lectureTime],
-                lectureLocations:[lectureLocation],
-                instructors:[instructor],
+                droppedSizes:[droppedSize],
                 //status: status
                 statuses:[status]
 
@@ -111,14 +110,16 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
             results=newCourse
         }
         else{
-            //console.log('Query exists, updating');
+            console.log('Query exists, updating');
             //console.log(results);
+            let newSizeCaps;
             let newCourseSizes;
             let newWaitlistSizes;
-            let newLectureTimes;
-            let newLectureLocations;
-            let newInstructors;
+            let newDroppedSizes;
             let newStatuses;
+            if(sizeCap!=null){
+                newSizeCaps=results.sizeCaps.push(sizeCap);
+            }
             if (courseSize) {
                 newCourseSizes=results.courseSizes.push(courseSize);
             }
@@ -126,17 +127,8 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
             if (waitlistSize) {
                 newWaitlistSizes=results.waitlistSizes.push(waitlistSize);
             }
-
-            if (lectureTime) {
-                newLectureTimes=results.lectureTimes.push(lectureTime);
-            }
-
-            if (lectureLocation) {
-                newLectureLocations=results.lectureLocations.push(lectureLocation);
-            }
-
-            if (instructor) {
-                newInstructors=results.instructors.push(instructor);
+            if(droppedSize){
+                newDroppedSizes=results.droppedSizes.push(droppedSize);
             }
 
             if (status) {
@@ -146,11 +138,10 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
             //const newStatus=status;
             //updating, this part isn't working correctly !!!
             results.save({
+                sizeCaps:newSizeCaps,
                 courseSizes:newCourseSizes,
                 waitlistSizes:newWaitlistSizes,
-                lectureTimes:newLectureTimes,
-                lectureLocations:newLectureLocations,
-                instructors:newInstructors,
+                droppedSizes:newDroppedSizes,
                 status:newStatuses
 
             });
