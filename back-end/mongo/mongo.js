@@ -240,6 +240,50 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
     return ret;
 };
 
+const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
+    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    
+    let record;
+    let ret;
+    //if specified courseNum
+    if(courseNum && secCode){
+        record=await whModels.sections.findOne({'courseNum':courseNum},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+        let s;
+        for (i in record.sections) {
+            s=record.sections[i];
+            if (s.secCode == secCode) {
+                ret = s;
+                break;
+            }
+        }
+    }
+    //if getting all courses
+    else if (courseNum){
+        ret=await whModels.sections.find({'courseNum':courseNum},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+    }
+    else{
+        ret=await whModels.sections.find({},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+    }
+    
+    mongoose.disconnect();
+    //console.log(ret);
+    return ret;
+};
 
 //post request for inserting user accounts
 router.post("/add_user_account", async(req, res) => {
