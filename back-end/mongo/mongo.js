@@ -185,6 +185,7 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semeste
             let oldSections = results.sections;
             // console.log(oldSections);
             let existed = false;
+            let s;
             for (i in oldSections) {
                 s = oldSections[i];
                 // console.log(s.secYear);
@@ -201,12 +202,6 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semeste
             //updating, this part isn't working correctly !!!
             results.save({
                 sections:newSections
-                // courseSizes:newCourseSizes,
-                // waitlistSizes:newWaitlistSizes,
-                // lectureTimes:newLectureTimes,
-                // lectureLocations:newLectureLocations,
-                // instructors:newInstructors,
-                // status:newStatuses
 
             });
         }
@@ -245,6 +240,7 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
     return ret;
 };
 
+
 //post request for inserting user accounts
 router.post("/add_user_account", async(req, res) => {
     const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
@@ -278,5 +274,6 @@ module.exports={
     mongoSaveCourses: mongoSaveCourses,
     mongoGetCourses:mongoGetCourses,
     mongoSaveSections:mongoSaveSections,
+    mongoGetSections:mongoGetSections,
     router:router
 }
