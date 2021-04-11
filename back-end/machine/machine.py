@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import sklearn as sl
+import matplotlib.pyplot as plt
 from faker.providers.person.en import Provider
 import json
 
@@ -38,9 +39,13 @@ df['Course Size'] = courseSizes
 df['Waitlist Size'] = waitlistSizes
 
 
-# this works but it will print ... 
-# for df['Course Size] and df['Waitlist Size'] since they are arrays
-print(df) 
+
+
+df.set_index('Course Number',inplace=True,drop=True)
+
+#df.plot()
+
+print(df)
 
 
 
