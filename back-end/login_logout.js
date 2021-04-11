@@ -17,6 +17,7 @@ const JwtStrategy = require("passport-jwt").Strategy;
 //require("dotenv").config({ silent: true }); // save private data in .env file
 
 const { ExtractJwt } = require("passport-jwt");
+const { registerCustomQueryHandler } = require("puppeteer");
 
 dotenv.config();
 
@@ -24,14 +25,22 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 // user and pwd
-const user = process.env.mongoUSER;
-const pwd = process.env.mongoPWD;
+const mongoUser = process.env.mongoUSER;
+const mongoPwd = process.env.mongoPWD;
 
-router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"); next();
+// router.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"); next();
+// });
+
+passport.serializeUser((user,done)=>{
+  done(null,user.id);
 });
-
+passport.deserializeUser((id,done)=>{
+  userAccounts.findById(id,(err,user)=>{
+    done(err,user);
+  });
+});
 const enterTheID = (details) => {
   const acceptable_input = /^[0-9_$a-z]+/;
   if ((details.match(acceptable_input))) {
@@ -43,9 +52,9 @@ const enterTheID = (details) => {
   }
 };
 
-const loginSuccessChecker = (username, pwd) => {
-  if (username != null && pwd != null) {
-    if (typeof username != undefined && typeof pwd != undefined) {
+const loginSuccessChecker = (username, password) => {
+  if (username != null && password != null) {
+    if (typeof username != undefined && typeof password != undefined) {
       return true;
     }
   } else {
@@ -89,20 +98,48 @@ passport.use( new JwtStrategy( { jwtFromRequest: ExtractJwt.fromAuthHeaderAsBear
   })
 )
 
-passport.use('signin', new LocalStrategy({ passReqToCallback: true},(req, username, password, done) => {
+passport.use('signin', new LocalStrategy({usernameField:'username'},(username, password, done) => {
   userAccounts.findOne({ username: username}, (err, user) => {
-      if (err) {
-        return done(err, false)
+      if (err) throw err;
+
+      //I think this is wrong so I will put them in comments and try something else -evlzhang
+      // if (!user) {
+      //   req.passportErrorMessage = "Please check your Username"
+      //   return done(null, false)
+      // }
+      // if (!user.validPassword(password)) {
+      //   req.passportErrorMessage = "Please check your password"
+      //   return done(null, false)
+      // }
+      // return done(null, false)
+      if(!user){
+        const newUser=new userAccounts({username,password});
+        bcrypt.genSalt(10,(err,salt)=>{
+          bcrypt.hash(newUser,password,salt,(err,hash)=>{
+            if(err) throw err;
+            newUser.password=hash;
+            newUser
+              .save()
+              .then(user=>{
+                return done(null,user);
+              })
+              .catch(err=>{
+                return done(null,false,{message:err});
+              });
+          });
+        });
       }
-      if (!user) {
-        req.passportErrorMessage = "Please check your Username"
-        return done(null, false)
+      else{
+        bcrypt.compare(password,user.password,(err,isMatch)=>{
+          if(err) throw err;
+          if(isMatch){
+            return done(null,user);
+          }
+          else{
+            return done(null,false,{message:"wrong password"});
+          }
+        });
       }
-      if (!user.validPassword(password)) {
-        req.passportErrorMessage = "Please check your password"
-        return done(null, false)
-      }
-      return done(null, false)
     })
   })
 )
@@ -126,21 +163,36 @@ router.use((req, res, next) => {
   next()
 })
 
-router.get('/', passport.authenticate('jwt', {session : false}), (req, res) => {
-  const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  mongoose.connect(uri, {useNewUrlParser:true,useUnifiedTopology:true});
-  res.json({user: req.user})
-  mongoose.disconnect()
-})
+// router.get('/', passport.authenticate('jwt', {session : false}), (req, res) => {
+//   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+//   mongoose.connect(uri, {useNewUrlParser:true,useUnifiedTopology:true});
+//   res.json({user: req.user})
+//   mongoose.disconnect()
+// })
 
 router.post('/', passport.authenticate('signin', {session : false}), (req, res) => {
-  const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+  const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
   mongoose.connect(uri, {useNewUrlParser:true,useUnifiedTopology:true});
   res.json({token: signToken(req.user)})
   mongoose.disconnect()
 })
 
+router.post('/register_login',(req,res,next)=>{
+  console.log('request received');
+  passport.authenticate('signin',function(err,user,info){
+    if(err) throw err;
+    if(!user){
+      return res.status(400)//,json({errors:'No user found'});
+    }
+    registerCustomQueryHandler.logIn(user,function(err){
+      if(err) throw err;
+      return res.status(200)//.json({success: 'logged in '});
+    });
+  })(req,res,next);
+});
+
 module.exports = {
+  passport:passport,
   router:router,
   enterTheID:enterTheID,
   loginSuccessChecker:loginSuccessChecker,
