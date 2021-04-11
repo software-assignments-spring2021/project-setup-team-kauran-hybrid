@@ -76,12 +76,45 @@ const convertData=async(courses_dir)=>{
         //console.log(index);
         for (i in courses) {
             //console.log(courses);
+            
             const courseNum = courses[i].Course;
-            const courseSize = courses[i].EnrollmentTotal;
+            const courseName=courses[i].CourseTitle;
+            const sizeCap= courses[i].EnrollmentTotal;
             const waitlistSize = courses[i].WaitCap;
 
             //console.log(courseNum,courseSize,waitlistSize);
-            await mongo.mongoSaveCourses(courseURL,courseNum,courseSize,waitlistSize); 
+            await mongo.mongoSaveCourses(courseURL,courseNum,courseName,undefined,waitlistSize,undefined,sizeCap); 
+        }
+    }
+    console.log("done converting");
+}
+const convertDrops=async(courses_dir)=>{
+
+    const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
+    //console.log(courses_arr);
+    for (index in dropped_arr) {
+        const courses = dropped_arr[index];
+        //console.log(index);
+        for (i in courses) {
+            
+            if(courses[i].ClassEnrollmentStatus=='Dropped'){
+                //console.log(courses[i].Subject/Number);
+                const courseNum = courses[i].Course;
+                const courseName=courses[i].CourseTitle;
+                const droppedSize= courses[i].DistinctStudentCount;
+
+                //console.log(courseNum,courseSize,waitlistSize);
+                await mongo.mongoSaveCourses(courseURL,courseNum,courseName,undefined,undefined,droppedSize); 
+            }
+            else{
+                const courseNum = courses[i].Course;
+                const courseName=courses[i].CourseTitle;
+                const courseSize= courses[i].DistinctStudentCount;
+
+                //console.log(courseNum,courseSize,waitlistSize);
+                await mongo.mongoSaveCourses(courseURL,courseNum,courseName,courseSize); 
+            }
+            
         }
     }
     console.log("done converting");
@@ -89,8 +122,8 @@ const convertData=async(courses_dir)=>{
 
 router.get("/", (req,res) => {
     //read_data();
-
-    convertData(' ');
+    convertData();
+    convertDrops();
     res.send("converting data")
 
 })

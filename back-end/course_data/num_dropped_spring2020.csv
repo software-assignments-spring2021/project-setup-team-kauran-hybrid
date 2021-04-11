@@ -1,4 +1,4 @@
-Term,Subject/Number,CourseTitle,ClassSection,DistinctStudentCount,ClassEnrollmentStatus
+Term,Course,CourseTitle,ClassSection,DistinctStudentCount,ClassEnrollmentStatus
 Spring2020,MATH-UA102,IntrotoStatisticsandResearchMethods,1,15,Enrolled
 Spring2020,MATH-UA120,DiscreteMathematics,1,14,Dropped
 Spring2020,MATH-UA120,DiscreteMathematics,1,40,Enrolled

@@ -1,4 +1,4 @@
-Term,Subject/Number,CourseTitle,ClassSection,DistinctStudentCount,ClassEnrollmentStatus
+Term,Course,CourseTitle,ClassSection,DistinctStudentCount,ClassEnrollmentStatus
 Spring2021,MATH-UA120,DiscreteMathematics,1,13,Dropped
 Spring2021,MATH-UA120,DiscreteMathematics,1,40,Enrolled
 Spring2021,MATH-UA120,DiscreteMathematics,2,10,Dropped

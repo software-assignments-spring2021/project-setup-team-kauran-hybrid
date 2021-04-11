@@ -88,7 +88,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveCourses=async(mongoURL,courseNum,courseName,sizeCap,courseSize,waitlistSize,droppedSize,status)=>{
+const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap,status)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the course if it exists
     await whModels.courses.findOne({'courseNum':courseNum},function(err,results){
@@ -97,7 +97,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,sizeCap,courseSize,wa
             const newCourse=new whModels.courses({
                 courseNum:courseNum,
                 courseName:courseName,
-                sizeCaps:sizeCap,
+                sizeCaps:[sizeCap],
                 courseSizes:[courseSize],
                 waitlistSizes:[waitlistSize],
                 droppedSizes:[droppedSize],
@@ -117,7 +117,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,sizeCap,courseSize,wa
             let newWaitlistSizes;
             let newDroppedSizes;
             let newStatuses;
-            if(sizeCap!=null){
+            if(sizeCap){
                 newSizeCaps=results.sizeCaps.push(sizeCap);
             }
             if (courseSize) {
@@ -149,7 +149,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,sizeCap,courseSize,wa
 
         //console.log(results);
     });
-    mongoose.disconnect();
+    //mongoose.disconnect();
 };
 
 //this is for creating OR updating classes from albert
