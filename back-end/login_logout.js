@@ -11,7 +11,7 @@ const { check, validationResult } = require("express-validator");
 const dotenv = require("dotenv");
 const whModels = require("./mongo/wh_models.js")
 
-const User = whModels.userAccounts;
+const userAccounts = whModels.userAccounts;
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 //require("dotenv").config({ silent: true }); // save private data in .env file
@@ -75,37 +75,36 @@ router.get("/", (req, res) => {
 passport.use( new JwtStrategy( { jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), secretOrKey: "temporary_secret"
 },
   async (payload, done) => {
-    User.findById(payload.sub, (err, user) => {
+    userAccounts.findById(payload.sub, (err, user) => {
       if (err) {
         done(err, false)
-      } else {
+      } 
+      else {
         if (!user) {
           return done(null, false)
         }
         done(null, user)
       }
-      })
-    }
-    )
+    })
+  })
 )
 
 passport.use('signin', new LocalStrategy({ passReqToCallback: true},(req, username, password, done) => {
-      User.findOne({ username: username}, (err, user) => {
-        if (err) {
-          return done(err, false)
-        }
-        if (!user) {
-          req.passportErrorMessage = "Please check your Username"
-          return done(null, false)
-        }
-        if (!user.validPassword(password)) {
-          req.passportErrorMessage = "Please check your password"
-          return done(null, false)
-        }
+  userAccounts.findOne({ username: username}, (err, user) => {
+      if (err) {
+        return done(err, false)
+      }
+      if (!user) {
+        req.passportErrorMessage = "Please check your Username"
         return done(null, false)
-      })
-    }
-  )
+      }
+      if (!user.validPassword(password)) {
+        req.passportErrorMessage = "Please check your password"
+        return done(null, false)
+      }
+      return done(null, false)
+    })
+  })
 )
 
 const signToken = (user) =>{
