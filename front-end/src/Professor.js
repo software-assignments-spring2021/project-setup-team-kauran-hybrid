@@ -55,7 +55,7 @@ const Professor=(props)=>{
                      Offered Classes:
               </section>
 
-              <ClassModules></ClassModules>
+              <ClassModules page='professors'></ClassModules>
               {/* {classes.map(item => (
                 <div className="search-item">
                 <Link to ="./ClassInfo" >Course Name: {item.class_name}{"\t"}|{"\t"}Course Number: {item.class_num}</Link>
