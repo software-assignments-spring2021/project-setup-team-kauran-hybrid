@@ -17,7 +17,7 @@ const calcProbGetIn = (position, number) => {
 
 
 router.get("/", (req, res) => {
-  scraper.albert_scraper();
+  // scraper.albert_scraper();
   // call some function that takes email, position, number that the user entered on the home page
   // this function returns the probability that the student gets into the class
   // console.log( calcProbGetIn(position, number) )

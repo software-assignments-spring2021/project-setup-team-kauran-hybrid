@@ -9,7 +9,7 @@ dotenv.config({path:__dirname+'/./../../.env'});
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
-console.log(pwd)
+// console.log(pwd)
 let bodyParser = require('body-parser');
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({ extended: true }));
