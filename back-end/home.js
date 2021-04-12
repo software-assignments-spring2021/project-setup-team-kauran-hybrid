@@ -11,9 +11,6 @@ router.post("/", (req, res) => {
   const email = req.body.email
   const position = req.body.position
   const number = req.body.number
-  // const email = req.body.email
-  // const position = req.body.position
-  // const number = req.body.number
   // now do something amazing with this data...
   // ... then send a response of some kind
   res.status(200).json({ok:true})

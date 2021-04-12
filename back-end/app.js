@@ -20,6 +20,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors"); // allow requests between localhost
 const bodyParser = require("body-parser");
+const passport = require('passport');
+
 
 //require("dotenv").config({ silent: true }); // save private data in .env file
 dotenv.config();
@@ -32,6 +34,8 @@ app.get("/", (req, res) => {
     res.send("bye!")
 })
 // Import your routes here
+app.use(passport.initialize());
+app.use(passport.session());
 app.use("/home_login", require("./home"));
 app.use("/class_modules", require("./class_modules"));
 app.use("/results", require("./results").router);

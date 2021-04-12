@@ -29,7 +29,7 @@ const Results=(props)=>{
   
   // the blank array below causes this callback to be executed only once on component load
   }, []);
-  console.log(probGetIn);
+  //console.log(probGetIn);
 
     return(
         <div>
@@ -47,7 +47,7 @@ const Results=(props)=>{
 
                     Here are some alternative classes.
                 </p>
-                <ClassModules>
+                <ClassModules page='results'>
 
                 </ClassModules>
                 <p> Would you like to login and store this search?</p>
