@@ -99,6 +99,8 @@ passport.use( new JwtStrategy( { jwtFromRequest: ExtractJwt.fromAuthHeaderAsBear
 )
 
 passport.use('signin', new LocalStrategy({usernameField:'username'},(username, password, done) => {
+  const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+  mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
   userAccounts.findOne({ username: username}, (err, user) => {
       if (err) throw err;
 
@@ -130,12 +132,15 @@ passport.use('signin', new LocalStrategy({usernameField:'username'},(username, p
         });
       }
       else{
+        console.log(password,user.password);
         bcrypt.compare(password,user.password,(err,isMatch)=>{
           if(err) throw err;
           if(isMatch){
-            return done(null,user);
+            console.log("Matches");
+            return done(null,user,{message:"Matches"});
           }
           else{
+            console.log("Wrong password");
             return done(null,false,{message:"wrong password"});
           }
         });
