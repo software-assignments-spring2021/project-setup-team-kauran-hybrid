@@ -13,46 +13,117 @@ dotenv.config();
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
 
-let courses_arr = [];
-
-let files = fs.readdirSync(__dirname+'/../course_data/');
+const courses_arr=new Array();
+let files = fs.readdirSync(__dirname+'/../enroll_cap_data/');
 //console.log(files);
 for (i in files) {
     let parser = parse({columns: true}, function (err, records) {
         if (records) {
+            
             courses_arr.push(records);
-        }
-        //console.log(records);
+            //console.log(courses_arr);
+        }    
     }); 
-
-    fs.createReadStream(__dirname+`/../course_data/${files[i]}`).pipe(parser);
+    fs.createReadStream(__dirname+`/../enroll_cap_data/${files[i]}`).pipe(parser);
 }
 
-// console.log(courses_arr);
+const dropped_arr=new Array();
+let drop_files = fs.readdirSync(__dirname+'/../course_data/');
+//console.log(files);
+for (i in drop_files) {
+    let parser = parse({columns: true}, function (err, records) {
+        if (records) {
+            
+            dropped_arr.push(records);
+            //console.log(courses_arr);
+        }
+        
+    }); 
 
-const convertData=async()=>{
+    fs.createReadStream(__dirname+`/../course_data/${drop_files[i]}`).pipe(parser);
+}
+//console.log(courses_arr);
+//for some reason it doens't work when I tried putting it in a fucntion 
+// const read_data=()=>{
+//     const courses_arr=new Array();
+//     let files = fs.readdirSync(__dirname+'/../course_data/');
+//     //console.log(files);
+//     for (i in files) {
+//         let parser = parse({columns: true}, function (err, records) {
+//             if (records) {
+                
+//                 courses_arr
+//                 .push(records);
+//                 //console.log(courses_arr);
+//             }
+            
+//         }); 
+
+//         fs.createReadStream(__dirname+`/../course_data/${files[i]}`).pipe(parser);
+//     }
+//     console.log(courses_arr);
+//     return courses_arr;
+// };
+
+//console.log(courses_arr);
+
+const convertData=async(courses_dir)=>{
+
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
+    //console.log(courses_arr);
     for (index in courses_arr) {
         const courses = courses_arr[index];
         //console.log(index);
         for (i in courses) {
+            //console.log(courses);
             
             const courseNum = courses[i].Course;
-            const courseSize = courses[i].EnrollmentTotal;
+            const courseName=courses[i].CourseTitle;
+            const sizeCap= courses[i].EnrollmentTotal;
             const waitlistSize = courses[i].WaitCap;
 
-            // if (courseNum == 'MATH-UA120') {
-            //     console.log(`Index = ${index}, i = ${i}, Size = ${courseSize}`);
-            // }
+            //console.log(courseNum,courseSize,waitlistSize);
+            await mongo.mongoSaveCourses(courseURL,courseNum,courseName,undefined,waitlistSize,undefined,sizeCap); 
+        }
+    }
+    console.log("done converting");
+}
+const convertDrops=async(courses_dir)=>{
 
-            await mongo.mongoSaveCourses(courseURL,courseNum,courseSize,waitlistSize);
+    const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
+    //console.log(courses_arr);
+    for (index in dropped_arr) {
+        const courses = dropped_arr[index];
+        //console.log(index);
+        for (i in courses) {
+            
+            if(courses[i].ClassEnrollmentStatus=='Dropped'){
+                //console.log(courses[i].Subject/Number);
+                const courseNum = courses[i].Course;
+                const courseName=courses[i].CourseTitle;
+                const droppedSize= courses[i].DistinctStudentCount;
+
+                //console.log(courseNum,courseSize,waitlistSize);
+                await mongo.mongoSaveCourses(courseURL,courseNum,courseName,undefined,undefined,droppedSize); 
+            }
+            else{
+                const courseNum = courses[i].Course;
+                const courseName=courses[i].CourseTitle;
+                const courseSize= courses[i].DistinctStudentCount;
+
+                //console.log(courseNum,courseSize,waitlistSize);
+                await mongo.mongoSaveCourses(courseURL,courseNum,courseName,courseSize); 
+            }
+            
         }
     }
     console.log("done converting");
 }
 
 router.get("/", (req,res) => {
+    //read_data();
     convertData();
+    convertDrops();
     res.send("converting data")
 
 })

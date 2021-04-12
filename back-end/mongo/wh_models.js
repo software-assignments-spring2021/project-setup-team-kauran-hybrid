@@ -11,9 +11,8 @@ const courseSchema=new mongoose.Schema({
     courseName:String,
     courseSizes:Array,
     waitlistSizes:Array,
-    lectureTimes:Array,
-    lectureLocations:Array,
-    instructors:Array,
+    droppedSizes:Array,
+    sizeCaps:Array,
     status:Array
 
 });
