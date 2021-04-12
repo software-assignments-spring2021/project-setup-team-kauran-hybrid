@@ -5,10 +5,11 @@ const router = express.Router();
 const dotenv=require('dotenv');
 const whModels=require('./wh_models.js');
 // const converter=require('./converter.js');
-dotenv.config();
+dotenv.config({path:__dirname+'/./../../.env'});
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
+console.log(pwd)
 let bodyParser = require('body-parser');
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({ extended: true }));
@@ -87,7 +88,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureTime,lectureLocation,status,instructor)=>{
+const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap,status)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the course if it exists
     await whModels.courses.findOne({'courseNum':courseNum},function(err,results){
@@ -95,13 +96,13 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
         if(results == null){
             const newCourse=new whModels.courses({
                 courseNum:courseNum,
+                courseName:courseName,
+                sizeCaps:[sizeCap],
                 courseSizes:[courseSize],
                 waitlistSizes:[waitlistSize],
-                lectureTimes:[lectureTime],
-                lectureLocations:[lectureLocation],
-                instructors:[instructor],
-
-                status:status
+                droppedSizes:[droppedSize],
+                //status: status
+                statuses:[status]
 
             });
             newCourse.save()
@@ -109,13 +110,16 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
             results=newCourse
         }
         else{
-            //console.log('Query exists, updating');
+            console.log('Query exists, updating');
             //console.log(results);
+            let newSizeCaps;
             let newCourseSizes;
             let newWaitlistSizes;
-            let newLectureTimes;
-            let newLectureLocations;
-            let newInstructors;
+            let newDroppedSizes;
+            let newStatuses;
+            if(sizeCap){
+                newSizeCaps=results.sizeCaps.push(sizeCap);
+            }
             if (courseSize) {
                 newCourseSizes=results.courseSizes.push(courseSize);
             }
@@ -123,28 +127,72 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
             if (waitlistSize) {
                 newWaitlistSizes=results.waitlistSizes.push(waitlistSize);
             }
-
-            if (lectureTime) {
-                newLectureTimes=results.lectureTimes.push(lectureTime);
+            if(droppedSize){
+                newDroppedSizes=results.droppedSizes.push(droppedSize);
             }
 
-            if (lectureLocation) {
-                newLectureLocations=results.lectureLocations.push(lectureLocation);
+            if (status) {
+                newStatuses=results.statuses.push(status);
             }
 
-            if (instructor) {
-                newInstructors=results.instructors.push(instructor);
-            }
-
-            const newStatus=status;
+            //const newStatus=status;
             //updating, this part isn't working correctly !!!
             results.save({
+                sizeCaps:newSizeCaps,
                 courseSizes:newCourseSizes,
                 waitlistSizes:newWaitlistSizes,
-                lectureTimes:newLectureTimes,
-                lectureLocations:newLectureLocations,
-                instructors:newInstructors,
-                status:newStatus
+                droppedSizes:newDroppedSizes,
+                status:newStatuses
+
+            });
+        }
+
+        //console.log(results);
+    });
+    //mongoose.disconnect();
+};
+
+//this is for creating OR updating classes from albert
+const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semester)=>{
+    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    //find the course if it exists
+    await whModels.sections.findOne({'courseNum':courseNum},function(err,results){
+        if(err) throw err;
+        if(results == null){
+            const newCourse=new whModels.sections({
+                courseNum:courseNum,
+                courseName:courseName,
+                sections:[section]
+
+            });
+            newCourse.save()
+                .then(()=>console.log('Section created'));
+            
+        }
+        else{
+            //console.log('Query exists, updating');
+            //console.log(results);
+            let newSections;
+            let oldSections = results.sections;
+            // console.log(oldSections);
+            let existed = false;
+            let s;
+            for (i in oldSections) {
+                s = oldSections[i];
+                // console.log(s.secYear);
+                if(year==s.secYear && semester==s.secSem) {
+                    existed = true;
+                    break;
+                } 
+            }
+            if (!existed) {
+                newSections=oldSections.push(section);
+            }
+            
+            //const newStatus=status;
+            //updating, this part isn't working correctly !!!
+            results.save({
+                sections:newSections
 
             });
         }
@@ -153,6 +201,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseSize,waitlistSize,lectureT
     });
     mongoose.disconnect();
 };
+
 //method for finding a query
 //in the router there is an example for how to use this!!
 const mongoGetCourses=async(mongoURL,courseNum)=>{
@@ -177,6 +226,51 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
             
         });
     }
+    mongoose.disconnect();
+    //console.log(ret);
+    return ret;
+};
+
+const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
+    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    
+    let record;
+    let ret;
+    //if specified courseNum
+    if(courseNum && secCode){
+        record=await whModels.sections.findOne({'courseNum':courseNum},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+        let s;
+        for (i in record.sections) {
+            s=record.sections[i];
+            if (s.secCode == secCode) {
+                ret = s;
+                break;
+            }
+        }
+    }
+    //if getting all courses
+    else if (courseNum){
+        ret=await whModels.sections.find({'courseNum':courseNum},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+    }
+    else{
+        ret=await whModels.sections.find({},function(err,results){
+            if(err) throw err;
+            
+            return results;
+            
+        });
+    }
+    
     mongoose.disconnect();
     //console.log(ret);
     return ret;
@@ -210,6 +304,11 @@ router.get("/",(req,res)=>{
 
 module.exports={
     mongoScript,
+    mongoSaveUserHistory:mongoSaveUserHistory,
+    mongoInsertAccount:mongoInsertAccount,
     mongoSaveCourses: mongoSaveCourses,
+    mongoGetCourses:mongoGetCourses,
+    mongoSaveSections:mongoSaveSections,
+    mongoGetSections:mongoGetSections,
     router:router
 }
