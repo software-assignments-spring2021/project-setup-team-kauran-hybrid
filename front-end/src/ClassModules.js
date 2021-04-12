@@ -57,6 +57,18 @@ function ClassModules(props){
         </>
       );
     }
+    else if(props.page=='professors'){
+      return (
+        <>
+          <div className="ClassModules">
+            {history.map(item => (
+              <Course page={props.page} key={item.courseNum} details={item} />
+              // <Semester key={item.semester} details={item} />
+            ))}
+          </div>
+        </>
+      );
+    }
     
 
 }

@@ -23,6 +23,16 @@ function Course(props){
             //<a href="./Results" class="back-results-button"></a>
         ) 
     }
+    else if(props.page=='professors'){
+        return(
+            <div className="search-item">
+            <a href = './ClassInfo'>
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Semester: {}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+            </a>
+            </div>
+            //<a href="./Results" class="back-results-button"></a>
+        ) 
+    }
   
 }
 export default Course
