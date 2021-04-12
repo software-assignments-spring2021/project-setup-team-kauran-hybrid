@@ -42,6 +42,7 @@ app.use('/machine',require("./machine/machine.js").router);
 app.use("/class_info", require("./class_info"));
 app.use("/login_logout", require("./login_logout").router);
 app.use("/prof_info", require("./prof_info"));
+app.use("/scraper", require("./scraper").router);
 
 
 module.exports = app;

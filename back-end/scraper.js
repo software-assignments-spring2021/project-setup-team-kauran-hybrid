@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const axios=require('axios');
 const cheerio=require('cheerio');
 const fetch= require('node-fetch');
@@ -286,8 +288,14 @@ const albert_scraper=async(parameters)=>{
     return result;
 }
 
+router.get("/", (req,res, next) => {
+    albert_scraper();
+    res.send('scraping');
+  })
+
 module.exports = {
   prof_scraper: prof_scraper,
   albert_scraper: albert_scraper,
   cheerio_prof: cheerio_prof,
+  router:router,
 };

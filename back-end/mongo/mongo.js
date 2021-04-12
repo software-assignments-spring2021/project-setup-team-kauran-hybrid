@@ -158,7 +158,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
 
         //console.log(results);
     });
-    mongoose.disconnect();
+    // mongoose.disconnect();
 };
 
 //this is for creating OR updating classes from albert
@@ -208,7 +208,7 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semeste
 
         //console.log(results);
     });
-    mongoose.disconnect();
+    // mongoose.disconnect();
 };
 
 //method for finding a query
@@ -235,7 +235,7 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
             
         });
     }
-    mongoose.disconnect();
+    // mongoose.disconnect();
     //console.log(ret);
     return ret;
 };
@@ -277,10 +277,10 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
             
             return results;
             
-        });
+        }).toArray();
     }
     
-    mongoose.disconnect();
+    // mongoose.disconnect();
     //console.log(ret);
     return ret;
 };
