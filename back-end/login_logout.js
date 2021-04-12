@@ -115,9 +115,12 @@ passport.use('signin', new LocalStrategy({usernameField:'username'},(username, p
       // }
       // return done(null, false)
       if(!user){
+        
         const newUser=new userAccounts({username,password});
+        console.log(newUser);
         bcrypt.genSalt(10,(err,salt)=>{
-          bcrypt.hash(newUser,password,salt,(err,hash)=>{
+          if(err) throw err;
+          bcrypt.hash(newUser.password,salt,(err,hash)=>{
             if(err) throw err;
             newUser.password=hash;
             newUser
@@ -189,7 +192,7 @@ router.post('/register_login',(req,res,next)=>{
     if(!user){
       return res.status(400)//,json({errors:'No user found'});
     }
-    registerCustomQueryHandler.logIn(user,function(err){
+    req.logIn(user,function(err){
       if(err) throw err;
       return res.status(200)//.json({success: 'logged in '});
     });
