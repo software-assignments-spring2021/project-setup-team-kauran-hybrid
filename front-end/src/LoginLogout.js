@@ -10,23 +10,6 @@ const LoginLogout=(props)=> {
     const [password,setPassword]=useState("Enter your password");
     const [submit, setSubmit]=useState();
 
-/* function submitLogin(e) {
-    axios 
-        .post("/login", loginDeets)
-        .then((response) => {
-            console.log("login response ", response.data);
-
-            if (!response.data.error) {
-                console.log("login success");
-            } else {
-                setError(true);
-            }
-        })
-        .catch((err) => {
-            console.log("Error", err);
-        });
-}*/
-
     const handleChange = ({ target }) => { 
       setEmail( target.value );
     };
@@ -40,20 +23,27 @@ const LoginLogout=(props)=> {
       setPassword('');
     };
 
-    const  handleClickSubmit =async() =>{
+    const  handleClickLogin =async() =>{
       {
-        
-            await axios.post('http://localhost:3000/mongo_script/add_user_account',{
+            await axios.post('http://localhost:3000/login_logout/login',{
               
               username:email,
               password:password,
               }
             );
-          
             console.log("checking");
-          
       }
-
+    };
+    const  handleClickSignup =async() =>{
+      {
+            await axios.post('http://localhost:3000/login_logout/signup',{
+              
+              username:email,
+              password:password,
+              }
+            );
+            console.log("checking");
+      }
     };
     
       return (
@@ -87,9 +77,9 @@ const LoginLogout=(props)=> {
               {}
               <div>
                  <center>
-                  <a href="./Account" className="submit-button" onClick={handleClickSubmit}> Login </a>
+                  <a href="./Account" className="submit-button" onClick={handleClickLogin}> Login </a>
                 
-                  <a href="./Account" className="submit-button" onClick={handleClickSubmit}> Signup </a>
+                  <a href="./Account" className="submit-button" onClick={handleClickSignup}> Signup </a>
                  </center>
 
               </div>
