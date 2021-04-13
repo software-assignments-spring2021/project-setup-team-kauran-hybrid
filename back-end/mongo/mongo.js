@@ -269,7 +269,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
             
             return results;
             
-        }).toArray();
+        });
     }
     
     // mongoose.disconnect();
