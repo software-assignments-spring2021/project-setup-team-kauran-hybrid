@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - "node"
   - "12"
-install: 
-  - cd front-end && npm install
-  - cd .. & cd back-end && npm install
+before_script:
+  - cd back-end
+  - npm install
 script:
   - npm test
