@@ -247,7 +247,11 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
         for (i in record.sections) {
             s=record.sections[i];
             if (s.secCode == secCode) {
-                ret = s;
+                ret = {
+                    section:s,
+                    courseNum:courseNum,
+                    courseName:record.courseName
+                };
                 break;
             }
         }
@@ -267,7 +271,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
             
             return results;
             
-        }).toArray();
+        });
     }
     
     // mongoose.disconnect();

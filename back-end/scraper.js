@@ -98,12 +98,15 @@ const prof_scraper=async(prof,ischool)=>{
     await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
     await page.waitForTimeout(5000);
 
-    let urls = await page.evaluate(() => {
+    const urls = await page.evaluate(() => {
         let l = [];
         let items = document.querySelectorAll('span.Tag-bs9vf4-0.hHOVKF');
-        items.forEach((item) => {
-            l.push(item.innerText);
-        });
+        // items.forEach((item) => {
+        //     l.push(item.innerText);
+        // });
+        for (let i=0;i<5;i++){
+            l.push(items[i].innerText);
+        }
         
         return l;
     })
