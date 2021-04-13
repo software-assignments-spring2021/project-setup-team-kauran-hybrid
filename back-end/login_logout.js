@@ -66,9 +66,7 @@ const loginSuccessChecker = (username, password) => {
 // )
 
 passport.use('login', new LocalStrategy({usernameField:'username', passwordField: 'password', passReqToCallback: true},(req,username, password, done) => {
-  const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
+  const userAccounts = whModels.userAccounts;
   userAccounts.findOne({ username: username}, (err, user) => {
       if (err) throw err;
       if(!user){
@@ -104,9 +102,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
 
   let number = req.body.number
   let position = req.body.position
-  const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
+  const userAccounts = whModels.userAccounts;
   userAccounts.findOne({username: username}, (err, user) => {
     
       if (err) throw err;
@@ -152,7 +148,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
         return done(null,false,{message:"Account Exists"});
       }
     })
-    // mongoose.disconnect();
+
   })
 )
 const signToken = (user) =>{

@@ -7,10 +7,9 @@ const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
 const mongoScript=require('./mongo/mongo.js');
 const dotenv=require('dotenv');
-dotenv.config();
 
-const pwd=process.env.mongoPWD;
-const user=process.env.mongoUSER;
+
+
 
 //scraper for rateMyProf using only puppeteer
 const prof_scraper=async(prof,ischool)=>{
@@ -40,13 +39,6 @@ const prof_scraper=async(prof,ischool)=>{
     //span.Tag-bs9vf4-0.hHOVKF
     const res=(await page.$$('a'));
     await page.waitForTimeout(500);
-    //console.log(res);
-    // const [response] = await Promise.all([
-        
-    //     page.waitForNavigation() // This will set the promise to wait for navigation events
-    //   // Then the page will be send POST and navigate to target page
-    //   ]);
-    
     const results=[];
     for(result of res){
         let thisRes=await page.evaluate(el=>el.textContent,result);
@@ -163,7 +155,7 @@ const albert_scraper=async(parameters)=>{
     const result=await fetch(url)
         .then(res=>res.json())
     
-    const secURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`; 
+    
 
     for (key in result) {
         // Loop through each class
@@ -285,7 +277,7 @@ const albert_scraper=async(parameters)=>{
                 recs:recs
             }
             
-            await mongoScript.mongoSaveSections(secURL,lecNum,lecName,sec,year,semester);  
+            await mongoScript.mongoSaveSections(lecNum,lecName,sec,year,semester);  
         }
     }
     return result;
