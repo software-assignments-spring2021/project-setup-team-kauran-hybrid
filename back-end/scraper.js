@@ -171,8 +171,8 @@ const albert_scraper=async(parameters)=>{
         // console.log(result[key])
         const sections = result[key].sections;
         let sec;
-        let recs=[];
         for (s in sections) {
+            let recs=[];
             const lecName = result[key].name;
             // console.log(lecName);
             const deptCourseId = result[key].deptCourseId;
