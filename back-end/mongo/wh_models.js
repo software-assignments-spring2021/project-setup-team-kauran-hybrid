@@ -37,4 +37,7 @@ module.exports={
     trainingCourses:trainingCourses,
     testingCourses:testingCourses,
     sections:sections,
+    sectionSchema: sectionSchema,
+    courseSchema: courseSchema,
+    userAccountSchema: userAccountSchema
 }
