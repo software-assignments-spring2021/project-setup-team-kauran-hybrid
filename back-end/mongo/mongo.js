@@ -3,10 +3,11 @@ const MongoClient = require('mongodb').MongoClient;
 const express = require("express");
 const router = express.Router();
 const dotenv=require('dotenv');
+//require('dotenv').config({ path: '../../.env' }) 
 const whModels=require('./wh_models.js');
 // const converter=require('./converter.js');
-dotenv.config();
-
+//dotenv.config();
+dotenv.config({path:__dirname+'/./../../.env'})
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
 let bodyParser = require('body-parser');
@@ -46,7 +47,7 @@ const mongoInsertAccount=async(mongoURL,username,password)=>{
         .then(() => console.log('account created'));
 
 
-    mongoose.disconnect();
+        await mongoose.disconnect();
 
 };
 //this is for updating user history OR creating user account along side search history
@@ -84,7 +85,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
         
         console.log(results);
     });
-    mongoose.disconnect();
+    await mongoose.disconnect();
     
 };
 
@@ -151,7 +152,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
 
         //console.log(results);
     });
-    mongoose.disconnect();
+    await mongoose.disconnect();
 };
 
 //this is for creating OR updating classes from albert
@@ -202,7 +203,7 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semeste
 
         //console.log(results);
     });
-    mongoose.disconnect();
+    await mongoose.disconnect();
 };
 
 //method for finding a query
@@ -229,7 +230,7 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
             
         });
     }
-    mongoose.disconnect();
+    await mongoose.disconnect();
     //console.log(ret);
     return ret;
 };
@@ -276,7 +277,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
         });
     }
     
-    mongoose.disconnect();
+    await mongoose.disconnect();
     //console.log(ret);
     return ret;
 };
@@ -301,7 +302,7 @@ router.get("/",(req,res)=>{
     let val=mongoGetCourses(courseURL).then(val=>{
         console.log(val);
     });
-    
+    console.log("ended");
     
     
     res.send('mongo_router');

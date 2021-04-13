@@ -21,18 +21,38 @@ const app = express();
 const cors = require("cors"); // allow requests between localhost
 const bodyParser = require("body-parser");
 const passport = require('passport');
-
-
+dotenv.config({path:__dirname+'/./../../.env'});
+const user=process.env.user;
+const pwd=process.env.pwd;
 //require("dotenv").config({ silent: true }); // save private data in .env file
-dotenv.config();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("dev"))
 app.use(cors());
+const corsOptions={origin: true,credentials: true };
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // to enable calls from every domain 
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE'); // allowed actiosn
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
 
-app.get("/", (req, res) => {
-    res.send("bye!")
-})
+    if (req.method === 'OPTIONS') {
+    return res.sendStatus(200); // to deal with chrome sending an extra options request
+    }
+
+    next(); // call next middlewer in line
+}); 
+const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
+let conn = mongoose.createConnection(courseURL);
+
+var ModelA    = conn.model('Model', new mongoose.Schema({
+  title : { type : String, default : 'model in testA database' }
+}));
+
+// stored in 'testB' database
+var ModelB    = conn2.model('Model', new mongoose.Schema({
+  title : { type : String, default : 'model in testB database' }
+}));
 // Import your routes here
 app.use(passport.initialize());
 app.use(passport.session());
