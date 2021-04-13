@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const scraper = require("./scraper");
 const mongo = require("./mongo/mongo");
 const dotenv=require('dotenv');
-dotenv.config();
+// dotenv.config();
+dotenv.config({path:__dirname+'/./../../.env'})
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;

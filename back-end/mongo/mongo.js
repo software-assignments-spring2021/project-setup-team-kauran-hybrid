@@ -5,7 +5,8 @@ const router = express.Router();
 const dotenv=require('dotenv');
 const whModels=require('./wh_models.js');
 // const converter=require('./converter.js');
-dotenv.config();
+// dotenv.config();
+dotenv.config({path:__dirname+'/./../../.env'})
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
@@ -251,7 +252,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
         for (i in record.sections) {
             s=record.sections[i];
             if (s.secCode == secCode) {
-                s.lecName = courseName;
+                s.lecName = record.courseName;
                 s.lecNum = courseNum;
                 ret = s;
                 break;

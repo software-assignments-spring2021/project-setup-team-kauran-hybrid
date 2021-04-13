@@ -7,7 +7,8 @@ const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
 const mongoScript=require('./mongo/mongo.js');
 const dotenv=require('dotenv');
-dotenv.config();
+// dotenv.config();
+dotenv.config({path:__dirname+'/./../../.env'})
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
