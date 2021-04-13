@@ -46,7 +46,7 @@ const mongoInsertAccount=async(mongoURL,username,password)=>{
         .then(() => console.log('account created'));
 
 
-    // mongoose.disconnect();
+    mongoose.disconnect();
 
 };
 //this is for updating user history OR creating user account along side search history
@@ -84,7 +84,7 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
         
         console.log(results);
     });
-    // mongoose.disconnect();
+    mongoose.disconnect();
     
 };
 
@@ -151,7 +151,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
 
         //console.log(results);
     });
-    //mongoose.disconnect();
+    mongoose.disconnect();
 };
 
 //this is for creating OR updating classes from albert
@@ -202,7 +202,7 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semeste
 
         //console.log(results);
     });
-    // mongoose.disconnect();
+    mongoose.disconnect();
 };
 
 //method for finding a query
@@ -229,7 +229,7 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
             
         });
     }
-    // mongoose.disconnect();
+    mongoose.disconnect();
     //console.log(ret);
     return ret;
 };
@@ -276,7 +276,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
         });
     }
     
-    // mongoose.disconnect();
+    mongoose.disconnect();
     //console.log(ret);
     return ret;
 };
