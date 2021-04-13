@@ -7,11 +7,10 @@ function ClassDetail(props){
     return(
             <div className="class-details">
                 <center className="class-name">
-                    (Class Number) {props.details.class_number} (Class Name) {props.details.class_name}
+                    {props.details.lecNum} {props.details.lecName}
                 </center>
                 <p className="class-info">
-                    (Time and Place) {props.details.time}
-                    {props.details.place}
+                {props.details.secTime} {props.details.secLoc}
                 </p>
                 <p className="class-detail">
                     (Brief introdcution of class) {props.details.class_intro}
@@ -19,10 +18,13 @@ function ClassDetail(props){
                 <p className="class-detail">
                     (Prerequisites) {props.details.prereq}
                 </p>
+                <p className="class-detail">
+                    (Recitations) {props.details.recitations}
+                </p>
                 <p>
                     <center>
                         <a href="./ProfInfo" class="prof-info"> 
-                            (Professor) {props.details.prof_name}
+                            {props.details.secInstructors}
                         </a>
                     </center>
                 </p>

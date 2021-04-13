@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const axios=require('axios');
 const cheerio=require('cheerio');
 const fetch= require('node-fetch');
@@ -96,12 +98,15 @@ const prof_scraper=async(prof,ischool)=>{
     await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
     await page.waitForTimeout(5000);
 
-    let urls = await page.evaluate(() => {
+    const urls = await page.evaluate(() => {
         let l = [];
         let items = document.querySelectorAll('span.Tag-bs9vf4-0.hHOVKF');
-        items.forEach((item) => {
-            l.push(item.innerText);
-        });
+        // items.forEach((item) => {
+        //     l.push(item.innerText);
+        // });
+        for (let i=0;i<5;i++){
+            l.push(items[i].innerText);
+        }
         
         return l;
     })
@@ -197,16 +202,16 @@ const albert_scraper=async(parameters)=>{
                 lecStartTime = lectures[0].beginDate.substring(11, 16);
                 lecDate = d.getDay();
                 if (lecDate == 1) {
-                    lecDay = 'Mon';
+                    lecDay = 'Mon, Wed';
                 }
                 else if (lecDate == 2) {
-                    lecDay = 'Tue';
+                    lecDay = 'Tue, Thu';
                 }
                 else if (lecDate == 3) {
-                    lecDay = 'Wed';
+                    lecDay = 'Mon, Wed';
                 }
                 else if (lecDate == 4) {
-                    lecDay = 'Thu';
+                    lecDay = 'Tue, Thu';
                 }
                 else if (lecDate == 5) {
                     lecDay = 'Fri';
@@ -243,21 +248,21 @@ const albert_scraper=async(parameters)=>{
                     recStartTime = recMeeting[0].beginDate.substring(11, 16);
                     recDate = d.getDay();
                     if (recDate == 1) {
-                        recDay = 'Mon';
+                        recDay = 'Mon, Wed';
                     }
                     else if (recDate == 2) {
-                        recDay = 'Tue';
+                        recDay = 'Tue, Thu';
                     }
                     else if (recDate == 3) {
-                        recDay = 'Wed';
+                        recDay = 'Mon, Wed';
                     }
                     else if (recDate == 4) {
-                        recDay = 'Thu';
+                        recDay = 'Tue, Thu';
                     }
                     else if (recDate == 5) {
                         recDay = 'Fri';
                     }
-                    recTime = recDay + recStartTime;
+                    recTime = recDay + ' ' + recStartTime;
                 }
                 //console.log(recTime);
                 rec = {
@@ -286,8 +291,14 @@ const albert_scraper=async(parameters)=>{
     return result;
 }
 
+router.get("/", (req,res, next) => {
+    albert_scraper();
+    res.send('scraping');
+  })
+
 module.exports = {
   prof_scraper: prof_scraper,
   albert_scraper: albert_scraper,
   cheerio_prof: cheerio_prof,
+  router:router,
 };

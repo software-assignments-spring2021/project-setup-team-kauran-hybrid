@@ -50,7 +50,7 @@ const ProfInfo=(props)=>{
         {/* <div className='prof-page'> */}
 
           {prof_info.map(item => (
-              <Professor key={item.id} details={item} />
+              <Professor details={item} />
           ))}
           <div className='classes'>
           <center>

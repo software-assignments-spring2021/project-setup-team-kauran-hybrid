@@ -16,10 +16,16 @@ const Professor=(props)=>{
           </article>
         )
       }
-    const rate = props.details.rate + ' / 5'
-    const difficulty = props.details.difficulty + ' / 5'
-    const retake = props.details.retake + ' %'
-    const HashTags = [props.details.tag1,props.details.tag2,props.details.tag3]
+    let cur = {
+      name:"hi",
+      sec:"world"
+    }
+    // console.log(JSON.parse(cur))
+    const rate = props.details.q + ' / 5'
+    const difficulty = props.details.d + ' / 5'
+    const retake = props.details.t
+    const HashTags = [props.details.tags]
+    
     // const classes = [props.details.class1, props.details.class2]
 
     
@@ -48,6 +54,7 @@ const Professor=(props)=>{
                           {item}
                       </h2>
                   ))}
+                  
 
               </section>
 

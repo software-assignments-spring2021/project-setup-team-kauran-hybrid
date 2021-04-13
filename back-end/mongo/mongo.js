@@ -251,6 +251,8 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
         for (i in record.sections) {
             s=record.sections[i];
             if (s.secCode == secCode) {
+                s.lecName = courseName;
+                s.lecNum = courseNum;
                 ret = s;
                 break;
             }
