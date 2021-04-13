@@ -199,16 +199,16 @@ const albert_scraper=async(parameters)=>{
                 lecStartTime = lectures[0].beginDate.substring(11, 16);
                 lecDate = d.getDay();
                 if (lecDate == 1) {
-                    lecDay = 'Mon';
+                    lecDay = 'Mon, Wed';
                 }
                 else if (lecDate == 2) {
-                    lecDay = 'Tue';
+                    lecDay = 'Tue, Thu';
                 }
                 else if (lecDate == 3) {
-                    lecDay = 'Wed';
+                    lecDay = 'Mon, Wed';
                 }
                 else if (lecDate == 4) {
-                    lecDay = 'Thu';
+                    lecDay = 'Tue, Thu';
                 }
                 else if (lecDate == 5) {
                     lecDay = 'Fri';
@@ -245,21 +245,21 @@ const albert_scraper=async(parameters)=>{
                     recStartTime = recMeeting[0].beginDate.substring(11, 16);
                     recDate = d.getDay();
                     if (recDate == 1) {
-                        recDay = 'Mon';
+                        recDay = 'Mon, Wed';
                     }
                     else if (recDate == 2) {
-                        recDay = 'Tue';
+                        recDay = 'Tue, Thu';
                     }
                     else if (recDate == 3) {
-                        recDay = 'Wed';
+                        recDay = 'Mon, Wed';
                     }
                     else if (recDate == 4) {
-                        recDay = 'Thu';
+                        recDay = 'Tue, Thu';
                     }
                     else if (recDate == 5) {
                         recDay = 'Fri';
                     }
-                    recTime = recDay + recStartTime;
+                    recTime = recDay + ' ' + recStartTime;
                 }
                 //console.log(recTime);
                 rec = {
