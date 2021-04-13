@@ -267,11 +267,11 @@ const mongoGetSections=async(courseNum,secCode)=>{
 //post request for inserting user accounts
 router.post("/add_user_account", async(req, res) => {
     const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-    mongoInsertAccount(uri,req.body.username,req.body.password);
+    mongoInsertAccount(req.body.username,req.body.password);
 });
 router.post('/add_courses',async(req,res)=>{
     const uri=`mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
-    mongoSaveCourses(uri,req.body.courseNum,req.body.courseSize,req.body.waitlistSize);
+    mongoSaveCourses(req.body.courseNum,req.body.courseSize,req.body.waitlistSize);
 });
 
 router.get("/",(req,res)=>{
