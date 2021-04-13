@@ -12,6 +12,7 @@ const userAccounts = whModels.userAccounts;
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const { ExtractJwt } = require("passport-jwt");
+const mongo = require("./mongo/mongo.js");
 dotenv.config();
 
 // user and pwd
@@ -110,16 +111,25 @@ passport.use('login', new LocalStrategy({usernameField:'username'},(username, pa
     // mongoose.disconnect();
   })
 )
-passport.use('signup', new LocalStrategy({usernameField:'username'},(username, password, done) => {
+passport.use('signup', 
+new LocalStrategy({usernameField:'username', passwordField: 'password', passReqToCallback: true},
+(req,username,password,done) => {
+
+  // let number = req.body.number
+  // let position = req.body.position
   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-  userAccounts.findOne({ username: username}, (err, user) => {
+  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
+  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
+  userAccounts.findOne({username: username}, (err, user) => {
+    
       if (err) throw err;
       if(!user){
         
         const newUser=new userAccounts({username,password});
-        console.log(newUser);
+        
+        // console.log(newUser);
         bcrypt.genSalt(10,(err,salt)=>{
+          // console.log(username,password); 
           if(err) throw err;
           bcrypt.hash(newUser.password,salt,(err,hash)=>{
             if(err) throw err;
@@ -202,6 +212,7 @@ router.post('/login',(req,res,next)=>{
     });
   })(req,res,next);
 });
+
  router.post('/signup',(req,res,next)=>{
   console.log('request received');
   passport.authenticate('signup',function(err,user,info){
@@ -214,7 +225,15 @@ router.post('/login',(req,res,next)=>{
       return res.status(200)//.json({success: 'logged in '});
     });
   })(req,res,next);
+  
+  if(req.body.number) {
+    console.log('something')
+    const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
+    mongo.mongoSaveUserHistory(uri,req.body.username,null,req.body.number,req.body.position);
+    
+  }
  });
+
 module.exports = {
   passport:passport,
   router:router,
