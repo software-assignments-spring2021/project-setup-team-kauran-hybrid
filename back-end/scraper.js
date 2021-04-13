@@ -285,7 +285,7 @@ const albert_scraper=async(parameters)=>{
                 recs:recs
             }
             
-            await mongoScript.mongoSaveSections(secURL,lecNum,lecName,sec,year,semester);  
+            await mongoScript.mongoSaveSections(secURL,lecNum,lecName,sec);  
         }
     }
     return result;

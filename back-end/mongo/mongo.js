@@ -152,7 +152,7 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semester)=>{
+const mongoSaveSections=async(mongoURL,courseNum,courseName,section)=>{
     await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
     //find the course if it exists
     await whModels.sections.findOne({'courseNum':courseNum},function(err,results){
@@ -179,7 +179,7 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semeste
             for (i in oldSections) {
                 s = oldSections[i];
                 // console.log(s.secYear);
-                if(year==s.secYear && semester==s.secSem) {
+                if(section.secYear==s.secYear && section.secSem==s.secSem && section.secCode==s.secCode) {
                     existed = true;
                     break;
                 } 
