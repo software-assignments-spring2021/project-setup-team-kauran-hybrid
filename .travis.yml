@@ -4,8 +4,7 @@ node_js:
   - "12"
 
 install: 
-  - travis_wait mvn install
-  - cd back-end/
+  - cd front-end/
   - npm install
 
 script:
