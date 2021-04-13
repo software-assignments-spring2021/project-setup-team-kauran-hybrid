@@ -4,7 +4,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const dotenv=require('dotenv');
 const mongo=require('./mongo/mongo.js');
-dotenv.config({path:__dirname+'/./../../.env'});
+dotenv.config();
 //require("dotenv").config({ silent: true }); // save private data in .env file
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
