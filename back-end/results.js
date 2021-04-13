@@ -5,11 +5,8 @@ const bodyParser = require("body-parser");
 const scraper=require("./scraper");
 const mongo=require('./mongo/mongo.js');
 const dotenv=require('dotenv');
-dotenv.config();
-//require("dotenv").config({ silent: true }); // save private data in .env file
 
-const pwd=process.env.mongoPWD;
-const user=process.env.mongoUSER;
+//require("dotenv").config({ silent: true }); // save private data in .env file
 
 const calcProbGetIn = (position, number) => {
   // console.log(position, number)

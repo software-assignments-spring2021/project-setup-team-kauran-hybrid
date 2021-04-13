@@ -66,9 +66,7 @@ const loginSuccessChecker = (username, password) => {
 // )
 
 passport.use('login', new LocalStrategy({usernameField:'username', passwordField: 'password', passReqToCallback: true},(req,username, password, done) => {
-  const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
+  const userAccounts = whModels.userAccounts;
   userAccounts.findOne({ username: username}, (err, user) => {
       if (err) throw err;
       if(!user){
@@ -104,9 +102,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
 
   let number = req.body.number
   let position = req.body.position
-  const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
+  const userAccounts = whModels.userAccounts;
   userAccounts.findOne({username: username}, (err, user) => {
     
       if (err) throw err;
@@ -152,7 +148,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
         return done(null,false,{message:"Account Exists"});
       }
     })
-    // mongoose.disconnect();
+
   })
 )
 const signToken = (user) =>{
@@ -167,12 +163,12 @@ const signToken = (user) =>{
   )
 }
 
-router.use((req, res, next) => {
-  if (req.passportErrorMessage) {
-    res.passportErrorMessage = req.passportErrorMessage
-  }
-  next()
-})
+// router.use((req, res, next) => {
+//   if (req.passportErrorMessage) {
+//     res.passportErrorMessage = req.passportErrorMessage
+//   }
+//   next()
+// })
 
 // router.get('/', passport.authenticate('jwt', {session : false}), (req, res) => {
 //   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
@@ -215,6 +211,11 @@ router.post('/login',(req,res,next)=>{
       return res.status(200)//.json({success: 'logged in '});
     });
   })(req,res,next);
+ });
+ router.post('/signup2',(req,res,next)=>{
+  console.log('request received');
+  console.log(req.body);
+  return res.status(200);
  });
 
 module.exports = {

@@ -5,34 +5,47 @@
 // // export the express app we created to make it available to other modules
 
 const multer =require('multer');
+const whModels=require('./mongo/wh_models');
 const axios = require('axios');
 const morgan=require('morgan');
 const scraper=require('./scraper');
 const mocha=require('mocha');
 const chai=require('chai');
+const mongoose=require('mongoose');
 const generator=require('./mock_data/generator.js');
 const mongoScript=require('./mongo/mongo.js');
 const converter=require('./mongo/converter.js');
 const machineJs=require('./machine/machine.js');
 const dotenv=require('dotenv');
+dotenv.config({path:'../.env'})
 const { Console } = require('console');
 const express = require("express");
 const app = express();
 const cors = require("cors"); // allow requests between localhost
 const bodyParser = require("body-parser");
 const passport = require('passport');
-
-
-//require("dotenv").config({ silent: true }); // save private data in .env file
-dotenv.config();
+//dotenv.config({path:'.env'});
+const user=process.env.mongoUSER;
+const pwd=process.env.mongoPWD;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("dev"))
 app.use(cors());
+const corsOptions={origin: true,credentials: true };
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // to enable calls from every domain 
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE'); // allowed actiosn
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
 
-app.get("/", (req, res) => {
-    res.send("bye!")
-})
+    if (req.method === 'OPTIONS') {
+    return res.sendStatus(200); // to deal with chrome sending an extra options request
+    }
+
+    next(); // call next middlewer in line
+}); 
+const URL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
+mongoose.connect(URL,{useNewUrlParser:true,useUnifiedTopology:true});
+
 // Import your routes here
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,4 +62,5 @@ app.use("/prof_info", require("./prof_info"));
 app.use("/scraper", require("./scraper").router);
 
 
+//module.exports = {app:app,sections,courses};
 module.exports = app;

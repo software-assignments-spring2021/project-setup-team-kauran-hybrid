@@ -47,14 +47,16 @@ const LoginLogout=(props)=> {
 
     }
 
-    const  handleClickSignUp =async() =>{
-
-        await axios.post('http://localhost:3000/login_logout/signup',{
+    const  handleClickSignUp =async(e) =>{
+        e.preventDefault()
+        let something=await axios.post('http://localhost:3000/login_logout/signup',{
               
           username:email,
           password:password,
           }
         );
+        
+        console.log(something);
  
     };
 
