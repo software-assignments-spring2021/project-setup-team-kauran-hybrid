@@ -8,10 +8,11 @@ const passport = require("passport");
 const { check, validationResult } = require("express-validator");
 const dotenv = require("dotenv");
 const whModels = require("./mongo/wh_models.js")
-const userAccounts = whModels.userAccounts;
+//const userAccounts = whModels.userAccounts;
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const { ExtractJwt } = require("passport-jwt");
+const mongo = require("./mongo/mongo.js");
 dotenv.config();
 
 // user and pwd
@@ -64,65 +65,65 @@ const loginSuccessChecker = (username, password) => {
 //   })
 // )
 
-passport.use('login', new LocalStrategy({usernameField:'username'},(username, password, done) => {
+passport.use('login', new LocalStrategy({usernameField:'username', passwordField: 'password', passReqToCallback: true},(req,username, password, done) => {
   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
+  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
+  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
   userAccounts.findOne({ username: username}, (err, user) => {
       if (err) throw err;
       if(!user){
-        
-        // const newUser=new userAccounts({username,password});
-        // console.log(newUser);
-        // bcrypt.genSalt(10,(err,salt)=>{
-        //   if(err) throw err;
-        //   bcrypt.hash(newUser.password,salt,(err,hash)=>{
-        //     if(err) throw err;
-        //     newUser.password=hash;
-        //     newUser
-        //       .save()
-        //       .then(user=>{
-        //         return done(null,user);
-        //       })
-        //       .catch(err=>{
-        //         return done(null,false,{message:err});
-        //       });
-        //   });
-        // });
         console.log("Account Doesn't Exist!");
         return done(null,false,{message:"Account Does Not Exist"});
         
       }
       if(user){
-        console.log(password,user.password);
+        //console.log(password,user.password);
         bcrypt.compare(password,user.password,(err,isMatch)=>{
           if(err) throw err;
           if(isMatch){
             console.log("Matches");
+            if(req.body.number){
+              console.log('Extra params');
+              user.save({courseNum:user.courseNum.push(req.body.number),waitlistPos:user.waitlistPos.push(req.body.position)});
+            }
             return done(null,user,{message:"Matches"});
           }
           else{
-            console.log("Wrong password");
-            return done(null,false,{message:"wrong password"});
+            console.log("Wrong Password");
+            return done(null,false,{message:"Wrong Password"});
           }
         });
       }
     })
+    // mongoose.disconnect();
   })
 )
-passport.use('signup', new LocalStrategy({usernameField:'username'},(username, password, done) => {
+passport.use('signup', 
+new LocalStrategy({usernameField:'username', passwordField: 'password', passReqToCallback: true},
+(req,username,password,done) => {
+
+  let number = req.body.number
+  let position = req.body.position
   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-  mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true});
-  userAccounts.findOne({ username: username}, (err, user) => {
+  const link = mongoose.createConnection(uri,{useNewUrlParser:true,useUnifiedTopology:true});
+  const userAccounts = link.model('userAccounts', whModels.userAccountSchema)
+  userAccounts.findOne({username: username}, (err, user) => {
+    
       if (err) throw err;
       if(!user){
         
-        const newUser=new userAccounts({username,password});
-        console.log(newUser);
+        const newUser=new userAccounts({username:username,password:password,courseNum:number,waitlistPos:position});
+        
+        // console.log(newUser);
         bcrypt.genSalt(10,(err,salt)=>{
+           
           if(err) throw err;
           bcrypt.hash(newUser.password,salt,(err,hash)=>{
             if(err) throw err;
+            console.log(number,position);
             newUser.password=hash;
+            // newUser.courseNum=number;
+            // newUser.waitlistPos=position;
             newUser
               .save()
               .then(user=>{
@@ -151,6 +152,7 @@ passport.use('signup', new LocalStrategy({usernameField:'username'},(username, p
         return done(null,false,{message:"Account Exists"});
       }
     })
+    // mongoose.disconnect();
   })
 )
 const signToken = (user) =>{
@@ -187,6 +189,7 @@ router.use((req, res, next) => {
 // })
 
 router.post('/login',(req,res,next)=>{
+  // mongoose.disconnect();
   console.log('request received');
   passport.authenticate('login',function(err,user,info){
     if(err) throw err;
@@ -199,6 +202,7 @@ router.post('/login',(req,res,next)=>{
     });
   })(req,res,next);
 });
+
  router.post('/signup',(req,res,next)=>{
   console.log('request received');
   passport.authenticate('signup',function(err,user,info){
@@ -212,6 +216,7 @@ router.post('/login',(req,res,next)=>{
     });
   })(req,res,next);
  });
+
 module.exports = {
   passport:passport,
   router:router,

@@ -5,7 +5,7 @@ const router = express.Router();
 const dotenv=require('dotenv');
 const whModels=require('./wh_models.js');
 // const converter=require('./converter.js');
-dotenv.config({path:__dirname+'/./../../.env'});
+dotenv.config();
 
 const pwd=process.env.mongoPWD;
 const user=process.env.mongoUSER;
@@ -38,26 +38,28 @@ const mongoScript=async()=>{
 const mongoInsertAccount=async(mongoURL,username,password)=>{
     
     // console.log(user, pwd)
-    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const link = await mongoose.createConnection(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const userAccounts = link.model('userAccounts', whModels.userAccountSchema);
 
-    const exAcc = new whModels.userAccounts({username:username,password:password})
+    const exAcc = new userAccounts({username:username,password:password})
     await exAcc.save()
         .then(() => console.log('account created'));
 
 
-    mongoose.disconnect();
+    // mongoose.disconnect();
 
 };
 //this is for updating user history OR creating user account along side search history
 const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPos)=>{
-    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const link = await mongoose.createConnection(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const userAccounts = link.model('userAccounts', whModels.userAccountSchema);
     //find the correct userAccount
-    await whModels.userAccounts.findOne({'username':username},function(err,results){
+    await userAccounts.findOne({'username':username},function(err,results){
         if(err) throw err;
         if(results==null){
             const newCourseNum=[courseNum];
             const newWaitlistPos=[waitlistPos];
-            const exAcc = new whModels.userAccounts({
+            const exAcc = new userAccounts({
                 username:username,
                 password:password,
                 courseNum:newCourseNum,
@@ -82,18 +84,19 @@ const mongoSaveUserHistory=async(mongoURL,username,password,courseNum,waitlistPo
         
         console.log(results);
     });
-    mongoose.disconnect();
+    // mongoose.disconnect();
     
 };
 
 //this is for creating OR updating classes from albert
 const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap,status)=>{
-    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const link = await mongoose.createConnection(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const courses = link.model('courses', whModels.courseSchema)
     //find the course if it exists
-    await whModels.courses.findOne({'courseNum':courseNum},function(err,results){
+    await courses.findOne({'courseNum':courseNum},function(err,results){
         if(err) throw err;
         if(results == null){
-            const newCourse=new whModels.courses({
+            const newCourse=new courses({
                 courseNum:courseNum,
                 courseName:courseName,
                 sizeCaps:[sizeCap],
@@ -152,13 +155,14 @@ const mongoSaveCourses=async(mongoURL,courseNum,courseName,courseSize,waitlistSi
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveSections=async(mongoURL,courseNum,courseName,section)=>{
-    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+const mongoSaveSections=async(mongoURL,courseNum,courseName,section,year,semester)=>{
+    const link = await mongoose.createConnection(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const sections = link.model('sections', whModels.sectionSchema)
     //find the course if it exists
-    await whModels.sections.findOne({'courseNum':courseNum},function(err,results){
+    await sections.findOne({'courseNum':courseNum},function(err,results){
         if(err) throw err;
         if(results == null){
-            const newCourse=new whModels.sections({
+            const newCourse=new sections({
                 courseNum:courseNum,
                 courseName:courseName,
                 sections:[section]
@@ -204,12 +208,12 @@ const mongoSaveSections=async(mongoURL,courseNum,courseName,section)=>{
 //method for finding a query
 //in the router there is an example for how to use this!!
 const mongoGetCourses=async(mongoURL,courseNum)=>{
-    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
-    
+    const link = await mongoose.createConnection(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const courses = link.model('courses', whModels.courseSchema)
     let ret;
     //if specified courseNum
     if(courseNum){
-        ret=await whModels.courses.find({'courseNum':courseNum},function(err,results){
+        ret=await courses.find({'courseNum':courseNum},function(err,results){
             if(err) throw err;
             
             return results;
@@ -218,7 +222,7 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
     }
     //if getting all courses
     else{
-        ret=await whModels.courses.find({},function(err,results){
+        ret=await courses.find({},function(err,results){
             if(err) throw err;
             
             return results;
@@ -231,13 +235,13 @@ const mongoGetCourses=async(mongoURL,courseNum)=>{
 };
 
 const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
-    await mongoose.connect(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
-    
+    const link = await mongoose.createConnection(mongoURL,{useNewUrlParser:true,useUnifiedTopology:true});
+    const sections = link.model('sections', whModels.sectionSchema)
     let record;
     let ret;
     //if specified courseNum
     if(courseNum && secCode){
-        record=await whModels.sections.findOne({'courseNum':courseNum},function(err,results){
+        record=await sections.findOne({'courseNum':courseNum},function(err,results){
             if(err) throw err;
             
             return results;
@@ -256,7 +260,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
     }
     //if getting all courses
     else if (courseNum){
-        ret=await whModels.sections.find({'courseNum':courseNum},function(err,results){
+        ret=await sections.find({'courseNum':courseNum},function(err,results){
             if(err) throw err;
             
             return results;
@@ -264,7 +268,7 @@ const mongoGetSections=async(mongoURL,courseNum,secCode)=>{
         });
     }
     else{
-        ret=await whModels.sections.find({},function(err,results){
+        ret=await sections.find({},function(err,results){
             if(err) throw err;
             
             return results;
@@ -288,11 +292,12 @@ router.post('/add_courses',async(req,res)=>{
 });
 
 router.get("/",(req,res)=>{
-
+    // console.log(user)
     const userURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
-    //mongoSaveUserHistory(userURL,'sp',789,'Cyber',888);
-    // mongoSaveCourses(courseURL,'Cyber',100,20);
+    mongoSaveUserHistory(userURL,'sp',789,'Cyber',888);
+    mongoSaveSections(courseURL, '1234567', 'ExampleCourseName', ['1','2','3','4'])
+    mongoSaveCourses(courseURL,'Cyber',100,20);
     let val=mongoGetCourses(courseURL).then(val=>{
         console.log(val);
     });
