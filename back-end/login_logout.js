@@ -107,6 +107,7 @@ passport.use('login', new LocalStrategy({usernameField:'username'},(username, pa
         });
       }
     })
+    // mongoose.disconnect();
   })
 )
 passport.use('signup', new LocalStrategy({usernameField:'username'},(username, password, done) => {
@@ -151,6 +152,7 @@ passport.use('signup', new LocalStrategy({usernameField:'username'},(username, p
         return done(null,false,{message:"Account Exists"});
       }
     })
+    // mongoose.disconnect();
   })
 )
 const signToken = (user) =>{
@@ -187,6 +189,7 @@ router.use((req, res, next) => {
 // })
 
 router.post('/login',(req,res,next)=>{
+  // mongoose.disconnect();
   console.log('request received');
   passport.authenticate('login',function(err,user,info){
     if(err) throw err;
