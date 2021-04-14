@@ -16,15 +16,12 @@ const Professor=(props)=>{
           </article>
         )
       }
-    let cur = {
-      name:"hi",
-      sec:"world"
-    }
+    
     // console.log(JSON.parse(cur))
     const rate = props.details.q + ' / 5'
     const difficulty = props.details.d + ' / 5'
     const retake = props.details.t
-    const HashTags = [props.details.tags]
+    const HashTags = props.details.tags
     
     // const classes = [props.details.class1, props.details.class2]
 
