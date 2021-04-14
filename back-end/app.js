@@ -12,10 +12,6 @@ const scraper=require('./scraper');
 const mocha=require('mocha');
 const chai=require('chai');
 const mongoose=require('mongoose');
-const generator=require('./mock_data/generator.js');
-const mongoScript=require('./mongo/mongo.js');
-const converter=require('./mongo/converter.js');
-const machineJs=require('./machine/machine.js');
 const dotenv=require('dotenv');
 dotenv.config({path:'../.env'})
 const { Console } = require('console');
@@ -36,11 +32,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*'); // to enable calls from every domain 
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE'); // allowed actiosn
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
-
     if (req.method === 'OPTIONS') {
     return res.sendStatus(200); // to deal with chrome sending an extra options request
     }
-
     next(); // call next middlewer in line
 }); 
 const URL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
