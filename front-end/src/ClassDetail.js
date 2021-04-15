@@ -10,7 +10,9 @@ function ClassDetail(props){
                     {props.details.lecNum} {props.details.lecName}
                 </center>
                 <p className="class-info">
-                {props.details.secTime} {props.details.secLoc}
+                    Section 00{props.details.secCode} | {' '}
+                    {props.details.secTime} | {' '}
+                    {props.details.secLoc}
                 </p>
                 <p className="class-detail">
                     (Brief introdcution of class) {props.details.class_intro}
@@ -18,15 +20,25 @@ function ClassDetail(props){
                 <p className="class-detail">
                     (Prerequisites) {props.details.prereq}
                 </p>
-                <p className="class-detail">
-                    (Recitations) {props.details.recitations}
-                </p>
                 <p>
                     <center>
                         <a href="./ProfInfo" class="prof-info"> 
-                            {props.details.secInstructors}
+                            Instructors: {props.details.secInstructors}
                         </a>
                     </center>
+                </p>
+                <p className="class-rec">
+                    Recitations
+                    <>
+                    {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
+                        <li>
+                            Section 00{`${rec.recCode} `} | 
+                            Time: {`${rec.recTime} `} | 
+                            Instructor: {`${rec.recInstructors} `} | 
+                            Status: {`${rec.recStatus} `}
+                        </li>
+                    ))}
+                    </>
                 </p>
                 <p>
                     <center>
