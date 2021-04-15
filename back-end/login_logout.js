@@ -26,14 +26,14 @@ const mongoPwd = process.env.mongoPWD;
 const PUB_KEY = fs.readFileSync(__dirname + '/id_rsa_pub.pem', 'utf8');
 const PRIV_KEY = fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
 
-// Stores a Buffer object
-const encryptedMessage = create_key.encryptWithPublicKey(PUB_KEY, 'Super secret message');
-// If you try and "crack the code", you will just get gibberish
-console.log(encryptedMessage.toString());
+// // Stores a Buffer object
+// const encryptedMessage = create_key.encryptWithPublicKey(PUB_KEY, 'Super secret message');
+// // If you try and "crack the code", you will just get gibberish
+// console.log(encryptedMessage.toString());
 
-const decryptedMessage = create_key.decryptWithPrivateKey(PRIV_KEY, encryptedMessage);
-// Convert the Buffer to a string and print the message!
-console.log(decryptedMessage.toString());
+// const decryptedMessage = create_key.decryptWithPrivateKey(PRIV_KEY, encryptedMessage);
+// // Convert the Buffer to a string and print the message!
+// console.log(decryptedMessage.toString());
 
 const payloadObj = {
   sub: "sp1",
@@ -42,7 +42,7 @@ const payloadObj = {
 
 const signedJWT = jwt.sign(payloadObj, PRIV_KEY, { algorithm: 'RS256'});
 
-console.log(signedJWT);
+//console.log(signedJWT);
 
 // Verify the token we just signed using the public key.  Also validates our algorithm RS256 
 jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {
@@ -50,8 +50,8 @@ jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {
   if(err) throw err;
   
   // Both should be the same
-  console.log(payload);
-  console.log(payloadObj);
+  //console.log(payload);
+  //console.log(payloadObj);
 });
 
 const options = {
@@ -229,6 +229,7 @@ router.post('/login',(req,res,next)=>{
       return res.status(200)//.json({success: 'logged in '});
     });
   })(req,res,next);
+  
 });
 
  router.post('/signup',(req,res,next)=>{
@@ -251,9 +252,9 @@ router.post('/login',(req,res,next)=>{
 //   return res.status(200);
 //  });
 
-router.post('/protected', passport.authenticate('jwt', {session:false}), function(req,res) {
-  res.send(req.body.email);
-})
+// router.post('/protected', passport.authenticate('jwt', {session:false}), function(req,res) {
+//   res.send(req.body.email);
+// })
 
  router.get('/protected',passport.authenticate('jwt',{session:false}), (req,res) => {
    console.log("before if");
