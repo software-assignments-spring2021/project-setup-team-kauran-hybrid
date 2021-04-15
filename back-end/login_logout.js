@@ -3,21 +3,102 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-const JWT = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
 const passport = require("passport");
 const { check, validationResult } = require("express-validator");
 const dotenv = require("dotenv");
 const whModels = require("./mongo/wh_models.js")
 //const userAccounts = whModels.userAccounts;
 const LocalStrategy = require("passport-local").Strategy;
-const JwtStrategy = require("passport-jwt").Strategy;
-const { ExtractJwt } = require("passport-jwt");
+const JwtStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const create_key = require('./create_key.js');
 const mongo = require("./mongo/mongo.js");
+const { restart } = require("nodemon");
+const { time } = require("console");
 dotenv.config();
 
 // user and pwd
 const mongoUser = process.env.mongoUSER;
 const mongoPwd = process.env.mongoPWD;
+
+const PUB_KEY = fs.readFileSync(__dirname + '/id_rsa_pub.pem', 'utf8');
+const PRIV_KEY = fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
+
+// Stores a Buffer object
+const encryptedMessage = create_key.encryptWithPublicKey(PUB_KEY, 'Super secret message');
+// If you try and "crack the code", you will just get gibberish
+console.log(encryptedMessage.toString());
+
+const decryptedMessage = create_key.decryptWithPrivateKey(PRIV_KEY, encryptedMessage);
+// Convert the Buffer to a string and print the message!
+console.log(decryptedMessage.toString());
+
+const payloadObj = {
+  sub: "sp1",
+  iat: Date.now()
+}
+
+const signedJWT = jwt.sign(payloadObj, PRIV_KEY, { algorithm: 'RS256'});
+
+console.log(signedJWT);
+
+// Verify the token we just signed using the public key.  Also validates our algorithm RS256 
+jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {
+    
+  if(err) throw err;
+  
+  // Both should be the same
+  console.log(payload);
+  console.log(payloadObj);
+});
+
+const options = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: PUB_KEY
+};
+
+const passportJWTOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+  secretOrKey: PUB_KEY ,
+  // issuer: 'enter issuer here',
+  // audience: 'enter audience here',
+  algorithms: ['RS256'],
+  ignoreExpiration: false,
+  passReqToCallback: false,
+  jsonWebTokenOptions: {
+      complete: false,
+      clockTolerance: '',
+      maxAge: '2d', // 2 days
+      clockTimestamp: '100',
+      nonce: 'string here for OpenID'
+  }
+}
+
+// The JWT payload is passed into the verify callback
+passport.use(new JwtStrategy(passportJWTOptions, function(jwt_payload, done) {
+  console.log('beginning passport_strategy');  
+  const userAccounts = whModels.userAccounts;
+  // We will assign the `sub` property on the JWT to the database ID of user
+  userAccounts.findOne({username: jwt_payload.sub}, function(err, user) {
+      console.log(jwt_payload.sub);
+
+      if (err) {
+          return done(err, false);
+      }
+      if (user) {
+          console.log("if user");
+          return done(null, user);
+      } else {
+          console.log("else user");
+          return done(null, false);
+      }
+      
+  });
+  
+}));
+
 passport.serializeUser((user,done)=>{
   done(null,user.id);
 });
@@ -26,44 +107,28 @@ passport.deserializeUser((id,done)=>{
     done(err,user);
   });
 });
-const enterTheID = (details) => {
-  const acceptable_input = /^[0-9_$a-z]+/;
-  if ((details.match(acceptable_input))) {
-    if (details != null) {
-      return true;
-    }
-  } else {
-    return false;
-  }
-};
 
-const loginSuccessChecker = (username, password) => {
-  if (username != null && password != null) {
-    if (typeof username != undefined && typeof password != undefined) {
-      return true;
-    }
-  } else {
-    return false;
-  }
-};
+// const enterTheID = (details) => {
+//   const acceptable_input = /^[0-9_$a-z]+/;
+//   if ((details.match(acceptable_input))) {
+//     if (details != null) {
+//       return true;
+//     }
+//   } else {
+//     return false;
+//   }
+// };
 
+// const loginSuccessChecker = (username, password) => {
+//   if (username != null && password != null) {
+//     if (typeof username != undefined && typeof password != undefined) {
+//       return true;
+//     }
+//   } else {
+//     return false;
+//   }
+// };
 
-// passport.use( new JwtStrategy( { jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), secretOrKey: "temporary_secret"
-// },
-//   async (payload, done) => {
-//     userAccounts.findById(payload.sub, (err, user) => {
-//       if (err) {
-//         done(err, false)
-//       } 
-//       else {
-//         if (!user) {
-//           return done(null, false)
-//         }
-//         done(null, user)
-//       }
-//     })
-//   })
-// )
 
 passport.use('login', new LocalStrategy({usernameField:'username', passwordField: 'password', passReqToCallback: true},(req,username, password, done) => {
   const userAccounts = whModels.userAccounts;
@@ -139,17 +204,17 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
 
   })
 )
-const signToken = (user) =>{
-  JWT.sign(
-    {
-      iss: "Login",
-      sub: user.id,
-      iat: Date.now(),
-      exp: new Date().setDate(new Date().getDate() + 1)
-    },
-    "temporary_secret"
-  )
-}
+// const signToken = (user) =>{
+//   JWT.sign(
+//     {
+//       iss: "Login",
+//       sub: user.id,
+//       iat: Date.now(),
+//       exp: new Date().setDate(new Date().getDate() + 1)
+//     },
+//     "temporary_secret"
+//   )
+// }
 
 router.post('/login',(req,res,next)=>{
   // mongoose.disconnect();
@@ -179,19 +244,33 @@ router.post('/login',(req,res,next)=>{
     });
   })(req,res,next);
  });
- router.post('/signup2',(req,res,next)=>{
-  console.log('request received');
-  console.log(req.body);
-  return res.status(200);
+
+//  router.post('/signup2',(req,res,next)=>{
+//   console.log('request received');
+//   console.log(req.body);
+//   return res.status(200);
+//  });
+
+router.post('/protected', passport.authenticate('jwt', {session:false}), function(req,res) {
+  res.send(req.body.email);
+})
+
+ router.get('/protected',passport.authenticate('jwt',{session:false}), (req,res) => {
+   console.log("before if");
+   if (req.isAuthenticated()) {
+    res.send("Authenticated");
+   }
+   else {
+     console.log("Denied");
+     res.send("Not authorized to view this");
+   } 
  });
 
- router.get('/protected',passport.authenticate('jwt',{session:false}),
- (req,res,next)=>{
-     res.status(200).send("Authenticated");
- });
+// router.get ('/protected',(req,res) => {
+//   res.send('testing testing');
+// });
+
 module.exports = {
   passport:passport,
-  router:router,
-  enterTheID:enterTheID,
-  loginSuccessChecker:loginSuccessChecker,
+  router:router
 };

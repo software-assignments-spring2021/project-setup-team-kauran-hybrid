@@ -127,3 +127,6 @@ typings/
 
 ## Credentials ##
 credentials.json
+
+## Keys ##
+*.pem

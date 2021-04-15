@@ -25,8 +25,8 @@ const LoginLogout=(props)=> {
       setPassword('');
     };
 
-    const  handleClickLogin =async() =>{
- 
+    const  handleClickLogin =async(e) =>{
+        e.preventDefault()
         await axios.post('http://localhost:3000/login_logout/login',{
           username:email,
           password:password,

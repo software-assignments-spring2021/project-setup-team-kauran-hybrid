@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "nodemon server"
+    "start": "node create_key.js && nodemon server"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "cheerio": "^1.0.0-rc.5",
     "child_process": "^1.0.2",
     "concurrently": "^6.0.0",
+    "crypto": "^1.0.1",
     "csv-parse": "^4.15.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
