@@ -23,7 +23,7 @@ const passport = require('passport');
 //dotenv.config({path:'.env'});
 const user=process.env.mongoUSER;
 const pwd=process.env.mongoPWD;
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan("dev"))
 app.use(cors());

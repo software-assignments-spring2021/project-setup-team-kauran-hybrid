@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import './MenuBar.css';
 import ProfInfo from'./ProfInfo';
-import './ClassDetail.css'
+import './ClassDetail.css';
+import axios from 'axios';
 
 function ClassDetail(props){
+    const [articleId, setArticleId] = useState([]);
+
+    useEffect(async() => {
+        // POST request using axios inside useEffect React hook
+        const article = { prof: props.details.secInstructors };
+        await axios.post('http://localhost:3000/prof_info', article)
+            .then(response => setArticleId(response.data.id));
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
     return(
             <div className="class-details">
                 <center className="class-name">
@@ -22,9 +33,13 @@ function ClassDetail(props){
                 </p>
                 <p>
                     <center>
-                        <a href="./ProfInfo" class="prof-info"> 
-                            Instructors: {props.details.secInstructors}
-                        </a>
+                        
+                        {props.details.secInstructors.map(item => (
+                            
+                            <a href="./ProfInfo" className="prof-info"> 
+                            Instructors: {item}
+                            </a>
+                        ))}
                     </center>
                 </p>
                 <p className="class-rec">
