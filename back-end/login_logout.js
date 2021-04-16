@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 const mongoose = require("mongoose");
 const JWT = require("jsonwebtoken");
 const passport = require("passport");
@@ -14,6 +15,9 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const { ExtractJwt } = require("passport-jwt");
 const mongo = require("./mongo/mongo.js");
 dotenv.config();
+
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
 // user and pwd
 const mongoUser = process.env.mongoUSER;
@@ -217,6 +221,24 @@ router.post('/login',(req,res,next)=>{
   console.log(req.body);
   return res.status(200);
  });
+
+router.post("/", (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+
+  axios.post('http://localhost:3000/results',{
+    email:email,
+    password:password,
+  })
+
+  res.status(200).json({ok:true})
+})
+
+router.get("/", (req, res) => {
+  res.send("hey there")
+  res.status(200).json({ok:true})
+})
+
 
 module.exports = {
   passport:passport,

@@ -1,15 +1,20 @@
 const axios=require('axios')
 const mocha=require('mocha')
 const chai=require('chai')
-const assert=require('assert')
+const assert=require('chai').assert;
 const scraper=require('./scraper')
 const app=require('./app')
+const server=require('./server')
+const whModels=require('./mongo/wh_models.js')
+const checkPassword=require('./checkPwd.js')
 const results = require('./results')
 const login = require('./login_logout')
-
+const path = require('path');
 const expect = require("chai").expect;
 const request = require("supertest");
 
+chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
 // test the dummy probability calculation for now
 
@@ -30,7 +35,7 @@ describe('GET /results', function() {
         });
   });
 });
-
+/*
 describe('Scraping function for professors', function() {
   this.timeout(30000);
   it('should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)', async function() {
@@ -45,7 +50,7 @@ describe('Scraping function for professors', function() {
     assert.equal(res.t, '66%');
   });
 });
-
+*/
 describe('GET /class_modules', function() {
   it('should respond with classes from API', function(done) {
     request(require('./app.js'))
@@ -159,5 +164,74 @@ describe('GET /class_info', function() {
           expect(res.body).to.not.equal({});
           done();
         });
+  });
+});
+
+describe('Unit test check', function() {
+  it('The values are working as expected', function (done) {
+    chai.request(app)
+      .post('/login_logout')
+      .end(function (err, res) {
+        expect(res.body).to.be.a('object');
+        done();
+      });
+  }).timeout(1000);
+})
+
+describe('checkPassword', function() {
+  it('Tells when the password entered is okay', () => {
+    assert.equal(checkPassword.validatorPwd('123CorrectPassword'), true);
+  });
+  it('Tells when the password entered is not okay', () => {
+    assert.equal(checkPassword.validatorPwd('Incorrect Password'), false);
+  });
+});
+
+const random_user = {
+  username: 'User Name',
+  password: 'Password',
+  courseNum: [123456],
+};
+
+describe('Check validity of the user creation', () => {
+  const user = new whModels.userAccounts(random_user);
+
+  it('Check if the object is defined when saved', function(done) {
+    assert.isDefined(user._id, 'user not saved');
+    done();
+  });
+
+  it('Check if the password matches', function(done) {
+    assert.equal(user.password, random_user.password);
+    done();
+  });
+
+  it('Check is the user is defined', done => {
+    assert.isDefined(user);
+    done();
+  });
+});
+
+describe('Testing the user', function(){
+  var id_pwd_ver = new whModels.userAccounts();
+  id_pwd_ver.username = 'username';
+
+  it('username should match the above value', function () {
+    assert(id_pwd_ver.username === 'username');
+  })
+})
+
+const host = "http://localhost:3000";
+
+describe('get request to login_logout', function () {
+  this.timeout(5000);
+  it('check the login_logout get request', function (done) {
+    chai
+      .request(host)
+      .get('/login_logout')
+      .end((err, res) => {
+      expect(res).to.have.status(200);
+      done();
+      });
   });
 });
