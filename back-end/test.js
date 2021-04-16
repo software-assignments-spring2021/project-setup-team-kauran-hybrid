@@ -166,7 +166,7 @@ describe('GET /class_info', function() {
         });
   });
 });
-
+/*
 describe('Unit test check', function() {
   it('The values are working as expected', function (done) {
     chai.request(app)
@@ -235,3 +235,4 @@ describe('get request to login_logout', function () {
       });
   });
 });
+*/

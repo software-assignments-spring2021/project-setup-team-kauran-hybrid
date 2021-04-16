@@ -222,6 +222,7 @@ router.post('/login',(req,res,next)=>{
   return res.status(200);
  });
 
+ /*
 router.post("/", (req, res) => {
   const email = req.body.email
   const password = req.body.password
@@ -238,7 +239,7 @@ router.get("/", (req, res) => {
   res.send("hey there")
   res.status(200).json({ok:true})
 })
-
+*/
 
 module.exports = {
   passport:passport,
