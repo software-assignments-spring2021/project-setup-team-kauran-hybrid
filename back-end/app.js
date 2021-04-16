@@ -4,16 +4,27 @@
 // // we will put some server logic here later...
 // // export the express app we created to make it available to other modules
 
+const multer =require('multer');
+const whModels=require('./mongo/wh_models');
+const axios = require('axios');
 const morgan=require('morgan');
+const scraper=require('./scraper');
+const mocha=require('mocha');
+const chai=require('chai');
 const mongoose=require('mongoose');
+const generator=require('./mock_data/generator.js');
+const mongoScript=require('./mongo/mongo.js');
+const converter=require('./mongo/converter.js');
+const machineJs=require('./machine/machine.js');
 const dotenv=require('dotenv');
 dotenv.config({path:'../.env'})
+const { Console } = require('console');
 const express = require("express");
 const app = express();
 const cors = require("cors"); // allow requests between localhost
 const bodyParser = require("body-parser");
 const passport = require('passport');
-
+//dotenv.config({path:'.env'});
 const user=process.env.mongoUSER;
 const pwd=process.env.mongoPWD;
 app.use(bodyParser.urlencoded({ extended: false }));
