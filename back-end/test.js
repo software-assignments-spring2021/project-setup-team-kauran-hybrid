@@ -77,28 +77,28 @@ describe('POST /home_login', function() {
   });
 });
 
-describe('GET /prof_info', function() {
-  this.timeout(3000);
-  it('should respond with prof from API', function(done) {
-    this.timeout(300000);
-    request(require('./app.js'))
-        .get('/prof_info')
-        .expect(200, function(err, res) {
-          expect(res.body).to.eql({q: '3.9', r: '61', d: '3.2', t: '66%'});
-          done();
-        });
-  });
-});
+// describe('GET /prof_info', function() {
+//   this.timeout(3000);
+//   it('should respond with prof from API', function(done) {
+//     this.timeout(300000);
+//     request(require('./app.js'))
+//         .get('/prof_info')
+//         .expect(200, function(err, res) {
+//           expect(res.body).to.eql({q: '3.9', r: '61', d: '3.2', t: '66%'});
+//           done();
+//         });
+//   });
+// });
 
-describe('GET /login', function() {
-  it('should respond with giving us the return status code 200 which we will assert.equal', function() {
-    request(require('./app.js'))
-        .get('localhost:3000/login_logout', function(err, res) {
-          assert.equal(200, res.statusCode);
-          //done();
-        });
-  });
-});
+// describe('GET /login', function() {
+//   it('should respond with giving us the return status code 200 which we will assert.equal', function() {
+//     request(require('./app.js'))
+//         .get('localhost:3000/login_logout', function(err, res) {
+//           assert.equal(200, res.statusCode);
+//           //done();
+//         });
+//   });
+// });
 
 // describe('GET /signin', function() {
 //   it('should respond with giving us return status code 200 which will assert.equal again', function() {
