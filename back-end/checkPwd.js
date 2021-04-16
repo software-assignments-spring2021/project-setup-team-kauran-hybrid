@@ -1,3 +1,4 @@
+/*
 var pswdValidator = require('password-validator');
 
 var schema = new pswdValidator();
@@ -12,3 +13,4 @@ schema
 const validatorPwd = (password) => schema.validate(password);
 
 module.exports = {validatorPwd}
+*/
