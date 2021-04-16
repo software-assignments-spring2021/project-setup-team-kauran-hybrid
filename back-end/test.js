@@ -35,7 +35,7 @@ describe('GET /results', function() {
         });
   });
 });
-/*
+
 describe('Scraping function for professors', function() {
   this.timeout(30000);
   it('should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)', async function() {
@@ -50,7 +50,7 @@ describe('Scraping function for professors', function() {
     assert.equal(res.t, '66%');
   });
 });
-*/
+
 describe('GET /class_modules', function() {
   it('should respond with classes from API', function(done) {
     request(require('./app.js'))
