@@ -6,26 +6,11 @@ import axios from 'axios';
 
 const LoginLogout=(props)=> {
 
+  console.log("LoginLogout page", props.email)
+
     const [email,setEmail]=useState("Enter your Email");
     const [password,setPassword]=useState("Enter your password");
     const [submit, setSubmit]=useState();
-
-/* function submitLogin(e) {
-    axios 
-        .post("/login", loginDeets)
-        .then((response) => {
-            console.log("login response ", response.data);
-
-            if (!response.data.error) {
-                console.log("login success");
-            } else {
-                setError(true);
-            }
-        })
-        .catch((err) => {
-            console.log("Error", err);
-        });
-}*/
 
     const handleChange = ({ target }) => { 
       setEmail( target.value );
@@ -40,65 +25,144 @@ const LoginLogout=(props)=> {
       setPassword('');
     };
 
-    const  handleClickSubmit =async() =>{
-      {
-        
-            await axios.post('http://localhost:3000/mongo_script/add_user_account',{
-              
-              username:email,
-              password:password,
-              }
-            );
-          
-            console.log("checking");
-          
-      }
+    const  handleClickLogin =async() =>{
+ 
+        await axios.post('http://localhost:3000/login_logout/login',{
+          username:email,
+          password:password,
+          }
+        );
 
     };
-    
-      return (
-        <React.Fragment>
-          {}
-            <form action="login_logout" method="POST" className="box">
-              <p>
+
+    const handleClickLoginParams = async() => {
+      await axios.post('http://localhost:3000/login_logout/login',{
+              
+        username:email,
+        password:password,
+        position:props.position,
+        number:props.number
+        }
+      );
+
+    }
+
+    const  handleClickSignUp =async(e) =>{
+        e.preventDefault()
+        let something=await axios.post('http://localhost:3000/login_logout/signup',{
+              
+          username:email,
+          password:password,
+          }
+        );
+        
+        console.log(something);
+ 
+    };
+
+    const handleClickSignUpParams = async() => {
+      await axios.post('http://localhost:3000/login_logout/signup',{
+              
+        username:email,
+        password:password,
+        position:props.position,
+        number:props.number
+        }
+      );
+    }
+      // if the user did not go through the home page and clicked login first
+      if (!props.email) {
+        return (
+          <React.Fragment>
+            {}
+              <form action="login_logout" method="POST" className="box">
+                <p>
+                  {}
+                    <input className="inputs"
+                    type="email"
+                    name="email"
+                    value={email}
+  
+                    onChange={handleChange}
+                    onClick={handleClickEmail}
+                    />
+                </p>
+              
+                <p> 
                 {}
-                  <input className="inputs"
-                  type="email"
-                  name="email"
-                  value={email}
-
-                  onChange={handleChange}
-                  onClick={handleClickEmail}
-                  />
-              </p>
-            
-              <p> 
-              {}
-                  <input className="inputs"
-                  type="password"
-                  name="password"
-                  value={password}
-
-                  onChange={handlePassword}
-                  onClick={handleClickPassword}
-                  />
-              </p>
-            
-              {}
-              <div>
-                 <center>
-                  <a href="./Account" className="submit-button" onClick={handleClickSubmit}> Login </a>
-                
-                  <a href="./Account" className="submit-button" onClick={handleClickSubmit}> Signup </a>
-                 </center>
-
-              </div>
-
-            </form>   
-          {}
-        </React.Fragment>
-
-      );    
+                    <input className="inputs"
+                    type="password"
+                    name="password"
+                    value={password}
+  
+                    onChange={handlePassword}
+                    onClick={handleClickPassword}
+                    />
+                </p>
+              
+                {}
+                <div>
+                   <center>
+                    <a href="./Account" className="submit-button" onClick={handleClickLogin}> Login </a>
+                  
+                    <a href="./Account" className="submit-button" onClick={handleClickSignUp}> Signup </a>
+                   </center>
+  
+                </div>
+  
+              </form>   
+            {}
+          </React.Fragment>
+  
+        );  
+      }
+      // otherwise they went through the home page and have clicked yes on results
+      else {
+        return (
+          <React.Fragment>
+            {}
+              <form action="login_logout" method="POST" className="box">
+                <p>
+                  {}
+                    <input className="inputs"
+                    type="email"
+                    name="email"
+                    value={email}
+  
+                    onChange={handleChange}
+                    onClick={handleClickEmail}
+                    />
+                </p>
+              
+                <p> 
+                {}
+                    <input className="inputs"
+                    type="password"
+                    name="password"
+                    value={password}
+  
+                    onChange={handlePassword}
+                    onClick={handleClickPassword}
+                    />
+                </p>
+              
+                {}
+                <div>
+                   <center>
+                    <a href="./Account" className="submit-button" onClick={handleClickLoginParams}> Login </a>
+                  
+                    <a href="./Account" className="submit-button" onClick={handleClickSignUpParams}> Signup </a>
+                   </center>
+  
+                </div>
+  
+              </form>   
+            {}
+          </React.Fragment>
+  
+        );  
+      }
+  
    }
 
 export default LoginLogout

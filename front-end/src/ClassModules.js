@@ -26,20 +26,50 @@ function ClassModules(props){
   
     // fetch the data!
     fetchData();
+    console.log(history);
   
   // the blank array below causes this callback to be executed only once on component load
   }, []);
-    return (
+    if(props.page=='results'){
+      return (
         
         <>
-        {/* <h1>Animals For Sale</h1> */}
+
           <div className="ClassModules">
+  
             {history.map(item => (
-              <Course key={item.class_num} details={item} />
+              <Course page={props.page} key={item.courseNum,item.courseName} details={item} />
+              // <Semester key={item.semester} details={item} />
             ))}
           </div>
         </>
       );
+    }
+    else if(props.page=='accounts'){
+      return (
+        <>
+          <div className="ClassModules">
+            {history.map(item => (
+              <Course page={props.page} key={item.courseNum} details={item} />
+              // <Semester key={item.semester} details={item} />
+            ))}
+          </div>
+        </>
+      );
+    }
+    else if(props.page=='professors'){
+      return (
+        <>
+          <div className="ClassModules">
+            {history.map(item => (
+              <Course page={props.page} key={item.courseNum} details={item} />
+              // <Semester key={item.semester} details={item} />
+            ))}
+          </div>
+        </>
+      );
+    }
+    
 
 }
 

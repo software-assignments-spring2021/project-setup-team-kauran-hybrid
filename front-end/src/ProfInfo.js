@@ -17,20 +17,26 @@ const ProfInfo=(props)=>{
   const goBack = () => {
     window.history.back();
   }
+
+  // const [profinfo, setProfInfo] = useState([]);
+  // axios.get("http://localhost:3000/prof_info").then(response=>{setProfInfo(response.data)})
   
   const [profinfo, setProfInfo] = useState([]);
-  const prof_info = [profinfo];
+  // const prof_info = [profinfo];
   useEffect(() => {
     // a nested function that fetches the data
     async function fetchData() {
       // axios is a 3rd-party module for fetching data from servers
-      const result = await axios(
+      await axios(
         // retrieving some mock data about animals for sale
         "http://localhost:3000/prof_info"
-      );
+      ).then(res=>setProfInfo({
+        state:true,
+        data:res.data
+      }));
       // set the state variable
       // this will cause a re-render of this component
-      setProfInfo(result.data);
+      // setProfInfo(result.data);
     }
     // fetch the data!
     fetchData();
@@ -38,7 +44,7 @@ const ProfInfo=(props)=>{
   // the blank array below causes this callback to be executed only once on component load
 }, []);
   
-
+    
     return(
       <div className='prof-page'>
         <div className = "menu">
@@ -49,9 +55,16 @@ const ProfInfo=(props)=>{
         
         {/* <div className='prof-page'> */}
 
-          {prof_info.map(item => (
-              <Professor key={item.id} details={item} />
+          {/* {profinfo.map(item => (
+              <Professor details={item} />
           ))}
+           */}
+           {
+             profinfo.state ?
+             <Professor details={profinfo.data} />:
+             <div class="loader"> </div>
+           }
+          {/* <Professor details={profinfo} /> */}
           <div className='classes'>
           <center>
               

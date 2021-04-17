@@ -8,7 +8,7 @@ import axios from "axios";
 import {useState,useEffect} from'react';
 
 const Results=(props)=>{
-    const [probGetIn, setProbGetIn] = useState([]);
+    const [userInput, setUserInput] = useState([]);
     useEffect(() => {
     // a nested function that fetches the data
     async function fetchData() {
@@ -21,7 +21,7 @@ const Results=(props)=>{
       //console.log(result.data);
       // set the state variable
       // this will cause a re-render of this component
-      setProbGetIn(result.data);
+      setUserInput(result.data);
     }
   
     // fetch the data!
@@ -29,7 +29,7 @@ const Results=(props)=>{
   
   // the blank array below causes this callback to be executed only once on component load
   }, []);
-  console.log(probGetIn);
+   console.log("Results page", userInput.email, userInput.number, userInput.position);
 
     return(
         <div>
@@ -43,17 +43,18 @@ const Results=(props)=>{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
                 </link>
-                <p>Your possibility of getting into this class is: {probGetIn}% {"\n"}
+                <p>Your possibility of getting into this class is: {userInput.probGetIn}% {"\n"}
 
                     Here are some alternative classes.
                 </p>
-                <ClassModules>
+                <ClassModules page='results'>
 
                 </ClassModules>
                 <p> Would you like to login and store this search?</p>
                 <p>
-
+                    
                     <a href="/Login" className="results-button">YES!</a>
+                    {/* email='emailtest' position={userInput.position} number={userInput.number}  */}
 
                     <a href="/" className="results-button">NO! Go Back</a>
                 
