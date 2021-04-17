@@ -24,8 +24,8 @@ const mongoUser = process.env.mongoUSER;
 const mongoPwd = process.env.mongoPWD;
 
 const PUB_KEY = fs.readFileSync(__dirname + '/id_rsa_pub.pem', 'utf8');
-const PRIV_KEY = fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
-
+//const PRIV_KEY = fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
+const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
 // // Stores a Buffer object
 // const encryptedMessage = create_key.encryptWithPublicKey(PUB_KEY, 'Super secret message');
 // // If you try and "crack the code", you will just get gibberish
@@ -37,15 +37,16 @@ const PRIV_KEY = fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
 
 const payloadObj = {
   sub: "sp1",
+  userName:"sp",
   iat: Date.now()
 }
 
-const signedJWT = jwt.sign(payloadObj, PRIV_KEY, { algorithm: 'RS256'});
+const signedJWT = jwt.sign(payloadObj, PRIV_KEY);//, { algorithm: 'RS256'});
 
-//console.log(signedJWT);
+console.log(signedJWT);
 
 // Verify the token we just signed using the public key.  Also validates our algorithm RS256 
-jwt.verify(signedJWT, PUB_KEY, { algorithms: ['RS256'] }, (err, payload) => {
+jwt.verify(signedJWT, PRIV_KEY, (err, payload) => {
     
   if(err) throw err;
   
@@ -256,17 +257,48 @@ router.post('/login',(req,res,next)=>{
 //   res.send(req.body.email);
 // })
 
- router.get('/protected',passport.authenticate('jwt',{session:false}), (req,res) => {
-   console.log("before if");
-   if (req.isAuthenticated()) {
-    res.send("Authenticated");
-   }
-   else {
-     console.log("Denied");
-     res.send("Not authorized to view this");
-   } 
- });
-
+//  router.get('/protected',passport.authenticate('jwt',{session:false}), (req,res) => {
+//    console.log("before if");
+//    if (req.isAuthenticated()) {
+//     res.send("Authenticated");
+//    }
+//    else {
+//      console.log("Denied");
+//      res.status(401).send("Not authorized to view this");
+//    } 
+//  });
+const checkToken = (req, res, next) => {
+  
+  const header = req.headers['authorization'];
+  console.log(req.headers['authorization']);
+  if(typeof header !== 'undefined') {
+  const bearer = header.split(' ');
+  const token = bearer[1];
+  
+  req.token = token;
+  next();
+  } else {
+  //If header is undefined return Forbidden (403)
+  res.sendStatus(403)
+  }
+} 
+router.get('/protected',checkToken,(req,res) => {
+  console.log("before if");
+  jwt.verify(req.token, PRIV_KEY, (err, authorizedData) => {
+    if(err){
+    //If error send Forbidden (403)
+    console.log('ERROR: Could not connect to the protected route');
+    res.sendStatus(403);
+    } else {
+    //If token is successfully verified, we can send the autorized data 
+    res.json({
+    message: 'Successful log in',
+    authorizedData
+    });
+    console.log('SUCCESS: Connected to protected route');
+    }
+  }) 
+});
 // router.get ('/protected',(req,res) => {
 //   res.send('testing testing');
 // });
