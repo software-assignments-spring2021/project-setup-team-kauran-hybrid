@@ -19,6 +19,8 @@ def makeDF():
     courseNums = []
     courseSizes = []
     waitlistSizes = []
+    waitlistPos = []
+    target = []
     '''
     for i in jsonval:
         courseNums.append(i['courseNum'])
@@ -27,25 +29,40 @@ def makeDF():
     '''
     for i in jsonval:
         courseNum=i['courseNum']
-        for j in range(len(i['courseSizes'])):
-            courseNums.append(courseNum)
-            courseSizes.append(i['courseSizes'][j])
-            waitlistSizes.append(i['waitlistSizes'][j])
+        for j in range(np.min([len(i['courseSizes']),len(i['waitlistSizes']),len(i['droppedSizes'])])):
+            if (i['courseSizes'][j]!=None and i['waitlistSizes'][j]!=None and i['droppedSizes'][j]!=None ):
+                for z in range(int(i['waitlistSizes'][j])):
+                    courseNums.append(courseNum)
+                    courseSizes.append(i['courseSizes'][j])
+                    waitlistSizes.append(i['waitlistSizes'][j])
+                    waitlistPos.append(z)
+                    if (z<int(i['droppedSizes'][j])):
+                        target.append(1)
+                    else:
+                        target.append(0)
 
-    columns = ['CourseNumber', 'CourseSize', 'WaitlistSize']
+            # courseNums.append(courseNum)
+            # courseSizes.append(i['courseSizes'][j])
+            # waitlistSizes.append(i['waitlistSizes'][j])
+            # droppedSizes.append(i['droppedSizes'][j])
+
+    columns = ['CourseNumber', 'CourseSize', 'WaitlistSize', 'WaitlistPos','Target']
     df = pd.DataFrame(columns = columns)
     df['CourseNumber'] = courseNums
     df['CourseSize'] = courseSizes
     df['WaitlistSize'] = waitlistSizes
+    df['WaitlistPos'] = waitlistPos
+    df['Target'] = target
 
-    df.set_index('CourseNumber',inplace=True,drop=True)
-    df=df.astype(int)
+    # df.set_index('CourseNumber',inplace=True,drop=True)
+    df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']]=df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']].astype(int)
     print("Exists null data? :",df.isnull().values.any())
     return df
     
 df=makeDF()
+print(df.head())
 
-def linReg(DataFrame:df):
+def linReg(df):
     x=pd.DataFrame(df['CourseSize'])
     y=pd.DataFrame(df['WaitlistSize'])
     model=LinearRegression()
@@ -57,5 +74,5 @@ def linReg(DataFrame:df):
         scores.append(score)
     print("Scores: ", scores)
 
-linReg(df)
+# linReg(df)
 # def prosterity(classSize,waitListPos):
