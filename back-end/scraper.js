@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const axios=require('axios');
 const cheerio=require('cheerio');
 const fetch= require('node-fetch');
@@ -5,10 +7,9 @@ const nodemon = require('nodemon');
 const puppeteer=require('puppeteer');
 const mongoScript=require('./mongo/mongo.js');
 const dotenv=require('dotenv');
-dotenv.config({path:__dirname+'/./../../.env'});
 
-const pwd=process.env.mongoPWD;
-const user=process.env.mongoUSER;
+
+
 
 //scraper for rateMyProf using only puppeteer
 const prof_scraper=async(prof,ischool)=>{
@@ -38,13 +39,6 @@ const prof_scraper=async(prof,ischool)=>{
     //span.Tag-bs9vf4-0.hHOVKF
     const res=(await page.$$('a'));
     await page.waitForTimeout(500);
-    //console.log(res);
-    // const [response] = await Promise.all([
-        
-    //     page.waitForNavigation() // This will set the promise to wait for navigation events
-    //   // Then the page will be send POST and navigate to target page
-    //   ]);
-    
     const results=[];
     for(result of res){
         let thisRes=await page.evaluate(el=>el.textContent,result);
@@ -96,12 +90,15 @@ const prof_scraper=async(prof,ischool)=>{
     await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
     await page.waitForTimeout(5000);
 
-    let urls = await page.evaluate(() => {
+    const urls = await page.evaluate(() => {
         let l = [];
         let items = document.querySelectorAll('span.Tag-bs9vf4-0.hHOVKF');
-        items.forEach((item) => {
-            l.push(item.innerText);
-        });
+        // items.forEach((item) => {
+        //     l.push(item.innerText);
+        // });
+        for (let i=0;i<5;i++){
+            l.push(items[i].innerText);
+        }
         
         return l;
     })
@@ -158,15 +155,15 @@ const albert_scraper=async(parameters)=>{
     const result=await fetch(url)
         .then(res=>res.json())
     
-    const secURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`; 
+    
 
     for (key in result) {
         // Loop through each class
         // console.log(result[key])
         const sections = result[key].sections;
         let sec;
-        let recs=[];
         for (s in sections) {
+            let recs=[];
             const lecName = result[key].name;
             // console.log(lecName);
             const deptCourseId = result[key].deptCourseId;
@@ -197,16 +194,16 @@ const albert_scraper=async(parameters)=>{
                 lecStartTime = lectures[0].beginDate.substring(11, 16);
                 lecDate = d.getDay();
                 if (lecDate == 1) {
-                    lecDay = 'Mon';
+                    lecDay = 'Mon, Wed';
                 }
                 else if (lecDate == 2) {
-                    lecDay = 'Tue';
+                    lecDay = 'Tue, Thu';
                 }
                 else if (lecDate == 3) {
-                    lecDay = 'Wed';
+                    lecDay = 'Mon, Wed';
                 }
                 else if (lecDate == 4) {
-                    lecDay = 'Thu';
+                    lecDay = 'Tue, Thu';
                 }
                 else if (lecDate == 5) {
                     lecDay = 'Fri';
@@ -243,21 +240,21 @@ const albert_scraper=async(parameters)=>{
                     recStartTime = recMeeting[0].beginDate.substring(11, 16);
                     recDate = d.getDay();
                     if (recDate == 1) {
-                        recDay = 'Mon';
+                        recDay = 'Mon, Wed';
                     }
                     else if (recDate == 2) {
-                        recDay = 'Tue';
+                        recDay = 'Tue, Thu';
                     }
                     else if (recDate == 3) {
-                        recDay = 'Wed';
+                        recDay = 'Mon, Wed';
                     }
                     else if (recDate == 4) {
-                        recDay = 'Thu';
+                        recDay = 'Tue, Thu';
                     }
                     else if (recDate == 5) {
                         recDay = 'Fri';
                     }
-                    recTime = recDay + recStartTime;
+                    recTime = recDay + ' ' + recStartTime;
                 }
                 //console.log(recTime);
                 rec = {
@@ -280,14 +277,20 @@ const albert_scraper=async(parameters)=>{
                 recs:recs
             }
             
-            await mongoScript.mongoSaveSections(secURL,lecNum,lecName,sec,year,semester);  
+            await mongoScript.mongoSaveSections(lecNum,lecName,sec);  
         }
     }
     return result;
 }
 
+router.get("/", (req,res, next) => {
+    albert_scraper();
+    res.send('scraping');
+  })
+
 module.exports = {
   prof_scraper: prof_scraper,
   albert_scraper: albert_scraper,
   cheerio_prof: cheerio_prof,
+  router:router,
 };

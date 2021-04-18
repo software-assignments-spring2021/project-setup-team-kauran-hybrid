@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-
+const app=require('../app.js')
 const userAccountSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -11,9 +11,8 @@ const courseSchema=new mongoose.Schema({
     courseName:String,
     courseSizes:Array,
     waitlistSizes:Array,
-    lectureTimes:Array,
-    lectureLocations:Array,
-    instructors:Array,
+    droppedSizes:Array,
+    sizeCaps:Array,
     status:Array
 
 });
@@ -38,4 +37,7 @@ module.exports={
     trainingCourses:trainingCourses,
     testingCourses:testingCourses,
     sections:sections,
+    sectionSchema: sectionSchema,
+    courseSchema: courseSchema,
+    userAccountSchema: userAccountSchema
 }

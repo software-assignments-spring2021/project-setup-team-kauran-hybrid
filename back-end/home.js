@@ -11,17 +11,18 @@ router.post("/", (req, res) => {
   const email = req.body.email
   const position = req.body.position
   const number = req.body.number
-  // const email = req.body.email
-  // const position = req.body.position
-  // const number = req.body.number
-  // now do something amazing with this data...
-  // ... then send a response of some kind
+
+  axios.post('http://localhost:3000/results',{
+    email:email,
+    position:position,
+    number:number
+  })
+
   res.status(200).json({ok:true})
-  //res.send("hello")
-  console.log(email);
 })
 
 router.get("/", (req, res) => {
+
   // const email = req.body.email
   // const position = req.body.position
   // const number = req.body.number

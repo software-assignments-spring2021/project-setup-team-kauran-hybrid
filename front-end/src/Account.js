@@ -21,7 +21,7 @@ const Account = (props) => {
               Waitlisted?
             </p> */}
             <p>
-                <ClassModules>
+                <ClassModules page='accounts'>
 
                 </ClassModules>
             </p>
