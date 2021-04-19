@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
 import sklearn as sl
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import KFold
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.model_selection import KFold, train_test_split
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
 import json
+import re
 
 print('Machine.py triggered')
 
@@ -28,7 +29,8 @@ def makeDF():
         waitlistSizes.append(i['waitlistSizes'])
     '''
     for i in jsonval:
-        courseNum=i['courseNum']
+        courseNum=re.findall("[0-9]+",i['courseNum'])[0]
+        # print(courseNum)
         for j in range(np.min([len(i['courseSizes']),len(i['waitlistSizes']),len(i['droppedSizes'])])):
             if (i['courseSizes'][j]!=None and i['waitlistSizes'][j]!=None and i['droppedSizes'][j]!=None ):
                 for z in range(int(i['waitlistSizes'][j])):
@@ -55,12 +57,13 @@ def makeDF():
     df['Target'] = target
 
     # df.set_index('CourseNumber',inplace=True,drop=True)
-    df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']]=df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']].astype(int)
+    # df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']]=df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']].astype(int)
+    df = df.astype(int)
     print("Exists null data? :",df.isnull().values.any())
     return df
     
 df=makeDF()
-print(df.head())
+print(df.iloc[40:80])
 
 def linReg(df):
     x=pd.DataFrame(df['CourseSize'])
@@ -76,3 +79,28 @@ def linReg(df):
 
 # linReg(df)
 # def prosterity(classSize,waitListPos):
+
+def logReg(df):
+    X=pd.DataFrame(df[['CourseNumber', 'CourseSize', 'WaitlistSize', 'WaitlistPos']].values)
+    y=pd.DataFrame(df['Target'].values)
+    model=LogisticRegression()
+    X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.3, random_state=42)
+    print(X_train.shape)
+    print(X_test.shape)
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    print("Score: ", score)
+    print("class labels:", model.classes_)
+    
+    fakeX = np.zeros((1,4))
+    fakeX[0,:] = [120, 100, 20, 15]
+    print("fake prob: ", model.predict_proba(fakeX)[:,1])
+
+logReg(df)
+
+# def test_fake_data(num=121,couseSize=100,wlSize=10,pos=5,model):
+#     X = np.zeros((1,4))
+#     X[0,:] = [num, courseSize, wlSize, pos]
+#     return model.predict_proba(X)
+
+# print(test_fake_data(model=m))
