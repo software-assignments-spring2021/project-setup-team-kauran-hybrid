@@ -43,7 +43,7 @@ const payloadObj = {
 
 const signedJWT = jwt.sign(payloadObj, PRIV_KEY);//, { algorithm: 'RS256'});
 
-console.log(signedJWT);
+//console.log(signedJWT);
 
 // Verify the token we just signed using the public key.  Also validates our algorithm RS256 
 jwt.verify(signedJWT, PRIV_KEY, (err, payload) => {
@@ -205,19 +205,9 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
 
   })
 )
-// const signToken = (user) =>{
-//   JWT.sign(
-//     {
-//       iss: "Login",
-//       sub: user.id,
-//       iat: Date.now(),
-//       exp: new Date().setDate(new Date().getDate() + 1)
-//     },
-//     "temporary_secret"
-//   )
-// }
 
-router.post('/login',(req,res,next)=>{
+
+router.post('/login',(req,res)=>{
   // mongoose.disconnect();
   console.log('request received');
   passport.authenticate('login',function(err,user,info){
@@ -229,8 +219,10 @@ router.post('/login',(req,res,next)=>{
       if(err) throw err;
       return res.status(200)//.json({success: 'logged in '});
     });
-  })(req,res,next);
-  
+  })//(req,res,next);
+  res.header('Authorization',signedJWT);
+  console.log(res);
+  res.redirect('/login_logout/protected');
 });
 
  router.post('/signup',(req,res,next)=>{
@@ -244,37 +236,18 @@ router.post('/login',(req,res,next)=>{
       if(err) throw err;
       return res.status(200)//.json({success: 'logged in '});
     });
-  })(req,res,next);
+  })//(req,res,next);
+  res.setHeader('authorization',signedJWT)
+  res.redirect('/login_logout/protected');
  });
 
-//  router.post('/signup2',(req,res,next)=>{
-//   console.log('request received');
-//   console.log(req.body);
-//   return res.status(200);
-//  });
-
-// router.post('/protected', passport.authenticate('jwt', {session:false}), function(req,res) {
-//   res.send(req.body.email);
-// })
-
-//  router.get('/protected',passport.authenticate('jwt',{session:false}), (req,res) => {
-//    console.log("before if");
-//    if (req.isAuthenticated()) {
-//     res.send("Authenticated");
-//    }
-//    else {
-//      console.log("Denied");
-//      res.status(401).send("Not authorized to view this");
-//    } 
-//  });
 const checkToken = (req, res, next) => {
   
   const header = req.headers['authorization'];
-  console.log(req.headers['authorization']);
+  //console.log(req);
   if(typeof header !== 'undefined') {
   const bearer = header.split(' ');
   const token = bearer[1];
-  
   req.token = token;
   next();
   } else {
