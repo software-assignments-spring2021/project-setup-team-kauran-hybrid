@@ -1,11 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const passport=require('passport');
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
+const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
 const checkToken = (req, res, next) => {
   
-    const header = req.headers['authorization'];
-    console.log(req.headers['authorization']);
+    const header = passport.session['authorization'];
+    console.log(passport.session);
     if(typeof header !== 'undefined') {
     const bearer = header.split(' ');
     const token = bearer[1];
@@ -16,7 +20,7 @@ const checkToken = (req, res, next) => {
     res.sendStatus(403)
     }
   } 
-router.get('/protected',checkToken,(req,res) => {
+  router.get('/protected',checkToken,(req,res) => {
     console.log("before if");
     jwt.verify(req.token, PRIV_KEY, (err, authorizedData) => {
       if(err){
@@ -32,5 +36,7 @@ router.get('/protected',checkToken,(req,res) => {
       console.log('SUCCESS: Connected to protected route');
       }
     }) 
-});
-module.exports=router;
+  });
+  module.exports = {
+    router:router
+  };

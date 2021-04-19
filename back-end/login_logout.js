@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+//const session=require('express-session');
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
@@ -220,9 +221,11 @@ router.post('/login',(req,res)=>{
       return res.status(200)//.json({success: 'logged in '});
     });
   })//(req,res,next);
-  res.header('Authorization',signedJWT);
-  console.log(res);
-  res.redirect('/login_logout/protected');
+  //res.header('authorization',signedJWT);
+  const auth="Bearer "+signedJWT;
+  passport.session.authorization=auth;
+  //console.log(res);
+  res.redirect('/accounts/protected');
 });
 
  router.post('/signup',(req,res,next)=>{
@@ -237,14 +240,15 @@ router.post('/login',(req,res)=>{
       return res.status(200)//.json({success: 'logged in '});
     });
   })//(req,res,next);
-  res.setHeader('authorization',signedJWT)
+  const auth="Bearer "+signedJWT;
+  res.setHeader('authorization',auth);
   res.redirect('/login_logout/protected');
  });
 
 const checkToken = (req, res, next) => {
   
-  const header = req.headers['authorization'];
-  //console.log(req);
+  const header = passport.session['authorization'];
+  console.log(passport.session);
   if(typeof header !== 'undefined') {
   const bearer = header.split(' ');
   const token = bearer[1];
