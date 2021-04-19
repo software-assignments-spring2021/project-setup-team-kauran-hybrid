@@ -46,7 +46,7 @@ describe('Scraping function for professors', function() {
 
     assert.equal(res.q, '3.9');
     assert.equal(res.d, '3.2');
-    assert.equal(res.r, '61');
+    assert.equal(res.r, '61 ratings');
     assert.equal(res.t, '66%');
   });
 });
