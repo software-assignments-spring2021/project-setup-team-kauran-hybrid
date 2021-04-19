@@ -3,7 +3,18 @@ import './LoginLogout.css'
 import { Link } from 'react-router-dom';
 import Account from './Account';
 import axios from 'axios';
-
+// axios.interceptors.request.use(x=>{
+//   console.log(x);
+//   return x;
+// },function(err){
+//   if(err) throw err;
+// });
+axios.interceptors.response.use(x=>{
+  console.log('Response:', JSON.stringify(x, null, 2))
+  return x;
+},function(err){
+    if(err) throw err;
+});
 const LoginLogout=(props)=> {
 
   console.log("LoginLogout page", props.email)

@@ -138,10 +138,9 @@ passport.use('login', new LocalStrategy({usernameField:'username', passwordField
       if (err) throw err;
       if(!user){
         console.log("Account Doesn't Exist!");
-        return done(null,false,{message:"Account Does Not Exist"});
-        
+        return done(null,false,{message:"Account Does Not Exist"});   
       }
-      if(user){
+      else if(user){
         //console.log(password,user.password);
         bcrypt.compare(password,user.password,(err,isMatch)=>{
           if(err) throw err;
@@ -208,24 +207,25 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
 )
 
 
-router.post('/login',(req,res)=>{
+router.post('/login',(req,res,next)=>{
   // mongoose.disconnect();
   console.log('request received');
   passport.authenticate('login',function(err,user,info){
     if(err) throw err;
     if(!user){
-      return res.status(400)//,json({errors:'No user found'});
+      return res.status(400).json({errors:'No user found'});
     }
     req.logIn(user,function(err){
       if(err) throw err;
-      return res.status(200)//.json({success: 'logged in '});
+        const auth="Bearer "+signedJWT;
+        passport.session.authorization=auth;
+        //console.log(res);
+        //res.redirect('/accounts/protected');
+        res.header('authorization',auth);
+        //return res.status(200).json({success: 'logged in '});
     });
-  })//(req,res,next);
-  //res.header('authorization',signedJWT);
-  const auth="Bearer "+signedJWT;
-  passport.session.authorization=auth;
-  //console.log(res);
-  res.redirect('/accounts/protected');
+  })(req,res,next);
+  
 });
 
  router.post('/signup',(req,res,next)=>{
@@ -233,16 +233,16 @@ router.post('/login',(req,res)=>{
   passport.authenticate('signup',function(err,user,info){
     if(err) throw err;
     if(!user){
-      return res.status(400)//,json({errors:'No user found'});
+      return res.status(400).json({errors:'No user found'});
     }
     req.logIn(user,function(err){
       if(err) throw err;
-      return res.status(200)//.json({success: 'logged in '});
+      return res.status(200).json({success: 'logged in '});
     });
-  })//(req,res,next);
-  const auth="Bearer "+signedJWT;
-  res.setHeader('authorization',auth);
-  res.redirect('/login_logout/protected');
+  })(req,res,next);
+  //const auth="Bearer "+signedJWT;
+  //res.setHeader('authorization',auth);
+  //res.redirect('/login_logout/protected');
  });
 
 const checkToken = (req, res, next) => {
