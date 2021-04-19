@@ -1,0 +1,83 @@
+Subject/Number,Course Title,Class Section,Distinct Student Count,Class Enrollment Status,Enrollment Cap,Watilist Cap
+MATH-UA 120,Discrete Mathematics,1,13,Dropped,41,10
+MATH-UA 120,Discrete Mathematics,2,10,Dropped,40,10
+MATH-UA 120,Discrete Mathematics,3,12,Dropped,50,10
+MATH-UA 120,Discrete Mathematics,4,17,Dropped,40,10
+MATH-UA 120,Discrete Mathematics,5,12,Dropped,40,10
+MATH-UA 120,Discrete Mathematics,6,12,Dropped,45,10
+MATH-UA 120,Discrete Mathematics,7,5,Dropped,40,10
+MATH-UA 120,Discrete Mathematics,8,9,Dropped,45,10
+MATH-UA 120,Discrete Mathematics,9,17,Dropped,40,10
+MATH-UA 121,Calculus I,1,18,Dropped,130,20
+MATH-UA 121,Calculus I,6,31,Dropped,130,20
+MATH-UA 121,Calculus I,11,19,Dropped,130,20
+MATH-UA 121,Calculus I,16,14,Dropped,128,20
+MATH-UA 122,Calculus II,1,9,Dropped,40,10
+MATH-UA 122,Calculus II,2,16,Dropped,40,10
+MATH-UA 122,Calculus II,3,0,Dropped,0,10
+MATH-UA 122,Calculus II,4,11,Dropped,40,10
+MATH-UA 122,Calculus II,5,8,Dropped,40,10
+MATH-UA 122,Calculus II,6,5,Dropped,40,10
+MATH-UA 122,Calculus II,7,8,Dropped,40,10
+MATH-UA 122,Calculus II,8,18,Dropped,40,10
+MATH-UA 122,Calculus II,9,5,Dropped,40,10
+MATH-UA 123,Calculus III,1,14,Dropped,45,20
+MATH-UA 123,Calculus III,2,11,Dropped,45,10
+MATH-UA 123,Calculus III,3,7,Dropped,45,20
+MATH-UA 123,Calculus III,4,13,Dropped,40,20
+MATH-UA 123,Calculus III,5,20,Dropped,40,20
+MATH-UA 129,Honors Calculus III,1,1,Dropped,36,10
+MATH-UA 140,Linear Algebra,1,22,Dropped,130,0
+MATH-UA 140,Linear Algebra,6,45,Dropped,119,10
+MATH-UA 140,Linear Algebra,11,29,Dropped,122,10
+MATH-UA 140,Linear Algebra,16,21,Dropped,40,10
+MATH-UA 140,Linear Algebra,19,0,Dropped,104,0
+MATH-UA 144,Introduction to Computer Simulation,1,11,Dropped,30,10
+MATH-UA 148,Honors Linear Algebra,1,11,Dropped,34,10
+MATH-UA 211,Mathematics for Economics I,1,15,Dropped,140,20
+MATH-UA 211,Mathematics for Economics I,6,20,Dropped,130,20
+MATH-UA 211,Mathematics for Economics I,11,17,Dropped,70,20
+MATH-UA 212,Mathematics for Economics II,1,15,Dropped,160,10
+MATH-UA 212,Mathematics for Economics II,6,33,Dropped,160,10
+MATH-UA 212,Mathematics for Economics II,11,18,Dropped,160,11
+MATH-UA 212,Mathematics for Economics II,116,5,Dropped,80,0
+MATH-UA 212,Mathematics for Economics II,119,2,Dropped,80,0
+MATH-UA 213,Mathematics for Economics III,1,11,Dropped,105,20
+MATH-UA 224,VectorAnalysis,1,0,Dropped,0,10
+MATH-UA 230,Introduction to Fluid Dynamics,1,8,Dropped,25,10
+MATH-UA 233,Theory of Probability,1,17,Dropped,32,20
+MATH-UA 233,Theory of Probability,3,16,Dropped,32,14
+MATH-UA 233,Theory of Probability,7,13,Dropped,32,10
+MATH-UA 234,Mathematical Statistics,1,18,Dropped,45,10
+MATH-UA 234,Mathematical Statistics,3,3,Dropped,45,11
+MATH-UA 235,Probability & Statistics,1,22,Dropped,60,30
+MATH-UA 238,Honors Theory of Probability,1,2,Dropped,39,10
+MATH-UA 240,Combinatorics,1,25,Dropped,37,10
+MATH-UA 248,Theory of Numbers,1,8,Dropped,27,12
+MATH-UA 250,Mathematics of Finance,1,17,Dropped,50,10
+MATH-UA 250,Mathematics of Finance,3,15,Dropped,40,10
+MATH-UA 251,Intro to Math Modeling,1,23,Dropped,42,15
+MATH-UA 252,Numerical Analysis,1,18,Dropped,33,12
+MATH-UA 252,Numerical Analysis,3,16,Dropped,32,12
+MATH-UA 252,Numerical Analysis,5,4,Dropped,25,11
+MATH-UA 253,Linear and Nonlinear Optimization,1,11,Dropped,42,19
+MATH-UA 256,Computers in Medicine & Biology,1,0,Dropped,20,10
+MATH-UA 262,Ordinary Diff Equations,1,12,Dropped,36,10
+MATH-UA 262,Ordinary Diff Equations,3,5,Dropped,32,11
+MATH-UA 262,Ordinary Diff Equations,5,9,Dropped,23,10
+MATH-UA 263,Partial Diff Equations,1,12,Dropped,60,10
+MATH-UA 264,Chaos & Dynamical Systems,1,16,Dropped,36,10
+MATH-UA 282,Functions of a Complex Variable,1,12,Dropped,60,10
+MATH-UA 325,Analysis,1,20,Dropped,60,20
+MATH-UA 325,Analysis,4,17,Dropped,60,20
+MATH-UA 325,Analysis,7,21,Dropped,60,20
+MATH-UA 325,Analysis,10,15,Dropped,60,10
+MATH-UA 328,Honors Analysis I,1,7,Dropped,36,10
+MATH-UA 329,Honors Analysis II,1,3,Dropped,39,10
+MATH-UA 343,Algebra,1,13,Dropped,43,11
+MATH-UA 343,Algebra,3,17,Dropped,49,11
+MATH-UA 349,Honors Algebra II,1,2,Dropped,28,10
+MATH-UA 375,Topology,1,4,Dropped,38,10
+MATH-UA 377,Differential Geometry,1,5,Dropped,34,10
+MATH-UA 394,Senior Honors II,1,0,Dropped,14,10
+MATH-UA 9,Algebra and Calculus,1,40,Dropped,120,20
