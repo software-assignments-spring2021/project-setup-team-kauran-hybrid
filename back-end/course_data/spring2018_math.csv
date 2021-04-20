@@ -1,68 +1,68 @@
-Course,CourseTitle,Section,DistinctStudentCount,ClassEnrollmentStatus,EnrollmentCap,WatilistCap
-MATH-UA 120,Discrete Mathematics,1,8,Dropped,0,
-MATH-UA 120,Discrete Mathematics,2,9,Dropped,0,
-MATH-UA 120,Discrete Mathematics,3,4,Dropped,0,
-MATH-UA 120,Discrete Mathematics,4,3,Dropped,0,
-MATH-UA 120,Discrete Mathematics,5,14,Dropped,0,
-MATH-UA 120,Discrete Mathematics,6,9,Dropped,0,
-MATH-UA 121,Calculus I,1,10,Dropped,0,
-MATH-UA 121,Calculus I,6,19,Dropped,0,
-MATH-UA 121,Calculus I,11,16,Dropped,0,
-MATH-UA 121,Calculus I,16,28,Dropped,0,
-MATH-UA 122,Calculus II,1,14,Dropped,0,
-MATH-UA 122,Calculus II,2,5,Dropped,0,
-MATH-UA 122,Calculus II,3,11,Dropped,0,
-MATH-UA 122,Calculus II,4,9,Dropped,0,
-MATH-UA 122,Calculus II,5,7,Dropped,0,
-MATH-UA 122,Calculus II,6,4,Dropped,0,
-MATH-UA 122,Calculus II,7,5,Dropped,0,
-MATH-UA 123,Calculus III,1,2,Dropped,0,
-MATH-UA 123,Calculus III,2,7,Dropped,0,
-MATH-UA 123,Calculus III,3,2,Dropped,0,
-MATH-UA 123,Calculus III,4,6,Dropped,0,
-MATH-UA 123,Calculus III,5,4,Dropped,0,
-MATH-UA 123,Calculus III,6,3,Dropped,0,
-MATH-UA 140,Linear Algebra,1,16,Dropped,36,20
-MATH-UA 140,Linear Algebra,2,14,Dropped,40,20
-MATH-UA 140,Linear Algebra,3,5,Dropped,40,20
-MATH-UA 140,Linear Algebra,4,9,Dropped,40,20
-MATH-UA 140,Linear Algebra,5,9,Dropped,36,20
-MATH-UA 140,Linear Algebra,6,9,Dropped,40,20
-MATH-UA 140,Linear Algebra,7,6,Dropped,40,5
-MATH-UA 140,Linear Algebra,8,16,Dropped,0,
-MATH-UA 144,Introduction to Computer Simulation,1,5,Dropped,40,999
-MATH-UA 148,Honors Linear Algebra,1,3,Dropped,35,10
-MATH-UA 211,Mathematics for Economics I,6,30,Dropped,0,
-MATH-UA 211,Mathematics for Economics I,11,7,Dropped,0,
-MATH-UA 212,Mathematics for Economics II,1,10,Dropped,0,
-MATH-UA 212,Mathematics for Economics II,6,6,Dropped,0,
-MATH-UA 212,Mathematics for Economics II,11,13,Dropped,0,
-MATH-UA 213,Mathematics for Economics III,1,10,Dropped,0,
-MATH-UA 224,Vector Analysis,1,2,Dropped,40,20
-MATH-UA 228,Fundamental Dynamics of Earth's Atmosphere and Climate,1,1,Dropped,30,20
-MATH-UA 230,Introduction to Fluid Dynamics,1,6,Dropped,30,10
-MATH-UA 233,Theory of Probability,1,7,Dropped,0,
-MATH-UA 233,Theory of Probability,3,5,Dropped,0,
-MATH-UA 234,Mathematical Statistics,1,10,Dropped,0,
-MATH-UA 235,Probability & Statistics,1,6,Dropped,0,
-MATH-UA 240,Combinatorics,1,9,Dropped,40,20
-MATH-UA 250,Mathematics of Finance,1,3,Dropped,0,
-MATH-UA 251,Intro to Math Modeling,1,14,Dropped,40,30
-MATH-UA 252,Numerical Analysis,1,11,Dropped,0,
-MATH-UA 252,Numerical Analysis,3,9,Dropped,0,
-MATH-UA 262,Ordinary Diff Equations,1,9,Dropped,40,20
-MATH-UA 262,Ordinary Diff Equations,3,5,Dropped,40,20
-MATH-UA 263,Partial Diff Equations,1,4,Dropped,0,
-MATH-UA 264,Chaos & Dynamical Systems,1,9,Dropped,40,20
-MATH-UA 282,Functions of a Complex Variable,1,7,Dropped,0,
-MATH-UA 325,Analysis,1,10,Dropped,0,
-MATH-UA 325,Analysis,3,6,Dropped,0,
-MATH-UA 325,Analysis,5,7,Dropped,0,
-MATH-UA 329,Honors Analysis II,1,5,Dropped,0,
-MATH-UA 343,Algebra,1,8,Dropped,40,20
-MATH-UA 343,Algebra,3,12,Dropped,40,20
-MATH-UA 349,Honors Algebra II,1,1,Dropped,40,20
-MATH-UA 375,Topology,1,9,Dropped,0,
-MATH-UA 377,Differential Geometry,1,7,Dropped,30,20
-MATH-UA 398,Honors IV,1,6,Dropped,0,
-MATH-UA 9,Algebra and Calculus,1,27,Dropped,0,
+Course,CourseTitle,Section,DistinctStudentCount,ClassEnrollmentStatus,EnrollmentCap,WaitlistCap
+MATH-UA120,DiscreteMathematics,1,8,Dropped,40,10
+MATH-UA120,DiscreteMathematics,2,9,Dropped,40,10
+MATH-UA120,DiscreteMathematics,3,4,Dropped,40,10
+MATH-UA120,DiscreteMathematics,4,3,Dropped,40,10
+MATH-UA120,DiscreteMathematics,5,14,Dropped,40,10
+MATH-UA120,DiscreteMathematics,6,9,Dropped,40,10
+MATH-UA121,CalculusI,1,10,Dropped,117,10
+MATH-UA121,CalculusI,6,19,Dropped,118,10
+MATH-UA121,CalculusI,11,16,Dropped,117,10
+MATH-UA121,CalculusI,16,28,Dropped,117,10
+MATH-UA122,CalculusII,1,14,Dropped,37,10
+MATH-UA122,CalculusII,2,5,Dropped,36,10
+MATH-UA122,CalculusII,3,11,Dropped,37,10
+MATH-UA122,CalculusII,4,9,Dropped,36,10
+MATH-UA122,CalculusII,5,7,Dropped,37,10
+MATH-UA122,CalculusII,6,4,Dropped,37,10
+MATH-UA122,CalculusII,7,5,Dropped,37,10
+MATH-UA123,CalculusIII,1,2,Dropped,40,10
+MATH-UA123,CalculusIII,2,7,Dropped,40,10
+MATH-UA123,CalculusIII,3,2,Dropped,40,10
+MATH-UA123,CalculusIII,4,6,Dropped,40,10
+MATH-UA123,CalculusIII,5,4,Dropped,40,10
+MATH-UA123,CalculusIII,6,3,Dropped,40,10
+MATH-UA140,LinearAlgebra,1,16,Dropped,36,10
+MATH-UA140,LinearAlgebra,2,14,Dropped,37,10
+MATH-UA140,LinearAlgebra,3,5,Dropped,37,10
+MATH-UA140,LinearAlgebra,4,9,Dropped,37,10
+MATH-UA140,LinearAlgebra,5,9,Dropped,37,10
+MATH-UA140,LinearAlgebra,6,9,Dropped,36,10
+MATH-UA140,LinearAlgebra,7,6,Dropped,37,10
+MATH-UA140,LinearAlgebra,8,16,Dropped,36,10
+MATH-UA144,IntroductiontoComputerSimulation,1,5,Dropped,30,10
+MATH-UA148,HonorsLinearAlgebra,1,3,Dropped,35,10
+MATH-UA211,MathematicsforEconomicsI,6,30,Dropped,160,20
+MATH-UA211,MathematicsforEconomicsI,11,7,Dropped,160,20
+MATH-UA212,MathematicsforEconomicsII,1,10,Dropped,161,20
+MATH-UA212,MathematicsforEconomicsII,6,6,Dropped,161,20
+MATH-UA212,MathematicsforEconomicsII,11,13,Dropped,161,20
+MATH-UA213,MathematicsforEconomicsIII,1,10,Dropped,70,10
+MATH-UA224,VectorAnalysis,1,2,Dropped,35,10
+MATH-UA228,FundamentalDynamicsofEarth'sAtmosphereandClimate,1,1,Dropped,30,10
+MATH-UA230,IntroductiontoFluidDynamics,1,6,Dropped,12,10
+MATH-UA233,TheoryofProbability,1,7,Dropped,40,16
+MATH-UA233,TheoryofProbability,3,5,Dropped,40,15
+MATH-UA234,MathematicalStatistics,1,10,Dropped,40,10
+MATH-UA235,Probability&Statistics,1,6,Dropped,40,20
+MATH-UA240,Combinatorics,1,9,Dropped,35,10
+MATH-UA250,MathematicsofFinance,1,3,Dropped,54,20
+MATH-UA251,IntrotoMathModeling,1,14,Dropped,44,10
+MATH-UA252,NumericalAnalysis,1,11,Dropped,30,13
+MATH-UA252,NumericalAnalysis,3,9,Dropped,30,13
+MATH-UA262,OrdinaryDiffEquations,1,9,Dropped,42,17
+MATH-UA262,OrdinaryDiffEquations,3,5,Dropped,41,16
+MATH-UA263,PartialDiffEquations,1,4,Dropped,52,21
+MATH-UA264,Chaos&DynamicalSystems,1,9,Dropped,35,10
+MATH-UA282,FunctionsofaComplexVariable,1,7,Dropped,52,10
+MATH-UA325,Analysis,1,10,Dropped,40,12
+MATH-UA325,Analysis,3,6,Dropped,40,13
+MATH-UA325,Analysis,5,7,Dropped,40,12
+MATH-UA329,HonorsAnalysisII,1,5,Dropped,34,10
+MATH-UA343,Algebra,1,8,Dropped,38,10
+MATH-UA343,Algebra,3,12,Dropped,38,10
+MATH-UA349,HonorsAlgebraII,1,1,Dropped,35,10
+MATH-UA375,Topology,1,9,Dropped,20,10
+MATH-UA377,DifferentialGeometry,1,7,Dropped,35,10
+MATH-UA398,HonorsIV,1,6,Dropped,20,10
+MATH-UA9,AlgebraandCalculus,1,27,Dropped,137,20

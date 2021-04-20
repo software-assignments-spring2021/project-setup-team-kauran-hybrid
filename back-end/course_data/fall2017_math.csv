@@ -1,79 +1,79 @@
-Course,CourseTitle,Section,DistinctStudentCount,ClassEnrollmentStatus,EnrollmentCap,WatilistCap
-MATH-UA 120,Discrete Mathematics,1,6,Dropped,0,
-MATH-UA 120,Discrete Mathematics,2,16,Dropped,0,
-MATH-UA 120,Discrete Mathematics,3,7,Dropped,0,
-MATH-UA 120,Discrete Mathematics,4,8,Dropped,0,
-MATH-UA 120,Discrete Mathematics,5,18,Dropped,0,
-MATH-UA 120,Discrete Mathematics,6,13,Dropped,0,
-MATH-UA 120,Discrete Mathematics,7,6,Dropped,0,
-MATH-UA 121,Calculus I,1,15,Dropped,0,
-MATH-UA 121,Calculus I,6,16,Dropped,0,
-MATH-UA 121,Calculus I,11,17,Dropped,0,
-MATH-UA 121,Calculus I,16,22,Dropped,0,
-MATH-UA 121,Calculus I,21,13,Dropped,0,
-MATH-UA 121,Calculus I,26,14,Dropped,0,
-MATH-UA 121,Calculus I,31,8,Dropped,0,
-MATH-UA 121,Calculus I,36,8,Dropped,0,
-MATH-UA 121,Calculus I,41,35,Dropped,0,
-MATH-UA 121,Calculus I,46,7,Dropped,0,
-MATH-UA 122,Calculus II,1,17,Dropped,0,
-MATH-UA 122,Calculus II,2,17,Dropped,0,
-MATH-UA 122,Calculus II,3,10,Dropped,0,
-MATH-UA 122,Calculus II,4,9,Dropped,0,
-MATH-UA 122,Calculus II,5,11,Dropped,0,
-MATH-UA 122,Calculus II,6,8,Dropped,0,
-MATH-UA 122,Calculus II,7,12,Dropped,0,
-MATH-UA 122,Calculus II,8,7,Dropped,0,
-MATH-UA 122,Calculus II,9,7,Dropped,0,
-MATH-UA 123,Calculus III,1,6,Dropped,0,
-MATH-UA 123,Calculus III,2,4,Dropped,0,
-MATH-UA 123,Calculus III,3,5,Dropped,40,20
-MATH-UA 123,Calculus III,4,7,Dropped,0,
-MATH-UA 123,Calculus III,5,2,Dropped,40,20
-MATH-UA 123,Calculus III,6,8,Dropped,0,
-MATH-UA 123,Calculus III,7,9,Dropped,0,
-MATH-UA 123,Calculus III,8,9,Dropped,0,
-MATH-UA 140,Linear Algebra,1,6,Dropped,25,20
-MATH-UA 140,Linear Algebra,2,13,Dropped,37,20
-MATH-UA 140,Linear Algebra,3,8,Dropped,37,20
-MATH-UA 140,Linear Algebra,4,17,Dropped,40,20
-MATH-UA 140,Linear Algebra,5,8,Dropped,37,20
-MATH-UA 140,Linear Algebra,6,8,Dropped,35,20
-MATH-UA 140,Linear Algebra,7,13,Dropped,45,20
-MATH-UA 140,Linear Algebra,8,10,Dropped,40,20
-MATH-UA 140,Linear Algebra,9,8,Dropped,37,10
-MATH-UA 140,Linear Algebra,10,14,Dropped,36,10
-MATH-UA 148,Honors Linear Algebra,1,4,Dropped,30,20
-MATH-UA 211,Mathematics for Economics I,1,24,Dropped,0,
-MATH-UA 211,Mathematics for Economics I,6,20,Dropped,0,
-MATH-UA 211,Mathematics for Economics I,11,17,Dropped,0,
-MATH-UA 211,Mathematics for Economics I,16,17,Dropped,0,
-MATH-UA 212,Mathematics for Economics II,1,11,Dropped,0,
-MATH-UA 212,Mathematics for Economics II,6,16,Dropped,0,
-MATH-UA 213,Mathematics for Economics III,1,9,Dropped,0,
-MATH-UA 233,Theory of Probability,1,6,Dropped,0,
-MATH-UA 233,Theory of Probability,3,7,Dropped,0,
-MATH-UA 233,Theory of Probability,5,15,Dropped,0,
-MATH-UA 248,Theory of Numbers,1,13,Dropped,40,20
-MATH-UA 250,Mathematics of Finance,1,15,Dropped,0,
-MATH-UA 250,Mathematics of Finance,3,16,Dropped,0,
-MATH-UA 251,Intro to Math Modeling,1,11,Dropped,40,20
-MATH-UA 251,Intro to Math Modeling,3,11,Dropped,40,20
-MATH-UA 252,Numerical Analysis,1,8,Dropped,0,
-MATH-UA 255,Mathematics and Biology,1,2,Dropped,20,10
-MATH-UA 262,Ordinary Diff Equations,1,10,Dropped,55,20
-MATH-UA 262,Ordinary Diff Equations,3,9,Dropped,40,20
-MATH-UA 263,Partial Diff Equations,1,9,Dropped,0,
-MATH-UA 270,Transformation & Geometries,1,1,Dropped,0,
-MATH-UA 325,Analysis,1,10,Dropped,0,
-MATH-UA 325,Analysis,3,10,Dropped,0,
-MATH-UA 325,Analysis,5,7,Dropped,0,
-MATH-UA 328,Honors Analysis I,1,13,Dropped,0,
-MATH-UA 343,Algebra,1,4,Dropped,40,20
-MATH-UA 343,Algebra,3,8,Dropped,40,20
-MATH-UA 343,Algebra,5,7,Dropped,40,20
-MATH-UA 348,Honors Algebra I,1,1,Dropped,40,30
-MATH-UA 397,Honors III,1,4,Dropped,0,
-MATH-UA 9,Algebra and Calculus,1,39,Dropped,0,
-MATH-UA 9,Algebra and Calculus,6,19,Dropped,0,
-MATH-UA 9,Algebra and Calculus,11,25,Dropped,0,
+Course,CourseTitle,Section,DistinctStudentCount,ClassEnrollmentStatus,EnrollmentCap,WaitlistCap
+MATH-UA120,DiscreteMathematics,1,6,Dropped,42,14
+MATH-UA120,DiscreteMathematics,2,16,Dropped,41,14
+MATH-UA120,DiscreteMathematics,3,7,Dropped,41,13
+MATH-UA120,DiscreteMathematics,4,8,Dropped,42,14
+MATH-UA120,DiscreteMathematics,5,18,Dropped,42,13
+MATH-UA120,DiscreteMathematics,6,13,Dropped,42,14
+MATH-UA120,DiscreteMathematics,7,6,Dropped,41,13
+MATH-UA121,CalculusI,1,15,Dropped,118,10
+MATH-UA121,CalculusI,6,16,Dropped,117,10
+MATH-UA121,CalculusI,11,17,Dropped,118,10
+MATH-UA121,CalculusI,16,22,Dropped,118,10
+MATH-UA121,CalculusI,21,13,Dropped,117,10
+MATH-UA121,CalculusI,26,14,Dropped,117,10
+MATH-UA121,CalculusI,31,8,Dropped,117,10
+MATH-UA121,CalculusI,36,8,Dropped,118,10
+MATH-UA121,CalculusI,41,35,Dropped,117,10
+MATH-UA121,CalculusI,46,7,Dropped,118,10
+MATH-UA122,CalculusII,1,17,Dropped,38,10
+MATH-UA122,CalculusII,2,17,Dropped,37,10
+MATH-UA122,CalculusII,3,10,Dropped,38,10
+MATH-UA122,CalculusII,4,9,Dropped,37,10
+MATH-UA122,CalculusII,5,11,Dropped,37,10
+MATH-UA122,CalculusII,6,8,Dropped,37,10
+MATH-UA122,CalculusII,7,12,Dropped,38,10
+MATH-UA122,CalculusII,8,7,Dropped,37,10
+MATH-UA122,CalculusII,9,7,Dropped,37,10
+MATH-UA123,CalculusIII,1,6,Dropped,41,10
+MATH-UA123,CalculusIII,2,4,Dropped,41,10
+MATH-UA123,CalculusIII,3,5,Dropped,41,10
+MATH-UA123,CalculusIII,4,7,Dropped,41,10
+MATH-UA123,CalculusIII,5,2,Dropped,41,10
+MATH-UA123,CalculusIII,6,8,Dropped,41,10
+MATH-UA123,CalculusIII,7,9,Dropped,41,10
+MATH-UA123,CalculusIII,8,9,Dropped,40,10
+MATH-UA140,LinearAlgebra,1,6,Dropped,38,11
+MATH-UA140,LinearAlgebra,2,13,Dropped,37,11
+MATH-UA140,LinearAlgebra,3,8,Dropped,37,11
+MATH-UA140,LinearAlgebra,4,17,Dropped,38,11
+MATH-UA140,LinearAlgebra,5,8,Dropped,38,10
+MATH-UA140,LinearAlgebra,6,8,Dropped,38,11
+MATH-UA140,LinearAlgebra,7,13,Dropped,38,11
+MATH-UA140,LinearAlgebra,8,10,Dropped,37,10
+MATH-UA140,LinearAlgebra,9,8,Dropped,37,10
+MATH-UA140,LinearAlgebra,10,14,Dropped,38,10
+MATH-UA148,HonorsLinearAlgebra,1,4,Dropped,38,10
+MATH-UA211,MathematicsforEconomicsI,1,24,Dropped,157,20
+MATH-UA211,MathematicsforEconomicsI,6,20,Dropped,158,20
+MATH-UA211,MathematicsforEconomicsI,11,17,Dropped,157,20
+MATH-UA211,MathematicsforEconomicsI,16,17,Dropped,157,20
+MATH-UA212,MathematicsforEconomicsII,1,11,Dropped,135,12
+MATH-UA212,MathematicsforEconomicsII,6,16,Dropped,135,12
+MATH-UA213,MathematicsforEconomicsIII,1,9,Dropped,124,25
+MATH-UA233,TheoryofProbability,1,6,Dropped,43,16
+MATH-UA233,TheoryofProbability,3,7,Dropped,44,16
+MATH-UA233,TheoryofProbability,5,15,Dropped,43,17
+MATH-UA248,TheoryofNumbers,1,13,Dropped,36,20
+MATH-UA250,MathematicsofFinance,1,15,Dropped,44,15
+MATH-UA250,MathematicsofFinance,3,16,Dropped,45,15
+MATH-UA251,IntrotoMathModeling,1,11,Dropped,31,11
+MATH-UA251,IntrotoMathModeling,3,11,Dropped,32,10
+MATH-UA252,NumericalAnalysis,1,8,Dropped,38,17
+MATH-UA255,MathematicsandBiology,1,2,Dropped,20,10
+MATH-UA262,OrdinaryDiffEquations,1,10,Dropped,42,14
+MATH-UA262,OrdinaryDiffEquations,3,9,Dropped,42,13
+MATH-UA263,PartialDiffEquations,1,9,Dropped,40,10
+MATH-UA270,Transformation&Geometries,1,1,Dropped,0,0
+MATH-UA325,Analysis,1,10,Dropped,44,17
+MATH-UA325,Analysis,3,10,Dropped,45,17
+MATH-UA325,Analysis,5,7,Dropped,45,18
+MATH-UA328,HonorsAnalysisI,1,13,Dropped,40,20
+MATH-UA343,Algebra,1,4,Dropped,38,20
+MATH-UA343,Algebra,3,8,Dropped,39,20
+MATH-UA343,Algebra,5,7,Dropped,39,20
+MATH-UA348,HonorsAlgebraI,1,1,Dropped,36,14
+MATH-UA397,HonorsIII,1,4,Dropped,30,10
+MATH-UA9,AlgebraandCalculus,1,39,Dropped,135,20
+MATH-UA9,AlgebraandCalculus,6,19,Dropped,136,20
+MATH-UA9,AlgebraandCalculus,11,25,Dropped,135,21
