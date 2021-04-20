@@ -29,13 +29,14 @@ def makeDF():
         waitlistSizes.append(i['waitlistSizes'])
     '''
     for i in jsonval:
+        # print(i)
         courseNum=re.findall("[0-9]+",i['courseNum'])[0]
         # print(courseNum)
-        for j in range(np.min([len(i['courseSizes']),len(i['waitlistSizes']),len(i['droppedSizes'])])):
-            if (i['courseSizes'][j]!=None and i['waitlistSizes'][j]!=None and i['droppedSizes'][j]!=None ):
+        for j in range(np.min([len(i['sizeCaps']),len(i['waitlistSizes']),len(i['droppedSizes'])])):
+            if (i['sizeCaps'][j]!=None and i['waitlistSizes'][j]!=None and i['droppedSizes'][j]!=None ):
                 for z in range(int(i['waitlistSizes'][j])):
                     courseNums.append(courseNum)
-                    courseSizes.append(i['courseSizes'][j])
+                    courseSizes.append(i['sizeCaps'][j])
                     waitlistSizes.append(i['waitlistSizes'][j])
                     waitlistPos.append(z)
                     if (z<int(i['droppedSizes'][j])):
@@ -93,7 +94,7 @@ def logReg(df):
     print("class labels:", model.classes_)
     
     fakeX = np.zeros((1,4))
-    fakeX[0,:] = [120, 100, 20, 15]
+    fakeX[0,:] = [120, 100, 20, 5]
     print("fake prob: ", model.predict_proba(fakeX)[:,1])
 
 logReg(df)
