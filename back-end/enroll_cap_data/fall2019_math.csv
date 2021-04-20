@@ -1,205 +1,87 @@
-Course,SectionNum,CourseTitle,Component,EnrollmentTotal,WaitCap
-MATH-UA120,1,DiscreteMathematics,Lecture,40,10
-MATH-UA120,2,DiscreteMathematics,Lecture,45,10
-MATH-UA120,3,DiscreteMathematics,Lecture,37,10
-MATH-UA120,4,DiscreteMathematics,Lecture,45,20
-MATH-UA120,5,DiscreteMathematics,Lecture,45,20
-MATH-UA120,6,DiscreteMathematics,Lecture,40,10
-MATH-UA120,7,DiscreteMathematics,Lecture,47,20
-MATH-UA120,8,DiscreteMathematics,Lecture,40,10
-MATH-UA121,1,CalculusI,Lecture,120,10
-MATH-UA121,2,CalculusI,Recitation,30,10
-MATH-UA121,3,CalculusI,Recitation,30,10
-MATH-UA121,4,CalculusI,Recitation,30,10
-MATH-UA121,5,CalculusI,Recitation,30,10
-MATH-UA121,6,CalculusI,Lecture,100,10
-MATH-UA121,7,CalculusI,Recitation,25,10
-MATH-UA121,8,CalculusI,Recitation,25,10
-MATH-UA121,9,CalculusI,Recitation,25,10
-MATH-UA121,10,CalculusI,Recitation,25,10
-MATH-UA121,11,CalculusI,Lecture,120,10
-MATH-UA121,12,CalculusI,Recitation,30,20
-MATH-UA121,13,CalculusI,Recitation,30,20
-MATH-UA121,14,CalculusI,Recitation,30,20
-MATH-UA121,15,CalculusI,Recitation,30,20
-MATH-UA121,16,CalculusI,Lecture,120,10
-MATH-UA121,17,CalculusI,Recitation,30,10
-MATH-UA121,18,CalculusI,Recitation,30,10
-MATH-UA121,19,CalculusI,Recitation,30,10
-MATH-UA121,20,CalculusI,Recitation,30,10
-MATH-UA121,21,CalculusI,Lecture,131,10
-MATH-UA121,22,CalculusI,Recitation,32,10
-MATH-UA121,23,CalculusI,Recitation,33,10
-MATH-UA121,24,CalculusI,Recitation,31,10
-MATH-UA121,25,CalculusI,Recitation,35,10
-MATH-UA121,26,CalculusI,Lecture,120,10
-MATH-UA121,27,CalculusI,Recitation,30,10
-MATH-UA121,28,CalculusI,Recitation,0,10
-MATH-UA121,29,CalculusI,Recitation,30,10
-MATH-UA121,30,CalculusI,Recitation,0,10
-MATH-UA121,31,CalculusI,Lecture,120,10
-MATH-UA121,32,CalculusI,Recitation,30,10
-MATH-UA121,33,CalculusI,Recitation,30,10
-MATH-UA121,34,CalculusI,Recitation,30,10
-MATH-UA121,35,CalculusI,Recitation,0,10
-MATH-UA121,36,CalculusI,Lecture,120,10
-MATH-UA121,37,CalculusI,Recitation,30,10
-MATH-UA121,38,CalculusI,Recitation,30,10
-MATH-UA121,39,CalculusI,Recitation,30,10
-MATH-UA121,40,CalculusI,Recitation,30,10
-MATH-UA121,41,CalculusI,Lecture,108,15
-MATH-UA121,42,CalculusI,Recitation,27,10
-MATH-UA121,43,CalculusI,Recitation,27,10
-MATH-UA121,44,CalculusI,Recitation,27,10
-MATH-UA121,45,CalculusI,Recitation,27,10
-MATH-UA121,46,CalculusI,Lecture,120,10
-MATH-UA121,47,CalculusI,Recitation,30,10
-MATH-UA121,48,CalculusI,Recitation,0,10
-MATH-UA121,49,CalculusI,Recitation,30,10
-MATH-UA121,50,CalculusI,Recitation,30,10
-MATH-UA122,1,CalculusII,Lecture,40,10
-MATH-UA122,2,CalculusII,Lecture,40,10
-MATH-UA122,3,CalculusII,Lecture,40,10
-MATH-UA122,4,CalculusII,Lecture,37,10
-MATH-UA122,5,CalculusII,Lecture,40,10
-MATH-UA122,6,CalculusII,Lecture,37,10
-MATH-UA122,7,CalculusII,Lecture,30,10
-MATH-UA122,8,CalculusII,Lecture,40,10
-MATH-UA122,9,CalculusII,Lecture,40,10
-MATH-UA123,1,CalculusIII,Lecture,44,10
-MATH-UA123,2,CalculusIII,Lecture,40,10
-MATH-UA123,3,CalculusIII,Lecture,56,10
-MATH-UA123,4,CalculusIII,Lecture,37,10
-MATH-UA123,5,CalculusIII,Lecture,40,10
-MATH-UA123,6,CalculusIII,Lecture,37,10
-MATH-UA123,7,CalculusIII,Lecture,37,10
-MATH-UA123,8,CalculusIII,Lecture,40,10
-MATH-UA129,1,HonorsCalculusIII,Lecture,36,10
-MATH-UA140,1,LinearAlgebra,Lecture,32,12
-MATH-UA140,2,LinearAlgebra,Lecture,36,20
-MATH-UA140,3,LinearAlgebra,Lecture,43,10
-MATH-UA140,4,LinearAlgebra,Lecture,45,10
-MATH-UA140,5,LinearAlgebra,Lecture,38,10
-MATH-UA140,6,LinearAlgebra,Lecture,37,10
-MATH-UA140,7,LinearAlgebra,Lecture,15,11
-MATH-UA140,8,LinearAlgebra,Lecture,37,11
-MATH-UA140,9,LinearAlgebra,Lecture,45,11
-MATH-UA140,10,LinearAlgebra,Lecture,52,10
-MATH-UA140,11,LinearAlgebra,Lecture,39,10
-MATH-UA148,1,HonorsLinearAlgebra,Lecture,38,10
-MATH-UA211,1,MathematicsforEconomicsI,Lecture,165,20
-MATH-UA211,2,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA211,3,MathematicsforEconomicsI,Recitation,37,10
-MATH-UA211,4,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA211,5,MathematicsforEconomicsI,Recitation,37,10
-MATH-UA211,6,MathematicsforEconomicsI,Lecture,164,20
-MATH-UA211,7,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA211,8,MathematicsforEconomicsI,Recitation,37,10
-MATH-UA211,9,MathematicsforEconomicsI,Recitation,37,10
-MATH-UA211,10,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA211,11,MathematicsforEconomicsI,Lecture,160,20
-MATH-UA211,12,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA211,13,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA211,14,MathematicsforEconomicsI,Recitation,40,10
-MATH-UA211,15,MathematicsforEconomicsI,Recitation,30,10
-MATH-UA211,16,MathematicsforEconomicsI,Lecture,141,20
-MATH-UA211,17,MathematicsforEconomicsI,Recitation,32,10
-MATH-UA211,18,MathematicsforEconomicsI,Recitation,32,10
-MATH-UA211,19,MathematicsforEconomicsI,Recitation,32,10
-MATH-UA211,20,MathematicsforEconomicsI,Recitation,45,10
-MATH-UA212,1,MathematicsforEconomicsII,Lecture,150,15
-MATH-UA212,2,MathematicsforEconomicsII,Recitation,35,10
-MATH-UA212,3,MathematicsforEconomicsII,Recitation,35,10
-MATH-UA212,4,MathematicsforEconomicsII,Recitation,40,10
-MATH-UA212,5,MathematicsforEconomicsII,Recitation,40,10
-MATH-UA212,6,MathematicsforEconomicsII,Lecture,122,10
-MATH-UA212,7,MathematicsforEconomicsII,Recitation,32,10
-MATH-UA212,8,MathematicsforEconomicsII,Recitation,30,10
-MATH-UA212,9,MathematicsforEconomicsII,Recitation,30,10
-MATH-UA212,10,MathematicsforEconomicsII,Recitation,30,10
-MATH-UA213,1,MathematicsforEconomicsIII,Lecture,125,25
-MATH-UA213,2,MathematicsforEconomicsIII,Recitation,36,15
-MATH-UA213,3,MathematicsforEconomicsIII,Recitation,28,15
-MATH-UA213,4,MathematicsforEconomicsIII,Recitation,27,10
-MATH-UA213,5,MathematicsforEconomicsIII,Recitation,28,10
-MATH-UA232,1,SetTheory,Lecture,20,10
-MATH-UA232,2,SetTheory,Recitation,10,5
-MATH-UA232,3,SetTheory,Recitation,10,5
-MATH-UA233,1,TheoryofProbability,Lecture,55,27
-MATH-UA233,2,TheoryofProbability,Recitation,27,27
-MATH-UA233,3,TheoryofProbability,Lecture,53,20
-MATH-UA233,4,TheoryofProbability,Recitation,29,20
-MATH-UA233,5,TheoryofProbability,Lecture,25,5
-MATH-UA233,6,TheoryofProbability,Recitation,25,5
-MATH-UA233,7,TheoryofProbability,Recitation,28,10
-MATH-UA233,8,TheoryofProbability,Recitation,23,10
-MATH-UA234,1,MathematicalStatistics,Lecture,58,21
-MATH-UA234,2,MathematicalStatistics,Recitation,33,21
-MATH-UA234,3,MathematicalStatistics,Recitation,26,10
-MATH-UA248,1,TheoryofNumbers,Lecture,36,20
-MATH-UA248,2,TheoryofNumbers,Recitation,36,20
-MATH-UA250,1,MathematicsofFinance,Lecture,51,20
-MATH-UA250,2,MathematicsofFinance,Recitation,29,20
-MATH-UA250,3,MathematicsofFinance,Lecture,39,11
-MATH-UA250,4,MathematicsofFinance,Recitation,39,11
-MATH-UA250,5,MathematicsofFinance,Recitation,22,10
-MATH-UA251,1,IntrotoMathModeling,Lecture,36,17
-MATH-UA251,2,IntrotoMathModeling,Recitation,36,17
-MATH-UA251,3,IntrotoMathModeling,Lecture,35,10
-MATH-UA251,4,IntrotoMathModeling,Recitation,35,10
-MATH-UA251,5,IntrotoMathModeling,Lecture,25,5
-MATH-UA251,6,IntrotoMathModeling,Recitation,25,5
-MATH-UA252,1,NumericalAnalysis,Lecture,38,16
-MATH-UA252,2,NumericalAnalysis,Recitation,38,16
-MATH-UA252,3,NumericalAnalysis,Lecture,37,20
-MATH-UA252,4,NumericalAnalysis,Recitation,37,20
-MATH-UA255,1,MathematicsandBiology,Lecture,20,10
-MATH-UA255,2,MathematicsandBiology,Laboratory,20,10
-MATH-UA262,1,OrdinaryDiffEquations,Lecture,69,20
-MATH-UA262,2,OrdinaryDiffEquations,Recitation,34,20
-MATH-UA262,3,OrdinaryDiffEquations,Lecture,37,12
-MATH-UA262,4,OrdinaryDiffEquations,Recitation,37,12
-MATH-UA262,5,OrdinaryDiffEquations,Lecture,23,10
-MATH-UA262,6,OrdinaryDiffEquations,Recitation,23,10
-MATH-UA262,7,OrdinaryDiffEquations,Recitation,35,10
-MATH-UA263,1,PartialDiffEquations,Lecture,40,10
-MATH-UA263,2,PartialDiffEquations,Recitation,40,10
-MATH-UA325,1,Analysis,Lecture,55,22
-MATH-UA325,2,Analysis,Recitation,25,20
-MATH-UA325,3,Analysis,Lecture,40,20
-MATH-UA325,4,Analysis,Recitation,40,20
-MATH-UA325,5,Analysis,Lecture,40,11
-MATH-UA325,6,Analysis,Recitation,40,11
-MATH-UA325,7,Analysis,Recitation,25,10
-MATH-UA328,1,HonorsAnalysisI,Lecture,40,20
-MATH-UA328,2,HonorsAnalysisI,Recitation,40,20
-MATH-UA343,1,Algebra,Lecture,40,20
-MATH-UA343,2,Algebra,Recitation,39,20
-MATH-UA343,3,Algebra,Lecture,39,20
-MATH-UA343,4,Algebra,Recitation,39,20
-MATH-UA343,5,Algebra,Lecture,39,20
-MATH-UA343,6,Algebra,Recitation,39,20
-MATH-UA348,1,HonorsAlgebraI,Lecture,37,15
-MATH-UA348,2,HonorsAlgebraI,Recitation,37,15
-MATH-UA395,1,SpecialTopics,Lecture,40,10
-MATH-UA395,2,SpecialTopics,Recitation,40,10
-MATH-UA397,1,HonorsIII,Lecture,30,10
-MATH-UA397,2,HonorsIII,Recitation,30,10
-MATH-UA897,1,InternshipinMathematics,Internship,30,0
-MATH-UA9,1,AlgebraandCalculus,Lecture,155,23
-MATH-UA9,2,AlgebraandCalculus,Recitation,40,10
-MATH-UA9,3,AlgebraandCalculus,Recitation,40,10
-MATH-UA9,4,AlgebraandCalculus,Recitation,35,10
-MATH-UA9,5,AlgebraandCalculus,Recitation,40,10
-MATH-UA9,6,AlgebraandCalculus,Lecture,120,20
-MATH-UA9,7,AlgebraandCalculus,Recitation,30,10
-MATH-UA9,8,AlgebraandCalculus,Recitation,30,10
-MATH-UA9,9,AlgebraandCalculus,Recitation,30,10
-MATH-UA9,10,AlgebraandCalculus,Recitation,30,10
-MATH-UA9,11,AlgebraandCalculus,Lecture,132,20
-MATH-UA9,12,AlgebraandCalculus,Recitation,32,10
-MATH-UA9,13,AlgebraandCalculus,Recitation,36,10
-MATH-UA9,14,AlgebraandCalculus,Recitation,32,10
-MATH-UA9,15,AlgebraandCalculus,Recitation,32,10
-MATH-UA997,1,IndependentStudy,IndependentStudy,10,0
-MATH-UA997,2,IndependentStudy,IndependentStudy,10,0
+Subject/Number,Course Title,Class Section,Distinct Student Count,Class Enrollment Status,Enrollment Cap,Watilist Cap
+MATH-UA 120,Discrete Mathematics,1,9,Dropped,40,10
+MATH-UA 120,Discrete Mathematics,2,10,Dropped,45,10
+MATH-UA 120,Discrete Mathematics,3,18,Dropped,37,10
+MATH-UA 120,Discrete Mathematics,4,17,Dropped,45,20
+MATH-UA 120,Discrete Mathematics,5,15,Dropped,45,20
+MATH-UA 120,Discrete Mathematics,6,7,Dropped,40,10
+MATH-UA 120,Discrete Mathematics,7,12,Dropped,47,20
+MATH-UA 120,Discrete Mathematics,8,13,Dropped,40,10
+MATH-UA 121,Calculus I,1,22,Dropped,120,10
+MATH-UA 121,Calculus I,6,13,Dropped,100,10
+MATH-UA 121,Calculus I,11,33,Dropped,120,10
+MATH-UA 121,Calculus I,16,20,Dropped,120,10
+MATH-UA 121,Calculus I,21,16,Dropped,131,10
+MATH-UA 121,Calculus I,26,9,Dropped,120,10
+MATH-UA 121,Calculus I,31,15,Dropped,120,10
+MATH-UA 121,Calculus I,36,20,Dropped,120,10
+MATH-UA 121,Calculus I,41,16,Dropped,108,15
+MATH-UA 121,Calculus I,46,11,Dropped,120,10
+MATH-UA 122,Calculus II,1,16,Dropped,40,10
+MATH-UA 122,Calculus II,2,23,Dropped,40,10
+MATH-UA 122,Calculus II,3,14,Dropped,40,10
+MATH-UA 122,Calculus II,4,24,Dropped,37,10
+MATH-UA 122,Calculus II,5,18,Dropped,40,10
+MATH-UA 122,Calculus II,6,0,Dropped,37,10
+MATH-UA 122,Calculus II,7,12,Dropped,30,10
+MATH-UA 122,Calculus II,8,13,Dropped,40,10
+MATH-UA 122,Calculus II,9,33,Dropped,40,10
+MATH-UA 123,Calculus III,1,10,Dropped,44,10
+MATH-UA 123,Calculus III,2,13,Dropped,40,10
+MATH-UA 123,Calculus III,3,8,Dropped,56,10
+MATH-UA 123,Calculus III,4,11,Dropped,37,10
+MATH-UA 123,Calculus III,5,16,Dropped,40,10
+MATH-UA 123,Calculus III,6,12,Dropped,37,10
+MATH-UA 123,Calculus III,7,10,Dropped,37,10
+MATH-UA 123,Calculus III,8,1,Dropped,40,10
+MATH-UA 129,Honors Calculus III,1,3,Dropped,36,10
+MATH-UA 140,Linear Algebra,1,8,Dropped,32,12
+MATH-UA 140,Linear Algebra,2,14,Dropped,36,20
+MATH-UA 140,Linear Algebra,3,11,Dropped,43,10
+MATH-UA 140,Linear Algebra,4,22,Dropped,45,10
+MATH-UA 140,Linear Algebra,5,16,Dropped,38,10
+MATH-UA 140,Linear Algebra,6,15,Dropped,37,10
+MATH-UA 140,Linear Algebra,7,17,Dropped,15,11
+MATH-UA 140,Linear Algebra,8,16,Dropped,37,11
+MATH-UA 140,Linear Algebra,9,19,Dropped,45,11
+MATH-UA 140,Linear Algebra,10,21,Dropped,52,10
+MATH-UA 140,Linear Algebra,11,22,Dropped,39,10
+MATH-UA 148,Honors Linear Algebra,1,12,Dropped,38,10
+MATH-UA 211,Mathematics for Economics I,1,21,Dropped,165,20
+MATH-UA 211,Mathematics for Economics I,6,25,Dropped,164,20
+MATH-UA 211,Mathematics for Economics I,11,30,Dropped,160,20
+MATH-UA 211,Mathematics for Economics I,16,21,Dropped,141,20
+MATH-UA 212,Mathematics for Economics II,1,10,Dropped,150,15
+MATH-UA 212,Mathematics for Economics II,6,10,Dropped,122,10
+MATH-UA 213,Mathematics for Economics III,1,16,Dropped,125,25
+MATH-UA 232,Set Theory,1,19,Dropped,20,10
+MATH-UA 233,Theory of Probability,1,15,Dropped,55,27
+MATH-UA 233,Theory of Probability,3,11,Dropped,53,20
+MATH-UA 233,Theory of Probability,5,6,Dropped,25,5
+MATH-UA 234,Mathematical Statistics,1,14,Dropped,58,21
+MATH-UA 248,Theory of Numbers,1,12,Dropped,36,20
+MATH-UA 250,Mathematics of Finance,1,21,Dropped,51,20
+MATH-UA 250,Mathematics of Finance,3,21,Dropped,39,11
+MATH-UA 251,Intro to Math Modeling,1,14,Dropped,36,17
+MATH-UA 251,Intro to Math Modeling,3,9,Dropped,35,10
+MATH-UA 251,Intro to Math Modeling,5,15,Dropped,25,5
+MATH-UA 252,Numerical Analysis,1,18,Dropped,38,16
+MATH-UA 252,Numerical Analysis,3,17,Dropped,37,20
+MATH-UA 255,Mathematics and Biology,1,1,Dropped,20,10
+MATH-UA 262,Ordinary Diff Equations,1,17,Dropped,69,20
+MATH-UA 262,Ordinary Diff Equations,3,17,Dropped,37,12
+MATH-UA 262,Ordinary Diff Equations,5,13,Dropped,23,10
+MATH-UA 263,Partial Diff Equations,1,8,Dropped,40,10
+MATH-UA 325,Analysis,1,3,Dropped,55,22
+MATH-UA 325,Analysis,3,18,Dropped,40,20
+MATH-UA 325,Analysis,5,8,Dropped,40,11
+MATH-UA 328,Honors Analysis I,1,8,Dropped,40,20
+MATH-UA 343,Algebra,1,11,Dropped,40,20
+MATH-UA 343,Algebra,3,5,Dropped,39,20
+MATH-UA 343,Algebra,5,6,Dropped,39,20
+MATH-UA 348,Honors Algebra I,1,9,Dropped,37,15
+MATH-UA 395,Special Topics,1,5,Dropped,40,10
+MATH-UA 397,Honors III,1,11,Dropped,30,10
+MATH-UA 9,Algebra and Calculus,1,28,Dropped,155,23
+MATH-UA 9,Algebra and Calculus,6,23,Dropped,120,20
+MATH-UA 9,Algebra and Calculus,11,21,Dropped,132,20
