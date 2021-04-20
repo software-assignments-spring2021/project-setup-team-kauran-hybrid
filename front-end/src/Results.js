@@ -6,6 +6,7 @@ import './ClassModules.css';
 import ClassModules from'./ClassModules';
 import axios from "axios";
 import {useState,useEffect} from'react';
+import {  Router, Switch, Route,Redirect } from 'react-router-dom'
 
 const Results=(props)=>{
     const [userInput, setUserInput] = useState([]);
@@ -52,10 +53,17 @@ const Results=(props)=>{
                 </ClassModules>
                 <p> Would you like to login and store this search?</p>
                 <p>
+                {/* <Route exact path="/Login">
+                    <button className="results-button">YES!
+                        
+                        <Redirect to='/Login'/>
+                        
+                    </button>
+                </Route> */}
                     
-                    <a href="/Login" className="results-button">YES!</a>
+                    
                     {/* email='emailtest' position={userInput.position} number={userInput.number}  */}
-
+                    <a href="/Login" email={userInput.email} position={userInput.position} number={userInput.number} className="results-button">YES!</a>
                     <a href="/" className="results-button">NO! Go Back</a>
                 
                 </p>

@@ -2,5 +2,6 @@
     "emmet.excludeLanguages": [
 
         "markdown"
-    ]
+    ],
+    "python.pythonPath": "C:\\Users\\Betty\\Anaconda3\\python.exe"
 }

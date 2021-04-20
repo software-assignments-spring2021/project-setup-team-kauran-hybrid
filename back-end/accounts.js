@@ -1,22 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const bodyParser = require("body-parser");
-const dotenv=require('dotenv');
-const mongo=require('./mongo/mongo.js');
 const passport=require('passport');
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
-
-router.get("/", (req,res, next) => {
-  // use axios to make a request to an API for our class history data
-  let val=mongo.mongoGetSections().then(response=>res.json(response));
-})
 const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
 const checkToken = (req, res, next) => {
-    const header = req.headers.auth;
-    //console.log(header);
+    const header = passport.session['authorization'];
+    console.log(passport.session);
     if(typeof header !== 'undefined') {
         const bearer = header.split(' ');
         const token = bearer[1];
@@ -29,28 +21,25 @@ const checkToken = (req, res, next) => {
     }
 } 
 router.get('/protected',checkToken,(req,res) => {
-    console.log("token",req.token);
-    console.log(passport.session['authorization']);
+    console.log("before if");
     jwt.verify(req.token, PRIV_KEY, (err, authorizedData) => {
         if(err){
             //If error send Forbidden (403)
-            throw err;
+            console.log('ERROR: Could not connect to the protected route');
             res.sendStatus(403);
         } 
         else {
             res.header('authorization',req.token); 
             //If token is successfully verified, we can send the autorized data 
-            let val=mongo.mongoGetSections().then(response=>res.json({
-              response:response,
-              message: 'Successful log in',
-              authorizedData
-            }));
+            res.json({
+            message: 'Successful log in',
+            authorizedData
+        });
         console.log('SUCCESS: Connected to protected route');
         }
     })
     
 });
-
-module.exports = {
-  router:router
-};
+  module.exports = {
+    router:router
+  };

@@ -1,17 +1,28 @@
 import React,{useState} from'react';
 import './LoginLogout.css'
-import { Link } from 'react-router-dom';
+import { Link,Redirect,Route,useHistory } from 'react-router-dom';
 import Account from './Account';
 import axios from 'axios';
-
+// axios.interceptors.request.use(x=>{
+//   console.log(x);
+//   return x;
+// },function(err){
+//   if(err) throw err;
+// });
+// axios.interceptors.response.use(x=>{
+//   console.log('Response:', JSON.stringify(x, null, 2))
+//   return x;
+// },function(err){
+//     if(err) throw err;
+// });
 const LoginLogout=(props)=> {
 
   console.log("LoginLogout page", props.email)
-
+    const history=useHistory();
     const [email,setEmail]=useState("Enter your Email");
     const [password,setPassword]=useState("Enter your password");
     const [submit, setSubmit]=useState();
-
+    const loggedIn=true;
     const handleChange = ({ target }) => { 
       setEmail( target.value );
     };
@@ -25,14 +36,19 @@ const LoginLogout=(props)=> {
       setPassword('');
     };
 
-    const  handleClickLogin =async() =>{
- 
+    const  handleClickLogin =async(e) =>{
+        //e.preventDefault()
         await axios.post('http://localhost:3000/login_logout/login',{
           username:email,
           password:password,
-          }
-        );
-
+      }).then(function(response,err){
+        if(err) throw err;
+        console.log(response);
+        history.push({
+          pathname:response.data.redirect,
+          auth:response.data.auth
+        });
+      });
     };
 
     const handleClickLoginParams = async() => {
@@ -42,21 +58,26 @@ const LoginLogout=(props)=> {
         password:password,
         position:props.position,
         number:props.number
-        }
-      );
+      }).then(function(response,err){
+        if(err) throw err;
+        console.log(response);
+        history.push(response.data.redirect);
+      });
 
     }
 
     const  handleClickSignUp =async(e) =>{
-        e.preventDefault()
-        let something=await axios.post('http://localhost:3000/login_logout/signup',{
-              
+        //e.preventDefault()
+        await axios.post('http://localhost:3000/login_logout/signup',{
           username:email,
           password:password,
-          }
-        );
+        }).then(function(response,err){
+          if(err) throw err;
+          console.log(response);
+          history.push(response.data.redirect);
+        });
         
-        console.log(something);
+        //console.log(something);
  
     };
 
@@ -67,17 +88,19 @@ const LoginLogout=(props)=> {
         password:password,
         position:props.position,
         number:props.number
-        }
-      );
+      }).then(function(response,err){
+        if(err) throw err;
+        console.log(response);
+        history.push(response.data.redirect);
+      });
     }
       // if the user did not go through the home page and clicked login first
       if (!props.email) {
         return (
           <React.Fragment>
-            {}
-              <form action="login_logout" method="POST" className="box">
+            <form action="login_logout" method="POST" className="box">
                 <p>
-                  {}
+                  
                     <input className="inputs"
                     type="email"
                     name="email"
@@ -89,7 +112,7 @@ const LoginLogout=(props)=> {
                 </p>
               
                 <p> 
-                {}
+                
                     <input className="inputs"
                     type="password"
                     name="password"
@@ -100,30 +123,30 @@ const LoginLogout=(props)=> {
                     />
                 </p>
               
-                {}
+                
                 <div>
                    <center>
-                    <a href="./Account" className="submit-button" onClick={handleClickLogin}> Login </a>
+                    <button className="submit-button" onClick={handleClickLogin}> Login </button>
                   
-                    <a href="./Account" className="submit-button" onClick={handleClickSignUp}> Signup </a>
+                    <button className="submit-button" onClick={handleClickSignUp}> Signup </button>
                    </center>
   
                 </div>
   
-              </form>   
-            {}
+              </form> 
           </React.Fragment>
-  
+
+              
+          
         );  
       }
       // otherwise they went through the home page and have clicked yes on results
       else {
         return (
-          <React.Fragment>
-            {}
+
               <form action="login_logout" method="POST" className="box">
                 <p>
-                  {}
+                  
                     <input className="inputs"
                     type="email"
                     name="email"
@@ -135,7 +158,7 @@ const LoginLogout=(props)=> {
                 </p>
               
                 <p> 
-                {}
+                
                     <input className="inputs"
                     type="password"
                     name="password"
@@ -146,19 +169,18 @@ const LoginLogout=(props)=> {
                     />
                 </p>
               
-                {}
+                
                 <div>
                    <center>
-                    <a href="./Account" className="submit-button" onClick={handleClickLoginParams}> Login </a>
+                    <button className="submit-button" onClick={handleClickLoginParams}> Login </button>
                   
-                    <a href="./Account" className="submit-button" onClick={handleClickSignUpParams}> Signup </a>
+                    <button className="submit-button" onClick={handleClickSignUpParams}> Signup </button>
                    </center>
   
                 </div>
   
               </form>   
-            {}
-          </React.Fragment>
+            
   
         );  
       }
