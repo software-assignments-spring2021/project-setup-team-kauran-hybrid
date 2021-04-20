@@ -1,4 +1,4 @@
-Subject/Number,Course Title,Class Section,Distinct Student Count,Class Enrollment Status,Enrollment Cap,Watilist Cap
+Course,CourseTitle,Section,DistinctStudentCount,ClassEnrollmentStatus,EnrollmentCap,WatilistCap
 MATH-UA 120,Discrete Mathematics,1,13,Dropped,41,10
 MATH-UA 120,Discrete Mathematics,2,10,Dropped,40,10
 MATH-UA 120,Discrete Mathematics,3,12,Dropped,50,10
