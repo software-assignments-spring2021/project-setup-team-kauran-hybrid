@@ -13,22 +13,31 @@ function ClassModules(props){
     // a nested function that fetches the data
     async function fetchData() {
       // axios is a 3rd-party module for fetching data from servers
-      const result = await axios(
+      let result;
+      if(props.page!='accounts'){
+        result = await axios(
   
-        // linking to the back-end instead of to mockaroo now
-        'http://localhost:3000/class_modules'
-      );
+          // linking to the back-end instead of to mockaroo now
+          'http://localhost:3000/class_modules'
+        );
+      }
+      else{
+        result = await axios(
+          'http://localhost:3000/class_modules/protected',{
+            headers:{
+              'auth':props.auth
+            }
+          }
+        );
+      }
+
       //console.log(result.data);
       // set the state variable
       // this will cause a re-render of this component
       setHistory(result.data);
     }
-  
-    // fetch the data!
     fetchData();
     console.log(history);
-  
-  // the blank array below causes this callback to be executed only once on component load
   }, []);
     if(props.page=='results'){
       return (
@@ -46,16 +55,31 @@ function ClassModules(props){
       );
     }
     else if(props.page=='accounts'){
-      return (
-        <>
-          <div className="ClassModules">
-            {history.map(item => (
-              <Course page={props.page} key={item.courseNum} details={item} />
-              // <Semester key={item.semester} details={item} />
-            ))}
-          </div>
-        </>
-      );
+      if(!props.auth){
+        return (
+          <>
+            <div className="ClassModules">
+              {history.map(item => (
+                <Course page={props.page} key={item.courseNum} details={item} />
+                // <Semester key={item.semester} details={item} />
+              ))}
+            </div>
+          </>
+        );
+      }
+      else{
+        return (
+          <>
+            <div className="ClassModules">
+              {history.map(item => (
+                <Course page={props.page} key={item.courseNum} auth={props.auth} details={item} />
+                // <Semester key={item.semester} details={item} />
+              ))}
+            </div>
+          </>
+        );
+      }
+
     }
     else if(props.page=='professors'){
       return (

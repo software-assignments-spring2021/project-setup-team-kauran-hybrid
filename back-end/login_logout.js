@@ -18,7 +18,7 @@ const create_key = require('./create_key.js');
 const mongo = require("./mongo/mongo.js");
 const { restart } = require("nodemon");
 const { time } = require("console");
-dotenv.config();
+//dotenv.config();
 
 // user and pwd
 const mongoUser = process.env.mongoUSER;
@@ -221,7 +221,11 @@ router.post('/login',(req,res,next)=>{
         passport.session.authorization=auth;
         //console.log(res);
         //res.redirect('/accounts/protected');
-        res.header('authorization',auth);
+        //res.header('authorization',auth);
+        res.send({
+          'auth':auth,
+          'redirect':'/Account'
+        });
         //return res.status(200).json({success: 'logged in '});
     });
   })(req,res,next);
@@ -237,12 +241,14 @@ router.post('/login',(req,res,next)=>{
     }
     req.logIn(user,function(err){
       if(err) throw err;
-      return res.status(200).json({success: 'logged in '});
+      const auth="Bearer "+signedJWT;
+      passport.session.authorization=auth;
+      res.send({
+        'auth':auth,
+        'redirect':'/Account'
+      });
     });
   })(req,res,next);
-  //const auth="Bearer "+signedJWT;
-  //res.setHeader('authorization',auth);
-  //res.redirect('/login_logout/protected');
  });
 
 const checkToken = (req, res, next) => {

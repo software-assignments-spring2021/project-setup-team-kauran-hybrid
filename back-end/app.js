@@ -44,7 +44,7 @@ mongoose.connect(URL,{useNewUrlParser:true,useUnifiedTopology:true});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/home_login", require("./home"));
-app.use("/class_modules", require("./class_modules"));
+app.use("/class_modules", require("./class_modules").router);
 app.use("/results", require("./results").router);
 app.use("/py_script",require("./mock_data/generator").router);
 //app.use("/mongo_script",require("./mongo/mongo").router);
