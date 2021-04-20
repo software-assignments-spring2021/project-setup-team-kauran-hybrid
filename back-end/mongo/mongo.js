@@ -76,7 +76,7 @@ const mongoSaveUserHistory=async(username,password,courseNum,waitlistPos)=>{
 };
 
 //this is for creating OR updating classes from albert
-const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap,status)=>{
+const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap)=>{
     const courses=whModels.courses;
     //find the course if it exists
     await courses.findOne({'courseNum':courseNum},function(err,results){
@@ -90,7 +90,7 @@ const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppe
                 waitlistSizes:[waitlistSize],
                 droppedSizes:[droppedSize],
                 //status: status
-                statuses:[status]
+                // statuses:[status]
 
             });
             newCourse.save()
@@ -104,7 +104,7 @@ const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppe
             let newCourseSizes;
             let newWaitlistSizes;
             let newDroppedSizes;
-            let newStatuses;
+            // let newStatuses;
             if(sizeCap){
                 newSizeCaps=results.sizeCaps.push(sizeCap);
             }
@@ -119,9 +119,9 @@ const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppe
                 newDroppedSizes=results.droppedSizes.push(droppedSize);
             }
 
-            if (status) {
-                newStatuses=results.statuses.push(status);
-            }
+            // if (status) {
+            //     newStatuses=results.statuses.push(status);
+            // }
 
             //const newStatus=status;
             //updating, this part isn't working correctly !!!
@@ -130,7 +130,7 @@ const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppe
                 courseSizes:newCourseSizes,
                 waitlistSizes:newWaitlistSizes,
                 droppedSizes:newDroppedSizes,
-                status:newStatuses
+                // status:newStatuses
 
             });
         }

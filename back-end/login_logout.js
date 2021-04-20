@@ -132,18 +132,6 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
         });
       }
       else{
-        // console.log(password,user.password);
-        // bcrypt.compare(password,user.password,(err,isMatch)=>{
-        //   if(err) throw err;
-        //   if(isMatch){
-        //     console.log("Matches");
-        //     return done(null,user,{message:"Matches"});
-        //   }
-        //   else{
-        //     console.log("Wrong password");
-            
-        //   }
-        // });
         console.log('Account Exists!')
         return done(null,false,{message:"Account Exists"});
       }
@@ -162,27 +150,6 @@ const signToken = (user) =>{
     "temporary_secret"
   )
 }
-
-// router.use((req, res, next) => {
-//   if (req.passportErrorMessage) {
-//     res.passportErrorMessage = req.passportErrorMessage
-//   }
-//   next()
-// })
-
-// router.get('/', passport.authenticate('jwt', {session : false}), (req, res) => {
-//   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-//   mongoose.connect(uri, {useNewUrlParser:true,useUnifiedTopology:true});
-//   res.json({user: req.user})
-//   mongoose.disconnect()
-// })
-
-// router.post('/', passport.authenticate('signin', {session : false}), (req, res) => {
-//   const uri = `mongodb+srv://${mongoUser}:${mongoPwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
-//   mongoose.connect(uri, {useNewUrlParser:true,useUnifiedTopology:true});
-//   res.json({token: signToken(req.user)})
-//   mongoose.disconnect()
-// })
 
 router.post('/login',(req,res,next)=>{
   // mongoose.disconnect();
@@ -218,6 +185,10 @@ router.post('/login',(req,res,next)=>{
   return res.status(200);
  });
 
+ router.get('/protected',passport.authenticate('jwt',{session:false}),
+ (req,res,next)=>{
+     res.status(200).send("Authenticated");
+ });
 module.exports = {
   passport:passport,
   router:router,
