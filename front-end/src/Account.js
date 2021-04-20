@@ -8,28 +8,54 @@ import ClassModules from'./ClassModules';
 import {Link,Switch} from 'react-router-dom';
 
 const Account = (props) => {
-    return (
-     <div>
-         <div className = "menu">
-            <MenuBar>
-
-            </MenuBar>
+    //below is your authenticated token!
+    //console.log(props.history.location.auth);
+    if(props.history.location.auth){
+        return (
+            <div>
+                <div className = "menu">
+                   <MenuBar>
+       
+                   </MenuBar>
+                   </div>
+           <div className = "account-page">
+                   
+                   {/* <p>
+                     Waitlisted?
+                   </p> */}
+                   <p>
+                       <ClassModules page='accounts' auth={props.history.location.auth}>
+       
+                       </ClassModules>
+                   </p>
+                   
+               </div>
             </div>
-<div className = "account-page">
-            
-            {/* <p>
-              Waitlisted?
-            </p> */}
-            <p>
-                <ClassModules page='accounts'>
-
-                </ClassModules>
-            </p>
-            
-        </div>
-     </div>
-        
-
-    )
+               
+        )
+    }
+    else{
+        return(
+            <div>
+                <div className = "menu">
+                   <MenuBar>
+       
+                   </MenuBar>
+                   </div>
+           <div className = "account-page">
+                   
+                   {/* <p>
+                     Waitlisted?
+                   </p> */}
+                   <p>
+                        You're not logged in!
+                   </p>
+                   
+               </div>
+            </div>
+        )
+    }
+    
+    
 }
 export default Account
