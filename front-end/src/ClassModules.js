@@ -8,7 +8,8 @@ import Course from "./Course";
 
 
 function ClassModules(props){
-  const [history, setHistory] = useState([]);
+  // const auth = props.auth;
+  const [userHistory, setUserHistory] = useState([]);
   useEffect(() => {
     // a nested function that fetches the data
     async function fetchData() {
@@ -25,28 +26,31 @@ function ClassModules(props){
         result = await axios(
           'http://localhost:3000/class_modules/protected',{
             headers:{
-              'auth':props.auth
+              'auth':props.auth,
+              'username':props.username
             }
           }
         );
       }
 
-      //console.log(result.data);
+      console.log(result.data);
       // set the state variable
       // this will cause a re-render of this component
-      setHistory(result.data);
+      setUserHistory(result.data);
     }
     fetchData();
-    console.log(history);
+    console.log(userHistory);
   }, []);
     if(props.page=='results'){
+      //console.log(userHistory.courseNum);
       return (
         
         <>
 
           <div className="ClassModules">
   
-            {history.map(item => (
+            {userHistory.map(item => (
+              
               <Course page={props.page} key={item.courseNum,item.courseName} details={item} />
               // <Semester key={item.semester} details={item} />
             ))}
@@ -59,7 +63,7 @@ function ClassModules(props){
         return (
           <>
             <div className="ClassModules">
-              {history.map(item => (
+              {userHistory.map(item => (
                 <Course page={props.page} key={item.courseNum} details={item} />
                 // <Semester key={item.semester} details={item} />
               ))}
@@ -68,11 +72,16 @@ function ClassModules(props){
         );
       }
       else{
+        
+        //const hist=userHistory[0];
+        console.log('userhistory',userHistory[0]?.userHistory[0]);
         return (
           <>
-            <div className="ClassModules">
-              {history.map(item => (
-                <Course page={props.page} key={item.courseNum} auth={props.auth} details={item} />
+            <div className="ClassModules" auth={props.auth}>
+              {userHistory[0]?.userHistory.map(item => (
+                  
+                  <Course page={props.page} key={item} details={item} />
+                
                 // <Semester key={item.semester} details={item} />
               ))}
             </div>
@@ -85,7 +94,7 @@ function ClassModules(props){
       return (
         <>
           <div className="ClassModules">
-            {history.map(item => (
+            {userHistory.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
             ))}

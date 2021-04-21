@@ -11,9 +11,12 @@ const fs = require("fs");
 
 router.get("/", (req,res, next) => {
   // use axios to make a request to an API for our class history data
-  let val=mongo.mongoGetSections().then(response=>res.json(response));
+  let val=mongo.mongoGetSections().then(response=> {
+    res.json(response);
+    console.log(response);
+  });
 })
-const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
+
 const checkToken = (req, res, next) => {
     const header = req.headers.auth;
     //console.log(header);
@@ -29,22 +32,31 @@ const checkToken = (req, res, next) => {
     }
 } 
 router.get('/protected',checkToken,(req,res) => {
+    const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
     console.log("token",req.token);
-    console.log(passport.session['authorization']);
+    // console.log(passport.session['authorization']);
+    console.log(PRIV_KEY);
     jwt.verify(req.token, PRIV_KEY, (err, authorizedData) => {
         if(err){
+            console.log(authorizedData);
             //If error send Forbidden (403)
             throw err;
             res.sendStatus(403);
         } 
         else {
             res.header('authorization',req.token); 
+            let val = mongo.mongoGetUserHistory(req.headers.username).then(response=> {
+                res.json(response);
+                console.log(response);
+            });
+            
+            // let val=mongo.mongoGetSections().then(response=>res.json(response));
             //If token is successfully verified, we can send the autorized data 
-            let val=mongo.mongoGetSections().then(response=>res.json({
-              response:response,
-              message: 'Successful log in',
-              authorizedData
-            }));
+            // let val=mongo.mongoGetSections().then(response=>res.json({
+            //   response:response,
+            //   message: 'Successful log in',
+            //   authorizedData
+            // }));
         console.log('SUCCESS: Connected to protected route');
         }
     })
