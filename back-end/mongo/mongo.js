@@ -37,7 +37,7 @@ const mongoInsertAccount=async(username,password)=>{
 
 };
 //this is for updating user history OR creating user account along side search history
-const mongoSaveUserHistory=async(username,password,courseNum,waitlistPos)=>{
+const mongoSaveUserHistory=async(username,password,userHistory)=>{
     
     const userAccounts = whModels.userAccounts;
     //find the correct userAccount
@@ -49,8 +49,7 @@ const mongoSaveUserHistory=async(username,password,courseNum,waitlistPos)=>{
             const exAcc = new userAccounts({
                 username:username,
                 password:password,
-                courseNum:newCourseNum,
-                waitlistPos:newWaitlistPos
+                userHistory:userHistory
             });
             exAcc.save()
                 .then(()=>console.log('Account created'));
@@ -58,14 +57,14 @@ const mongoSaveUserHistory=async(username,password,courseNum,waitlistPos)=>{
         }
         else{
             console.log('Query exists, updating');
-            const newCourseNum=results.courseNum.push(courseNum);
-            const newWaitlistPos=results.waitlistPos.push(waitlistPos);
+            // const newCourseNum=results.courseNum.push(courseNum);
+            // const newWaitlistPos=results.waitlistPos.push(waitlistPos);
+            const newUserHistory=results.userHistory.push(userHistory);
             //update the account with the new parameters
             results.save({
                 username:username,
                 password:password,
-                courseNum:newCourseNum,
-                waitlistPos:newWaitlistPos
+                userHistory:newUserHistory
             });
         }
         

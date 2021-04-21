@@ -42,6 +42,7 @@ function ClassModules(props){
     console.log(userHistory);
   }, []);
     if(props.page=='results'){
+      //console.log(userHistory.courseNum);
       return (
         
         <>
@@ -49,6 +50,7 @@ function ClassModules(props){
           <div className="ClassModules">
   
             {userHistory.map(item => (
+              
               <Course page={props.page} key={item.courseNum,item.courseName} details={item} />
               // <Semester key={item.semester} details={item} />
             ))}
@@ -70,14 +72,16 @@ function ClassModules(props){
         );
       }
       else{
-        //console.log('User History ', userHistory[0]);
-        const keyObj = {courseNum: userHistory[0].courseNum, waitlistPos: userHistory[0].waitlistPos};
-        //console.log(keyobj);
+        
+        //const hist=userHistory[0];
+        console.log('userhistory',userHistory);
         return (
           <>
             <div className="ClassModules" auth={props.auth}>
-              {userHistory.map(item => (
-                <Course page={props.page} key={keyObj} details={item} />
+              {userHistory.map(histItem => (
+                histItem.map(item=>{
+                  <Course page={props.page} key={item.userHistory} details={item} />
+                })
                 // <Semester key={item.semester} details={item} />
               ))}
             </div>

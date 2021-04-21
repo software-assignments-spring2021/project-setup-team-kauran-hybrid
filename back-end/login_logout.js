@@ -148,9 +148,13 @@ passport.use('login', new LocalStrategy({usernameField:'username', passwordField
             console.log("Matches");
             if(req.body.number){
               console.log('Extra params');
-              const waitlistPos = {waitlistPosition:user.waitlistPos};
-              const courseNum = {courseNumber:user.courseNum};
-              user.save({courseNum:user.courseNum.push(req.body.number),waitlistPos:user.waitlistPos.push(req.body.position)});
+              
+              const newUserHistory={
+                waitlistPosition:req.body.position,
+                courseNum:req.body.number
+              };
+
+              user.save({userHistory:user.userHistory.push(newUserHistory)});
             }
             return done(null,user,{message:"Matches"});
           }
@@ -175,8 +179,12 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
     
       if (err) throw err;
       if(!user){
-        
-        const newUser=new userAccounts({username:username,password:password,courseNum:number,waitlistPos:position});
+        const newUserHistory={
+          waitlistPosition:req.body.position,
+          courseNum:req.body.number
+        };
+
+        const newUser=new userAccounts({username:username,password:password,userHistory:newUserHistory});
         
         // console.log(newUser);
         bcrypt.genSalt(10,(err,salt)=>{
