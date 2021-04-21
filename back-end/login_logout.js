@@ -148,6 +148,8 @@ passport.use('login', new LocalStrategy({usernameField:'username', passwordField
             console.log("Matches");
             if(req.body.number){
               console.log('Extra params');
+              const waitlistPos = {waitlistPosition:user.waitlistPos};
+              const courseNum = {courseNumber:user.courseNum};
               user.save({courseNum:user.courseNum.push(req.body.number),waitlistPos:user.waitlistPos.push(req.body.position)});
             }
             return done(null,user,{message:"Matches"});

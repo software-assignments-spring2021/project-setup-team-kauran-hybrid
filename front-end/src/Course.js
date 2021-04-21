@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 function Course(props){
     if(props.page=='results'){
+        console.log(props.details.courseNum);
         return(
             <div className="search-item">
             <a href = './ClassInfo'>
@@ -14,6 +15,7 @@ function Course(props){
         ) 
     }
     else if(props.page=='accounts'){
+        console.log(props.details);
         return(
             <div className="search-item">
             <a href = './ClassInfo'>

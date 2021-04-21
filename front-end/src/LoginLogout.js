@@ -46,7 +46,8 @@ const LoginLogout=(props)=> {
         console.log(response);
         history.push({
           pathname:response.data.redirect,
-          auth:response.data.auth
+          auth:response.data.auth,
+          username:email
         });
       });
     };
@@ -61,7 +62,11 @@ const LoginLogout=(props)=> {
       }).then(function(response,err){
         if(err) throw err;
         console.log(response);
-        history.push(response.data.redirect);
+        history.push({
+          pathname:response.data.redirect,
+          auth:response.data.auth,
+          username:email
+        });
       });
 
     }
@@ -74,7 +79,11 @@ const LoginLogout=(props)=> {
         }).then(function(response,err){
           if(err) throw err;
           console.log(response);
-          history.push(response.data.redirect);
+          history.push({
+            pathname:response.data.redirect,
+            auth:response.data.auth,
+            username:email
+          });
         });
         
         //console.log(something);
@@ -91,7 +100,11 @@ const LoginLogout=(props)=> {
       }).then(function(response,err){
         if(err) throw err;
         console.log(response);
-        history.push(response.data.redirect);
+        history.push({
+          pathname:response.data.redirect,
+          auth:response.data.auth,
+          username:email
+        });
       });
     }
       // if the user did not go through the home page and clicked login first

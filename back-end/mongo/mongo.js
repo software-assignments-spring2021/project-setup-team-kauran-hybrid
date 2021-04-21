@@ -189,6 +189,19 @@ const mongoSaveSections=async(courseNum,courseName,section)=>{
 
 };
 
+// method for getting User History
+const mongoGetUserHistory=async(username,password,courseNum,waitlistPos)=>{
+    let ret;
+    const userAccounts = whModels.userAccounts;
+    //find the correct userAccount
+    ret = await userAccounts.find({'username':username},function(err,results){
+        if(err) throw err;
+        return results;
+    });
+    return ret;
+    
+};
+
 //method for finding a query
 //in the router there is an example for how to use this!!
 const mongoGetCourses=async(courseNum)=>{
@@ -296,6 +309,7 @@ module.exports={
     mongoSaveUserHistory:mongoSaveUserHistory,
     mongoInsertAccount:mongoInsertAccount,
     mongoSaveCourses: mongoSaveCourses,
+    mongoGetUserHistory:mongoGetUserHistory,
     mongoGetCourses:mongoGetCourses,
     mongoSaveSections:mongoSaveSections,
     mongoGetSections:mongoGetSections,
