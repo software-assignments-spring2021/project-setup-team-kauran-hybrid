@@ -3,8 +3,9 @@ const app=require('../app.js')
 const userAccountSchema = new mongoose.Schema({
     username: String,
     password: String,
-    courseNum:Array,
-    waitlistPos:Array,
+    // courseNum:Array,
+    // waitlistPos:Array,
+    userHistory:Array
 });
 const courseSchema=new mongoose.Schema({
     courseNum:String,

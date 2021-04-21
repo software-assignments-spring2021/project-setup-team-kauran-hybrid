@@ -24,7 +24,7 @@ const Account = (props) => {
                      Waitlisted?
                    </p> */}
                    <p>
-                       <ClassModules page='accounts' auth={props.history.location.auth}>
+                       <ClassModules page='accounts' auth={props.history.location.auth} username={props.history.location.username}>
        
                        </ClassModules>
                    </p>

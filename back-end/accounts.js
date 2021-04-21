@@ -5,7 +5,7 @@ const passport=require('passport');
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
-const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
+
 const checkToken = (req, res, next) => {
     const header = passport.session['authorization'];
     console.log(passport.session);
@@ -21,6 +21,7 @@ const checkToken = (req, res, next) => {
     }
 } 
 router.get('/protected',checkToken,(req,res) => {
+    const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
     console.log("before if");
     jwt.verify(req.token, PRIV_KEY, (err, authorizedData) => {
         if(err){
