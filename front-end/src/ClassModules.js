@@ -74,14 +74,14 @@ function ClassModules(props){
       else{
         
         //const hist=userHistory[0];
-        console.log('userhistory',userHistory);
+        console.log('userhistory',userHistory[0]?.userHistory[0]);
         return (
           <>
             <div className="ClassModules" auth={props.auth}>
-              {userHistory.map(histItem => (
-                histItem.map(item=>{
-                  <Course page={props.page} key={item.userHistory} details={item} />
-                })
+              {userHistory[0]?.userHistory.map(item => (
+                  
+                  <Course page={props.page} key={item} details={item} />
+                
                 // <Semester key={item.semester} details={item} />
               ))}
             </div>

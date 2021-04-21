@@ -15,11 +15,14 @@ function Course(props){
         ) 
     }
     else if(props.page=='accounts'){
-        console.log(props.details.hist);
+        // props.details.map(i=>{
+        //     console.log('item inside',i.courseNum)
+        // });
+        console.log(props.details);
         return(
             <div className="search-item">
             <a href = './ClassInfo'>
-                Course Number: {props.details.hist.courseNum}{"\t"}|{"\t"}Semester: {}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Semester: {}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
             </a>
             </div>
             //<a href="./Results" class="back-results-button"></a>
