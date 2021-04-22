@@ -5,16 +5,17 @@ import './Account.css';
 import './MenuBar.css';
 import './ClassModules.css';
 import ClassModules from'./ClassModules';
-import {Link,Switch} from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 
 const Account = (props) => {
+    const history=useHistory();
     //below is your authenticated token!
-    //console.log(props.history.location.auth);
-    if(props.history.location.auth){
+    console.log('hitosry page',props);
+    if(props.history.location.auth||props.history?.location.auth){
         return (
             <div>
                 <div className = "menu">
-                   <MenuBar>
+                   <MenuBar auth={props.history.location.auth} username={props.history.location.username}>
        
                    </MenuBar>
                    </div>

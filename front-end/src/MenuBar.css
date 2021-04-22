@@ -36,6 +36,14 @@ nav a:hover{
     /* background-color:white; */
     
 }
+.logoButton{
+    position:relative;
+    
+}
+.logoButton:hover{
+    background-color:white;
+    color:black;
+}
 .goodButton:hover{
     background-color:white;
     color:black;
