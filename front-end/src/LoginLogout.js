@@ -111,7 +111,7 @@ const LoginLogout=(props)=> {
       if (!props.position) {
         return (
           <React.Fragment>
-            <form action="login_logout" method="POST" className="box">
+           
                 <p>
                   
                     <input className="inputs"
@@ -146,7 +146,7 @@ const LoginLogout=(props)=> {
   
                 </div>
   
-              </form> 
+              
           </React.Fragment>
 
               
@@ -156,8 +156,10 @@ const LoginLogout=(props)=> {
       // otherwise they went through the home page and have clicked yes on results
       else {
         return (
+          <React.Fragment>
 
-              <form action="login_logout" method="POST" className="box">
+          
+              
                 <p>
                   
                     <input className="inputs"
@@ -192,9 +194,9 @@ const LoginLogout=(props)=> {
   
                 </div>
   
-              </form>   
+               
             
-  
+            </React.Fragment>
         );  
       }
   
