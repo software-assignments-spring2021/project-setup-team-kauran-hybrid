@@ -23,6 +23,7 @@ function ClassModules(props){
         );
       }
       else{
+        console.log('Account ClassModules',props.username);
         result = await axios(
           'http://localhost:3000/class_modules/protected',{
             headers:{
@@ -33,13 +34,13 @@ function ClassModules(props){
         );
       }
 
-      console.log(result.data);
+      console.log(result);
       // set the state variable
       // this will cause a re-render of this component
       setUserHistory(result.data);
     }
     fetchData();
-    console.log(userHistory);
+    //console.log(userHistory);
   }, []);
     if(props.page=='results'){
       //console.log(userHistory.courseNum);
@@ -59,6 +60,7 @@ function ClassModules(props){
       );
     }
     else if(props.page=='accounts'){
+      console.log(userHistory);
       if(!props.auth){
         return (
           <>
@@ -74,7 +76,7 @@ function ClassModules(props){
       else{
         
         //const hist=userHistory[0];
-        console.log('userhistory',userHistory[0]?.userHistory[0]);
+        //console.log('userhistory',userHistory[0]?.userHistory[0]);
         return (
           <>
             <div className="ClassModules" auth={props.auth}>

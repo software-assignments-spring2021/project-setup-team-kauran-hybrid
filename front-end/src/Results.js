@@ -6,9 +6,10 @@ import './ClassModules.css';
 import ClassModules from'./ClassModules';
 import axios from "axios";
 import {useState,useEffect} from'react';
-import {  Router, Switch, Route,Redirect } from 'react-router-dom'
+import {  uerHistory, useHistory  } from 'react-router-dom'
 
 const Results=(props)=>{
+    const history=useHistory();
     const [userInput, setUserInput] = useState([]);
     useEffect(() => {
     // a nested function that fetches the data
@@ -30,8 +31,15 @@ const Results=(props)=>{
   
   // the blank array below causes this callback to be executed only once on component load
   }, []);
-   console.log("Results page", userInput.email, userInput.number, userInput.position);
-
+   //console.log("Results page", userInput.email, userInput.number, userInput.position);
+    const handleClickGoLogin = async() => {
+        history.push({
+            pathname:"./Login",
+            username:userInput.email,
+            number: userInput.number,
+            position:userInput.position
+        });
+    }
     return(
         <div>
             <div className = "menu">
@@ -63,7 +71,7 @@ const Results=(props)=>{
                     
                     
                     {/* email='emailtest' position={userInput.position} number={userInput.number}  */}
-                    <a href="/Login" email={userInput.email} position={userInput.position} number={userInput.number} className="results-button">YES!</a>
+                    <button className="results-button" onClick={handleClickGoLogin}>YES!</button>
                     <a href="/" className="results-button">NO! Go Back</a>
                 
                 </p>
