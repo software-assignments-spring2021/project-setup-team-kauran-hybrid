@@ -3,6 +3,7 @@ import './MenuBar.css';
 import ProfInfo from'./ProfInfo';
 import './ClassDetail.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function ClassDetail(props){
     const [articleId, setArticleId] = useState([]);
@@ -20,28 +21,31 @@ function ClassDetail(props){
                 <center className="class-name">
                     {props.details.lecNum} {props.details.lecName}
                 </center>
+
                 <p className="class-info">
                     Section 00{props.details.secCode} | {' '}
                     {props.details.secTime} | {' '}
                     {props.details.secLoc}
                 </p>
+
                 <p className="class-detail">
-                    (Brief introdcution of class) {props.details.class_intro}
+                    <Link to={{ 
+                        pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/" 
+                    }} target="_blank" >
+                        See Department Website for course description and prerequisites
+                    </Link>
                 </p>
-                <p className="class-detail">
-                    (Prerequisites) {props.details.prereq}
+
+                <p className="prof-info">
+                <center>
+                    {props.details.secInstructors.map(item => (
+                        <a href="./ProfInfo"> 
+                            Prof. {item}
+                        </a>
+                    ))}  
+                    </center>  
                 </p>
-                <p>
-                    <center>
-                        
-                        {props.details.secInstructors.map(item => (
-                            
-                            <a href="./ProfInfo" className="prof-info"> 
-                            Instructors: {item}
-                            </a>
-                        ))}
-                    </center>
-                </p>
+                
                 <p className="class-rec">
                     Recitations
                     <>
