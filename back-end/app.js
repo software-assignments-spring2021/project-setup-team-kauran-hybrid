@@ -47,7 +47,7 @@ app.use("/home_login", require("./home"));
 app.use("/class_modules", require("./class_modules").router);
 app.use("/results", require("./results").router);
 app.use("/py_script",require("./mock_data/generator").router);
-//app.use("/mongo_script",require("./mongo/mongo").router);
+app.use("/mongo_script",require("./mongo/mongo").router);
 app.use("/converter", require("./mongo/converter").router);
 app.use('/machine',require("./machine/machine.js").router);
 app.use("/class_info", require("./class_info"));

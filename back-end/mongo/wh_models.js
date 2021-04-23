@@ -25,11 +25,22 @@ const sectionSchema=new mongoose.Schema({
 
 });
 
+const profSchema=new mongoose.Schema({
+    _id:String,
+    rate:String,
+    difficulty:String,
+    retake:String,
+    tags:Array,
+    sections:Array
+
+});
+
 
 //must decalre mongoose models here!
 const userAccounts=mongoose.model("userAccounts",userAccountSchema);
 const courses=mongoose.model("courses",courseSchema);
 const sections=mongoose.model("sections",sectionSchema);
+const professors=mongoose.model('professors',profSchema);
 const testingCourses=mongoose.model('testingCourses',courseSchema);
 const trainingCourses=mongoose.model('trainingCourses',courseSchema);
 module.exports={
@@ -38,7 +49,9 @@ module.exports={
     trainingCourses:trainingCourses,
     testingCourses:testingCourses,
     sections:sections,
+    professors:professors,
     sectionSchema: sectionSchema,
     courseSchema: courseSchema,
-    userAccountSchema: userAccountSchema
+    userAccountSchema: userAccountSchema,
+    profSchema:profSchema
 }
