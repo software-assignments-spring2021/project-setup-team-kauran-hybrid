@@ -118,4 +118,3 @@ describe('GET /class_info', function() {
   });
 });
  
-after(() => mongoose.disconnect());
