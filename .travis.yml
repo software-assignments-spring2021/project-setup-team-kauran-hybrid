@@ -4,9 +4,10 @@ node_js:
   - "12"
 
 install:
-  - cd back-end/
+  - cd front-end/
   - npm install
-  - cd ../front-end/
+  - cd ../back-end/
   - npm install
+  
 script:
   - npm test
