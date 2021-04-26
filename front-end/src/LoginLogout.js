@@ -17,7 +17,7 @@ import axios from 'axios';
 // });
 const LoginLogout=(props)=> {
 
-  console.log("LoginLogout page", props.email)
+  console.log("LoginLogout page", props)
     const history=useHistory();
     const [email,setEmail]=useState("Enter your Email");
     const [password,setPassword]=useState("Enter your password");
@@ -108,10 +108,10 @@ const LoginLogout=(props)=> {
       });
     }
       // if the user did not go through the home page and clicked login first
-      if (!props.email) {
+      if (!props.position) {
         return (
           <React.Fragment>
-            <form action="login_logout" method="POST" className="box">
+           
                 <p>
                   
                     <input className="inputs"
@@ -146,7 +146,7 @@ const LoginLogout=(props)=> {
   
                 </div>
   
-              </form> 
+              
           </React.Fragment>
 
               
@@ -156,8 +156,10 @@ const LoginLogout=(props)=> {
       // otherwise they went through the home page and have clicked yes on results
       else {
         return (
+          <React.Fragment>
 
-              <form action="login_logout" method="POST" className="box">
+          
+              
                 <p>
                   
                     <input className="inputs"
@@ -192,9 +194,9 @@ const LoginLogout=(props)=> {
   
                 </div>
   
-              </form>   
+               
             
-  
+            </React.Fragment>
         );  
       }
   
