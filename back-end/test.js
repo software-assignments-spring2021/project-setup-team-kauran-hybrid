@@ -6,12 +6,12 @@ const scraper=require('./scraper')
 const app=require('./app')
 const server=require('./server')
 const whModels=require('./mongo/wh_models.js')
-const checkPassword=require('./checkPwd.js')
 const results = require('./results')
 const login = require('./login_logout')
 const path = require('path');
 const expect = require("chai").expect;
 const request = require("supertest");
+const mongoose = require('mongoose');
 
 chaiHttp = require('chai-http');
 chai.use(chaiHttp);
@@ -19,8 +19,9 @@ chai.use(chaiHttp);
 // test the dummy probability calculation for now
 
 describe('Calculate Probability of Getting Into Course', function() {
-  it('should return (100-position)/100 for now', function() {
+  it('should return (100-position)/100 for now', function(done) {
     assert.strictEqual(results.calcProbGetIn(7, 100), .93);
+    done();
   });
 });
 
@@ -48,6 +49,7 @@ describe('Scraping function for professors', function() {
     assert.equal(res.d, '3.2');
     assert.equal(res.r, '61 ratings');
     assert.equal(res.t, '66%');
+    
   });
 });
 
@@ -95,11 +97,12 @@ describe('POST /home_login', function() {
 // unit test to see if the albert scraper runs an appropriate value at a certain index of the expected json object
 describe('Scraping function for Albert', function() {
   this.timeout(30000);
-  it('result[0].sections[0].instructors[0] should return \'Staff\'', async function() {
+  it('result[0].sections[0].instructors[0] should return \'C Sinan Gunturk\'', async function() {
     this.timeout(300000);
     // setTimeout(done,30000);
     const res= await scraper.albert_scraper();
-    assert.equal(res[0].sections[0].instructors[0], 'Staff');
+    assert.equal(res[0].sections[0].instructors[0], 'C Sinan Gunturk');
+    
   });
 });
 
@@ -114,3 +117,5 @@ describe('GET /class_info', function() {
         });
   });
 });
+
+after(() => mongoose.disconnect());
