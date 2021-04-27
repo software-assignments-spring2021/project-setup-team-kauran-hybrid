@@ -44,8 +44,8 @@ const mongoSaveUserHistory=async(username,password,userHistory)=>{
     await userAccounts.findOne({'username':username},function(err,results){
         if(err) throw err;
         if(results==null){
-            const newCourseNum=[courseNum];
-            const newWaitlistPos=[waitlistPos];
+            // const newCourseNum=[courseNum];
+            // const newWaitlistPos=[waitlistPos];
             const exAcc = new userAccounts({
                 username:username,
                 password:password,
@@ -182,9 +182,51 @@ const mongoSaveSections=async(courseNum,courseName,section)=>{
 
             });
         }
+        
 
         //console.log(results);
     });
+
+};
+
+//this is for creating OR updating classes from albert
+const mongoSaveProfs=async(profName,section)=>{
+
+    let result = await whModels.professors.findById(profName);
+    if (result==null){
+        result = new whModels.professors({
+                        _id:profName,
+                        sections:[section]
+        
+                    });
+    }
+    else {
+        result.sections.push(section);
+    }
+    await result.save();
+    // await whModels.professors.findById(profName,async function(err,results){
+    //     if(err) throw err;
+    //     if(results == null){
+    //         const newCourse=new whModels.professors({
+    //             _id:profName,
+    //             sections:[section]
+
+    //         });
+    //         await newCourse.save()
+    //             .then(()=>console.log('Professor created'));
+            
+    //     }
+        
+    //     else {
+    //         results.sections.push(section);
+    //         await results.save().then(()=>console.log('Professor updated'));
+    //     }
+
+        // console.log(results);
+    // });
+    
+    
+     
 
 };
 
@@ -276,6 +318,47 @@ const mongoGetSections=async(courseNum,secCode)=>{
     return ret;
 };
 
+const mongoGetProfs=async(saveProfs)=>{
+    const sections = whModels.sections;
+    let records;
+    let ret={};
+
+    records=await sections.find({},function(err,results){
+        if(err) throw err;
+        
+        return results;
+        
+    });
+
+    let secs;
+    let sec;
+    let prof;
+    for (i in records) {
+        if (records[i].sections) {
+            
+            secs = records[i].sections;
+            
+            for (j in secs) {
+                sec = secs[j];
+                if (sec.secInstructors) {
+
+                
+                    for (k in sec.secInstructors) {
+                        sec.courseName = records[i].courseName;
+                        sec.courseNum = records[i].courseNum;
+                        await saveProfs(sec.secInstructors[k], sec);
+                    }
+                }
+            }
+        }
+    }
+    
+
+    console.log(ret);
+    return ret;
+};
+
+
 //post request for inserting user accounts
 router.post("/add_user_account", async(req, res) => {
     const uri = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
@@ -290,12 +373,15 @@ router.get("/",(req,res)=>{
     // console.log(user)
     //const userURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/user_accounts?retryWrites=true&w=majority`;
     //const courseURL = `mongodb+srv://${user}:${pwd}@clusterwh.bhiht.mongodb.net/albert?retryWrites=true&w=majority`;
-    mongoSaveUserHistory('sp',789,'Cyber',888);
-    mongoSaveSections( '1234567', 'ExampleCourseName', ['1','2','3','4'])
-    mongoSaveCourses('Cyber',100,20);
-    let val=mongoGetCourses().then(val=>{
-        console.log(val);
-    });
+    // mongoGetProfs();
+    // mongoSaveUserHistory('sp',789,'Cyber',888);
+    // mongoSaveSections( '1234567', 'ExampleCourseName', ['1','2','3','4'])
+    // mongoSaveCourses('Cyber',100,20);
+    // let val=mongoGetProfs().then(val=>{
+    //     console.log(val);
+    // });
+    mongoGetProfs(mongoSaveProfs);
+    // mongoSaveProfs("C Sinan Gunturk", {secCode:5});
     console.log("ended");
     
     
@@ -312,5 +398,7 @@ module.exports={
     mongoGetCourses:mongoGetCourses,
     mongoSaveSections:mongoSaveSections,
     mongoGetSections:mongoGetSections,
+    mongoGetProfs:mongoGetProfs,
+    mongoSaveProfs:mongoSaveProfs,
     router:router
 }

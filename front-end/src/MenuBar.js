@@ -61,8 +61,20 @@ const MenuBar=(props)=>{
             
         });
     }
-    if(props.auth){
-        console.log("menubar props.auth", props);
+    const handleClickLogout=async()=>{
+        // history.push({
+        //     pathname:"./Login",
+        //     auth:props.hisotry.location.auth,
+        //     username:props.history.location.username
+            
+        // });
+        localStorage.removeItem('username');
+        localStorage.removeItem('auth');
+        //console.log(localStorage);
+        history.push('/');
+    }
+    if(localStorage.auth){
+        //console.log("menubar props.auth", props);
         
         return (
         
@@ -84,9 +96,9 @@ const MenuBar=(props)=>{
                 <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
     
                     
-                <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button>
+                {/* <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button> */}
     
-                    
+                <button className="goodButton" onClick={handleClickLogout}>Logout</button> 
     
                     {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
                 
@@ -107,50 +119,50 @@ const MenuBar=(props)=>{
             
         )
     }
-    else if(props.history?.location.auth){
-        return (
+    // else if(props.history?.location.auth){
+    //     return (
         
-            <div className="menu">
-                {/* <link
-                    rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-                    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-                    crossorigin="anonymous"
-                    /> */}
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    //         <div className="menu">
+    //             {/* <link
+    //                 rel="stylesheet"
+    //                 href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    //                 integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+    //                 crossorigin="anonymous"
+    //                 /> */}
+    //             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                  
-                </link> 
+    //             </link> 
                     
-                <nav className="many-links"> 
-                <button className="goodButton" onClick={handleClickGoHomeHistory}>Home</button>
+    //             <nav className="many-links"> 
+    //             <button className="goodButton" onClick={handleClickGoHomeHistory}>Home</button>
     
     
-                <button className="goodButton" onClick={handleClickGoAccountHistory}>MyAccount</button>
-    
-                    
-                <button className="goodButton" onClick={handleClickGoLoginHistory}>Login/Logout</button>
+    //             <button className="goodButton" onClick={handleClickGoAccountHistory}>MyAccount</button>
     
                     
+    //             <button className="goodButton" onClick={handleClickGoLoginHistory}>Login/Logout</button>
     
-                    {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
+                    
+    
+    //                 {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
                 
-                </nav>
+    //             </nav>
                
     
-                <center>
-                <button onClick={handleClickGoHomeHistory} className={'logoButton'}>
-                <img src={newLogo} className="App-logo" alt="logo" />
-                </button>
+    //             <center>
+    //             <button onClick={handleClickGoHomeHistory} className={'logoButton'}>
+    //             <img src={newLogo} className="App-logo" alt="logo" />
+    //             </button>
                 
-                <p>
-                    {/* Waitlist Hopper */}
-                </p>
+    //             <p>
+    //                 {/* Waitlist Hopper */}
+    //             </p>
                 
-                </center>
-            </div>
+    //             </center>
+    //         </div>
             
-        )
-    }
+    //     )
+    // }
     else{
         return (
         
