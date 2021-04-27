@@ -29,7 +29,7 @@ const ProfInfo=(props)=>{
       // axios is a 3rd-party module for fetching data from servers
       await axios(
         // retrieving some mock data about animals for sale
-        "http://localhost:3000/prof_info"
+        "http://waitlisthopper.com:3000/prof_info"
       ).then(res=>setProfInfo({
         state:true,
         data:res.data

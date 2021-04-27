@@ -12,7 +12,7 @@ router.post("/", (req, res) => {
   const position = req.body.position
   const number = req.body.number
 
-  axios.post('http://localhost:3000/results',{
+  axios.post('http://waitlisthopper.com:3000/results',{
     email:email,
     position:position,
     number:number

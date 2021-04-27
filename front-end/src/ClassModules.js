@@ -19,13 +19,13 @@ function ClassModules(props){
         result = await axios(
   
           // linking to the back-end instead of to mockaroo now
-          'http://localhost:3000/class_modules'
+          'http://waitlisthopper.com:3000/class_modules'
         );
       }
       else{
         console.log('Account ClassModules',props.username);
         result = await axios(
-          'http://localhost:3000/class_modules/protected',{
+          'http://waitlisthopper.com:3000/class_modules/protected',{
             headers:{
               'auth':props.auth,
               'username':props.username

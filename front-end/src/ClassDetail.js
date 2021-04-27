@@ -11,7 +11,7 @@ function ClassDetail(props){
     useEffect(async() => {
         // POST request using axios inside useEffect React hook
         const article = { prof: props.details.secInstructors };
-        await axios.post('http://localhost:3000/prof_info', article)
+        await axios.post('http://waitlisthopper.com:3000/prof_info', article)
             .then(response => setArticleId(response.data.id));
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
