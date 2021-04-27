@@ -9,31 +9,30 @@ import { Link,useHistory } from 'react-router-dom';
 
 const Account = (props) => {
     const history=useHistory();
-    //below is your authenticated token!
-    console.log('hitosry page',props);
-    if(props.history.location.auth||props.history?.location.auth){
+    
+    if(localStorage.auth){
         return (
-            <div>
-                <div className = "menu">
-                   <MenuBar auth={props.history.location.auth} username={props.history.location.username}>
-       
-                   </MenuBar>
-                   </div>
-           <div className = "account-page">
-                   
-                   {/* <p>
-                     Waitlisted?
-                   </p> */}
-                   <p>
-                       <ClassModules page='accounts' auth={props.history.location.auth} username={props.history.location.username}>
-       
-                       </ClassModules>
-                   </p>
-                   
-               </div>
-            </div>
+                    <div>
+                        <div className = "menu">
+                           <MenuBar auth={localStorage.auth} username={localStorage.username}>
                
-        )
+                           </MenuBar>
+                           </div>
+                   <div className = "account-page">
+                           
+                           {/* <p>
+                             Waitlisted?
+                           </p> */}
+                           <p>
+                               <ClassModules page='accounts' auth={localStorage.auth} username={localStorage.username}>
+               
+                               </ClassModules>
+                           </p>
+                           
+                       </div>
+                    </div>
+                       
+                )
     }
     else{
         return(
