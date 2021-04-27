@@ -18,7 +18,7 @@ const Results=(props)=>{
       const result = await axios(
   
         // linking to the back-end instead of to mockaroo now
-        'http://localhost:3000/results'
+        'http://waitlisthopper.com:3000/results'
       );
       //console.log(result.data);
       // set the state variable
