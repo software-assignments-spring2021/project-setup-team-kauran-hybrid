@@ -29,7 +29,7 @@ def makeDF():
         waitlistSizes.append(i['waitlistSizes'])
     '''
     for i in jsonval:
-        # print(i)
+        print(i['courseNum'])
         courseNum=re.findall("[0-9]+",i['courseNum'])[0]
         # print(courseNum)
         for j in range(np.min([len(i['sizeCaps']),len(i['waitlistSizes']),len(i['droppedSizes'])])):
@@ -60,7 +60,8 @@ def makeDF():
     # df.set_index('CourseNumber',inplace=True,drop=True)
     # df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']]=df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']].astype(int)
     df = df.astype(int)
-    print("Exists null data? :",df.isnull().values.any())
+    print(df.iloc[50:100])
+    # print("Exists null data? :",df.isnull().values.any())
     return df
     
 df=makeDF()
