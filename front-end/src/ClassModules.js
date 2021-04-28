@@ -13,7 +13,7 @@ function ClassModules(props){
     async function fetchData() {
       // axios is a 3rd-party module for fetching data from servers
       let result;
-      if(props.page!=='accounts'){
+      if(props.page!='accounts'){
         result = await axios(
   
           // linking to the back-end instead of to mockaroo now
@@ -40,7 +40,7 @@ function ClassModules(props){
     fetchData();
     //console.log(userHistory);
   }, []);
-    if(props.page==='results'){
+    if(props.page=='results'){
       //console.log(userHistory.courseNum);
       return (
         
@@ -57,7 +57,7 @@ function ClassModules(props){
         </>
       );
     }
-    else if(props.page==='accounts'){
+    else if(props.page=='accounts'){
       console.log(userHistory);
       if(!props.auth){
         return (
@@ -90,7 +90,7 @@ function ClassModules(props){
       }
 
     }
-    else if(props.page==='professors'){
+    else if(props.page=='professors'){
       return (
         <>
           <div className="ClassModules">
