@@ -273,6 +273,7 @@ const mongoGetCourses=async(courseNum)=>{
 };
 
 const mongoGetSections=async(courseNum,secCode)=>{
+    console.log(courseNum,secCode)
     const sections = whModels.sections;
     let record;
     let ret;

@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import ClassInfo from "./ClassInfo";
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 function Course(props){
+    let history = useHistory();
     if(props.page=='results'){
         //console.log(props.details.courseNum);
         return(
             <div className="search-item">
-            <a href = './ClassInfo'>
+            {/* <Link onClick={(props)=>(history.push({pathname:'/ClassInfo',state:props.details,ok:true}))}>
                 Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
-            </a>
+            </Link> */}
+            <Link to={{
+                pathname: '/ClassInfo',
+                state: { detail: props.details }}}>
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+            </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 

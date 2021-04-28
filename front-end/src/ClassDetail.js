@@ -38,7 +38,7 @@ function ClassDetail(props){
 
                 <p className="prof-info">
                 <center>
-                    {props.details.secInstructors.map(item => (
+                    {props.details.secInstructors && props.details.secInstructors.map(item => (
                         <a href="./ProfInfo"> 
                             Prof. {item}
                         </a>
