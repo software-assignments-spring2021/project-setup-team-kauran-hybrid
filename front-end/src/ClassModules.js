@@ -2,8 +2,6 @@
 import React,{useState,useEffect} from'react';
 import axios from "axios";
 import './ClassModules.css';
-import {Link} from 'react-router-dom';
-import ClassInfo from './ClassInfo';
 import Course from "./Course";
 
 
@@ -15,17 +13,17 @@ function ClassModules(props){
     async function fetchData() {
       // axios is a 3rd-party module for fetching data from servers
       let result;
-      if(props.page!='accounts'){
+      if(props.page!=='accounts'){
         result = await axios(
   
           // linking to the back-end instead of to mockaroo now
-          'http://waitlisthopper.com:3000/class_modules'
+          'http://localhost:3000/class_modules'
         );
       }
       else{
         console.log('Account ClassModules',props.username);
         result = await axios(
-          'http://waitlisthopper.com:3000/class_modules/protected',{
+          'http://localhost:3000/class_modules/protected',{
             headers:{
               'auth':props.auth,
               'username':props.username
@@ -42,7 +40,7 @@ function ClassModules(props){
     fetchData();
     //console.log(userHistory);
   }, []);
-    if(props.page=='results'){
+    if(props.page==='results'){
       //console.log(userHistory.courseNum);
       return (
         
@@ -59,7 +57,7 @@ function ClassModules(props){
         </>
       );
     }
-    else if(props.page=='accounts'){
+    else if(props.page==='accounts'){
       console.log(userHistory);
       if(!props.auth){
         return (
@@ -92,7 +90,7 @@ function ClassModules(props){
       }
 
     }
-    else if(props.page=='professors'){
+    else if(props.page==='professors'){
       return (
         <>
           <div className="ClassModules">

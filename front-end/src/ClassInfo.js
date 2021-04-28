@@ -2,7 +2,7 @@ import React,{useState,useEffect} from'react';
 import MenuBar from './MenuBar';
 import './ClassInfo.css';
 import './MenuBar.css';
-import {useHistory,useLocation} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import ClassDetail from './ClassDetail';
 import axios from "axios";
 
