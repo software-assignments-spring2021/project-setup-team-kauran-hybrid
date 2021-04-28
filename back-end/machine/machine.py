@@ -13,7 +13,7 @@ print('Machine.py triggered')
 value = input()
 # print("Input value:", value)
 
-jsonval = json.loads(value) # array of dictionaries
+jsonval = json.loads(value)['data'] # array of dictionaries
 # print("JSON Value:", jsonval[0])
 
 def makeDF():
@@ -64,7 +64,7 @@ def makeDF():
     return df
     
 df=makeDF()
-print(df.iloc[40:80])
+# print(df.iloc[40:80])
 
 def linReg(df):
     x=pd.DataFrame(df['CourseSize'])
@@ -81,23 +81,23 @@ def linReg(df):
 # linReg(df)
 # def prosterity(classSize,waitListPos):
 
-def logReg(df):
+def logReg(df, input):
     X=pd.DataFrame(df[['CourseNumber', 'CourseSize', 'WaitlistSize', 'WaitlistPos']].values)
     y=pd.DataFrame(df['Target'].values)
     model=LogisticRegression()
     X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.3, random_state=42)
-    print(X_train.shape)
-    print(X_test.shape)
+    # print(X_train.shape)
+    # print(X_test.shape)
     model.fit(X_train, y_train)
     score = model.score(X_test, y_test)
-    print("Score: ", score)
-    print("class labels:", model.classes_)
+    # print("Score: ", score)
+    # print("class labels:", model.classes_)
     
     fakeX = np.zeros((1,4))
-    fakeX[0,:] = [120, 100, 20, 5]
-    print("fake prob: ", model.predict_proba(fakeX)[:,1])
+    fakeX[0,:] = input
+    print(model.predict_proba(fakeX)[:,1][0])
 
-logReg(df)
+logReg(df, json.loads(value)['input'])
 
 # def test_fake_data(num=121,couseSize=100,wlSize=10,pos=5,model):
 #     X = np.zeros((1,4))
