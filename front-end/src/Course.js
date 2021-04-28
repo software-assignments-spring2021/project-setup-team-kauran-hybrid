@@ -26,9 +26,14 @@ function Course(props){
         console.log(props.details);
         return(
             <div className="search-item">
-            <a href = './ClassInfo'>
+            {/* <a href = './ClassInfo'>
                 Course Number: {props.details.courseNum}{"\t"}|{"\t"}WaitListPosition: {props.details.waitlistPos}{"\t"}|{"\t"}
-            </a>
+            </a> */}
+            <Link to={{
+                pathname: '/ClassInfo',
+                state: { detail: props.details }}}>
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+            </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 
