@@ -30,7 +30,7 @@ function ClassDetail(props){
 
                 <p className="class-detail">
                     <Link to={{ 
-                        pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/" 
+                        pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/as/" 
                     }} target="_blank" >
                         See Department Website for course description and prerequisites
                     </Link>
