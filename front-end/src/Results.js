@@ -6,7 +6,7 @@ import './ClassModules.css';
 import ClassModules from'./ClassModules';
 import axios from "axios";
 import {useState,useEffect} from'react';
-import {  uerHistory, useHistory  } from 'react-router-dom'
+import {  useHistory  } from 'react-router-dom'
 
 const Results=(props)=>{
     const history=useHistory();
