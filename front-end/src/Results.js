@@ -52,7 +52,7 @@ const Results=(props)=>{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
                 </link>
-                <p>Your possibility of getting into this class is: {userInput.probGetIn}% {"\n"}
+                <p>Your possibility of getting into this class is: {userInput} {"\n"}
 
                     Here are some alternative classes.
                 </p>
