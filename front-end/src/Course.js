@@ -32,7 +32,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}WaitListPosition: {props.details.waitlistPos}{"\t"}|{"\t"}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
