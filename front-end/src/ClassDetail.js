@@ -30,7 +30,7 @@ function ClassDetail(props){
 
                 <p className="class-detail">
                     <Link to={{ 
-                        pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/" 
+                        pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/as/" 
                     }} target="_blank" >
                         See Department Website for course description and prerequisites
                     </Link>
@@ -38,7 +38,7 @@ function ClassDetail(props){
 
                 <p className="prof-info">
                 <center>
-                    {props.details.secInstructors.map(item => (
+                    {props.details.secInstructors && props.details.secInstructors.map(item => (
                         <a href="./ProfInfo"> 
                             Prof. {item}
                         </a>

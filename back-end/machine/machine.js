@@ -17,6 +17,7 @@ const posterity=async(res)=>{
         // console.log(results);
         pyshell.send(JSON.stringify({"data":results, "input":[120, 100, 20, 5]}));
     });
+    // pyshell.send(JSON.stringify([120, 100, 20, 5]));
 
     pyshell.on('message',function(message){
         // console.log(message);

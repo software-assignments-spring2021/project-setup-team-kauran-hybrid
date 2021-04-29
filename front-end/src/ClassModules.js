@@ -2,8 +2,6 @@
 import React,{useState,useEffect} from'react';
 import axios from "axios";
 import './ClassModules.css';
-import {Link} from 'react-router-dom';
-import ClassInfo from './ClassInfo';
 import Course from "./Course";
 
 

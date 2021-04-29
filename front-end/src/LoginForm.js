@@ -1,6 +1,6 @@
 import React,{useState} from'react';
 import './LoginForm.css'
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Results from './Results';
 import axios from 'axios';
 
@@ -12,6 +12,8 @@ const LoginForm=(props)=> {
     const [position,setPosition]=useState("Enter your waitlist position");
     const [number,setNumber]=useState("Enter your class number");
     const [submit, setSubmit]=useState();
+    const [machineRe,setMachineRe]=useState([]);
+    const history=useHistory();
     const handleChange = ({ target }) => {
       setEmail( target.value );
     };
@@ -31,6 +33,7 @@ const LoginForm=(props)=> {
       setPosition('');
     };
     const  handleClickSubmit =async() =>{
+      
       {
         
             await axios.post('http://localhost:3000/home_login',{
@@ -40,8 +43,21 @@ const LoginForm=(props)=> {
               number:number
               }
             );
+            // const prob = await axios(
+            //   // linking to the back-end instead of to mockaroo now
+            //   'http://localhost:3000/machine',{
+            //       headers:{
+            //           number:number,
+            //           position:position
+            //       }
+            //   }
+            // );
+            // setMachineRe(prob.data);
           
-            console.log("triggered");
+            // history.push({
+            //   pathname:"/Results",
+            //   machineRe:machineRe
+            // });
           
       }
 
@@ -96,10 +112,10 @@ const LoginForm=(props)=> {
 
               <center>
              
-                <a href="/Results" className="goButton" onClick={handleClickSubmit}>
+                <a href="/Results" className="goButton" onClick={handleClickSubmit}/>
                   Let's Hop  
                       
-                </a>
+                {/* </a> */}
                 
              
               </center>

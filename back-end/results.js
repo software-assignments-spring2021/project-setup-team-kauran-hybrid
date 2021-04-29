@@ -59,7 +59,7 @@ router.get("/", (req, res) => {
   // console.log( calcProbGetIn(position, number) )
   const probGetIn = (calcProbGetIn(position, number) * 100).toString()
   // console.log( probGetIn )
-  
+  console.log(email,position,number);
   // console.log(email,position,number)
   // res.send({probGetIn, email, position, number}) // we have to send a string here so we convert the probGetIn type to string above
   //res.status(200).json({ok:true})

@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
 const express = require("express");
 const router = express.Router();
-const app=require('../app.js')
+// const app=require('../app.js')
 const whModels=require('./wh_models.js');
 
 let bodyParser = require('body-parser');
@@ -273,6 +273,7 @@ const mongoGetCourses=async(courseNum)=>{
 };
 
 const mongoGetSections=async(courseNum,secCode)=>{
+    console.log(courseNum,secCode)
     const sections = whModels.sections;
     let record;
     let ret;

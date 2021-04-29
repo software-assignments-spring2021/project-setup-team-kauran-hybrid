@@ -43,7 +43,10 @@ const LoginLogout=(props)=> {
           password:password,
       }).then(function(response,err){
         if(err) throw err;
-        console.log(response);
+        //console.log(response);
+        localStorage.setItem('username',email);
+        localStorage.setItem('auth',response.data.auth);
+        //console.log(localStorage);
         history.push({
           pathname:response.data.redirect,
           auth:response.data.auth,
@@ -61,7 +64,9 @@ const LoginLogout=(props)=> {
         number:props.number
       }).then(function(response,err){
         if(err) throw err;
-        console.log(response);
+        //console.log(response);
+        localStorage.setItem('username',email);
+        localStorage.setItem('auth',response.data.auth);
         history.push({
           pathname:response.data.redirect,
           auth:response.data.auth,
@@ -78,7 +83,9 @@ const LoginLogout=(props)=> {
           password:password,
         }).then(function(response,err){
           if(err) throw err;
-          console.log(response);
+          //console.log(response);
+          localStorage.setItem('username',email);
+          localStorage.setItem('auth',response.data.auth);
           history.push({
             pathname:response.data.redirect,
             auth:response.data.auth,
@@ -99,7 +106,9 @@ const LoginLogout=(props)=> {
         number:props.number
       }).then(function(response,err){
         if(err) throw err;
-        console.log(response);
+        //console.log(response);
+        localStorage.setItem('username',email);
+        localStorage.setItem('auth',response.data.auth);
         history.push({
           pathname:response.data.redirect,
           auth:response.data.auth,

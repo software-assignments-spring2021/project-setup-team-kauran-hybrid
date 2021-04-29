@@ -84,7 +84,7 @@ def linReg(df):
 # linReg(df)
 # def prosterity(classSize,waitListPos):
 
-def logReg(df):
+def logReg(df, input):
     X=pd.DataFrame(df[['CourseNumber', 'CourseSize', 'WaitlistSize', 'WaitlistPos']].values)
     y=pd.DataFrame(df['Target'].values)
     model=LogisticRegression()

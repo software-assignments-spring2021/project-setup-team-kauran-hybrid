@@ -11,6 +11,8 @@ import {  uerHistory, useHistory  } from 'react-router-dom'
 const Results=(props)=>{
     const history=useHistory();
     const [userInput, setUserInput] = useState([]);
+    
+
     useEffect(() => {
     // a nested function that fetches the data
     async function fetchData() {
@@ -20,17 +22,19 @@ const Results=(props)=>{
         // linking to the back-end instead of to mockaroo now
         'http://localhost:3000/results'
       );
-      //console.log(result.data);
-      // set the state variable
-      // this will cause a re-render of this component
       setUserInput(result.data);
+      //console.log(result.data);
     }
   
     // fetch the data!
     fetchData();
   
   // the blank array below causes this callback to be executed only once on component load
-  }, []);
+    }, []);
+
+          
+          //console.log(result.data);
+       
    //console.log("Results page", userInput.email, userInput.number, userInput.position);
     const handleClickGoLogin = async() => {
         history.push({
@@ -40,6 +44,7 @@ const Results=(props)=>{
             position:userInput.position
         });
     }
+    console.log(userInput);
     return(
         <div>
             <div className = "menu">

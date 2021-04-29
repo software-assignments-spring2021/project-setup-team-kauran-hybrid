@@ -20,6 +20,9 @@ const { restart } = require("nodemon");
 const { time } = require("console");
 //dotenv.config();
 
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
+
 // user and pwd
 const mongoUser = process.env.mongoUSER;
 const mongoPwd = process.env.mongoPWD;
@@ -295,6 +298,25 @@ router.get('/protected',checkToken,(req,res) => {
 // router.get ('/protected',(req,res) => {
 //   res.send('testing testing');
 // });
+
+ /*
+router.post("/", (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+
+  axios.post('http://localhost:3000/results',{
+    email:email,
+    password:password,
+  })
+
+  res.status(200).json({ok:true})
+})
+
+router.get("/", (req, res) => {
+  res.send("hey there")
+  res.status(200).json({ok:true})
+})
+*/
 
 module.exports = {
   passport:passport,
