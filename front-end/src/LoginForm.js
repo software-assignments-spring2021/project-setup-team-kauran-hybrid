@@ -43,21 +43,21 @@ const LoginForm=(props)=> {
               number:number
               }
             );
-            const prob = await axios(
-              // linking to the back-end instead of to mockaroo now
-              'http://localhost:3000/machine',{
-                  headers:{
-                      number:number,
-                      position:position
-                  }
-              }
-            );
-            setMachineRe(prob.data);
+            // const prob = await axios(
+            //   // linking to the back-end instead of to mockaroo now
+            //   'http://localhost:3000/machine',{
+            //       headers:{
+            //           number:number,
+            //           position:position
+            //       }
+            //   }
+            // );
+            // setMachineRe(prob.data);
           
-            history.push({
-              pathname:"/Results",
-              machineRe:machineRe
-            });
+            // history.push({
+            //   pathname:"/Results",
+            //   machineRe:machineRe
+            // });
           
       }
 
@@ -112,7 +112,7 @@ const LoginForm=(props)=> {
 
               <center>
              
-                <button className="goButton" onClick={handleClickSubmit}/>
+                <a href="/Results" className="goButton" onClick={handleClickSubmit}/>
                   Let's Hop  
                       
                 {/* </a> */}
