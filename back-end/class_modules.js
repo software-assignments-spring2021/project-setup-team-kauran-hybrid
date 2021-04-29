@@ -13,7 +13,7 @@ router.get("/", (req,res, next) => {
   // use axios to make a request to an API for our class history data
   let val=mongo.mongoGetSections().then(response=> {
     res.json(response);
-    console.log(response);
+    //console.log(response);
   });
 })
 
