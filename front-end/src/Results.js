@@ -11,6 +11,8 @@ import {  uerHistory, useHistory  } from 'react-router-dom'
 const Results=(props)=>{
     const history=useHistory();
     const [userInput, setUserInput] = useState([]);
+    const [machineRe,setMachineRe]=useState([]);
+
     useEffect(() => {
     // a nested function that fetches the data
     async function fetchData() {
@@ -20,18 +22,35 @@ const Results=(props)=>{
         // linking to the back-end instead of to mockaroo now
         'http://localhost:3000/results'
       );
-      //console.log(result.data);
-      // set the state variable
-      // this will cause a re-render of this component
       setUserInput(result.data);
-      console.log(result.data);
+      //console.log(result.data);
     }
   
     // fetch the data!
     fetchData();
   
   // the blank array below causes this callback to be executed only once on component load
-  }, []);
+    }, []);
+    useEffect(() => {
+        // a nested function that fetches the data
+        async function fetchData() {
+          // axios is a 3rd-party module for fetching data from servers
+          const result = await axios(
+      
+            // linking to the back-end instead of to mockaroo now
+            'http://localhost:3000/machine',{
+                headers:{
+                    number:userInput.number,
+                    position:userInput.position
+                }
+            }
+          );
+          setMachineRe(result.data);
+          //console.log(result.data);
+        }
+      
+        fetchData();
+      }, []);
    //console.log("Results page", userInput.email, userInput.number, userInput.position);
     const handleClickGoLogin = async() => {
         history.push({
@@ -54,7 +73,7 @@ const Results=(props)=>{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
                 </link>
-                <p>Your possibility of getting into this class is: {userInput.probGetIn} {"\n"}
+                <p>Your possibility of getting into this class is: {machineRe} {"\n"}
 
                     Here are some alternative classes.
                 </p>
