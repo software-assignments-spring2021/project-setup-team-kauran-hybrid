@@ -6,9 +6,8 @@ const dotenv=require('dotenv');
 
 
 
-const posterity=async(res, input)=>{
-    let pyshell=new PythonShell('./machine/machine.py', { mode: 'text'});
-    
+const posterity=async(res)=>{
+    let pyshell=new PythonShell('./machine/machine.py', {mode: "text"});
     
     //this gets all the course data!!
     
@@ -16,13 +15,13 @@ const posterity=async(res, input)=>{
         //your algorithm should need to feed from this results!
         //so probabaly do things in here!!
         // console.log(results);
-        pyshell.send(JSON.stringify({"data":results, "input":input}));
+        pyshell.send(JSON.stringify({"data":results, "input":[120, 100, 20, 5]}));
     });
     // pyshell.send(JSON.stringify([120, 100, 20, 5]));
 
-    pyshell.on('message', function (message) {
-        //console.log(parseInt(message[0]));
-        parseInt(message[0]) <= 1 ? res.send(message) : null;
+    pyshell.on('message',function(message){
+        // console.log(message);
+        parseInt(message[0]) <= 1 ? res.send(message):null;
     });
     
 
@@ -34,10 +33,7 @@ const posterity=async(res, input)=>{
     });
 };
 router.get("/",(req,res)=>{
-    const number=req.headers.number;
-    const position=req.headers.position;
-    console.log('machine',number,position);
-    posterity(res, [120, 100, 20, position]);
+    posterity(res);
     // res.send('machine_learning_site');
 
 });
