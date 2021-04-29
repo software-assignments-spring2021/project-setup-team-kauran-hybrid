@@ -21,7 +21,7 @@ const posterity=async(res, input)=>{
     // pyshell.send(JSON.stringify([120, 100, 20, 5]));
 
     pyshell.on('message', function (message) {
-        // console.log(parseInt(message[0]));
+        //console.log(parseInt(message[0]));
         parseInt(message[0]) <= 1 ? res.send(message) : null;
     });
     
@@ -34,7 +34,10 @@ const posterity=async(res, input)=>{
     });
 };
 router.get("/",(req,res)=>{
-    posterity(res, [120, 100, 20, 10]);
+    const number=req.headers.number;
+    const position=req.headers.position;
+    console.log('machine',number,position);
+    posterity(res, [120, 100, 20, position]);
     // res.send('machine_learning_site');
 
 });
