@@ -174,49 +174,97 @@ const MenuBar=(props)=>{
     }
  
     else{
-        return (
-        
-            <div className="menu">
-                {/* <link
-                    rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-                    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-                    crossorigin="anonymous"
-                    /> */}
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                 
-                </link> 
-                    
-                <nav className="many-links"> 
-                <a href="./" className="goodButton">Home</a>
-    
-    
-                <a href="./Account" className="goodButton">MyAccount</a>
-    
-                    
-                <a href="./Login" className="goodButton">Login/Logout</a>
-    
-                    
-    
-                    {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
+        if (is_mobile) {
+            return (
                 
-                </nav>
-               
-    
-                <center>
-                <button onClick={handleClickGoHome} className={'logoButton'}>
-                <img src={newLogo} className="App-logo" alt="logo" />
-                </button>
-                
-                <p>
-                    {/* Waitlist Hopper */}
-                </p>
-                
-                </center>
-            </div>
+                <React.Fragment>
+                    <GlobalStyles/>
+                    <div>
+                    <Dropdown open={open} setOpen={setOpen} />
+                    <DropdownMenu open={open} setOpen={setOpen}/>
+                    </div>
+                    
+                    <div className="menu">
+                        {/* <link
+                            rel="stylesheet"
+                            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+                            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+                            crossorigin="anonymous"
+                            /> */}
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        
+                        </link> 
+
+                        
+                            
+                        {/* <div className="many-links"> 
+                        <button className="goodButton" onClick={handleClickGoHome}>Home</button>
+                        <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
+                        <button className="goodButton" onClick={handleClickLogout}>Logout</button> 
+                        </div> */}
+                    
             
+                        <center>
+                        <button onClick={handleClickGoHome} className={'logoButton'}>
+                        <img src={newLogo} className="App-logo" alt="logo" />
+                        </button>
+                        
+                        <p>
+                            {/* Waitlist Hopper */}
+                        </p>
+                        
+                        </center>
+                    </div>
+                </React.Fragment>
+                
+                
             )
         }
-    
+        else {
+            // display dropdown menu for mobile users
+            return (
+            
+                <div className="menu">
+                    {/* <link
+                        rel="stylesheet"
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+                        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+                        crossorigin="anonymous"
+                        /> */}
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    
+                    </link> 
+                        
+                    <div className="many-links"> 
+                    <button className="goodButton" onClick={handleClickGoHome}>Home</button>
+        
+        
+                    <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
+        
+                        
+                    {/* <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button> */}
+        
+                    <button className="goodButton" onClick={handleClickGoLogin}>Login</button> 
+        
+                        {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
+                    
+                    </div>
+                
+        
+                    <center>
+                    <button onClick={handleClickGoHome} className={'logoButton'}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                    </button>
+                    
+                    <p>
+                        {/* Waitlist Hopper */}
+                    </p>
+                    
+                    </center>
+                </div>
+                
+            )
+        }
+    }
 }
 export default MenuBar; 
