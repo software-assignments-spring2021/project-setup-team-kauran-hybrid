@@ -1,16 +1,19 @@
-import logo from './logo.svg';
+
 import newLogo from './Logos/color-correct-icon.png';
 import './App.css';
-//import Button from 'react-bootstrap/Button';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App'
-import './Home.css'
-import LoginForm from'./LoginForm'
+import React, {useState} from 'react';
+import './Home.css';
 import { Link,useHistory } from 'react-router-dom';
 import "./MenuBar.css";
+import Dropdown from './Dropdown';
+import DropdownMenu from './DropdownMenu';
+import { GlobalStyles } from './global';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 const MenuBar=(props)=>{
+    const [open, setOpen] = useState(false);
+    let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    // console.log(is_mobile);
     //console.log('menubar',props);
     const history=useHistory();
     const handleClickGoHome = async() => {
@@ -29,6 +32,7 @@ const MenuBar=(props)=>{
             
         });
     }
+
     const handleClickGoLogin = async() => {
         history.push({
             pathname:"./Login",
@@ -74,95 +78,101 @@ const MenuBar=(props)=>{
         history.push('/');
     }
     if(localStorage.auth){
-        //console.log("menubar props.auth", props);
-        
-        return (
-        
-            <div className="menu">
-                {/* <link
-                    rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-                    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-                    crossorigin="anonymous"
-                    /> */}
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                 
-                </link> 
+
+        if (!is_mobile) {
+            return (
+                
+                <React.Fragment>
+                    <GlobalStyles/>
+                    <div>
+                    <Dropdown open={open} setOpen={setOpen} />
+                    <DropdownMenu open={open} setOpen={setOpen}/>
+                    </div>
                     
-                <nav className="many-links"> 
-                <button className="goodButton" onClick={handleClickGoHome}>Home</button>
-    
-    
-                <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
-    
+                    <div className="menu">
+                        {/* <link
+                            rel="stylesheet"
+                            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+                            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+                            crossorigin="anonymous"
+                            /> */}
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        
+                        </link> 
+
+                        
+                            
+                        {/* <div className="many-links"> 
+                        <button className="goodButton" onClick={handleClickGoHome}>Home</button>
+                        <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
+                        <button className="goodButton" onClick={handleClickLogout}>Logout</button> 
+                        </div> */}
                     
-                {/* <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button> */}
-    
-                <button className="goodButton" onClick={handleClickLogout}>Logout</button> 
-    
-                    {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
-                
-                </nav>
-               
-    
-                <center>
-                <button onClick={handleClickGoHome} className={'logoButton'}>
-                <img src={newLogo} className="App-logo" alt="logo" />
-                </button>
-                
-                <p>
-                    {/* Waitlist Hopper */}
-                </p>
-                
-                </center>
-            </div>
             
-        )
+                        <center>
+                        <button onClick={handleClickGoHome} className={'logoButton'}>
+                        <img src={newLogo} className="App-logo" alt="logo" />
+                        </button>
+                        
+                        <p>
+                            {/* Waitlist Hopper */}
+                        </p>
+                        
+                        </center>
+                    </div>
+                </React.Fragment>
+                
+                
+            )
+        }
+        else {
+            // display dropdown menu for mobile users
+            return (
+            
+                <div className="menu">
+                    {/* <link
+                        rel="stylesheet"
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+                        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+                        crossorigin="anonymous"
+                        /> */}
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    
+                    </link> 
+                        
+                    <div className="many-links"> 
+                    <button className="goodButton" onClick={handleClickGoHome}>Home</button>
+        
+        
+                    <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
+        
+                        
+                    {/* <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button> */}
+        
+                    <button className="goodButton" onClick={handleClickLogout}>Logout</button> 
+        
+                        {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
+                    
+                    </div>
+                
+        
+                    <center>
+                    <button onClick={handleClickGoHome} className={'logoButton'}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                    </button>
+                    
+                    <p>
+                        {/* Waitlist Hopper */}
+                    </p>
+                    
+                    </center>
+                </div>
+                
+            )
+        }
+        
     }
-    // else if(props.history?.location.auth){
-    //     return (
-        
-    //         <div className="menu">
-    //             {/* <link
-    //                 rel="stylesheet"
-    //                 href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    //                 integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-    //                 crossorigin="anonymous"
-    //                 /> */}
-    //             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                 
-    //             </link> 
-                    
-    //             <nav className="many-links"> 
-    //             <button className="goodButton" onClick={handleClickGoHomeHistory}>Home</button>
-    
-    
-    //             <button className="goodButton" onClick={handleClickGoAccountHistory}>MyAccount</button>
-    
-                    
-    //             <button className="goodButton" onClick={handleClickGoLoginHistory}>Login/Logout</button>
-    
-                    
-    
-    //                 {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
-                
-    //             </nav>
-               
-    
-    //             <center>
-    //             <button onClick={handleClickGoHomeHistory} className={'logoButton'}>
-    //             <img src={newLogo} className="App-logo" alt="logo" />
-    //             </button>
-                
-    //             <p>
-    //                 {/* Waitlist Hopper */}
-    //             </p>
-                
-    //             </center>
-    //         </div>
-            
-    //     )
-    // }
+ 
     else{
         return (
         
