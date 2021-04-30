@@ -244,7 +244,7 @@ const MenuBar=(props)=>{
                         
                     {/* <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button> */}
         
-                    <button className="goodButton" onClick={handleClickLogout}>Logout</button> 
+                    <button className="goodButton" onClick={handleClickGoLogin}>Login</button> 
         
                         {/* <button className="btn"><i class="fa fa-folder"></i> Folder</button> */}
                     
@@ -265,6 +265,6 @@ const MenuBar=(props)=>{
                 
             )
         }
-    
+    }
 }
 export default MenuBar; 
