@@ -1,19 +1,20 @@
-import react from 'react'
+import React from 'react'
 import './Dropdown.css'
-import {Link} from 'react-router-dom'
+import { StyledDropdown } from './Dropdown.styled';
+import { bool, func } from 'prop-types';
 
-const Dropdown=(props)=>{
+
+const Dropdown=({ open, setOpen })=>{
     return(
-        <div className="dd-wrapper">
-            <div className="dd-header">
-                <div className="dd-header"></div>
-            </div>
-            <ul className="dd-menu">
-                <li> <button className="dd-list-item">Home</button> </li>
-                <li> <button className="dd-list-item">MyAccount</button> </li>
-                <li> <button className="dd-list-item">Login/Logout</button> </li>
-            </ul>
-</div>
+        <StyledDropdown open={open} onClick={() => setOpen(!open)}>
+            <div />
+            <div />
+            <div />
+        </StyledDropdown>
     )
 }
-export default Dropdown
+Dropdown.propTypes = {
+    open: bool.isRequired,
+    setOpen: func.isRequired,
+};
+export default Dropdown;
