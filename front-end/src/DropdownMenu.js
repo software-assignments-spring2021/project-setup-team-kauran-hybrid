@@ -6,15 +6,15 @@ const DropdownMenu = ({ open }) => {
   return (
     <StyledDropdownMenu open={open}>
       <a href="/">
-        <span role="img" aria-label="home">&#x1f481;&#x1f3fb;&#x200d;&#x2642;&#xfe0f;</span>
+        <span role="img" aria-label="home"></span>
         Home
       </a>
       <a href="/">
-        <span role="img" aria-label="my account">&#x1f4b8;</span>
+        <span role="img" aria-label="my account"></span>
         My Account
         </a>
       <a href="/">
-        <span role="img" aria-label="login/logout">&#x1f4e9;</span>
+        <span role="img" aria-label="login/logout"></span>
         Login
         </a>
     </StyledDropdownMenu>
