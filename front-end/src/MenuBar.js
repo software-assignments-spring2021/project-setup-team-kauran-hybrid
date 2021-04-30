@@ -79,7 +79,7 @@ const MenuBar=(props)=>{
     }
     if(localStorage.auth){
 
-        if (!is_mobile) {
+        if (is_mobile) {
             return (
                 
                 <React.Fragment>
