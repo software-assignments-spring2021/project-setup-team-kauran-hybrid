@@ -26,21 +26,21 @@ router.post("/", (req, res) => {
 
 })
 
-const posterity=async(res, input)=>{
+const posterity=async(res, email, position, number, courseSize, wlSize)=>{
   let pyshell=new PythonShell('./machine/machine.py', {mode: "text"});
-  
+  // let prob=0;
   //this gets all the course data!!
   
   await mongo.mongoGetCourses().then(results=>{
       //your algorithm should need to feed from this results!
       //so probabaly do things in here!!
       // console.log(results);
-      pyshell.send(JSON.stringify({"data":results, "input":input}));
+      pyshell.send(JSON.stringify({"data":results, "input":[number, courseSize, wlSize, position]}));
   });
 
-  pyshell.on('message',function(message){
+  pyshell.on('message',function(probGetIn){
       // console.log(message);
-      parseInt(message[0]) <= 1 ? res.send(message):null;
+      parseInt(probGetIn[0]) <= 1 ? res.send({probGetIn, email, position, number}):null;
   });
   
 
@@ -50,6 +50,9 @@ const posterity=async(res, input)=>{
       // console.log('Exit signal was: '+signal);
       // console.log('finished');
   });
+
+  // console.log(prob);
+  // return prob;
 };
 
 router.get("/", (req, res) => {
@@ -57,13 +60,15 @@ router.get("/", (req, res) => {
   // call some function that takes email, position, number that the user entered on the home page
   // this function returns the probability that the student gets into the class
   // console.log( calcProbGetIn(position, number) )
-  const probGetIn = (calcProbGetIn(position, number) * 100).toString()
+  // const probGetIn = (calcProbGetIn(position, number) * 100).toString()
+  let probGetIn;
   // console.log( probGetIn )
   console.log(email,position,number);
   // console.log(email,position,number)
   // res.send({probGetIn, email, position, number}) // we have to send a string here so we convert the probGetIn type to string above
   //res.status(200).json({ok:true})
-  position != null && number != null ? posterity(res, [number, 120, 20, position]): res.send('wait');
+  position != null && number != null ? posterity(res, email, position, number, 120, 20): res.send({email, position, number});
+  // probGetIn!=null ? res.send({probGetIn, email, position, number}):null;
 
 })
 

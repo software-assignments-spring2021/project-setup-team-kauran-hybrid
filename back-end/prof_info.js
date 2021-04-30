@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const bodyParser = require("body-parser");
 const scraper = require("./scraper");
+const mongoScript=require('./mongo/mongo.js');
 //require("dotenv").config({ silent: true }); // save private data in .env file
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +22,27 @@ router.get("/", (req,res, next) => {
     //   })
     // use axios to make a request to an API for our class info data
     // scraper.run().then(console.log);
-    scraper.prof_scraper(postinfo.prof[0], 'New York University').then(response=>res.json(response))
+    // let profs = mongoScript.mongoGetProfs2();
+    // console.log(profs);
+    // mongoScript.mongoGetProfs2()
+    //            .then(profs=>{profs.map(prof => (
+    //             scraper.prof_scraper(prof, 'New York University').then(response=>mongoScript.mongoSaveProfsRate(prof,response.q,response.d,response.t,response.tags))
+    //           ))});
+    // res.send('scraping');
+    // console.log(profs);
+    // res.send('hi');
+    // let prof;
+    // for (i in profs) {
+      
+    //   prof = profs[i];
+    //   scraper.prof_scraper(prof, 'New York University').then(response=>mongoScript.mongoSaveProfsRate(prof, response.q,response.d,response.t,response.tags));
+      
+    // }
+    let prof = "Amos Bloomberg";
+    scraper.prof_scraper(prof, 'New York University')
+          //  .then(response=>mongoScript.mongoSaveProfsRate(prof, response.q,response.d,response.t,response.tags));
+    res.send('scraping');
+    // scraper.prof_scraper(postinfo.prof[0], 'New York University').then(response=>res.json(response))
     // console.log(prof)
     // axios
     //   .get("https://my.api.mockaroo.com/professor.json?key=2f789220")
