@@ -9,11 +9,11 @@ const DropdownMenu = ({ open }) => {
         <span role="img" aria-label="home"></span>
         Home
       </a>
-      <a href="/">
+      <a href="/Account">
         <span role="img" aria-label="my account"></span>
         My Account
         </a>
-      <a href="/">
+      <a href="/Login">
         <span role="img" aria-label="login/logout"></span>
         Login
         </a>

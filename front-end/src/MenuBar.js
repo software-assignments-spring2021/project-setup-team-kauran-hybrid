@@ -83,7 +83,7 @@ const MenuBar=(props)=>{
             return (
                 
                 <React.Fragment>
-                    <GlobalStyles/>
+                    {/* <GlobalStyles/> */}
                     <div>
                     <Dropdown open={open} setOpen={setOpen} />
                     <DropdownMenu open={open} setOpen={setOpen}/>
@@ -166,7 +166,7 @@ const MenuBar=(props)=>{
             return (
                 
                 <React.Fragment>
-                    <GlobalStyles/>
+                    {/* <GlobalStyles/> */}
                     <div>
                     <Dropdown open={open} setOpen={setOpen} />
                     <DropdownMenu open={open} setOpen={setOpen}/>
