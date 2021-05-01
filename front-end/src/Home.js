@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-//import './App.css';
+
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
-import App from './App'
 import './Home.css'
 import LoginForm from'./LoginForm'
-import { Link } from 'react-router-dom';
+import './LoginForm.css';
 // import Button from './Button'
 import MenuBar from './MenuBar';
 import Dropdown from './Dropdown';
@@ -21,10 +18,6 @@ const Home=(props)=>{
       
       <div>
           <MenuBar auth={props.history.location.auth} username={props.history.location.username}/>
-
-    
-          
-        
         {/* This makes it so that the top menu part does not move around */}
         <div className="Home">
             

@@ -8,7 +8,7 @@ function Course(props){
         return(
             <div className="search-item">
             <a href = './ClassInfo'>
-                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+                {props.details.courseNum}{" "}|{" "}{props.details.courseName}{" "}|{' '}Status:
             </a>
             </div>
             //<a href="./Results" class="back-results-button"></a>

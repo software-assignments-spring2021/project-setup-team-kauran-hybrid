@@ -4,7 +4,9 @@
 }
 
 .App-logo {
-  height: 20vmin;
+  /* border: 0vw;
+  border-style: solid; */
+  height: 10vw;
   pointer-events: none;
 }
 

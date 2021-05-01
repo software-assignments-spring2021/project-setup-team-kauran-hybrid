@@ -25,18 +25,23 @@ nav a:hover{
 }
 
 .logoButton{
-    position:relative;
+    position:absolute;
+    top:15vw;
+    border-style: solid;
+    border: 0;
+    padding:0px 0px 0px 0px;
     
 }
 .logoButton:hover{
     background-color:white;
     color:black;
+    cursor: pointer;
 }
 
 .many-links {
     position: absolute;
-    left: 30%;
-    top: 10%;
+    /* left: 30%; */
+    /* top: 10%; */
 }
 
 .Dropdown {
@@ -66,7 +71,8 @@ nav a:hover{
 }
 .goodButton{
     padding: 5px 10px;
-    top: 10px;
+    position: absolute;
+    bottom:10vw;
     margin-left:15px;
     border: 2.5px;
     border-color: white;
@@ -75,10 +81,10 @@ nav a:hover{
     /* border-radius: 10%; */
     background-color: #57068C;
     color:white; 
-    right:100%;
+    right:25vw;
     position: relative;
     cursor:pointer;
-    font-family:fantasy;
+    font-family:roboto;
     
 }
 .App-name{
