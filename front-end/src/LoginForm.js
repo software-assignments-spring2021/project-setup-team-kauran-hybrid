@@ -43,31 +43,15 @@ const LoginForm=(props)=> {
               number:number
               }
             );
-            // const prob = await axios(
-            //   // linking to the back-end instead of to mockaroo now
-            //   'http://localhost:3000/machine',{
-            //       headers:{
-            //           number:number,
-            //           position:position
-            //       }
-            //   }
-            // );
-            // setMachineRe(prob.data);
-          
-            // history.push({
-            //   pathname:"/Results",
-            //   machineRe:machineRe
-            // });
           
       }
 
     };
-    
 
     //render() {
       return (
         <React.Fragment>
-          {/* <body> */}
+
             <form action="home_login" method ="POST" className="box">
               <p>
                 {/* <label htmlFor="email">Email</label> */}
@@ -105,26 +89,18 @@ const LoginForm=(props)=> {
                 onClick={handleClickNumber}
                 />
               </p>          
-            
-              {/* <button to="./Results" renderAs={Link}>
-                Go!
-              </button> */}
 
               <center>
              
-                <a href="/Results" className="goButton" onClick={handleClickSubmit}/>
+                <a href="/Results" className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
                       
-                {/* </a> */}
+                </a>
                 
-             
               </center>
-             
 
             </form>
-   
-            {/* <h1>Your username is: {email}</h1> */}
-          {/* </body> */}
+
         </React.Fragment>
 
       );

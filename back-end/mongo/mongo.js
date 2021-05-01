@@ -359,6 +359,54 @@ const mongoGetProfs=async(saveProfs)=>{
     return ret;
 };
 
+const mongoGetProfs2=async()=>{
+    const professors = whModels.professors;
+
+    const ret=await professors.find({},function(err,results){
+        if(err) throw err;
+        
+        return results;
+        
+    }).distinct('_id');
+
+    // console.log(ret);
+    return ret;
+};
+
+const mongoSaveProfsRate=async(profName,rate,difficulty,retake,tags)=>{
+
+    let result = await whModels.professors.findById(profName);
+    result.rate = rate;
+    result.difficulty = difficulty;
+    result.retake = retake;
+    result.tags = tags;
+    await result.save();
+    // await whModels.professors.findById(profName,async function(err,results){
+    //     if(err) throw err;
+    //     if(results == null){
+    //         const newCourse=new whModels.professors({
+    //             _id:profName,
+    //             sections:[section]
+
+    //         });
+    //         await newCourse.save()
+    //             .then(()=>console.log('Professor created'));
+            
+    //     }
+        
+    //     else {
+    //         results.sections.push(section);
+    //         await results.save().then(()=>console.log('Professor updated'));
+    //     }
+
+        // console.log(results);
+    // });
+    
+    
+     
+
+};
+
 
 //post request for inserting user accounts
 router.post("/add_user_account", async(req, res) => {
@@ -401,5 +449,7 @@ module.exports={
     mongoGetSections:mongoGetSections,
     mongoGetProfs:mongoGetProfs,
     mongoSaveProfs:mongoSaveProfs,
+    mongoGetProfs2:mongoGetProfs2,
+    mongoSaveProfsRate:mongoSaveProfsRate,
     router:router
 }

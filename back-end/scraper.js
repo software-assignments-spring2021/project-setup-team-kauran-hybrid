@@ -18,7 +18,7 @@ const prof_scraper=async(prof,ischool)=>{
     const school="New York University";
     const browser=await puppeteer.launch({headless:true});
     const page=await browser.newPage();
-    page. setDefaultTimeout (1000000)
+    // page. setDefaultTimeout (100000)
     //this goes to nyu school page on RMP
     await page.goto('https://www.ratemyprofessors.com/campusRatings.jsp?sid=675');
     //select input
@@ -30,9 +30,9 @@ const prof_scraper=async(prof,ischool)=>{
     await inputProf.type(profName);
     //press down and then enter
    // await page.keyboard.press("ArrowDown");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(500);
     await page.keyboard.press("Enter");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(500);
 
     // await page.click('div.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx');
     
@@ -88,7 +88,7 @@ const prof_scraper=async(prof,ischool)=>{
     console.log("would take again "+takeAgain);
 
     await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(500);
 
     const urls = await page.evaluate(() => {
         let l = [];

@@ -102,7 +102,7 @@ def logReg(df, input):
     # fakeX[0,:] = [120, 100, 20, 5]
     # print("fake prob: ", model.predict_proba(fakeX)[:,1])
 
-logReg(df, json.loads(value)['input'])
+#logReg(df, json.loads(value)['input'])
 
 # load the model from disk
 loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
