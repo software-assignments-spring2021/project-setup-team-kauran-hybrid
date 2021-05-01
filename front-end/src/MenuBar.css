@@ -1,4 +1,6 @@
 .menu {
+    width: 20vw;
+    height: 30vw;
     background-color: #57068C;
     display: flex;
     flex-direction: column;
@@ -19,23 +21,9 @@
 
 }
 nav a:hover{
-    backgroud-color:white;
+    background-color:white;
 }
-.menu-links{
-    /* margin-left: 10px;
-    padding: 20px;
-    color:  white; */
-    margin-left: 10px;
-    position:relative;
-    padding:5px;
-    border: 1px;
-    border: solid;
-    border-color:white;
 
-    /* right: 100%; */
-    /* background-color:white; */
-    
-}
 .logoButton{
     position:relative;
     
@@ -44,6 +32,34 @@ nav a:hover{
     background-color:white;
     color:black;
 }
+
+.many-links {
+    position: absolute;
+    left: 30%;
+    top: 10%;
+}
+
+.Dropdown {
+    background-color: red;
+}
+
+.dropdownButton{
+    padding: 5px 10px;
+    top: 10px;
+    margin-left:15px;
+    border: 2.5px;
+    border-color: white;
+    border-style: solid;
+    font-size: 20px;
+    /* border-radius: 10%; */
+    background-color: #57068C;
+    color:white; 
+    right:100%;
+    position: relative;
+    cursor:pointer;
+    font-family:fantasy;
+}
+
 .goodButton:hover{
     background-color:white;
     color:black;
