@@ -52,6 +52,9 @@ const LoginForm=(props)=> {
       return (
         <React.Fragment>
           {/* <body> */}
+          <p style={{ color:'white'}}>
+            Welcome! Enter your info to get a prediction!
+          </p>
             <form action="home_login" method ="POST" className="box">
               <p className="inputWrapper">
                 {/* <label htmlFor="email">Email</label> */}
