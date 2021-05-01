@@ -18,7 +18,7 @@ const courseSchema=new mongoose.Schema({
 
 });
 
-const sectionSchema=new mongoose.Schema({
+const sectionsSchema=new mongoose.Schema({
     courseNum:String,
     courseName:String,
     sections:Array
@@ -35,11 +35,24 @@ const profSchema=new mongoose.Schema({
 
 });
 
+const newSectionSchema=new mongoose.Schema({
+    courseNum:String,
+    courseName:String,
+    secCode:String,
+    secYear:String,
+    secSem:String,
+    secInstructors:Array,
+    secStatus:String,
+    secTime:String,
+    secLoc:String,
+    recs:Array
+});
 
 //must decalre mongoose models here!
 const userAccounts=mongoose.model("userAccounts",userAccountSchema);
 const courses=mongoose.model("courses",courseSchema);
-const sections=mongoose.model("sections",sectionSchema);
+const sections=mongoose.model("sections",sectionsSchema);
+const newSection=mongoose.model("newSection",newSectionSchema);
 const professors=mongoose.model('professors',profSchema);
 const testingCourses=mongoose.model('testingCourses',courseSchema);
 const trainingCourses=mongoose.model('trainingCourses',courseSchema);
@@ -49,8 +62,10 @@ module.exports={
     trainingCourses:trainingCourses,
     testingCourses:testingCourses,
     sections:sections,
+    newSection:newSection,
     professors:professors,
-    sectionSchema: sectionSchema,
+    sectionsSchema: sectionsSchema,
+    newSectionSchema: newSectionSchema,
     courseSchema: courseSchema,
     userAccountSchema: userAccountSchema,
     profSchema:profSchema

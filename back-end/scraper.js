@@ -154,8 +154,6 @@ const albert_scraper=async(parameters)=>{
     const url = `https://schedge.a1liu.com/current/${semester}/${school}/${subject}`;
     const result=await fetch(url)
         .then(res=>res.json())
-    
-    
 
     for (key in result) {
         // Loop through each class
@@ -266,18 +264,18 @@ const albert_scraper=async(parameters)=>{
                 }
                 recs.push(rec);
             }
-            sec = {
-                secCode:lectureCode,
-                secYear:year,
-                secSem:semester,
-                secInstructors:instructors,
-                secStatus:lecStatus,
-                secTime:lecTime,
-                secLoc:lecLocation,
-                recs:recs
-            }
+            // sec = {
+            //     secCode:lectureCode,
+            //     secYear:year,
+            //     secSem:semester,
+            //     secInstructors:instructors,
+            //     secStatus:lecStatus,
+            //     secTime:lecTime,
+            //     secLoc:lecLocation,
+            //     recs:recs
+            // }
             
-            await mongoScript.mongoSaveSections(lecNum,lecName,sec);  
+            await mongoScript.mongoSaveNewSection(lecNum,lecName,lectureCode,year,semester,instructors,lecStatus,lecTime,lecLocation,recs);  
         }
     }
     return result;
