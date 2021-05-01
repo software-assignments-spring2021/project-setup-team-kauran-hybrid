@@ -4,7 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 function Course(props){
     let history = useHistory();
     if(props.page=='results'){
-        //console.log(props.details.courseNum);
+        console.log(props.details);
         return(
             <div className="search-item">
             {/* <Link onClick={(props)=>(history.push({pathname:'/ClassInfo',state:props.details,ok:true}))}>
@@ -13,7 +13,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+                {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
@@ -32,7 +32,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                Course Number: {props.details.courseNum}{"\t"}|{"\t"}WaitListPosition: {props.details.waitlistPos}{"\t"}|{"\t"}
+                {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}|{"\t"} {props.details.waitlistPos}{"\t"}|{"\t"}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
@@ -47,7 +47,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+                {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
