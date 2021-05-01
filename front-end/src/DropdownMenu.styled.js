@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledDropdownMenu = styled.nav`
-  display: block;
+  display: flex;
 //   grid-template-columns: repeat(3, 20px [col-start]);
 //   grid-template-rows: repeat(3, 2px [row-start]);
-//   flex-direction: row;
+   flex-direction: column;
 //   justify-content: flex-start;
   align-items: center;
 //   background: '#EFFFFA';
