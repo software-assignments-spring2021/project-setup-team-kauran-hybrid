@@ -20,9 +20,8 @@ function ClassInfo(props){
       async function fetchData() {
         // axios is a 3rd-party module for fetching data from servers
         await axios(
-          // retrieving some mock data about animals for sale
           // `http://waitlisthopper.com:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
-          `http://localhost:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
+          `http://localhost:3000/class_info?course=${details.courseNum}&section=${details.secCode}`
           ).then(res=>setClassInfo({
             state:true,
             data:res.data
@@ -36,7 +35,7 @@ function ClassInfo(props){
 
     // the blank array below causes this callback to be executed only once on component load
   }, []);
-    
+    console.log(classinfo.data);
     return(
 
         <div className="ClassInfo">
@@ -49,9 +48,10 @@ function ClassInfo(props){
             {/* {class_info.map(item => (
               <ClassDetail key={item.class_number} details={item} page='class_info'/>
             ))} */}
+            
             {
               classinfo.state ?
-              <ClassDetail key={classinfo.data.class_number} details={classinfo.data} page='class_info'/>:
+              <ClassDetail key={classinfo.data.courseNum} details={classinfo.data} page='class_info'/>:
               null
             }
             

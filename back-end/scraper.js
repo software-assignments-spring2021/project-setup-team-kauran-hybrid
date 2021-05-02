@@ -223,7 +223,7 @@ const albert_scraper=async(parameters)=>{
             let lectureCode = section.code;
             lectureCode = lectureCode.replace(/^0+/, '');
             //console.log(lectureCode);
-            const lecNum = subject + '-' + school + deptCourseId;
+            const lecNum = deptCourseId;
             // console.log(lecNum);
             const lectures = section.meetings;
             const instructors = section.instructors;

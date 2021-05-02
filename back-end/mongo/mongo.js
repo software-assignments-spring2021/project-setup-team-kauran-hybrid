@@ -455,14 +455,15 @@ const mongoGetNewSection=async(courseNum,secCode)=>{
             return result;
         });
         ret=record;
-        let s;
-        for (i in record.sections) {
-             s=record.sections[i];
-             if (s.secCode == secCode) {
-                 ret = s;
-                 break;
-            }
-        }
+        // console.log(ret)
+        // let s;
+        // for (i in record.sections) {
+        //      s=record.sections[i];
+        //      if (s.secCode == secCode) {
+        //          ret = s;
+        //          break;
+        //     }
+        // }
     }
     //if getting all courses
     else if (courseNum){

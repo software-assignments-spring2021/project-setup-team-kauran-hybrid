@@ -61,7 +61,9 @@ const LoginLogout=(props)=> {
         username:email,
         password:password,
         position:props.position,
-        number:props.number
+        number:props.number,
+        secCode:props.secCode
+
       }).then(function(response,err){
         if(err) throw err;
         //console.log(response);
@@ -103,7 +105,9 @@ const LoginLogout=(props)=> {
         username:email,
         password:password,
         position:props.position,
-        number:props.number
+        number:props.number,
+        secCode:props.secCode
+
       }).then(function(response,err){
         if(err) throw err;
         //console.log(response);

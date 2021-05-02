@@ -154,7 +154,8 @@ passport.use('login', new LocalStrategy({usernameField:'username', passwordField
               
               const newUserHistory={
                 waitlistPos:req.body.position,
-                courseNum:req.body.number
+                courseNum:req.body.number,
+                secCode:req.body.secCode
               };
 
               user.save({userHistory:user.userHistory.push(newUserHistory)});
@@ -177,6 +178,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
 
   let number = req.body.number
   let position = req.body.position
+  let secCode = req.body.section
   const userAccounts = whModels.userAccounts;
   userAccounts.findOne({username: username}, (err, user) => {
     
@@ -184,7 +186,8 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
       if(!user){
         const newUserHistory={
           waitlistPos:req.body.position,
-          courseNum:req.body.number
+          courseNum:req.body.number,
+          secCode:req.body.section
         };
 
         const newUser=new userAccounts({username:username,password:password,userHistory:newUserHistory});
@@ -195,7 +198,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
           if(err) throw err;
           bcrypt.hash(newUser.password,salt,(err,hash)=>{
             if(err) throw err;
-            console.log(number,position);
+            console.log(number,position,secCode);
             newUser.password=hash;
             // newUser.courseNum=number;
             // newUser.waitlistPos=position;

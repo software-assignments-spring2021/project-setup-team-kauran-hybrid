@@ -18,15 +18,16 @@ const calcProbGetIn = (position, number) => {
 let email;
 let position;
 let number;
+let secCode;
 
 router.post("/", (req, res) => {
   email = req.body.email
   position = req.body.position
   number = req.body.number
-
+  secCode = req.body.secCode
 })
 
-const posterity=async(res, email, position, number, courseSize, wlSize)=>{
+const posterity=async(res, email, position, number, secCode, courseSize, wlSize)=>{
   let pyshell=new PythonShell('./machine/machine.py', {mode: "text"});
   // let prob=0;
   //this gets all the course data!!
@@ -40,7 +41,7 @@ const posterity=async(res, email, position, number, courseSize, wlSize)=>{
 
   pyshell.on('message',function(probGetIn){
       // console.log(message);
-      parseInt(probGetIn[0]) <= 1 ? res.send({probGetIn, email, position, number}):null;
+      parseInt(probGetIn[0]) <= 1 ? res.send({probGetIn, email, position, number, secCode}):null;
   });
   
 
@@ -63,11 +64,11 @@ router.get("/", (req, res) => {
   // const probGetIn = (calcProbGetIn(position, number) * 100).toString()
   let probGetIn;
   // console.log( probGetIn )
-  console.log(email,position,number);
+  console.log(email,position,number,secCode);
   // console.log(email,position,number)
   // res.send({probGetIn, email, position, number}) // we have to send a string here so we convert the probGetIn type to string above
   //res.status(200).json({ok:true})
-  position != null && number != null ? posterity(res, email, position, number, 120, 20): res.send({email, position, number});
+  position != null && number != null ? posterity(res, email, position, number, secCode, 120, 20): res.send({email, position, number, secCode});
   // probGetIn!=null ? res.send({probGetIn, email, position, number}):null;
 
 })

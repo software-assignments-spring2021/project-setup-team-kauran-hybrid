@@ -22,7 +22,7 @@ const Login=(props)=>{
         </div>
         <div className = "Login-page">
   
-          <LoginLogout username={props.history.location.uesrname} position={props.history.location.position} number={props.history.location.number} />
+          <LoginLogout username={props.history.location.uesrname} position={props.history.location.position} number={props.history.location.number} secCode={props.history.location.secCode}/>
             
         </div>
         

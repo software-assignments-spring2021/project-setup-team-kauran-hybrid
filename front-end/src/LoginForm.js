@@ -11,7 +11,7 @@ const LoginForm=(props)=> {
     const [email,setEmail]=useState("Enter your email");
     const [position,setPosition]=useState("Enter your waitlist position");
     const [number,setNumber]=useState("Enter your class number");
-    const [section,setSection]=useState("Enter your class section");
+    const [secCode,setSection]=useState("Enter your class section");
     const [submit, setSubmit]=useState();
     const [machineRe,setMachineRe]=useState([]);
     const history=useHistory();
@@ -40,19 +40,15 @@ const LoginForm=(props)=> {
       setPosition('');
     };
     const  handleClickSubmit =async() =>{
-      
-      {
         
             await axios.post('http://localhost:3000/home_login',{
               
               email:email,
               position:position,
               number:number,
-              section:section
+              secCode:secCode
               }
             );
-          
-      }
 
     };
 
@@ -99,9 +95,9 @@ const LoginForm=(props)=> {
               <p>
                 {/* <label htmlFor="number">number</label> */}
                 <input className="inputs"
-                type="2"
-                name="section"
-                value={section}
+                type="secCode"
+                name="secCode"
+                value={secCode}
 
                 onChange={handleSection}
                 onClick={handleClickSection}

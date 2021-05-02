@@ -27,12 +27,13 @@ function ClassDetail(props){
     return(
             <div className="class-details">
                 <center className="class-name">
-                    {props.details.lecNum} {props.details.lecName}
+                    MATH-UA {props.details.courseNum} {' '}
+                    {props.details.courseName}
                 </center>
 
                 <p className="class-info">
-                    Section 00{props.details.secCode} | {' '}
-                    {props.details.secTime} | {' '}
+                    Section 00{props.details.secCode} | {'\t'}
+                    {props.details.secTime} | {'\t'}
                     {props.details.secLoc}
                 </p>
 

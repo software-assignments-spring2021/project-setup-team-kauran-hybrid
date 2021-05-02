@@ -45,7 +45,7 @@ const Results=(props)=>{
             username:userInput.data.email,
             number: userInput.data.number,
             position:userInput.data.position,
-            section:userInput.data.section
+            secCode:userInput.data.secCode
         });
     }
     console.log(userInput.data);
