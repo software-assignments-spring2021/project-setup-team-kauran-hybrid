@@ -21,8 +21,11 @@ const Results=(props)=>{
   
         // linking to the back-end instead of to mockaroo now
         'http://localhost:3000/results'
-      );
-      setUserInput(result.data);
+      ).then(res=>setUserInput({
+        state:true,
+        data:res.data
+      }));
+    //   setUserInput(result.data);
       //console.log(result.data);
     }
   
@@ -39,12 +42,12 @@ const Results=(props)=>{
     const handleClickGoLogin = async() => {
         history.push({
             pathname:"./Login",
-            username:userInput.email,
-            number: userInput.number,
-            position:userInput.position
+            username:userInput.data.email,
+            number: userInput.data.number,
+            position:userInput.data.position
         });
     }
-    console.log(userInput);
+    console.log(userInput.data);
     return(
         <div>
             <div className = "menu">
@@ -57,10 +60,13 @@ const Results=(props)=>{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
                 </link>
-                <p>Your possibility of getting into this class is: {userInput.probGetIn} {"\n"}
+                {
+                userInput.state ? <p>Your possibility of getting into this class is: {userInput.data.probGetIn} {"\n"}
 
                     Here are some alternative classes.
-                </p>
+                </p>:
+                 <div class="loader"> </div>
+                }
                 <ClassModules page='results'>
 
                 </ClassModules>
@@ -80,6 +86,8 @@ const Results=(props)=>{
                     <a href="/" className="results-button">NO! Go Back</a>
                 
                 </p>
+                
+                
             </div>
         </div>
 
