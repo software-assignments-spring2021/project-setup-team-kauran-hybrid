@@ -10,12 +10,20 @@ function ClassDetail(props){
 
     useEffect(async() => {
         // POST request using axios inside useEffect React hook
-        const article = { prof: props.details.secInstructors };
-        await axios.post('http://localhost:3000/prof_info', article)
-            .then(response => setArticleId(response.data.id));
+        let re = / [a-zA-Z]\.* /i;
+        if (props.details.secInstructors) {
+            for (let i=0; i < props.details.secInstructors.length; i++) {
+                let prof = props.details.secInstructors[i];
+                props.details.secInstructors[i] = prof.replace(re, ' ');
+            }
+            const article = { prof: props.details.secInstructors };
+            await axios.post('http://localhost:3000/prof_info', article)
+                .then(response => setArticleId(response.data.id));
+        }
 
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
+
     return(
             <div className="class-details">
                 <center className="class-name">
