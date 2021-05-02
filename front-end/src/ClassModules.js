@@ -43,14 +43,10 @@ function ClassModules(props){
     if(props.page=='results'){
       //console.log(userHistory.courseNum);
       return (
-        
         <>
-
           <div className="ClassModules">
-  
             {userHistory.map(item => (
-              
-              <Course page={props.page} key={item.courseNum,item.courseName} details={item} />
+              <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
             ))}
           </div>

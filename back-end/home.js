@@ -11,11 +11,13 @@ router.post("/", (req, res) => {
   const email = req.body.email
   const position = req.body.position
   const number = req.body.number
+  const section = req.body.section
 
   axios.post('http://localhost:3000/results',{
     email:email,
     position:position,
-    number:number
+    number:number,
+    section:section
   })
 
   res.status(200).json({ok:true})

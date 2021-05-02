@@ -11,6 +11,7 @@ const LoginForm=(props)=> {
     const [email,setEmail]=useState("Enter your email");
     const [position,setPosition]=useState("Enter your waitlist position");
     const [number,setNumber]=useState("Enter your class number");
+    const [section,setSection]=useState("Enter your class section");
     const [submit, setSubmit]=useState();
     const [machineRe,setMachineRe]=useState([]);
     const history=useHistory();
@@ -23,11 +24,17 @@ const LoginForm=(props)=> {
     const handleNumber=({target})=>{
         setNumber(target.value)
     };
+    const handleSection=({target})=>{
+        setSection(target.value)
+  };
     const handleClickEmail = (e) => {
       setEmail('');
     };
     const handleClickNumber = () => {
       setNumber('');
+    };
+    const handleClickSection = () => {
+      setSection('');
     };
     const handleClickPos = () => {
       setPosition('');
@@ -40,7 +47,8 @@ const LoginForm=(props)=> {
               
               email:email,
               position:position,
-              number:number
+              number:number,
+              section:section
               }
             );
           
@@ -82,11 +90,21 @@ const LoginForm=(props)=> {
                 <input className="inputs"
                 type="2"
                 name="number"
-                
                 value={number}
 
                 onChange={handleNumber}
                 onClick={handleClickNumber}
+                />
+              </p>    
+              <p>
+                {/* <label htmlFor="number">number</label> */}
+                <input className="inputs"
+                type="2"
+                name="section"
+                value={section}
+
+                onChange={handleSection}
+                onClick={handleClickSection}
                 />
               </p>          
 

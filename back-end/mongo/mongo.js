@@ -455,16 +455,14 @@ const mongoGetNewSection=async(courseNum,secCode)=>{
             return result;
         });
         ret=record;
-        // let s;
-        // for (i in record.sections) {
-        //     s=record.sections[i];
-        //     if (s.secCode == secCode) {
-        //         s.lecName = record.courseName;
-        //         s.lecNum = courseNum;
-        //         ret = s;
-        //         break;
-        //     }
-        // }
+        let s;
+        for (i in record.sections) {
+             s=record.sections[i];
+             if (s.secCode == secCode) {
+                 ret = s;
+                 break;
+            }
+        }
     }
     //if getting all courses
     else if (courseNum){
@@ -483,6 +481,7 @@ const mongoGetNewSection=async(courseNum,secCode)=>{
             
         });
     }
+    return ret;
 }
 
 const mongoGetProfRate=async(profName)=>{

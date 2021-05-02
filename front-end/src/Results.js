@@ -44,7 +44,8 @@ const Results=(props)=>{
             pathname:"./Login",
             username:userInput.data.email,
             number: userInput.data.number,
-            position:userInput.data.position
+            position:userInput.data.position,
+            section:userInput.data.section
         });
     }
     console.log(userInput.data);

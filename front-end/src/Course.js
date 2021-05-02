@@ -3,6 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 
 function Course(props){
     let history = useHistory();
+
     if(props.page=='results'){
         console.log(props.details);
         return(
@@ -13,7 +14,8 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus}
+                {/* {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus} */}
+                {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
@@ -32,7 +34,8 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}|{"\t"} {props.details.waitlistPos}{"\t"}|{"\t"}
+                {/* {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}|{"\t"} {props.details.waitlistPos}{"\t"}|{"\t"} */}
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Waitlist Position: {props.details.waitlistPos}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>

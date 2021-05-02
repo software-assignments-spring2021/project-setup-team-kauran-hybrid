@@ -13,7 +13,7 @@ router.get("/", (req,res, next) => {
     // res.send('scraping');
     let {course, section} = req.query
 
-    mongo.mongoGetSections(course, section).then((response) =>{
+    mongo.mongoGetNewSection(course, section).then((response) =>{
       //console.log(response)
       res.json(response)
     });
