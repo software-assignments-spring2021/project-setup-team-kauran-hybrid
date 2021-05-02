@@ -18,9 +18,9 @@ const Professor=(props)=>{
       }
     
     // console.log(JSON.parse(cur))
-    const rate = props.details.q + ' / 5'
-    const difficulty = props.details.d + ' / 5'
-    const retake = props.details.t
+    const rate = props.details.rate + ' / 5'
+    const difficulty = props.details.difficulty + ' / 5'
+    const retake = props.details.retake
     const HashTags = props.details.tags
     
     // const classes = [props.details.class1, props.details.class2]

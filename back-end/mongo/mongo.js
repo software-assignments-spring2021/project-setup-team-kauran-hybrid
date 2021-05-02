@@ -334,6 +334,7 @@ const mongoGetProfs=async(saveProfs)=>{
     let secs;
     let sec;
     let prof;
+    let re = / [a-zA-Z]\.* /i;
     for (i in records) {
         if (records[i].sections) {
             
@@ -347,7 +348,9 @@ const mongoGetProfs=async(saveProfs)=>{
                     for (k in sec.secInstructors) {
                         sec.courseName = records[i].courseName;
                         sec.courseNum = records[i].courseNum;
-                        await saveProfs(sec.secInstructors[k], sec);
+                        prof = sec.secInstructors[k];
+                        prof = prof.replace(re, ' ');
+                        await saveProfs(prof, sec);
                     }
                 }
             }
@@ -369,42 +372,38 @@ const mongoGetProfs2=async()=>{
         
     }).distinct('_id');
 
-    // console.log(ret);
+    console.log(ret);
     return ret;
 };
 
 const mongoSaveProfsRate=async(profName,rate,difficulty,retake,tags)=>{
 
     let result = await whModels.professors.findById(profName);
-    result.rate = rate;
-    result.difficulty = difficulty;
-    result.retake = retake;
-    result.tags = tags;
+    if (rate) {
+        result.rate = rate;
+    }
+    if (difficulty) {
+        result.difficulty = difficulty;
+    }
+    if (retake) {
+        result.retake = retake;
+    }
+    if (tags) {
+        result.tags = tags;
+    }
+    
     await result.save();
-    // await whModels.professors.findById(profName,async function(err,results){
-    //     if(err) throw err;
-    //     if(results == null){
-    //         const newCourse=new whModels.professors({
-    //             _id:profName,
-    //             sections:[section]
 
-    //         });
-    //         await newCourse.save()
-    //             .then(()=>console.log('Professor created'));
-            
-    //     }
-        
-    //     else {
-    //         results.sections.push(section);
-    //         await results.save().then(()=>console.log('Professor updated'));
-    //     }
+};
 
-        // console.log(results);
-    // });
-    
-    
-     
+const mongoGetProfRate=async(profName)=>{
+    const professors = whModels.professors;
+    let ret;
 
+    ret = await professors.findById(profName);
+
+    console.log(ret);
+    return ret;
 };
 
 
@@ -451,5 +450,6 @@ module.exports={
     mongoSaveProfs:mongoSaveProfs,
     mongoGetProfs2:mongoGetProfs2,
     mongoSaveProfsRate:mongoSaveProfsRate,
+    mongoGetProfRate:mongoGetProfRate,
     router:router
 }

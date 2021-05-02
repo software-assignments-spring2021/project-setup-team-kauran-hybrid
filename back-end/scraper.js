@@ -37,73 +37,125 @@ const prof_scraper=async(prof,ischool)=>{
     // await page.click('div.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx');
     
     //span.Tag-bs9vf4-0.hHOVKF
-    const res=(await page.$$('a'));
-    await page.waitForTimeout(500);
-    const results=[];
-    for(result of res){
-        let thisRes=await page.evaluate(el=>el.textContent,result);
-        if(thisRes){
-            results.push([thisRes]);
-        }
-    }
-    //geting quality score
-    let rats=await page.$$('div.CardNumRating__CardNumRatingNumber-sc-17t4b9u-2.fJKuZx');
-    let ratings=[];
-    for(rat of rats){
-        let thisRat=await page.evaluate(el=>el.textContent,rat);
-        if (thisRat){
-            ratings.push(thisRat);
-        }
-    }
-    const quality=ratings[0];
-    //console.log(ratings);
-    //getting nubmer of ratings
-    rats=await page.$$('div.CardNumRating__CardNumRatingCount-sc-17t4b9u-3.jMRwbg');
-    ratings=[];
-    for(rat of rats){
-        let thisRat=await page.evaluate(el=>el.textContent,rat);
-        if (thisRat){
-            ratings.push(thisRat);
-        }
-    }
-    const ratingNums=ratings[0];
-    //console.log(ratings);
-    //getting would tak again and difficulty
-    rats=await page.$$('div.CardFeedback__CardFeedbackNumber-lq6nix-2.hroXqf');
-    ratings=[];
-    for(rat of rats){
-        let thisRat=await page.evaluate(el=>el.textContent,rat);
-        if (thisRat){
-            ratings.push(thisRat);
-        }
-    }
+    // const res=(await page.$$('a'));
+    // await page.waitForTimeout(500);
+    // const results=[];
+    // for(result of res){
+    //     let thisRes=await page.evaluate(el=>el.textContent,result);
+    //     if(thisRes){
+    //         results.push([thisRes]);
+    //     }
+    // }
+    // //geting quality score
+    // // let rats=await page.$$('div.CardNumRating__CardNumRatingNumber-sc-17t4b9u-2.fJKuZx');
+    // let rats=await page.$$('div.RatingValue__Numerator-qw8sqy-2.liyUjw');
+    // // let rats=await page.$$('div.CardNumRating__CardNumRatingNumber-sc-17t4b9u-2.kMhQxZ');
+    // // CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 kMhQxZ
+    // let ratings=[];
+    // for(rat of rats){
+    //     let thisRat=await page.evaluate(el=>el.textContent,rat);
+    //     if (thisRat){
+    //         ratings.push(thisRat);
+    //     }
+    // }
+    // const quality=ratings[0];
+    // //console.log(ratings);
+    // //getting nubmer of ratings
+    // rats=await page.$$('div.CardNumRating__CardNumRatingCount-sc-17t4b9u-3.jMRwbg');
+    // ratings=[];
+    // for(rat of rats){
+    //     let thisRat=await page.evaluate(el=>el.textContent,rat);
+    //     if (thisRat){
+    //         ratings.push(thisRat);
+    //     }
+    // }
+    // const ratingNums=ratings[0];
+    // //console.log(ratings);
+    // //getting would tak again and difficulty
+    // rats=await page.$$('div.CardFeedback__CardFeedbackNumber-lq6nix-2.hroXqf');
+    // ratings=[];
+    // for(rat of rats){
+    //     let thisRat=await page.evaluate(el=>el.textContent,rat);
+    //     if (thisRat){
+    //         ratings.push(thisRat);
+    //     }
+    // }
      
-    const takeAgain=ratings[0];
-    const difficulty=ratings[1];
+    // const takeAgain=ratings[0];
+    // const difficulty=ratings[1];
     //console.log(ratings);
     //console.log(page.url());
-    console.log("quality "+quality);
-    console.log("difficulty "+difficulty);
-    console.log("There are "+ratingNums);
-    console.log("would take again "+takeAgain);
+    
 
-    await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click())
-    await page.waitForTimeout(500);
+    try {
+        await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click());
+      } catch(err){
+        return;
+      }
+    // await page.$eval('div a.TeacherCard__StyledTeacherCard-syjs0d-0.dLJIlx', el => el.click());
+    await page.waitForTimeout(1000);
 
-    const urls = await page.evaluate(() => {
+    // const quality = await document.querySelectorAll('div.RatingValue__Numerator-qw8sqy-2.liyUjw')[0].innerText;
+    const quality = await page.evaluate(() => {
         let l = [];
-        let items = document.querySelectorAll('span.Tag-bs9vf4-0.hHOVKF');
-        // items.forEach((item) => {
-        //     l.push(item.innerText);
-        // });
-        for (let i=0;i<5;i++){
+        let items = document.querySelectorAll('div.RatingValue__Numerator-qw8sqy-2.liyUjw');
+        
+        for (let i=0;i<1;i++){
             l.push(items[i].innerText);
+        }
+        if (l.length>=1) return l[0]; 
+        return null;
+    })
+    const rates = await page.evaluate(() => {
+        let l = [];
+        let items = document.querySelectorAll('div.FeedbackItem__FeedbackNumber-uof32n-1.kkESWs');
+        if (items) {
+            for (let i=0;i<2;i++){
+                if (items[i]) {
+                    l.push(items[i].innerText);
+                }
+            }
         }
         
         return l;
     })
+    let difficulty;
+    let takeAgain;
+    if (rates.length==2) {
+        difficulty = rates[1];
+        takeAgain = rates[0];
+    }
+    
+    else if (rates.length==1) {
+        difficulty = rates[0];
+        // takeAgain = '0%';
+    }
+    
+    // const difficulty = rates[1];
+    // const takeAgain = rates[0];
+
+    const urls = await page.evaluate(() => {
+        let l = [];
+        let items = document.querySelectorAll('span.Tag-bs9vf4-0.hHOVKF');
+        
+        // items.forEach((item) => {
+        //     l.push(item.innerText);
+        // });
+        for (let i=0;i<5;i++){
+            if(items[i]) {
+                l.push(items[i].innerText);
+            }
+        }
+        
+        return l;
+    })
+
+    console.log("quality "+quality);
+    console.log("difficulty "+difficulty);
+    console.log("would take again "+takeAgain);
+
     browser.close();
-    return({q:quality,r:ratingNums,d:difficulty,t:takeAgain,tags:urls});
+    return({q:quality,d:difficulty,t:takeAgain,tags:urls});
 
 }
 
