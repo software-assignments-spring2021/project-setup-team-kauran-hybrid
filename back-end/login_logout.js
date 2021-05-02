@@ -187,7 +187,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
         const newUserHistory={
           waitlistPos:req.body.position,
           courseNum:req.body.number,
-          secCode:req.body.section
+          secCode:req.body.secCode
         };
 
         const newUser=new userAccounts({username:username,password:password,userHistory:newUserHistory});
