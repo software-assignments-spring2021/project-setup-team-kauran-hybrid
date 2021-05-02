@@ -48,3 +48,10 @@
     align-content: center;
     align-items: center;
 }
+
+@media (max-width: 768px) {
+    body,html {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}
