@@ -83,7 +83,7 @@ const MenuBar=(props)=>{
             return (
                 
                 <React.Fragment>
-                    <GlobalStyles/>
+                    {/* <GlobalStyles/> */}
                     <div>
                     <Dropdown open={open} setOpen={setOpen} />
                     <DropdownMenu open={open} setOpen={setOpen}/>
@@ -136,16 +136,14 @@ const MenuBar=(props)=>{
                         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
                         crossorigin="anonymous"
                         /> */}
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                    
-                    </link> 
-                        
+
+                    <button onClick={handleClickGoHome} className={'logoButton'}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                    </button>
                     <div className="many-links"> 
                     <button className="goodButton" onClick={handleClickGoHome}>Home</button>
         
-        
                     <button className="goodButton" onClick={handleClickGoAccount}>MyAccount</button>
-        
                         
                     {/* <button className="goodButton" onClick={handleClickGoLogin}>Login/Logout</button> */}
         
@@ -156,16 +154,6 @@ const MenuBar=(props)=>{
                     </div>
                 
         
-                    <center>
-                    <button onClick={handleClickGoHome} className={'logoButton'}>
-                    <img src={newLogo} className="App-logo" alt="logo" />
-                    </button>
-                    
-                    <p>
-                        {/* Waitlist Hopper */}
-                    </p>
-                    
-                    </center>
                 </div>
                 
             )
@@ -178,7 +166,7 @@ const MenuBar=(props)=>{
             return (
                 
                 <React.Fragment>
-                    <GlobalStyles/>
+                    {/* <GlobalStyles/> */}
                     <div>
                     <Dropdown open={open} setOpen={setOpen} />
                     <DropdownMenu open={open} setOpen={setOpen}/>
@@ -231,10 +219,16 @@ const MenuBar=(props)=>{
                         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
                         crossorigin="anonymous"
                         /> */}
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                     
-                    </link> 
-                        
+                    </link>  */}
+                    
+                    <button onClick={handleClickGoHome} className={'logoButton'}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                    </button>
+                    
+                    
+                   
                     <div className="many-links"> 
                     <button className="goodButton" onClick={handleClickGoHome}>Home</button>
         
@@ -251,16 +245,7 @@ const MenuBar=(props)=>{
                     </div>
                 
         
-                    <center>
-                    <button onClick={handleClickGoHome} className={'logoButton'}>
-                    <img src={newLogo} className="App-logo" alt="logo" />
-                    </button>
                     
-                    <p>
-                        {/* Waitlist Hopper */}
-                    </p>
-                    
-                    </center>
                 </div>
                 
             )
