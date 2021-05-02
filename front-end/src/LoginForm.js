@@ -52,8 +52,11 @@ const LoginForm=(props)=> {
       return (
         <React.Fragment>
           {/* <body> */}
+          <p style={{ color:'white'}}>
+            Welcome! Enter your info to get a prediction!
+          </p>
             <form action="home_login" method ="POST" className="box">
-              <p>
+              <p className="inputWrapper">
                 {/* <label htmlFor="email">Email</label> */}
                   <input className="inputs"
                   type="email"
@@ -65,7 +68,7 @@ const LoginForm=(props)=> {
                   />
               </p>
             
-              <p>
+              <p className="inputWrapper">
               {/* <label htmlFor="position">position</label> */}
                   <input className="inputs"
                   type="position"
@@ -77,7 +80,7 @@ const LoginForm=(props)=> {
                   />
               </p>
 
-              <p>
+              <p className="inputWrapper">
                 {/* <label htmlFor="number">number</label> */}
                 <input className="inputs"
                 type="2"

@@ -13,8 +13,8 @@
   .prof-article {
     flex: auto;
     background-color: white;
-    height: 80px;
-    width: 250px;
+    height: 10vw;
+    width: 10vw;
     margin: 10px;
     padding: 10px;
   }
