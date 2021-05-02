@@ -49,9 +49,9 @@
     align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     body,html {
         max-width: 100%;
         min-width: 100%;
     }
-}
+} 
