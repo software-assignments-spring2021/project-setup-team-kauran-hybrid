@@ -65,7 +65,9 @@ const Results=(props)=>{
 
                     Here are some alternative classes.
                 </p>:
-                 <div class="loader"> </div>
+                 <p>
+                     Be patient...we're getting your results...
+                 </p>
                 }
                 <ClassModules page='results'>
 

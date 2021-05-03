@@ -65,7 +65,9 @@ const ProfInfo=(props)=>{
            {
              profinfo.state ?
              <Professor details={profinfo.data} />:
-             <div class="loader"> </div>
+             <p>
+             Be patient...we're getting the professor...
+            </p>
            }
           {/* <Professor details={profinfo} /> */}
           <div className='classes'>
