@@ -46,7 +46,7 @@ const Home=(props)=>{
           
         
         {/* This makes it so that the top menu part does not move around */}
-        <div className="Home" style={{height:'100vw'}}>
+        <div className="Home" style={{height:'150vw'}}>
            {/* <GlobalStyles/>
             <div>
               <Dropdown open={open} setOpen={setOpen} />
