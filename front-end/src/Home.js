@@ -12,23 +12,8 @@ import { GlobalStyles } from './global';
 const Home=(props)=>{
   const [open, setOpen] = useState(false);
   console.log('home',props);
-  if(props.history?.location.auth){
-    return(
-      // Need to use this separate outside div for positioning purposes
-      
-      <div>
-          <MenuBar auth={props.history.location.auth} username={props.history.location.username}/>
-        {/* This makes it so that the top menu part does not move around */}
-        <div className="Home">
-            
-          <LoginForm/>
-        
-        </div>
-      </div>
-      
-    )
-  }
-  else{
+  let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+  if(!is_mobile){
     return(
       // Need to use this separate outside div for positioning purposes
       <div>
@@ -51,6 +36,30 @@ const Home=(props)=>{
       </div>
     )
   }
+  else{
+    return(
+      // Need to use this separate outside div for positioning purposes
+      <div>
+        <MenuBar/>
+
+    
+          
+        
+        {/* This makes it so that the top menu part does not move around */}
+        <div className="Home" style={{height:'100vw'}}>
+           {/* <GlobalStyles/>
+            <div>
+              <Dropdown open={open} setOpen={setOpen} />
+              <DropdownMenu open={open} setOpen={setOpen}/>
+            </div> */}
+          <LoginForm/>
+          
+        
+        </div>
+      </div>
+    )
+  }
+    
       
    
 };
