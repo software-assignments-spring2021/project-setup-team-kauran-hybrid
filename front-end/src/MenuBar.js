@@ -89,7 +89,7 @@ const MenuBar=(props)=>{
                     <DropdownMenu open={open} setOpen={setOpen}/>
                     </div>
                     
-                    <div className="menu" style={{height:'50vw'}} >
+                    <div className="menu" style={{height:'40vw'}} >
                         {/* <link
                             rel="stylesheet"
                             href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -111,7 +111,7 @@ const MenuBar=(props)=>{
             
                         <center>
                         <button onClick={handleClickGoHome} className={'logoButton'}>
-                        <img src={newLogo} className="App-logo" alt="logo" style={{height:'20vw',top:'10vw'}}/>
+                        <img src={newLogo} className="App-logo" alt="logo" style={{height:'20vw',top:'20vw'}}/>
                         </button>
                         
                         <p>
@@ -172,7 +172,7 @@ const MenuBar=(props)=>{
                     <DropdownMenu open={open} setOpen={setOpen}/>
                     </div>
                     
-                    <div className="menu" style={{height:'50vw'}} >
+                    <div className="menu" style={{height:'40vw'}} >
                         {/* <link
                             rel="stylesheet"
                             href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -194,7 +194,7 @@ const MenuBar=(props)=>{
             
                         <center>
                         <button onClick={handleClickGoHome} className={'logoButton'}>
-                        <img src={newLogo} className="App-logo" alt="logo" style={{height:'20vw',top:'10vw'}} />
+                        <img src={newLogo} className="App-logo" alt="logo" style={{height:'20vw',top:'20vw'}} />
                         </button>
                         
                         <p>
