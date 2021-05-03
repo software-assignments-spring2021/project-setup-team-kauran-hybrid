@@ -10,8 +10,8 @@ const LoginForm=(props)=> {
     
     const [email,setEmail]=useState("Enter your email");
     const [position,setPosition]=useState("Enter your waitlist position");
-    const [number,setNumber]=useState("Enter your class number");
-    const [secCode,setSection]=useState("Enter your class section");
+    const [number,setNumber]=useState("Enter your lecture number, eg: 343");
+    const [secCode,setSection]=useState("Enter your lecture section, eg: 1");
     const [submit, setSubmit]=useState();
     const [machineRe,setMachineRe]=useState([]);
     const history=useHistory();
