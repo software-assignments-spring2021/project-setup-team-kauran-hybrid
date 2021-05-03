@@ -3,18 +3,10 @@ import './LoginLogout.css'
 import { Link,Redirect,Route,useHistory } from 'react-router-dom';
 import Account from './Account';
 import axios from 'axios';
-// axios.interceptors.request.use(x=>{
-//   console.log(x);
-//   return x;
-// },function(err){
-//   if(err) throw err;
-// });
-// axios.interceptors.response.use(x=>{
-//   console.log('Response:', JSON.stringify(x, null, 2))
-//   return x;
-// },function(err){
-//     if(err) throw err;
-// });
+
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 const LoginLogout=(props)=> {
 
   console.log("LoginLogout page", props)
@@ -38,7 +30,7 @@ const LoginLogout=(props)=> {
 
     const  handleClickLogin =async(e) =>{
         //e.preventDefault()
-        await axios.post('http://localhost:3000/login_logout/login',{
+        await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/login`,{
           username:email,
           password:password,
       }).then(function(response,err){
@@ -56,7 +48,7 @@ const LoginLogout=(props)=> {
     };
 
     const handleClickLoginParams = async() => {
-      await axios.post('http://localhost:3000/login_logout/login',{
+      await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/login`,{
               
         username:email,
         password:password,
@@ -80,7 +72,7 @@ const LoginLogout=(props)=> {
 
     const  handleClickSignUp =async(e) =>{
         //e.preventDefault()
-        await axios.post('http://localhost:3000/login_logout/signup',{
+        await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/signup`,{
           username:email,
           password:password,
         }).then(function(response,err){
@@ -100,7 +92,7 @@ const LoginLogout=(props)=> {
     };
 
     const handleClickSignUpParams = async() => {
-      await axios.post('http://localhost:3000/login_logout/signup',{
+      await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/signup`,{
               
         username:email,
         password:password,

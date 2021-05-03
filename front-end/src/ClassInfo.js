@@ -6,6 +6,9 @@ import {useHistory} from 'react-router-dom';
 import ClassDetail from './ClassDetail';
 import axios from "axios";
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 function ClassInfo(props){
   // const location = useLocation();
   const history = useHistory();
@@ -21,7 +24,7 @@ function ClassInfo(props){
         // axios is a 3rd-party module for fetching data from servers
         await axios(
           // `http://waitlisthopper.com:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
-          `http://localhost:3000/class_info?course=${details.courseNum}&section=${details.secCode}`
+          `${process.env.REACT_APP_WEBHOST}:3000/class_info?course=${details.courseNum}&section=${details.secCode}`
           ).then(res=>setClassInfo({
             state:true,
             data:res.data

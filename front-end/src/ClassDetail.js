@@ -5,6 +5,9 @@ import './ClassDetail.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 function ClassDetail(props){
     const [articleId, setArticleId] = useState([]);
 
@@ -17,7 +20,7 @@ function ClassDetail(props){
                 props.details.secInstructors[i] = prof.replace(re, ' ');
             }
             const article = { prof: props.details.secInstructors };
-            await axios.post('http://localhost:3000/prof_info', article)
+            await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/prof_info`, article)
                 .then(response => setArticleId(response.data.id));
         }
 

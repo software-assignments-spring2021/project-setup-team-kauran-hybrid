@@ -8,6 +8,9 @@ import axios from "axios";
 import {useState,useEffect} from'react';
 import {  uerHistory, useHistory  } from 'react-router-dom'
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 const Results=(props)=>{
     const history=useHistory();
     const [userInput, setUserInput] = useState([]);
@@ -20,7 +23,7 @@ const Results=(props)=>{
       const result = await axios(
   
         // linking to the back-end instead of to mockaroo now
-        'http://localhost:3000/results'
+        `${process.env.REACT_APP_WEBHOST}:3000/results`
       ).then(res=>setUserInput({
         state:true,
         data:res.data

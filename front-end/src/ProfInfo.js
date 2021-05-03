@@ -12,6 +12,9 @@ import MenuBar from './MenuBar';
 import Professor from './Professor'
 import axios from "axios";
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 const ProfInfo=(props)=>{
 
   const goBack = () => {
@@ -29,7 +32,7 @@ const ProfInfo=(props)=>{
       // axios is a 3rd-party module for fetching data from servers
       await axios(
         // retrieving some mock data about animals for sale
-        "http://localhost:3000/prof_info"
+        `${process.env.REACT_APP_WEBHOST}:3000/prof_info`
       ).then(res=>setProfInfo({
         state:true,
         data:res.data

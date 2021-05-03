@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import Results from './Results';
 import axios from 'axios';
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 //import "../back-end/app.js";
 const LoginForm=(props)=> {
 
@@ -41,7 +44,7 @@ const LoginForm=(props)=> {
     };
     const  handleClickSubmit =async() =>{
         
-            await axios.post('http://localhost:3000/home_login',{
+            await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/home_login`,{
               
               email:email,
               position:position,

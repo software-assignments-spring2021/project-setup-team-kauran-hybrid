@@ -1,9 +1,10 @@
-
 import React,{useState,useEffect} from'react';
 import axios from "axios";
 import './ClassModules.css';
 import Course from "./Course";
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
 
 function ClassModules(props){
   // const auth = props.auth;
@@ -17,13 +18,13 @@ function ClassModules(props){
         result = await axios(
   
           // linking to the back-end instead of to mockaroo now
-          'http://localhost:3000/class_modules'
+          `${process.env.REACT_APP_WEBHOST}:3000/class_modules`
         );
       }
       else{
         console.log('Account ClassModules',props.username);
         result = await axios(
-          'http://localhost:3000/class_modules/protected',{
+          `${process.env.REACT_APP_WEBHOST}:3000/class_modules/protected`,{
             headers:{
               'auth':props.auth,
               'username':props.username
