@@ -2,12 +2,21 @@ import React,{useState,useEffect} from'react';
 import MenuBar from './MenuBar';
 import './ClassInfo.css';
 import './MenuBar.css';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import ClassDetail from './ClassDetail';
 import axios from "axios";
-
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
 function ClassInfo(props){
-
+    const history=useHistory();
+    const handleClickGoHome = async() => {
+      history.push({
+          pathname:"./",
+          auth:props.auth,
+          username:props.username
+          
+      });
+    }
     const [classinfo, setClassInfo] = useState([]);
     // const class_info = [classinfo];
     useEffect(() => {
@@ -38,6 +47,9 @@ function ClassInfo(props){
                 <MenuBar>
 
                 </MenuBar>
+                <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                </button>
             </div>
             <div className = "classinfo">
             {/* {class_info.map(item => (

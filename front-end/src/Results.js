@@ -6,7 +6,9 @@ import './ClassModules.css';
 import ClassModules from'./ClassModules';
 import axios from "axios";
 import {useState,useEffect} from'react';
-import {  uerHistory, useHistory  } from 'react-router-dom'
+import {  useHistory  } from 'react-router-dom'
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
 
 const Results=(props)=>{
     const history=useHistory();
@@ -40,9 +42,20 @@ const Results=(props)=>{
             position:userInput.position
         });
     }
+    const handleClickGoHome = async() => {
+        history.push({
+            pathname:"./",
+            auth:props.auth,
+            username:props.username
+            
+        });
+    }
     return(
         <div>
             <MenuBar/>
+            <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+            </button>
             <div className="results-page">
 
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

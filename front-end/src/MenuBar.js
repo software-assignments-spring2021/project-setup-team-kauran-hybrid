@@ -1,4 +1,3 @@
-
 import newLogo from './Logos/color-correct-icon.png';
 import './App.css';
 import React, {useState} from 'react';
