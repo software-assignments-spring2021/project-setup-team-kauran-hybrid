@@ -1,7 +1,6 @@
 import React,{useState} from'react';
 import './LoginLogout.css'
 import { Link,Redirect,Route,useHistory } from 'react-router-dom';
-import Account from './Account';
 import axios from 'axios';
 import newLogo from './Logos/color-correct-icon.png';
 import './App.css';
@@ -125,7 +124,7 @@ const LoginLogout=(props)=> {
            
                 <p>
                   
-                    <input className="inputs"
+                    <input className="login_inputs"
                     type="email"
                     name="email"
                     value={email}
@@ -137,7 +136,7 @@ const LoginLogout=(props)=> {
               
                 <p> 
                 
-                    <input className="inputs"
+                    <input className="login_inputs"
                     type="password"
                     name="password"
                     value={password}
@@ -173,7 +172,7 @@ const LoginLogout=(props)=> {
               
                 <p>
                   
-                    <input className="inputs"
+                    <input className="login_inputs"
                     type="email"
                     name="email"
                     value={email}
@@ -185,7 +184,7 @@ const LoginLogout=(props)=> {
               
                 <p> 
                 
-                    <input className="inputs"
+                    <input className="login_inputs"
                     type="password"
                     name="password"
                     value={password}

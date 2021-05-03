@@ -7,8 +7,8 @@
   font-size: calc(10px + 2vmin);
   color: white;
   position: relative;
-  min-height: 45vw;
-  height: 45vw;
+  min-height: 70vh;
+  height: 70vh;
   width: 100vw;
 }
 .logoButton{
