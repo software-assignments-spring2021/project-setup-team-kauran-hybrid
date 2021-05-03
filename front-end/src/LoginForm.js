@@ -11,7 +11,7 @@ const LoginForm=(props)=> {
   const [email,setEmail]=useState("Enter your email");
   const [position,setPosition]=useState("Enter your waitlist position");
   const [number,setNumber]=useState("Enter your lecture number, eg: 343");
-  const [secCode,setSection]=useState("Enter your lecture section, eg: 1");
+  var [secCode,setSection]=useState("Enter your lecture section, eg: 6");
     
   // const [email,setEmail]=useState("Email");
   // const [position,setPosition]=useState("Waitlist position");
@@ -52,10 +52,28 @@ const LoginForm=(props)=> {
     return false
   }
 
+  const validateClassNum = (number) => {
+
+    if (/^[0-9-]+$/.test(number)) {
+      return true
+    }
+    alert('Please enter pure number for class number, eg: 123.')
+    return false
+  }
+
+  const validateSecCode = (secCode) => {
+
+    if (/^[0-9-]+$/.test(secCode)) {
+      return true
+    }
+    alert('Please enter pure number for section number, eg: 1.')
+    return false
+  }
+
   const  handleClickSubmit =async() =>{
 
-    if (validateEmail(email)) {
-
+    if (validateEmail(email) && validateClassNum(number) && validateSecCode(secCode)) {
+      secCode  = secCode.replace(/^0+/, '');  
       await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/home_login`,{
         email:email,
         position:position,
