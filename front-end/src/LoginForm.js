@@ -45,22 +45,46 @@ const LoginForm=(props)=> {
     const validateEmail = (email) => {
       // if (/^[a-zA-Z0-9.!#$%&‘*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
       if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        return (true)
+        return true
       }
       alert('Please enter a valid email address.')
-      return (false)
+      return false
     }
 
-    const validateCourse = (data) => {
-      if (data!=null) {
-        return (true)
-      }
-      alert('This section does not exist, please double check.')
-      return (false)
+    const validateCourse = async(number,secCode) => {
+      // await axios(
+      //   // `http://waitlisthopper.com:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
+      //   `${process.env.REACT_APP_WEBHOST}:3000/class_info?course=${number}&section=${secCode}`
+      // ).then(res=>{
+      //   if(res.data!=null){
+      //     return true
+      //   }
+      //   else{
+      //     alert('This section does not exist, please double check.')
+      //     return false
+      //   }
+      // })
+ 
     }
 
-    const validation = async(data) =>{
-      if (validateEmail(email) && validateCourse(data)) {
+    const validation = async() =>{
+      // if (validateEmail(email)==true && validateCourse(number,secCode)==true) {
+      // if (validateEmail(email)==true) {
+      //   // console.log("this works")
+      //   await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/home_login`,{
+      //     email:email,
+      //     position:position,
+      //     number:number,
+      //     secCode:secCode
+      //   })
+      //   return true
+      // }
+      // return false
+    }
+
+    const  handleClickSubmit =async() =>{
+      // validation();
+      if (validateEmail(email)) {
         // console.log("this works")
         await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/home_login`,{
           email:email,
@@ -68,26 +92,37 @@ const LoginForm=(props)=> {
           number:number,
           secCode:secCode
         })
-        return (true)
+        // return true
+        // history.push({
+        //   pathname:'/Results'
+        // })
       }
-    }
-
-    const  handleClickSubmit =async() =>{
       
-      await axios(
-        // `http://waitlisthopper.com:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
-        `${process.env.REACT_APP_WEBHOST}:3000/class_info?course=${number}&section=${secCode}`
-      ).then(res=>validation(res.data)
-      // .then(
-      //   result=>{
-      //     if (result==true)
-      //       history.push({
-      //         pathname:'./Results'
-      //       }
-      //       )
-      //   }
+      // return false
+      // if(validation()==true) {
+      //   history.push({
+      //     pathname:'/Results'
+      //   })
+      // }
+      // else {
+      //   history.push({
+      //     pathname:'/'
+      //   })
+      // }
+      // await axios(
+      //   // `http://waitlisthopper.com:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
+      //   `${process.env.REACT_APP_WEBHOST}:3000/class_info?course=${number}&section=${secCode}`
+      // ).then(res=>validation(res.data)
+      // // .then(
+      // //   result=>{
+      // //     if (result==true)
+      // //       history.push({
+      // //         pathname:'./Results'
+      // //       }
+      // //       )
+      // //   }
+      // // )
       // )
-      )
 
     }
 
@@ -147,12 +182,12 @@ const LoginForm=(props)=> {
               </p>          
 
               <center>
-                <a href="/Results" className="goButton" onClick={handleClickSubmit}>
+                {/* <a href="/Results" className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
-                </a>
-                {/* <button className="goButton" onClick={handleClickSubmit}>
+                </a> */}
+                <button className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
-                </button>                 */}
+                </button>                
               </center>
 
             </form>
