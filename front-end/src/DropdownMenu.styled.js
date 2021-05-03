@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledDropdownMenu = styled.nav`
-  display: block;
+  display: flex;
 //   grid-template-columns: repeat(3, 20px [col-start]);
 //   grid-template-rows: repeat(3, 2px [row-start]);
-//   flex-direction: row;
-//   justify-content: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  
   align-items: center;
 //   background: '#EFFFFA';
 //   background-color: gray;
@@ -31,7 +32,7 @@ export const StyledDropdownMenu = styled.nav`
     color: '#0D0C1D';
     text-decoration: none;
     transition: color 0.3s linear;
-    
+    height:3vw;
     @media (max-width: '576px') {
       font-size: 1.5rem;
       text-align: center;
