@@ -74,7 +74,7 @@ const ProfInfo=(props)=>{
           <center>
               
               {/* <a className='Button' onclick={goBack}>Go Back</a> */}
-              <a className='Button' href='./ClassInfo'>Return to the Class Info page</a> 
+              <a className='Button' onclick={goBack()}>Return to the Class Info page</a> 
               
           </center>
           </div>
