@@ -1,15 +1,23 @@
 import React from'react';
-import ReactDOM from 'react-dom';
 import MenuBar from './MenuBar';
 import './Account.css';
 import './MenuBar.css';
 import './ClassModules.css';
 import ClassModules from'./ClassModules';
-import { Link,useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
 
 const Account = (props) => {
     const history=useHistory();
-    
+    const handleClickGoHome = async() => {
+        history.push({
+            pathname:"./",
+            auth:props.auth,
+            username:props.username
+            
+        });
+    }
     if(localStorage.auth){
         return (
                     <div>
@@ -17,6 +25,9 @@ const Account = (props) => {
                            <MenuBar auth={localStorage.auth} username={localStorage.username}>
                
                            </MenuBar>
+                            <button  className={'logoButton'} onClick={handleClickGoHome}>
+                                <img src={newLogo} className="App-logo" alt="logo" />
+                            </button>
                            </div>
                    <div className = "account-page">
                            
@@ -41,6 +52,9 @@ const Account = (props) => {
                    <MenuBar>
        
                    </MenuBar>
+                   <button  className={'logoButton'} onClick={handleClickGoHome}>
+                        <img src={newLogo} className="App-logo" alt="logo" />
+                    </button>
                    </div>
            <div className = "account-page">
                    

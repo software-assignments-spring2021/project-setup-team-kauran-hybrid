@@ -17,7 +17,15 @@
 
 
 }
-
+.logoButton{
+    position:absolute;
+    top:15vw;
+    left:40vw;
+    border-style: solid;
+    border: 0;
+    padding:0px 0px 0px 0px;
+    
+  }
 .submit-button{
     padding: 10px 20px;
     top: 40px;

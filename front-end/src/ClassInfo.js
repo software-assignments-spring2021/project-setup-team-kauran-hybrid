@@ -5,14 +5,22 @@ import './MenuBar.css';
 import {useHistory} from 'react-router-dom';
 import ClassDetail from './ClassDetail';
 import axios from "axios";
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
 
 const dotenv=require('dotenv');
 dotenv.config({path:'./.env'})
 
 function ClassInfo(props){
-  // const location = useLocation();
-  const history = useHistory();
-    
+    const history=useHistory();
+    const handleClickGoHome = async() => {
+      history.push({
+          pathname:"./",
+          auth:props.auth,
+          username:props.username
+          
+      });
+    }
     const [classinfo, setClassInfo] = useState([]);
     // const class_info = [classinfo];
     useEffect(() => {
@@ -46,6 +54,9 @@ function ClassInfo(props){
                 <MenuBar>
 
                 </MenuBar>
+                <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                </button>
             </div>
             <div className = "classinfo">
             {/* {class_info.map(item => (

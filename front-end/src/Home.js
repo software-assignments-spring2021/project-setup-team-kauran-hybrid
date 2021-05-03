@@ -5,9 +5,8 @@ import LoginForm from'./LoginForm'
 import './LoginForm.css';
 // import Button from './Button'
 import MenuBar from './MenuBar';
-import Dropdown from './Dropdown';
-import DropdownMenu from './DropdownMenu';
-import { GlobalStyles } from './global';
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
 
 const Home=(props)=>{
   const [open, setOpen] = useState(false);
@@ -20,7 +19,11 @@ const Home=(props)=>{
         <MenuBar/>
 
     
-          
+        
+        <button  className={'logoButton'}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+          </button>
+        
         
         {/* This makes it so that the top menu part does not move around */}
         <div className="Home">
@@ -43,7 +46,9 @@ const Home=(props)=>{
         <MenuBar/>
 
     
-          
+        <button  className={'logoButton'}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+          </button>
         
         {/* This makes it so that the top menu part does not move around */}
         <div className="Home" style={{height:'150vw'}}>

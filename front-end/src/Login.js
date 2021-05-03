@@ -1,17 +1,22 @@
-import logo from './logo.svg';
 import React from 'react';
 import MenuBar from './MenuBar';
 import './MenuBar.css';
-import ReactDOM from 'react-dom';
-import App from './App'
 import './Login.css'
 import LoginLogout from'./LoginLogout'
-import { Link, Switch } from 'react-router-dom';
-import axios from "axios";
-import {useState,useEffect} from'react';
-
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
+import { useHistory } from 'react-router-dom';
 const Login=(props)=>{
 
+  const history=useHistory();
+  const handleClickGoHome = async() => {
+    history.push({
+        pathname:"./",
+        auth:props.auth,
+        username:props.username
+        
+    });
+  }
   if(props.history.location.username){
     return(
       <div>
@@ -19,6 +24,9 @@ const Login=(props)=>{
         <MenuBar auth={props.history.location.auth} username={props.history.location.username}>
   
           </MenuBar>
+          <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+            </button>
         </div>
         <div className = "Login-page">
   
@@ -37,6 +45,9 @@ const Login=(props)=>{
         <MenuBar auth={props.history.location.auth} username={props.history.location.username}>
   
           </MenuBar>
+          <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+            </button>
         </div>
         <div className = "Login-page">
   
