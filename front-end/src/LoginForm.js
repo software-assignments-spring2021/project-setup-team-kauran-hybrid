@@ -6,9 +6,9 @@ import axios from 'axios';
 const LoginForm=(props)=> {
 
     
-    const [email,setEmail]=useState("Enter your email");
-    const [position,setPosition]=useState("Enter your waitlist position");
-    const [number,setNumber]=useState("Enter your class number");
+    const [email,setEmail]=useState("Email");
+    const [position,setPosition]=useState("Waitlist position");
+    const [number,setNumber]=useState("Class number");
     const [submit, setSubmit]=useState();
     const handleChange = ({ target }) => {
       setEmail( target.value );

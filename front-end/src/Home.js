@@ -46,12 +46,14 @@ const Home=(props)=>{
         <MenuBar/>
 
     
-        <button  className={'logoButton'}>
-                    <img src={newLogo} className="App-logo" alt="logo" />
+        <button  className={'logoButton'}  >
+                    <img src={newLogo} className="App-logo" alt="logo" 
+                    
+                    />
           </button>
         
         {/* This makes it so that the top menu part does not move around */}
-        <div className="Home" style={{height:'100vh'}}>
+        <div className="Home" style={{height:'80vh'}}>
            {/* <GlobalStyles/>
             <div>
               <Dropdown open={open} setOpen={setOpen} />
