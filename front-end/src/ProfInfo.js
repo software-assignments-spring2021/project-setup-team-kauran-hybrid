@@ -11,9 +11,11 @@ import ClassModules from'./ClassModules';
 import MenuBar from './MenuBar';
 import Professor from './Professor'
 import axios from "axios";
-
+import newLogo from './Logos/color-correct-icon.png';
+import './App.css';
+import { useHistory } from 'react-router-dom';
 const ProfInfo=(props)=>{
-
+  const history=useHistory();
   const goBack = () => {
     window.history.back();
   }
@@ -44,13 +46,23 @@ const ProfInfo=(props)=>{
   // the blank array below causes this callback to be executed only once on component load
 }, []);
   
-    
+  const handleClickGoHome = async() => {
+    history.push({
+        pathname:"./",
+        auth:props.auth,
+        username:props.username
+        
+    });
+  }
     return(
       <div className='prof-page'>
         <div className = "menu">
           <MenuBar>
 
           </MenuBar>
+          <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+          </button>
         </div>
         
         {/* <div className='prof-page'> */}
