@@ -89,7 +89,7 @@ const MenuBar=(props)=>{
                     <DropdownMenu open={open} setOpen={setOpen}/>
                     </div>
                     
-                    <div className="menu" style={{height="50vw"}}>
+                    <div className="menu" style={{height:"50vw"}}>
                         {/* <link
                             rel="stylesheet"
                             href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -172,7 +172,7 @@ const MenuBar=(props)=>{
                     <DropdownMenu open={open} setOpen={setOpen}/>
                     </div>
                     
-                    <div className="menu" style={{height="50vw"}}>
+                    <div className="menu" style={{height:"50vw"}}>
                         {/* <link
                             rel="stylesheet"
                             href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
