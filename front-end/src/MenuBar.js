@@ -1,4 +1,3 @@
-
 import newLogo from './Logos/color-correct-icon.png';
 import './App.css';
 import React, {useState} from 'react';
@@ -109,16 +108,16 @@ const MenuBar=(props)=>{
                         </div> */}
                     
             
-                        <center>
+                        {/* <center>
                         <button onClick={handleClickGoHome} className={'logoButton'}>
                         <img src={newLogo} className="App-logo" alt="logo" style={{height:'20vw',top:'20vw'}}/>
                         </button>
                         
                         <p>
-                            {/* Waitlist Hopper */}
+                            
                         </p>
                         
-                        </center>
+                        </center> */}
                     </div>
                 </React.Fragment>
                 
@@ -192,16 +191,16 @@ const MenuBar=(props)=>{
                         </div> */}
                     
             
-                        <center>
+                        {/* <center>
                         <button onClick={handleClickGoHome} className={'logoButton'}>
                         <img src={newLogo} className="App-logo" alt="logo" style={{height:'20vw',top:'20vw'}} />
                         </button>
                         
                         <p>
-                            {/* Waitlist Hopper */}
+                           
                         </p>
                         
-                        </center>
+                        </center> */}
                     </div>
                 </React.Fragment>
                 
@@ -223,9 +222,7 @@ const MenuBar=(props)=>{
                     
                     </link>  */}
                     
-                    <button onClick={handleClickGoHome} className={'logoButton'}>
-                    <img src={newLogo} className="App-logo" alt="logo" />
-                    </button>
+                    
                     
                     
                    
