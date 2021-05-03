@@ -7,7 +7,8 @@
   font-size: calc(10px + 2vmin);
   color: white;
   position: relative;
-  height: 75vw;
+  min-height: 45vw;
+  height: 45vw;
   width: 100vw;
 }
 
