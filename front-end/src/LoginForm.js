@@ -10,7 +10,6 @@ dotenv.config({path:'./.env'})
 //import "../back-end/app.js";
 const LoginForm=(props)=> {
 
-    
     const [email,setEmail]=useState("Enter your email");
     const [position,setPosition]=useState("Enter your waitlist position");
     const [number,setNumber]=useState("Enter your lecture number, eg: 343");
@@ -42,18 +41,55 @@ const LoginForm=(props)=> {
     const handleClickPos = () => {
       setPosition('');
     };
-    const  handleClickSubmit =async() =>{
-        
-            await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/home_login`,{
-              
-              email:email,
-              position:position,
-              number:number,
-              secCode:secCode
-              }
-            );
 
-    };
+    const validateEmail = (email) => {
+      // if (/^[a-zA-Z0-9.!#$%&‘*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+      if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+        return (true)
+      }
+      alert('Please enter a valid email address.')
+      return (false)
+    }
+
+    const validateCourse = (data) => {
+      if (data!=null) {
+        return (true)
+      }
+      alert('This section does not exist, please double check.')
+      return (false)
+    }
+
+    const validation = async(data) =>{
+      if (validateEmail(email) && validateCourse(data)) {
+        // console.log("this works")
+        await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/home_login`,{
+          email:email,
+          position:position,
+          number:number,
+          secCode:secCode
+        })
+        return (true)
+      }
+    }
+
+    const  handleClickSubmit =async() =>{
+      
+      await axios(
+        // `http://waitlisthopper.com:3000/class_info?section=${details.sections[0].secCode}&course=${details.courseNum}`
+        `${process.env.REACT_APP_WEBHOST}:3000/class_info?course=${number}&section=${secCode}`
+      ).then(res=>validation(res.data)
+      // .then(
+      //   result=>{
+      //     if (result==true)
+      //       history.push({
+      //         pathname:'./Results'
+      //       }
+      //       )
+      //   }
+      // )
+      )
+
+    }
 
     //render() {
       return (
@@ -111,12 +147,12 @@ const LoginForm=(props)=> {
               </p>          
 
               <center>
-             
                 <a href="/Results" className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
-                      
                 </a>
-                
+                {/* <button className="goButton" onClick={handleClickSubmit}>
+                  Let's Hop  
+                </button>                 */}
               </center>
 
             </form>

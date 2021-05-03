@@ -47,9 +47,10 @@ function ClassInfo(props){
     // the blank array below causes this callback to be executed only once on component load
   }, []);
     console.log(classinfo.data);
-    return(
+    if (classinfo.data!=null) {
+      return(
 
-        <div className="ClassInfo">
+        <div>
             <div className = "menu">
                 <MenuBar>
 
@@ -72,7 +73,29 @@ function ClassInfo(props){
             </div>
         </div>
 
-    )
+      )
+    }
+    else {
+      return (
+        <div>
+          <div className = "menu">
+                <MenuBar>
+
+                </MenuBar>
+                <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+                </button>
+            </div>
+          <div className = "noclass">
+            <h1>
+          This class does not match anything in our database.
+          </h1>
+          </div>
+        </div>
+      )
+
+    }
+    
 }
 
 export default ClassInfo
