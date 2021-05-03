@@ -47,52 +47,111 @@ function ClassInfo(props){
     // the blank array below causes this callback to be executed only once on component load
   }, []);
     console.log(classinfo.data);
-    if (classinfo.data!=null) {
-      return(
+    let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    // not on mobile
+    if(!is_mobile){
+      // classinfo existed
+      if (classinfo.data!=null) {
+        return(
 
-        <div>
-            <div className = "menu">
-                <MenuBar>
+          <div>
+              <div className = "menu">
+                  <MenuBar>
 
-                </MenuBar>
-                <button  className={'logoButton'} onClick={handleClickGoHome}>
-                    <img src={newLogo} className="App-logo" alt="logo" />
-                </button>
-            </div>
-            <div className = "classinfo">
-            {/* {class_info.map(item => (
-              <ClassDetail key={item.class_number} details={item} page='class_info'/>
-            ))} */}
-            
-            {
-              classinfo.state ?
-              <ClassDetail key={classinfo.data.courseNum} details={classinfo.data} page='class_info'/>:
-              null
-            }
-            
-            </div>
-        </div>
-
-      )
-    }
-    else {
-      return (
-        <div>
-          <div className = "menu">
-                <MenuBar>
-
-                </MenuBar>
-                <button  className={'logoButton'} onClick={handleClickGoHome}>
-                    <img src={newLogo} className="App-logo" alt="logo" />
-                </button>
-            </div>
-          <div className = "noclass">
-            <h1>
-          This class does not match anything in our database.
-          </h1>
+                  </MenuBar>
+                  <button  className={'logoButton'} onClick={handleClickGoHome}>
+                      <img src={newLogo} className="App-logo" alt="logo" />
+                  </button>
+              </div>
+              <div className = "classinfo">
+              {/* {class_info.map(item => (
+                <ClassDetail key={item.class_number} details={item} page='class_info'/>
+              ))} */}
+              
+              {
+                classinfo.state ?
+                <ClassDetail key={classinfo.data.courseNum} details={classinfo.data} page='class_info'/>:
+                null
+              }
+              
+              </div>
           </div>
-        </div>
-      )
+
+        )
+      }
+      // classinfo not exist
+      else {
+        return (
+          <div>
+            <div className = "menu">
+                  <MenuBar>
+
+                  </MenuBar>
+                  <button  className={'logoButton'} onClick={handleClickGoHome}>
+                      <img src={newLogo} className="App-logo" alt="logo" />
+                  </button>
+              </div>
+            <div className = "noclass">
+              <h1>
+            This class does not match anything in our database.
+            </h1>
+            </div>
+          </div>
+        )
+
+      }
+    }
+    // on mobile
+    else{
+      // classinfo exist
+      if (classinfo.data!=null) {
+        return(
+          <div>
+              <div className = "menu">
+                  <MenuBar>
+  
+                  </MenuBar>
+                  <button  className={'logoButton'} onClick={handleClickGoHome}>
+                      <img src={newLogo} className="App-logo" alt="logo" />
+                  </button>
+              </div>
+              <div className = "classinfo" style={{height:'150vw'}}>
+              {/* {class_info.map(item => (
+                <ClassDetail key={item.class_number} details={item} page='class_info'/>
+              ))} */}
+              
+              {
+                classinfo.state ?
+                <ClassDetail key={classinfo.data.courseNum} details={classinfo.data} page='class_info'/>:
+                null
+              }
+              
+              </div>
+          </div>
+  
+        )
+      }
+      // classinfo not exist
+      else {
+        return (
+          <div>
+            <div className = "menu">
+                  <MenuBar>
+  
+                  </MenuBar>
+                  <button  className={'logoButton'} onClick={handleClickGoHome}>
+                      <img src={newLogo} className="App-logo" alt="logo" />
+                  </button>
+              </div>
+            <div className = "noclass" style={{height:'150vw'}}>
+              <h1>
+            This class does not match anything in our database.
+            </h1>
+            </div>
+          </div>
+        )
+  
+      }
 
     }
     

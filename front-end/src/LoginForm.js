@@ -1,6 +1,6 @@
 import React,{useState} from'react';
 import './LoginForm.css'
-import { useHistory } from 'react-router-dom';
+import { useHistory,Link } from 'react-router-dom';
 import Results from './Results';
 import axios from 'axios';
 
@@ -93,9 +93,9 @@ const LoginForm=(props)=> {
           secCode:secCode
         })
         // return true
-        // history.push({
-        //   pathname:'/Results'
-        // })
+        history.push({
+          pathname:'/Results'
+        })
       }
       
       // return false
@@ -185,9 +185,9 @@ const LoginForm=(props)=> {
                 {/* <a href="/Results" className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
                 </a> */}
-                <button className="goButton" onClick={handleClickSubmit}>
+                <Link className="goButton" onClick={handleClickSubmit}>
                   Let's Hop  
-                </button>                
+                </Link>                
               </center>
 
             </form>
@@ -198,4 +198,5 @@ const LoginForm=(props)=> {
     
     //}
    }
+   
 export default LoginForm
