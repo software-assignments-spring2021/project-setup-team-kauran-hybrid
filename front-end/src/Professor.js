@@ -31,7 +31,7 @@ const Professor=(props)=>{
         
 
               <center className="Name">
-                  {props.details.last_name} {props.details.first_name}
+                  {props.details._id}
               </center>
               
               <section>
