@@ -55,28 +55,28 @@ function ClassModules(props){
     if(props.page=='results'){
       //console.log(userHistory.courseNum);
       return (
-        <>
+        <center>
           <div className="ClassModules" style={{fontSize: size}}>
             {userHistory.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
             ))}
           </div>
-        </>
+        </center>
       );
     }
     else if(props.page=='accounts'){
       console.log(userHistory);
       if(!props.auth){
         return (
-          <>
+          <center>
             <div className="ClassModules" style={{fontSize: size}}>
               {userHistory.map(item => (
                 <Course page={props.page} key={item.courseNum} details={item} />
                 // <Semester key={item.semester} details={item} />
               ))}
             </div>
-          </>
+          </center>
         );
       }
       else{
@@ -84,7 +84,7 @@ function ClassModules(props){
         //const hist=userHistory[0];
         //console.log('userhistory',userHistory[0]?.userHistory[0]);
         return (
-          <>
+          <center>
             <div className="ClassModules" auth={props.auth} style={{fontSize: size}}>
               {userHistory[0]?.userHistory.map(item => (
                   
@@ -93,21 +93,21 @@ function ClassModules(props){
                 // <Semester key={item.semester} details={item} />
               ))}
             </div>
-          </>
+          </center>
         );
       }
 
     }
     else if(props.page=='professors'){
       return (
-        <>
+        <center>
           <div className="ClassModules" style={{fontSize: size}}>
             {userHistory.sections ? userHistory.sections.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
             )):null}
           </div>
-        </>
+        </center>
       );
     }
     
