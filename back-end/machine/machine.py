@@ -11,10 +11,10 @@ import pickle
 
 # print('Machine.py triggered')
 
-value = input()
+value = json.loads(input())
 # print("Input value:", value)
 
-jsonval = json.loads(value)['data'] # array of dictionaries
+jsonval = value['data'] # array of dictionaries
 # input = json.loads(value)['input']
 # print("JSON Value:", jsonval[0])
 
@@ -107,7 +107,7 @@ def logReg(df, input):
 # load the model from disk
 loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
 inputX = np.zeros((1,4))
-inputX[0,:] = json.loads(value)['input']
+inputX[0,:] = value['input']
 result = loaded_model.predict_proba(inputX)[:, 1][0]
 print(result)
 
