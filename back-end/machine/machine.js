@@ -7,7 +7,7 @@ const dotenv=require('dotenv');
 
 
 const posterity=async(res)=>{
-    let pyshell=new PythonShell.run('./machine/machine.py',null);
+    let pyshell=new PythonShell('./machine/machine.py',null);
     
     //this gets all the course data!!
     
