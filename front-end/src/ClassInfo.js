@@ -24,9 +24,14 @@ function ClassInfo(props){
     const [classinfo, setClassInfo] = useState([]);
     // const class_info = [classinfo];
     useEffect(() => {
-      console.log(history.location.state)
+      // console.log(history.location.state)
       const details = history.location.state.detail
-      // console.log(location.history)
+      // console.log(details)
+      // console.log(details.courseNum)
+      if (/^[a-zA-Z]+-[a-zA-Z]+[0-9]+$/.test(details.courseNum)){
+        details.courseNum = details.courseNum.replace(/^[a-zA-Z]+-[a-zA-Z]+/, '');
+        // console.log(details.courseNum)
+      }
       // a nested function that fetches the data
       async function fetchData() {
         // axios is a 3rd-party module for fetching data from servers
