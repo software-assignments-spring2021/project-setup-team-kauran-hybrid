@@ -62,6 +62,11 @@ const Results=(props)=>{
             
         });
     }
+    let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    let size = '20px';
+    if (is_mobile) {
+        size = '15px';
+    }
     return(
         <div>
             <MenuBar/>
@@ -73,15 +78,17 @@ const Results=(props)=>{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
                 </link>
+                <center>
                 {
-                userInput.state ? <p>Your possibility of getting into this class is: {userInput.data.probGetIn} {"\n"}
+                userInput.state ? <p style={{fontSize: size}}>Your possibility of getting into this class is: {userInput.data.probGetIn} {"\n"}
 
                     Here are some alternative classes.
                 </p>:
-                 <p>
+                 <p style={{fontSize: size}}>
                      ...we're getting your results...
                  </p>
                 }
+                </center>
                 <ClassModules page='results'>
 
                 </ClassModules>

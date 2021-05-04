@@ -41,11 +41,16 @@ function ClassModules(props){
     fetchData();
     //console.log(userHistory);
   }, []);
+  let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    let size = '20px';
+    if (is_mobile) {
+        size = '10px';
+    }
     if(props.page=='results'){
       //console.log(userHistory.courseNum);
       return (
         <>
-          <div className="ClassModules">
+          <div className="ClassModules" style={{fontSize: size}}>
             {userHistory.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
@@ -59,7 +64,7 @@ function ClassModules(props){
       if(!props.auth){
         return (
           <>
-            <div className="ClassModules">
+            <div className="ClassModules" style={{fontSize: size}}>
               {userHistory.map(item => (
                 <Course page={props.page} key={item.courseNum} details={item} />
                 // <Semester key={item.semester} details={item} />
@@ -74,7 +79,7 @@ function ClassModules(props){
         //console.log('userhistory',userHistory[0]?.userHistory[0]);
         return (
           <>
-            <div className="ClassModules" auth={props.auth}>
+            <div className="ClassModules" auth={props.auth} style={{fontSize: size}}>
               {userHistory[0]?.userHistory.map(item => (
                   
                   <Course page={props.page} key={item} details={item} />
@@ -90,7 +95,7 @@ function ClassModules(props){
     else if(props.page=='professors'){
       return (
         <>
-          <div className="ClassModules">
+          <div className="ClassModules" style={{fontSize: size}}>
             {userHistory.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
