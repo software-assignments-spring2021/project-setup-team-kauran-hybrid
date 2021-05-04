@@ -8,12 +8,14 @@ function Course(props){
         setHoverState(!hoverState)
         //console.log(hoverState);
     }
-    function handleClickDelete(index){
-        console.log("deleting",index)
+    function handleClickDelete(e){
+        //console.log("deleting",index)
+        console.log(props.details.index);
+
     };
     let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
     if(props.page=='results'){
-        // console.log(props.details);
+        
         return(
             <div className="search-item">
             {/* <Link onClick={(props)=>(history.push({pathname:'/ClassInfo',state:props.details,ok:true}))}>
@@ -30,7 +32,7 @@ function Course(props){
         ) 
     }
     else if(props.page=='accounts'){
-        
+        console.log(is_mobile);
         return(
             <div className="search-item" onMouseEnter={handleHover} onMouseLeave={handleHover}>
                 {!hoverState&&
@@ -40,12 +42,12 @@ function Course(props){
                 }
                 {
                     
-                    hoverState&&is_mobile&&
+                    hoverState && is_mobile &&
                     <button className="deleteButton" onClick={handleClickDelete(props.details.index)}> Delete this item</button>
                 }
                 {
-                    hoverState&&!is_mobile&&
-                    <button className="deleteButton" onClick={handleClickDelete(props.details.index)} style={{fontSize:"30px"}} > Delete this item</button>
+                    hoverState && !is_mobile &&
+                    <button className="deleteButton" key={1} onClick={handleClickDelete} style={{fontSize:"30px"}} > Delete this item</button>
                 }
             
             </div>
