@@ -153,6 +153,7 @@ passport.use('login', new LocalStrategy({usernameField:'username', passwordField
               console.log('Extra params');
               
               const newUserHistory={
+                index:user.userHistory.length,
                 waitlistPos:req.body.position,
                 courseNum:req.body.number,
                 secCode:req.body.secCode
@@ -185,6 +186,7 @@ new LocalStrategy({usernameField:'username', passwordField: 'password', passReqT
       if (err) throw err;
       if(!user){
         const newUserHistory={
+          index:0,
           waitlistPos:req.body.position,
           courseNum:req.body.number,
           secCode:req.body.secCode

@@ -3,19 +3,7 @@ import './LoginLogout.css'
 import { Link,Redirect,Route,useHistory } from 'react-router-dom';
 import axios from 'axios';
 import newLogo from './Logos/color-correct-icon.png';
-import './App.css';
-// axios.interceptors.request.use(x=>{
-//   console.log(x);
-//   return x;
-// },function(err){
-//   if(err) throw err;
-// });
-// axios.interceptors.response.use(x=>{
-//   console.log('Response:', JSON.stringify(x, null, 2))
-//   return x;
-// },function(err){
-//     if(err) throw err;
-// });
+//import './App.css';
 
 const dotenv=require('dotenv');
 dotenv.config({path:'./.env'})

@@ -69,11 +69,30 @@ const mongoSaveUserHistory=async(username,password,userHistory)=>{
         }
         
         console.log(results);
-    });
-
-    
+    });    
 };
-
+const mongoDeleteUserHistory=async(username,password,userHistory)=>{
+    const userAccounts = whModels.userAccounts;
+    //find the correct userAccount
+    await userAccounts.findOne({'username':username},function(err,results){
+        if(err) throw err;
+        if(results==null){
+            return null;
+        }
+        else{
+            console.log('Query exists, updating');
+            const newUserHistory=results.userHistory.push(userHistory);
+            //update the account with the new parameters
+            results.save({
+                username:username,
+                password:password,
+                userHistory:newUserHistory
+            });
+        }
+        
+        console.log(results);
+    }); 
+}
 //this is for creating OR updating classes from albert
 const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap)=>{
     const courses=whModels.courses;

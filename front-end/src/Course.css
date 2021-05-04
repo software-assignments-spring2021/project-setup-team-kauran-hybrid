@@ -1,4 +1,4 @@
-.a{
+/* .a{
     position: relative;
     width: 80rem;
     height: 5rem;
@@ -13,7 +13,7 @@
     
 }
   /* styles for h2 HTML elements within each animal */
-  h2 {
+  /* h2 {
     font-family: georgia;
     text-transform: uppercase;
   }
@@ -21,20 +21,17 @@
     display: block;
     font-size: 20px;
     text-decoration: underline;
-  }
+  }  */
   .deleteButton{
-    padding: 5px 10px;
-    top:20px;
-    margin-left:15px;
-    border: 2.5px;
+    line-height:5px;
+    border-radius:0vw/20vw;
+    width: 75vw;
+    height: 5vw;
+    text-align: center;
+    border: 0px;
     border-color: white;
-    border-style: solid;
-    border-radius: 20vw / 20vw;
-    font-size: 30px;
-    background-color: #57068C;
-    color:white; 
-    position: relative;
-    cursor:pointer;
-    font-family: roboto;
+    color: white;
+    background-color: black;
+    margin-bottom: 2rem;
   }
   

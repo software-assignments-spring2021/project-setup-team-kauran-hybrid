@@ -55,7 +55,6 @@ function ClassModules(props){
       );
     }
     else if(props.page=='accounts'){
-      console.log(userHistory);
       if(!props.auth){
         return (
           <>
@@ -69,16 +68,13 @@ function ClassModules(props){
         );
       }
       else{
-        
-        //const hist=userHistory[0];
-        //console.log('userhistory',userHistory[0]?.userHistory[0]);
         return (
           <>
             <div className="ClassModules" auth={props.auth}>
               {userHistory[0]?.userHistory.map(item => (
                   
                   <Course page={props.page} key={item} details={item} />
-                
+                  
                 // <Semester key={item.semester} details={item} />
               ))}
             </div>
