@@ -41,7 +41,8 @@ const posterity=async(res, email, position, number, secCode, courseSize, wlSize)
 
   pyshell.on('message',function(probGetIn){
       // console.log(message);
-      parseInt(probGetIn[0]) <= 1 ? res.send({probGetIn, email, position, number, secCode}):null;
+      // parseInt(probGetIn[0]) <= 1 ? res.send({probGetIn, email, position, number, secCode}):null;
+      res.send({probGetIn, email, position, number, secCode});
   });
   
 

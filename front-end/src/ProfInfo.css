@@ -23,7 +23,7 @@
 }
 
 section {
-  /* border: 1px solid red; */
+  
   display: flex;
   padding: 10px;
   width: 80rem;
@@ -32,7 +32,7 @@ section {
 
 .prof-article {
   flex: auto;
-  /* border: 1px dotted yellow; */
+  
   background-color: white;
   height: 80px;
   width: 250px;
@@ -44,7 +44,7 @@ section {
   color: black;
   font-weight: bold;
   background-color: rgb(154, 67, 236);
-  /* border: 1px solid black; */
+  
   font-size: 30px;
   text-align: center;
   margin: 0px;
@@ -54,10 +54,10 @@ section {
 .Score {
   color: rgb(189, 13, 13);
   font-weight: bolder;
-  /* font-family: Gill Sans; */
+  
   text-align: center;
   font-size: 30px;
-  /* padding: 30px; */
+  
   margin: 10px;
   padding: 5px;
 }
@@ -95,7 +95,7 @@ h2 {
   font-family:roboto;
   font-size: 30px;
 
-  /* margin-left: 5rem; */
+  
 }
 
 .Button:hover {
@@ -109,11 +109,11 @@ h2 {
   border-top: 16px solid #3498db;
   width: 120px;
   height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
 
-/* Safari */
+
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
@@ -132,3 +132,67 @@ h2 {
   padding:0px 0px 0px 0px;
   
 }
+
+.prof-page-1{
+  border-style: solid;
+  border-color: white;
+  border:10px;
+  background-color: #57068C;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  white-space: pre-wrap;
+  min-height: 60vw;
+  width: 100vw;
+}
+
+.classes-1{
+  height: 10vh;
+}
+
+
+.a-1 {
+  min-height: 80vh;
+  
+}
+
+.h2-1 {
+  color: black;
+  font-weight: bold;
+  background-color:white;
+  border: 1px solid black;
+  border-radius: 10%;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.Button-1 {
+  padding: 5px 10px;
+  top: 20px;
+  margin-left:5px;
+  border: 1.5px;
+  border-color: white;
+  border-style: solid;
+  border-radius: 150px / 200px;
+  font-size: 20px;
+  background-color: #57068C;
+  color:white; 
+  position: relative;
+  cursor:pointer;
+  font-family:roboto;
+  font-size: 20px;
+
+  /* margin-left: 5rem; */
+}
+
+.Button-1:hover {
+  background-color: white;
+  color: black;
+}
+

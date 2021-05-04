@@ -21,7 +21,8 @@ const posterity=async(res)=>{
 
     pyshell.on('message',function(message){
         // console.log(message);
-        parseInt(message[0]) <= 1 ? res.send(message):null;
+        // parseInt(message[0]) <= 1 ? res.send(message):null;
+        res.send(message);
     });
     
 

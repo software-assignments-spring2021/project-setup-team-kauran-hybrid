@@ -9,7 +9,7 @@ import json
 import re
 import pickle
 
-print('Machine.py triggered')
+# print('Machine.py triggered')
 
 value = input()
 # print("Input value:", value)

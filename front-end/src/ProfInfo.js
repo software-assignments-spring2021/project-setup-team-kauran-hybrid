@@ -58,6 +58,8 @@ const ProfInfo=(props)=>{
         
     });
   }
+  let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+  if (!is_mobile) {
     return(
       <div className='prof-page'>
         <div className = "menu">
@@ -96,6 +98,47 @@ const ProfInfo=(props)=>{
         
       </div>
     )
+  }
+  else {
+    return(
+      <div className='prof-page-1'>
+        <div className = "menu-1">
+          <MenuBar>
+
+          </MenuBar>
+          <button  className={'logoButton'} onClick={handleClickGoHome}>
+                    <img src={newLogo} className="App-logo" alt="logo" />
+          </button>
+        </div>
+        
+        {/* <div className='prof-page'> */}
+
+          {/* {profinfo.map(item => (
+              <Professor details={item} />
+          ))}
+           */}
+           {
+             profinfo.state ?
+             <Professor details={profinfo.data} />:
+             <p>
+             Be patient...we're getting the professor...
+            </p>
+           }
+          {/* <Professor details={profinfo} /> */}
+          <div className='classes-1'>
+          <center>
+              
+              <a className='Button-1' onClick={goBack}>Return to the Class Info page</a>
+              {/* <a className='Button' href = './ClassInfo'>Return to the Class Info page</a> */}
+              
+          </center>
+          </div>
+
+        {/* </div> */}
+        
+      </div>
+    )
+  }
     
 
       

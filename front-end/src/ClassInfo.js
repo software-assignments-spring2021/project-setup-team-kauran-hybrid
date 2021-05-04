@@ -49,6 +49,7 @@ function ClassInfo(props){
     console.log(classinfo.data);
     let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
     // not on mobile
+    // let is_mobile = true;
     if(!is_mobile){
       // classinfo existed
       if (classinfo.data!=null) {

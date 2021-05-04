@@ -110,16 +110,17 @@ function ClassDetail(props){
                     </p>
                 </center>
 
-                <p className="prof-info" style={{width:'90vw'}}>
                 <center>
+                <p className="prof-info-1" style={{width:'55vw'}}>
+                {/* <center> */}
                     {props.details.secInstructors && props.details.secInstructors.map(item => (
                         <a href="./ProfInfo"> 
                             Prof. {item}
                         </a>
                     ))}  
-                    </center>  
+                     
                 </p>
-
+                </center> 
                 <center>
                     <p className="class-rec" style={{width:'70vw',height:'180vw'}}>
                         Recitations
@@ -138,7 +139,7 @@ function ClassDetail(props){
                 <center>
                 <p style={{width:'90vw'}}>
                     
-                    <a href="./Results" class="back-results-button"> 
+                    <a href="./Results" class="back-results-button-1"> 
                         Return to view other recommended courses
                     </a>
                     
