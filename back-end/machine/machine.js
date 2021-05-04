@@ -15,7 +15,9 @@ const posterity=async(res)=>{
         //your algorithm should need to feed from this results!
         //so probabaly do things in here!!
         // console.log(results);
-        pyshell.send(JSON.stringify({"data":results, "input":[120, 100, 20, 5]}));
+        try {pyshell.send(JSON.stringify({"data":results, "input":[120, 100, 20, 5]}));}
+        catch(err) {console.log(err)}
+        
     });
     // pyshell.send(JSON.stringify([120, 100, 20, 5]));
 
