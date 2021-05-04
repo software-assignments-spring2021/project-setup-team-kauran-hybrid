@@ -7,6 +7,7 @@
     "test": "mocha --exit",
     "start": "node create_key.js && nodemon server"
   },
+  "console": "integratedTerminal",
   "author": "",
   "license": "ISC",
   "dependencies": {
