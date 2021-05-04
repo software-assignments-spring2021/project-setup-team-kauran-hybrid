@@ -57,7 +57,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                MATH-UA {props.details.courseNum}{" "}00{props.details.secCode}{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
+                {props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>

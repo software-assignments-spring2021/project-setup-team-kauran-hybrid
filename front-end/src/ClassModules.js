@@ -14,29 +14,35 @@ function ClassModules(props){
     async function fetchData() {
       // axios is a 3rd-party module for fetching data from servers
       let result;
+      let link = 'class_modules';
+      if (props.page=='professors') {
+        link = 'prof_info';
+      }
       if(props.page!='accounts'){
-        result = await axios(
+        await axios(
   
           // linking to the back-end instead of to mockaroo now
-          `${process.env.REACT_APP_WEBHOST}:3000/class_modules`
-        );
+          `${process.env.REACT_APP_WEBHOST}:3000/${link}`
+        )
+        .then(result=>setUserHistory(result.data));
       }
       else{
         console.log('Account ClassModules',props.username);
-        result = await axios(
+        await axios(
           `${process.env.REACT_APP_WEBHOST}:3000/class_modules/protected`,{
             headers:{
               'auth':props.auth,
               'username':props.username
             }
           }
-        );
+        )
+        .then(result=>setUserHistory(result.data));
       }
 
-      console.log(result);
+      // console.log(result.data);
       // set the state variable
       // this will cause a re-render of this component
-      setUserHistory(result.data);
+      // setUserHistory(result.data);
     }
     fetchData();
     //console.log(userHistory);
@@ -96,10 +102,10 @@ function ClassModules(props){
       return (
         <>
           <div className="ClassModules" style={{fontSize: size}}>
-            {userHistory.map(item => (
+            {userHistory.sections ? userHistory.sections.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
-            ))}
+            )):null}
           </div>
         </>
       );
