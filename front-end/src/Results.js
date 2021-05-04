@@ -63,7 +63,7 @@ const Results=(props)=>{
         });
     }
     let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
-    let size = '20px';
+    let size = '30px';
     if (is_mobile) {
         size = '15px';
     }

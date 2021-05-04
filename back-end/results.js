@@ -6,6 +6,7 @@ const scraper=require("./scraper");
 const mongo=require('./mongo/mongo.js');
 const dotenv=require('dotenv');
 const {PythonShell}=require('python-shell');
+const { mongoScript } = require("./mongo/mongo.js");
 
 //require("dotenv").config({ silent: true }); // save private data in .env file
 
@@ -69,7 +70,31 @@ router.get("/", (req, res) => {
   // console.log(email,position,number)
   // res.send({probGetIn, email, position, number}) // we have to send a string here so we convert the probGetIn type to string above
   //res.status(200).json({ok:true})
-  position != null && number != null ? posterity(res, email, position, number, secCode, 120, 20): res.send({email, position, number, secCode});
+  
+  position != null && number != 0 ? mongo.mongoGetCourses('MATH-UA'+number).then(secs=>{
+    let res1=0;
+    let res2=0;
+    let n=0;
+    if (secs) {
+      // console.log(secs);
+      for (let i=0; i<secs.length;i++){
+        for (let j=0;j<secs[i].sizeCaps.length;j++) {
+          res1 += parseInt(secs[i].sizeCaps[j]);
+          res1 += parseInt(secs[i].waitlistSizes[j]);
+        }
+        n += secs[i].sizeCaps.length;
+      }
+      console.log(n);
+      res1 /= n;
+      res2 /= n;
+      posterity(res, email, position, number, secCode, res1, res2)
+    }
+    
+
+    
+}): res.send({email, position, number, secCode});
+  
+  // position != null && number != 0 ? posterity(res, email, position, number, secCode, sizes[0], sizes[1]): res.send({email, position, number, secCode});
   // probGetIn!=null ? res.send({probGetIn, email, position, number}):null;
 
 })

@@ -41,7 +41,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}|{"\t"}Waitlist Position: {props.details.waitlistPos}{"\t"}
+                MATH-UA {props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}Waitlist Position: {props.details.waitlistPos}{" "}
                 {/* Course Number: {props.details.courseNum}{"\t"}|{"\t"}Waitlist Position: {props.details.waitlistPos} */}
             </Link>
             </div>
@@ -57,7 +57,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus}
+                MATH-UA {props.details.courseNum}{" "}00{props.details.secCode}{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
