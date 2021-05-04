@@ -8,10 +8,10 @@ dotenv.config({path:'./.env'})
 
 const LoginForm=(props)=> {
 
-  const [email,setEmail]=useState("Enter your email");
-  const [position,setPosition]=useState("Enter your waitlist position");
-  const [number,setNumber]=useState("Enter your lecture number, eg: 343");
-  var [secCode,setSection]=useState("Enter your lecture section, eg: 6");
+  const [email,setEmail]=useState("Enter email");
+  const [position,setPosition]=useState("Enter waitlist position");
+  const [number,setNumber]=useState("Enter class number, eg: 343");
+  var [secCode,setSection]=useState("Enter class section, eg: 6");
     
   // const [email,setEmail]=useState("Email");
   // const [position,setPosition]=useState("Waitlist position");

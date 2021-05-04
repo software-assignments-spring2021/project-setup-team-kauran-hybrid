@@ -27,28 +27,90 @@ function ClassDetail(props){
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
 
-    return(
+    let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    // not on mobile
+    if(!is_mobile){
+        return(
+                <div className="class-details">
+                    <center className="class-name">
+                        MATH-UA {props.details.courseNum} {' '}
+                        {props.details.courseName}
+                    </center>
+
+                    <p className="class-info">
+                        Section 00{props.details.secCode} | {'\t'}
+                        {props.details.secTime} | {'\t'}
+                        {props.details.secLoc}
+                    </p>
+
+                    <p className="class-detail">
+                        <Link to={{ 
+                            pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/as/" 
+                        }} target="_blank" >
+                            See Department Website for course description and prerequisites
+                        </Link>
+                    </p>
+
+                    <p className="prof-info">
+                    <center>
+                        {props.details.secInstructors && props.details.secInstructors.map(item => (
+                            <a href="./ProfInfo"> 
+                                Prof. {item}
+                            </a>
+                        ))}  
+                        </center>  
+                    </p>
+                    
+                    <p className="class-rec">
+                        Recitations
+                        <>
+                        {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
+                            <li>
+                                Section 00{`${rec.recCode} `} | 
+                                Time: {`${rec.recTime} `} | 
+                                Instructor: {`${rec.recInstructors} `} | 
+                                Status: {`${rec.recStatus} `}
+                            </li>
+                        ))}
+                        </>
+                    </p>
+                    <p>
+                        <center>
+                        <a href="./Results" class="back-results-button"> 
+                            Return to view other recommended courses
+                        </a>
+                        </center>
+                    </p>
+                </div>
+        )
+    }
+    // is mobile
+    else {
+        return(
             <div className="class-details">
                 <center className="class-name">
                     MATH-UA {props.details.courseNum} {' '}
                     {props.details.courseName}
                 </center>
+                <center>
+                    <p className="class-info" style={{width:'70vw'}}>
+                        Section 00{props.details.secCode} | {'\t'}
+                        {props.details.secTime} | {'\t'}
+                        {props.details.secLoc}
+                    </p>
+                </center>
+                
+                <center>
+                    <p className="class-detail" style={{width:'70vw', height:'40vw'}}>
+                        <Link to={{ 
+                            pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/as/" 
+                        }} target="_blank" >
+                            See Department Website for course description and prerequisites
+                        </Link>
+                    </p>
+                </center>
 
-                <p className="class-info">
-                    Section 00{props.details.secCode} | {'\t'}
-                    {props.details.secTime} | {'\t'}
-                    {props.details.secLoc}
-                </p>
-
-                <p className="class-detail">
-                    <Link to={{ 
-                        pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/as/" 
-                    }} target="_blank" >
-                        See Department Website for course description and prerequisites
-                    </Link>
-                </p>
-
-                <p className="prof-info">
+                <p className="prof-info" style={{width:'90vw'}}>
                 <center>
                     {props.details.secInstructors && props.details.secInstructors.map(item => (
                         <a href="./ProfInfo"> 
@@ -57,28 +119,33 @@ function ClassDetail(props){
                     ))}  
                     </center>  
                 </p>
-                
-                <p className="class-rec">
-                    Recitations
-                    <>
-                    {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
-                        <li>
-                            Section 00{`${rec.recCode} `} | 
-                            Time: {`${rec.recTime} `} | 
-                            Instructor: {`${rec.recInstructors} `} | 
-                            Status: {`${rec.recStatus} `}
-                        </li>
-                    ))}
-                    </>
-                </p>
-                <p>
-                    <center>
+
+                <center>
+                    <p className="class-rec" style={{width:'70vw',height:'180vw'}}>
+                        Recitations
+                        <>
+                        {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
+                            <li>
+                                Section 00{`${rec.recCode} `} | 
+                                Time: {`${rec.recTime} `} | 
+                                Instructor: {`${rec.recInstructors} `} | 
+                                Status: {`${rec.recStatus} `}
+                            </li>
+                        ))}
+                        </>
+                    </p>
+                </center>
+                <center>
+                <p style={{width:'90vw'}}>
+                    
                     <a href="./Results" class="back-results-button"> 
                         Return to view other recommended courses
                     </a>
-                    </center>
+                    
                 </p>
+                </center>
             </div>
-    )
+        )
+    }
 }
 export default ClassDetail

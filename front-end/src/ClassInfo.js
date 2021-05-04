@@ -115,7 +115,7 @@ function ClassInfo(props){
                       <img src={newLogo} className="App-logo" alt="logo" />
                   </button>
               </div>
-              <div className = "classinfo" style={{height:'150vw'}}>
+              <div className = "classinfo" style={{height:'200vw'}}>
               {/* {class_info.map(item => (
                 <ClassDetail key={item.class_number} details={item} page='class_info'/>
               ))} */}
