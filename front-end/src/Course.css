@@ -22,4 +22,19 @@
     font-size: 20px;
     text-decoration: underline;
   }
+  .deleteButton{
+    padding: 5px 10px;
+    top:20px;
+    margin-left:15px;
+    border: 2.5px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 20vw / 20vw;
+    font-size: 30px;
+    background-color: #57068C;
+    color:white; 
+    position: relative;
+    cursor:pointer;
+    font-family: roboto;
+  }
   

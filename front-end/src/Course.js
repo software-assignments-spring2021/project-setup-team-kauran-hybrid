@@ -3,6 +3,11 @@ import ClassInfo from "./ClassInfo";
 import {Link} from 'react-router-dom';
 
 function Course(props){
+    const [hoverState,setHoverState]=useState(false);
+    const handleHover=async()=>{
+        setHoverState(!hoverState)
+        //console.log(hoverState);
+    }
     if(props.page=='results'){
         //console.log(props.details.courseNum);
         return(
@@ -15,15 +20,19 @@ function Course(props){
         ) 
     }
     else if(props.page=='accounts'){
-        // props.details.map(i=>{
-        //     console.log('item inside',i.courseNum)
-        // });
-        console.log(props.details);
+        
         return(
-            <div className="search-item">
-            <a href = './ClassInfo'>
-                Course Number: {props.details.courseNum}{"\t"}|{"\t"}WaitListPosition: {props.details.waitlistPos}{"\t"}|{"\t"}
-            </a>
+            <div className="search-item" onMouseEnter={handleHover} onMouseLeave={handleHover}>
+                {!hoverState&&
+                <a href = './ClassInfo'>
+                    Course Number: {props.details.courseNum}{"\t"}|{"\t"}WaitListPosition: {props.details.waitlistPos}{"\t"}|{"\t"}
+                </a>
+                }
+                {
+                    hoverState&&
+                    <button className="deleteButton"> delete</button>
+                }
+            
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 
