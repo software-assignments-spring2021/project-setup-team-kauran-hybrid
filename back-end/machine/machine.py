@@ -7,13 +7,15 @@ from sklearn import preprocessing
 import matplotlib.pyplot as plt
 import json
 import re
+import pickle
 
-print('Machine.py triggered')
+# print('Machine.py triggered')
 
-value = input()
+value = json.loads(input())
 # print("Input value:", value)
 
-jsonval = json.loads(value) # array of dictionaries
+jsonval = value['data'] # array of dictionaries
+# input = json.loads(value)['input']
 # print("JSON Value:", jsonval[0])
 
 def makeDF():
@@ -29,7 +31,7 @@ def makeDF():
         waitlistSizes.append(i['waitlistSizes'])
     '''
     for i in jsonval:
-        # print(i)
+        # print(i['courseNum'])
         courseNum=re.findall("[0-9]+",i['courseNum'])[0]
         # print(courseNum)
         for j in range(np.min([len(i['sizeCaps']),len(i['waitlistSizes']),len(i['droppedSizes'])])):
@@ -60,11 +62,12 @@ def makeDF():
     # df.set_index('CourseNumber',inplace=True,drop=True)
     # df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']]=df[['CourseSize', 'WaitlistSize', 'WaitlistPos','Target']].astype(int)
     df = df.astype(int)
-    print("Exists null data? :",df.isnull().values.any())
+    # print(df.iloc[50:100])
+    # print("Exists null data? :",df.isnull().values.any())
     return df
     
 df=makeDF()
-print(df.iloc[40:80])
+# print(df.iloc[40:80])
 
 def linReg(df):
     x=pd.DataFrame(df['CourseSize'])
@@ -81,23 +84,32 @@ def linReg(df):
 # linReg(df)
 # def prosterity(classSize,waitListPos):
 
-def logReg(df):
+def logReg(df, input):
     X=pd.DataFrame(df[['CourseNumber', 'CourseSize', 'WaitlistSize', 'WaitlistPos']].values)
     y=pd.DataFrame(df['Target'].values)
     model=LogisticRegression()
     X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.3, random_state=42)
-    print(X_train.shape)
-    print(X_test.shape)
+    # print(X_train.shape)
+    # print(X_test.shape)
     model.fit(X_train, y_train)
-    score = model.score(X_test, y_test)
-    print("Score: ", score)
-    print("class labels:", model.classes_)
+    # score = model.score(X_test, y_test)
+    # print("Score: ", score)
+    # print("class labels:", model.classes_)
+    filename = 'finalized_model.sav'
+    pickle.dump(model, open(filename, 'wb'))
     
-    fakeX = np.zeros((1,4))
-    fakeX[0,:] = [120, 100, 20, 5]
-    print("fake prob: ", model.predict_proba(fakeX)[:,1])
+    # fakeX = np.zeros((1,4))
+    # fakeX[0,:] = [120, 100, 20, 5]
+    # print("fake prob: ", model.predict_proba(fakeX)[:,1])
 
-logReg(df)
+#logReg(df, json.loads(value)['input'])
+
+# load the model from disk
+loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
+inputX = np.zeros((1,4))
+inputX[0,:] = value['input']
+result = loaded_model.predict_proba(inputX)[:, 1][0]
+print(result)
 
 # def test_fake_data(num=121,couseSize=100,wlSize=10,pos=5,model):
 #     X = np.zeros((1,4))

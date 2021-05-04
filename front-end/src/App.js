@@ -10,7 +10,6 @@ import Login from './Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Dropdown from './Dropdown'
 
-
 function App() {
   return (
 

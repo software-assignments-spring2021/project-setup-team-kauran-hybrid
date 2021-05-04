@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ClassInfo from "./ClassInfo";
-import {Link} from 'react-router-dom';
+import React from "react";
+import {Link, useHistory} from 'react-router-dom';
 
 function Course(props){
     const [hoverState,setHoverState]=useState(false);
@@ -9,12 +8,18 @@ function Course(props){
         //console.log(hoverState);
     }
     if(props.page=='results'){
-        //console.log(props.details.courseNum);
+        // console.log(props.details);
         return(
             <div className="search-item">
-            <a href = './ClassInfo'>
-                {props.details.courseNum}{" "}|{" "}{props.details.courseName}{" "}|{' '}Status:
-            </a>
+            {/* <Link onClick={(props)=>(history.push({pathname:'/ClassInfo',state:props.details,ok:true}))}>
+                Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
+            </Link> */}
+            <Link to={{
+                pathname: '/ClassInfo',
+                state: { detail: props.details }}}>
+                {/* {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus} */}
+                MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus}
+            </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 
@@ -40,9 +45,14 @@ function Course(props){
     else if(props.page=='professors'){
         return(
             <div className="search-item">
-            <a href = './ClassInfo'>
+            {/* <a href = './ClassInfo'>
                 Course Number: {props.details.courseNum}{"\t"}|{"\t"}Semester: {}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
-            </a>
+            </a> */}
+            <Link to={{
+                pathname: '/ClassInfo',
+                state: { detail: props.details }}}>
+                MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus}
+            </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 

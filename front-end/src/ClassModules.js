@@ -1,11 +1,10 @@
-
 import React,{useState,useEffect} from'react';
 import axios from "axios";
 import './ClassModules.css';
-import {Link} from 'react-router-dom';
-import ClassInfo from './ClassInfo';
 import Course from "./Course";
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
 
 function ClassModules(props){
   // const auth = props.auth;
@@ -19,13 +18,13 @@ function ClassModules(props){
         result = await axios(
   
           // linking to the back-end instead of to mockaroo now
-          'http://waitlisthopper.com:3000/class_modules'
+          `${process.env.REACT_APP_WEBHOST}:3000/class_modules`
         );
       }
       else{
         console.log('Account ClassModules',props.username);
         result = await axios(
-          'http://waitlisthopper.com:3000/class_modules/protected',{
+          `${process.env.REACT_APP_WEBHOST}:3000/class_modules/protected`,{
             headers:{
               'auth':props.auth,
               'username':props.username
@@ -45,14 +44,10 @@ function ClassModules(props){
     if(props.page=='results'){
       //console.log(userHistory.courseNum);
       return (
-        
         <>
-
           <div className="ClassModules">
-  
             {userHistory.map(item => (
-              
-              <Course page={props.page} key={item.courseNum,item.courseName} details={item} />
+              <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
             ))}
           </div>

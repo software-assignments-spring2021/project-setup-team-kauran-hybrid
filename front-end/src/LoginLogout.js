@@ -16,6 +16,10 @@ import './App.css';
 // },function(err){
 //     if(err) throw err;
 // });
+
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 const LoginLogout=(props)=> {
 
   console.log("LoginLogout page", props)
@@ -39,7 +43,7 @@ const LoginLogout=(props)=> {
 
     const  handleClickLogin =async(e) =>{
         //e.preventDefault()
-        await axios.post('http://waitlisthopper.com:3000/login_logout/login',{
+        await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/login`,{
           username:email,
           password:password,
       }).then(function(response,err){
@@ -57,12 +61,14 @@ const LoginLogout=(props)=> {
     };
 
     const handleClickLoginParams = async() => {
-      await axios.post('http://waitlisthopper.com:3000/login_logout/login',{
+      await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/login`,{
               
         username:email,
         password:password,
         position:props.position,
-        number:props.number
+        number:props.number,
+        secCode:props.secCode
+
       }).then(function(response,err){
         if(err) throw err;
         //console.log(response);
@@ -79,7 +85,7 @@ const LoginLogout=(props)=> {
 
     const  handleClickSignUp =async(e) =>{
         //e.preventDefault()
-        await axios.post('http://waitlisthopper.com:3000/login_logout/signup',{
+        await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/signup`,{
           username:email,
           password:password,
         }).then(function(response,err){
@@ -99,12 +105,14 @@ const LoginLogout=(props)=> {
     };
 
     const handleClickSignUpParams = async() => {
-      await axios.post('http://waitlisthopper.com:3000/login_logout/signup',{
+      await axios.post(`${process.env.REACT_APP_WEBHOST}:3000/login_logout/signup`,{
               
         username:email,
         password:password,
         position:props.position,
-        number:props.number
+        number:props.number,
+        secCode:props.secCode
+
       }).then(function(response,err){
         if(err) throw err;
         //console.log(response);

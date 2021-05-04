@@ -9,17 +9,22 @@
     font-size: calc(10px + 2vmin);
     color: white;
 }
+.menu-1 {
+    width: 20vw;
+    height: 30vh;
+    background-color: #57068C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
 
 .menu-link:hover{
     color:black;
 }
-.many-links{
-    
-    /* width:100vw;
-    align-items: left; */
 
-
-}
 nav a:hover{
     background-color:white;
 }
