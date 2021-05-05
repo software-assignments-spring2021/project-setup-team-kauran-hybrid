@@ -38,7 +38,7 @@ function ClassDetail(props){
                     </center>
 
                     <p className="class-info">
-                        Section 00{props.details.secCode} | {'\t'}
+                        Section {props.details.secCode} | {'\t'}
                         {props.details.secTime} | {'\t'}
                         {props.details.secLoc}
                     </p>
@@ -66,7 +66,7 @@ function ClassDetail(props){
                         <>
                         {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
                             <li>
-                                Section 00{`${rec.recCode} `} | 
+                                Section {`${rec.recCode} `} | 
                                 Time: {`${rec.recTime} `} | 
                                 Instructor: {`${rec.recInstructors} `} | 
                                 Status: {`${rec.recStatus} `}
@@ -94,7 +94,7 @@ function ClassDetail(props){
                 </center>
                 <center>
                     <p className="class-info-1">
-                        Section 00{props.details.secCode} | {'\t'}
+                        Section {props.details.secCode} | {'\t'}
                         {props.details.secTime} | {'\t'}
                         {props.details.secLoc}
                     </p>
@@ -127,7 +127,7 @@ function ClassDetail(props){
                         <>
                         {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
                             <li>
-                                Section 00{`${rec.recCode} `} | 
+                                Section {`${rec.recCode} `} | 
                                 Time: {`${rec.recTime} `} | 
                                 Instructor: {`${rec.recInstructors} `} | 
                                 Status: {`${rec.recStatus} `}
