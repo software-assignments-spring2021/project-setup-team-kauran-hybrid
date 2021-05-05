@@ -80,7 +80,7 @@ router.get("/", (req, res) => {
       for (let i=0; i<secs.length;i++){
         for (let j=0;j<secs[i].sizeCaps.length;j++) {
           res1 += parseInt(secs[i].sizeCaps[j]);
-          res1 += parseInt(secs[i].waitlistSizes[j]);
+          res2 += parseInt(secs[i].waitlistSizes[j]);
         }
         n += secs[i].sizeCaps.length;
       }
