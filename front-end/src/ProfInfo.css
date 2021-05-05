@@ -62,10 +62,10 @@ section {
   padding: 5px;
 }
 
-a {
+/* a {
   min-height: 200vh;
   
-}
+} */
 
 h2 {
   color: black;
@@ -94,7 +94,7 @@ h2 {
   cursor:pointer;
   font-family:roboto;
   font-size: 30px;
-
+  min-height: 200vh;
   
 }
 
@@ -155,10 +155,10 @@ h2 {
 }
 
 
-.a-1 {
+/* .a-1 {
   min-height: 80vh;
   
-}
+} */
 
 .h2-1 {
   color: black;
@@ -187,7 +187,7 @@ h2 {
   cursor:pointer;
   font-family:roboto;
   font-size: 20px;
-
+  min-height: 80vh;
   /* margin-left: 5rem; */
 }
 

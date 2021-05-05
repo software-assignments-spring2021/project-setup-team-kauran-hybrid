@@ -33,7 +33,7 @@ function Course(props){
                 state: { detail: props.details }}}>
                 {/* {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus} */}
                 {/* MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus} */}
-                Course Number{props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
+                Course Number: {props.details.courseNum}{" "} Sec {props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
@@ -74,7 +74,7 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                {props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
+                Course Number: {props.details.courseNum}{" "} Sec {props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>

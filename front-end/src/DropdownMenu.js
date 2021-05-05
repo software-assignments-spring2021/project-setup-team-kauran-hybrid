@@ -5,15 +5,15 @@ import { StyledDropdownMenu } from './DropdownMenu.styled';
 const DropdownMenu = ({ open }) => {
   return (
     <StyledDropdownMenu open={open}>
-      <a href="/">
+      <a classname='dropdown' href="/">
         <span role="img" aria-label="home"></span>
         Home
       </a>
-      <a href="/Account">
+      <a classname='dropdown' href="/Account">
         <span role="img" aria-label="my account"></span>
         My Account
         </a>
-      <a href="/Login">
+      <a classname='dropdown' href="/Login">
         <span role="img" aria-label="login/logout"></span>
         Login
         </a>
