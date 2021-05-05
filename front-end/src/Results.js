@@ -82,7 +82,7 @@ const Results=(props)=>{
                 {
                 userInput.state ? <p style={{fontSize: size}}>Your possibility of getting into this class is: {userInput.data.probGetIn} {"\n"}
 
-                    Here are some alternative classes.
+                    
                 </p>:
                  <p style={{fontSize: size}}>
                      ...we're getting your results...

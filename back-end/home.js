@@ -21,6 +21,10 @@ router.post("/", (req, res) => {
     number:number,
     secCode:secCode
   })
+  axios.post(`${process.env.webhost}:3000/class_modules`,{
+    number:number,
+    secCode:secCode
+  })
 
   res.status(200).json({ok:true})
 })

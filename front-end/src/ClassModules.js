@@ -56,11 +56,15 @@ function ClassModules(props){
       //console.log(userHistory.courseNum);
       return (
         <center>
+          <p>
+          Here are some alternative classes.
+          </p>
           <div className="ClassModules" style={{fontSize: size}}>
-            {userHistory.map(item => (
+            
+            {userHistory ? userHistory.map(item => (
               <Course page={props.page} key={item.courseNum} details={item} />
               // <Semester key={item.semester} details={item} />
-            ))}
+            )):<p>...we're finding best substitutes for you...</p>}
           </div>
         </center>
       );
