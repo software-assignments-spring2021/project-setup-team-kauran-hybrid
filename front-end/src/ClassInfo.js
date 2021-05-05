@@ -24,15 +24,12 @@ function ClassInfo(props){
     const [classinfo, setClassInfo] = useState([]);
     // const class_info = [classinfo];
     useEffect(() => {
-      // console.log(history.location.state)
+
       const details = history.location.state.detail
-      // console.log(details)
-      // console.log(details.courseNum)
+      //Olivia's code
       if (/^[a-zA-Z]+-[a-zA-Z]+[0-9]+$/.test(details.courseNum)){
         details.courseNum = details.courseNum.replace(/^[a-zA-Z]+-[a-zA-Z]+/, '');
-        // console.log(details.courseNum)
-      }
-      // a nested function that fetches the data
+      };
       async function fetchData() {
         // axios is a 3rd-party module for fetching data from servers
         await axios(
@@ -42,14 +39,9 @@ function ClassInfo(props){
             state:true,
             data:res.data
         }));
-        // set the state variable
-        // this will cause a re-render of this component
-        // setClassInfo(result.data);
-      }
-      // fetch the data!
-      fetchData();
 
-    // the blank array below causes this callback to be executed only once on component load
+      }
+      fetchData();
     }, []);
     console.log(classinfo.data);
     let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;

@@ -1,16 +1,20 @@
 import {React,useState} from "react";
 import './Course.css';
 import {Link, useHistory} from 'react-router-dom';
+import axios from "axios";
 
 function Course(props){
     const [hoverState,setHoverState]=useState(false);
     const handleHover=async()=>{
         setHoverState(!hoverState)
-        //console.log(hoverState);
     }
-    function handleClickDelete(e){
-        //console.log("deleting",index)
+    async function handleClickDelete(e){
         console.log(props.details.index);
+        console.log(localStorage.username);
+        await axios(
+            `${process.env.REACT_APP_WEBHOST}:3000/mongo_script/delete?index=${props.details.index}&username=${localStorage.username}`
+        )
+        window.location.reload(false);
     }
     let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
     let size = '20px';

@@ -12,7 +12,7 @@ router.get("/", (req,res, next) => {
     // scraper.albert_scraper();
     // res.send('scraping');
     let {course, section} = req.query
-
+    
     mongo.mongoGetNewSection(course, section).then((response) =>{
       //console.log(response)
       res.json(response)

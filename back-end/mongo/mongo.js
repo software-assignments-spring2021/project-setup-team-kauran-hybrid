@@ -71,7 +71,7 @@ const mongoSaveUserHistory=async(username,password,userHistory)=>{
         console.log(results);
     });    
 };
-const mongoDeleteUserHistory=async(username,password,userHistory)=>{
+const mongoDeleteUserHistory=async(username,index)=>{
     const userAccounts = whModels.userAccounts;
     //find the correct userAccount
     await userAccounts.findOne({'username':username},function(err,results){
@@ -81,17 +81,42 @@ const mongoDeleteUserHistory=async(username,password,userHistory)=>{
         }
         else{
             console.log('Query exists, updating');
-            const newUserHistory=results.userHistory.push(userHistory);
-            //update the account with the new parameters
+            let newUserHistory=[];
+            let removed=false;
+            for (records in results.userHistory){
+                record=results.userHistory[records]
+                //console.log('record',record);
+                if(record&&record.index!=index){
+                    if(!removed){
+                        
+                        newUserHistory.push(record);
+                    }
+                    else{
+                        const curr={
+                            index:record.index-1,
+                            waitlistPos:record.waitlistPos,
+                            courseNum:record.courseNum,
+                            secCode:record.secCode
+                        }
+                        //console.log(curr);
+                        newUserHistory.push(curr);
+                    }
+                }
+                else if(record&&record.index==index){
+                    removed=true;
+                }
+            }
+            console.log(newUserHistory);
+            results.userHistory=newUserHistory;
+            results.markModified('userHistory');
             results.save({
                 username:username,
-                password:password,
                 userHistory:newUserHistory
             });
         }
-        
-        console.log(results);
+        console.log('record removed');
     }); 
+    
 }
 //this is for creating OR updating classes from albert
 const mongoSaveCourses=async(courseNum,courseName,courseSize,waitlistSize,droppedSize,sizeCap)=>{
@@ -543,6 +568,11 @@ router.get("/",(req,res)=>{
     res.send('mongo_router');
 
 });
+router.get('/delete',(req,res)=>{
+    let {index,username}=req.query
+    mongoDeleteUserHistory(username,index);
+    res.send('mongo_router');
+});
 
 module.exports={
     mongoScript,
@@ -560,5 +590,6 @@ module.exports={
     mongoSaveNewSection:mongoSaveNewSection,
     mongoGetNewSection:mongoGetNewSection,
     mongoGetProfRate:mongoGetProfRate,
+    mongoDeleteUserHistory:mongoDeleteUserHistory,
     router:router
 }
