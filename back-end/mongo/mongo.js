@@ -529,6 +529,32 @@ const mongoGetNewSection=async(courseNum,secCode)=>{
     return ret;
 }
 
+const mongoGetRecSection=async(courseNum,secCode)=>{
+    // console.log(courseNum,secCode)
+    const newSection = whModels.newSection;
+    // let record;
+    let ret;
+    //if specified courseNum
+    if(courseNum && secCode){
+        ret=await newSection.find({ 'courseNum': { $gte: courseNum } , 'secCode': { $ne: secCode }, $or:[ {'secStatus':'Open'}, {'secStatus':'WaitList'}]},function(err,result){
+            if(err) throw err;
+            return result;
+        });
+        
+        // console.log(ret)
+        // let s;
+        // for (i in record.sections) {
+        //      s=record.sections[i];
+        //      if (s.secCode == secCode) {
+        //          ret = s;
+        //          break;
+        //     }
+        // }
+    }
+    console.log(ret);
+    return ret;
+}
+
 const mongoGetProfRate=async(profName)=>{
     const professors = whModels.professors;
     let ret;
@@ -591,5 +617,6 @@ module.exports={
     mongoGetNewSection:mongoGetNewSection,
     mongoGetProfRate:mongoGetProfRate,
     mongoDeleteUserHistory:mongoDeleteUserHistory,
+    mongoGetRecSection:mongoGetRecSection,
     router:router
 }
