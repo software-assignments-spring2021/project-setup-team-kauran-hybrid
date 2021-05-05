@@ -31,7 +31,7 @@ function ClassDetail(props){
     // not on mobile
     if(!is_mobile){
         return(
-                <div className="class-details">
+                <div>
                     <center className="class-name">
                         MATH-UA {props.details.courseNum} {' '}
                         {props.details.courseName}
@@ -87,13 +87,13 @@ function ClassDetail(props){
     // is mobile
     else {
         return(
-            <div className="class-details">
-                <center className="class-name">
+            <div>
+                <center className="class-name-1">
                     MATH-UA {props.details.courseNum} {' '}
                     {props.details.courseName}
                 </center>
                 <center>
-                    <p className="class-info" style={{width:'70vw'}}>
+                    <p className="class-info-1">
                         Section 00{props.details.secCode} | {'\t'}
                         {props.details.secTime} | {'\t'}
                         {props.details.secLoc}
@@ -101,7 +101,7 @@ function ClassDetail(props){
                 </center>
                 
                 <center>
-                    <p className="class-detail" style={{width:'70vw', height:'40vw'}}>
+                    <p className="class-detail-1">
                         <Link to={{ 
                             pathname: "https://www.math.nyu.edu/dynamic/courses/undergraduate-course-descriptions/as/" 
                         }} target="_blank" >
@@ -111,7 +111,7 @@ function ClassDetail(props){
                 </center>
 
                 <center>
-                <p className="prof-info-1" style={{width:'55vw'}}>
+                <p className="prof-info-1">
                 {/* <center> */}
                     {props.details.secInstructors && props.details.secInstructors.map(item => (
                         <a href="./ProfInfo"> 
@@ -122,7 +122,7 @@ function ClassDetail(props){
                 </p>
                 </center> 
                 <center>
-                    <p className="class-rec" style={{width:'70vw',height:'180vw'}}>
+                    <p className="class-rec-1">
                         Recitations
                         <>
                         {props.details.recs && props.details.recs.length > 0 && props.details.recs.map((rec, i) => (
