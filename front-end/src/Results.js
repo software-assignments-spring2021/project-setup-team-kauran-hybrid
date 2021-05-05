@@ -10,9 +10,14 @@ import {  useHistory  } from 'react-router-dom'
 import newLogo from './Logos/color-correct-icon.png';
 import './App.css';
 
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
+
 const Results=(props)=>{
     const history=useHistory();
     const [userInput, setUserInput] = useState([]);
+    
+
     useEffect(() => {
     // a nested function that fetches the data
     async function fetchData() {
@@ -20,28 +25,35 @@ const Results=(props)=>{
       const result = await axios(
   
         // linking to the back-end instead of to mockaroo now
-        'http://waitlisthopper.com:3000/results'
-      );
+        `${process.env.REACT_APP_WEBHOST}:3000/results`
+      ).then(res=>setUserInput({
+        state:true,
+        data:res.data
+      }));
+    //   setUserInput(result.data);
       //console.log(result.data);
-      // set the state variable
-      // this will cause a re-render of this component
-      setUserInput(result.data);
     }
   
     // fetch the data!
     fetchData();
   
   // the blank array below causes this callback to be executed only once on component load
-  }, []);
+    }, []);
+
+          
+          //console.log(result.data);
+       
    //console.log("Results page", userInput.email, userInput.number, userInput.position);
     const handleClickGoLogin = async() => {
         history.push({
             pathname:"./Login",
-            username:userInput.email,
-            number: userInput.number,
-            position:userInput.position
+            username:userInput.data.email,
+            number: userInput.data.number,
+            position:userInput.data.position,
+            secCode:userInput.data.secCode
         });
     }
+    console.log(userInput.data);
     const handleClickGoHome = async() => {
         history.push({
             pathname:"./",
@@ -49,6 +61,11 @@ const Results=(props)=>{
             username:props.username
             
         });
+    }
+    let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    let size = '30px';
+    if (is_mobile) {
+        size = '15px';
     }
     return(
         <div>
@@ -61,10 +78,17 @@ const Results=(props)=>{
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
              
                 </link>
-                <p>Your possibility of getting into this class is: {userInput.probGetIn}% {"\n"}
+                <center>
+                {
+                userInput.state ? <p style={{fontSize: size}}>Your possibility of getting into this class is: {userInput.data.probGetIn} {"\n"}
 
-                    Here are some alternative classes.
-                </p>
+                    
+                </p>:
+                 <p style={{fontSize: size}}>
+                     ...we're getting your results...
+                 </p>
+                }
+                </center>
                 <ClassModules page='results'>
 
                 </ClassModules>
@@ -84,6 +108,8 @@ const Results=(props)=>{
                     <a href="/" className="results-button">NO! Go Back</a>
                 
                 </p>
+                
+                
             </div>
         </div>
 

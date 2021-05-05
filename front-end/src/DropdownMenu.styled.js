@@ -24,6 +24,7 @@ export const StyledDropdownMenu = styled.nav`
   }
 
   a {
+    color:black;
     font-size: 1.5rem;
     text-transform: uppercase;
     padding: 0.5rem 0.5rem;

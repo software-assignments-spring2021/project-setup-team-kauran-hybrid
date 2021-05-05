@@ -12,6 +12,11 @@ a{
 }
 .search-item{
     position: relative;
+    /* width: 70rem;
+    height: 5rem;
+    line-height: 5rem; */
+    /* font-size: 25px; */
+    /* top:20vw; */
     width: 75vw;
     height: 5vw;
     line-height: 5vw;

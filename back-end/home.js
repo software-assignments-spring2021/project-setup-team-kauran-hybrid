@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const bodyParser = require("body-parser");
-//require("dotenv").config({ silent: true }); // save private data in .env file
+
+const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -11,11 +13,17 @@ router.post("/", (req, res) => {
   const email = req.body.email
   const position = req.body.position
   const number = req.body.number
+  const secCode = req.body.secCode
 
-  axios.post('http://waitlisthopper.com:3000/results',{
+  axios.post(`${process.env.webhost}:3000/results`,{
     email:email,
     position:position,
-    number:number
+    number:number,
+    secCode:secCode
+  })
+  axios.post(`${process.env.webhost}:3000/class_modules`,{
+    number:number,
+    secCode:secCode
   })
 
   res.status(200).json({ok:true})

@@ -7,15 +7,32 @@ const mongo=require('./mongo/mongo.js');
 const passport=require('passport');
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+// const dotenv=require('dotenv');
+dotenv.config({path:'./.env'})
 
+let number;
+let secCode;
 
-router.get("/", (req,res, next) => {
-  // use axios to make a request to an API for our class history data
-  let val=mongo.mongoGetSections().then(response=> {
-    res.json(response);
-    console.log(response);
-  });
+router.post("/", (req, res) => {
+  number = req.body.number
+  secCode = req.body.secCode
 })
+
+router.get("/",(req,res, next) => {
+    // use axios to make a request to an API for our class history data
+    // axios
+    // .get(`${process.env.webhost}:3000/results`)
+    // .then(response => mongo.mongoGetRecSection('120', '1')
+    // .then(response=> {
+    //       res.json(response);
+    // //   let val=mongo.mongoGetSections().then(response=> {
+    // // //   let val=mongo.mongoGetRecSection(req.headers.num, req.headers.sec).then(response=> {
+    // //   res.json(response);
+    // //   // console.log(response);
+    //   }));
+    number && secCode ? mongo.mongoGetRecSection(number, secCode).then(response=> {
+          res.json(response)}):null;
+  })
 
 const checkToken = (req, res, next) => {
     const header = req.headers.auth;
@@ -30,7 +47,10 @@ const checkToken = (req, res, next) => {
         //If header is undefined return Forbidden (403)
          res.sendStatus(403)
     }
-} 
+}
+
+
+
 router.get('/protected',checkToken,(req,res) => {
     const PRIV_KEY=fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
     console.log("token",req.token);

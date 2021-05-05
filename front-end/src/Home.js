@@ -10,7 +10,6 @@ import './App.css';
 
 const Home=(props)=>{
   const [open, setOpen] = useState(false);
-  console.log('home',props);
   let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
   if(!is_mobile){
     return(

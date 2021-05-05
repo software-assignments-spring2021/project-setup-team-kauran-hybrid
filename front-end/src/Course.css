@@ -1,4 +1,4 @@
-.a{
+/* .a{
     position: relative;
     width: 80rem;
     height: 5rem;
@@ -13,7 +13,7 @@
     
 }
   /* styles for h2 HTML elements within each animal */
-  h2 {
+  /* h2 {
     font-family: georgia;
     text-transform: uppercase;
   }
@@ -21,5 +21,17 @@
     display: block;
     font-size: 20px;
     text-decoration: underline;
+  }  */
+  .deleteButton{
+    line-height:5px;
+    border-radius:0vw/20vw;
+    width: 75vw;
+    height: 5vw;
+    text-align: center;
+    border: 0px;
+    border-color: white;
+    color: white;
+    background-color: black;
+    margin-bottom: 2rem;
   }
   
