@@ -4,8 +4,6 @@ const router = express.Router();
 const mongo=require('../mongo/mongo.js');
 const dotenv=require('dotenv');
 
-
-
 const posterity=async(res)=>{
     let pyshell=new PythonShell('./machine/machine.py', {mode: "text"});
     

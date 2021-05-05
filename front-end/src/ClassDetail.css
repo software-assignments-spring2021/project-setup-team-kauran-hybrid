@@ -2,13 +2,18 @@
     font-weight: bolder;
     font-size: 32px;
     padding: 10px;
-  }
+}
+.class-name-1 {
+    font-weight: bolder;
+    font-size: 24px;
+    padding: 10px;
+}
  
 .class-info{
     position: relative;
-    width: 65rem;
-    height: 5rem;
-    line-height: 5rem;
+    width: 75vw;
+    height: 5vw;
+    line-height: 4rem;
     text-align: center;
     border: 1px;
     border-style: solid;
@@ -17,12 +22,11 @@
     border-radius: 10px;
     margin-bottom: 2rem;
 }
-
-.class-detail{
+.class-info-1{
     position: relative;
-    width: 65rem;
-    height: 5rem;
-    line-height: 5rem;
+    width: 75vw;
+    height: 15vw;
+    line-height: 4rem;
     text-align: center;
     border: 1px;
     border-style: solid;
@@ -30,14 +34,43 @@
     background-color: teal;
     border-radius: 10px;
     margin-bottom: 2rem;
+    font-size: 18px;
+}
+
+.class-detail{
+    position: relative;
+    width: 75vw;
+    height: 5vw;
+    line-height: 4rem;
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+    background-color: teal;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+.class-detail-1{
+    position: relative;
+    width: 75vw;
+    height: 18vw;
+    line-height: 8vw;
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+    background-color: teal;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    font-size: 18px;
 }
 
 .class-rec{
     top: 25px;
     position: relative;
-    width: 65rem;
-    height: 28rem;
-    line-height: 5rem;
+    width: 75vw;
+    height: 25vw;
+    line-height: 4rem;
     text-align: center;
     border: 1px;
     border-style: solid;
@@ -45,6 +78,21 @@
     background-color: teal;
     border-radius: 10px;
     margin-bottom: 2rem;
+}
+.class-rec-1{
+    top: 25px;
+    position: relative;
+    width: 75vw;
+    height: 110vw;
+    line-height: 3rem;
+    text-align: center;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+    background-color: teal;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    font-size: 18px;
 }
 
 .prof-info{
@@ -60,12 +108,13 @@
 }
 .prof-info-1{
     top: 5px;
+    width: 60vw;
     padding: 5px 30px;
     background-color: teal;
     border: solid;
     border-radius: 10px;
     color: white;
-    font-size: 15px;
+    font-size: 20px;
     cursor: pointer;
     position: relative;
 }
@@ -102,5 +151,5 @@
     position: relative;
     cursor:pointer;
     font-family:roboto;
-    font-size: 15px;
+    font-size: 18px;
 }

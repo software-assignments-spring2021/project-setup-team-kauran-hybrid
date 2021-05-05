@@ -11,13 +11,16 @@ function Course(props){
     function handleClickDelete(e){
         //console.log("deleting",index)
         console.log(props.details.index);
-
-    };
+    }
     let is_mobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
+    let size = '20px';
+    if (is_mobile) {
+        size = '10px';
+    }
     if(props.page=='results'){
         
         return(
-            <div className="search-item">
+            <div className="search-item" style={{fontSize: size}}>
             {/* <Link onClick={(props)=>(history.push({pathname:'/ClassInfo',state:props.details,ok:true}))}>
                 Course Number: {props.details.courseNum}{"\t"}|{"\t"}Class Name: {props.details.courseName}{"\t"}|{"\t"}Waitlist Position:{props.details.waitlist_pos}
             </Link> */}
@@ -25,14 +28,14 @@ function Course(props){
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
                 {/* {props.details.courseNum}{"\t"}00{props.details.sections[0].secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.sections[0].secStatus} */}
-                MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus}
+                {/* MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus} */}
+                Course Number{props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 
     }
     else if(props.page=='accounts'){
-        console.log(is_mobile);
         return(
             <div className="search-item" onMouseEnter={handleHover} onMouseLeave={handleHover}>
                 {!hoverState&&
@@ -49,7 +52,11 @@ function Course(props){
                     hoverState && !is_mobile &&
                     <button className="deleteButton" key={1} onClick={handleClickDelete} style={{fontSize:"30px"}} > Delete this item</button>
                 }
-            
+            {/* <Link to={{
+                pathname: '/ClassInfo',
+                state: { detail: props.details }}}>
+                Course Number{props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
+            </Link> */}
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 
@@ -63,12 +70,12 @@ function Course(props){
             <Link to={{
                 pathname: '/ClassInfo',
                 state: { detail: props.details }}}>
-                MATH-UA {props.details.courseNum}{"\t"}00{props.details.secCode}{"\t"}{props.details.courseName}{"\t"}|{"\t"}Status: {props.details.secStatus}
+                {props.details.courseNum}{" "}00{props.details.secCode}{" "}|{" "}{props.details.courseName}{" "}|{" "}{props.details.secStatus}
             </Link>
             </div>
             //<a href="./Results" class="back-results-button"></a>
         ) 
     }
-  
+    
 }
 export default Course

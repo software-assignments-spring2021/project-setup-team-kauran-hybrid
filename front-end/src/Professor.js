@@ -101,6 +101,7 @@ const Professor=(props)=>{
                         Top #HashTags:
                 </section>
 
+                <center>
                 <section className='section-1'>
                     
                     {HashTags.map(item => (
@@ -111,6 +112,7 @@ const Professor=(props)=>{
                     
 
                 </section>
+                </center>
 
                 <section className='section-1'>
                       Offered Classes:
