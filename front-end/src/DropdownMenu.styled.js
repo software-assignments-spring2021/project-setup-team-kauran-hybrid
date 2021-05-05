@@ -23,7 +23,7 @@ export const StyledDropdownMenu = styled.nav`
     width: 100%;
   }
 
-  a {
+  dropdown {
     color:black;
     font-size: 1.5rem;
     text-transform: uppercase;
