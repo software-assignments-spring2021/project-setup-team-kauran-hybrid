@@ -37,32 +37,32 @@ describe('GET /results', function() {
   });
 });
 
-describe('Scraping function for professors', function() {
-  this.timeout(30000);
-  it('should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)', async function() {
-    this.timeout(300000);
-    // setTimeout(done,30000);
-    const res= await scraper.prof_scraper('Amos Bloomberg', 'New York University');
+// describe('Scraping function for professors', function() {
+//   this.timeout(30000);
+//   it('should return(quality 3.9, difficulty 3.2, number of ratings 61, would take again 66%)', async function() {
+//     this.timeout(300000);
+//     // setTimeout(done,30000);
+//     const res= await scraper.prof_scraper('Amos Bloomberg', 'New York University');
 
 
-    assert.equal(res.q, '3.9');
-    assert.equal(res.d, '3.2');
-    assert.equal(res.r, '61 ratings');
-    assert.equal(res.t, '66%');
+//     assert.equal(res.q, '3.9');
+//     assert.equal(res.d, '3.2');
+//     assert.equal(res.r, '61 ratings');
+//     assert.equal(res.t, '66%');
     
-  });
-});
+//   });
+// });
 
-describe('GET /class_modules', function() {
-  it('should respond with classes from API', function(done) {
-    request(require('./app.js'))
-        .get('/class_modules')
-        .expect(200, function(err, res) {
-          expect(res.body).to.not.equal({});
-          done();
-        });
-  });
-});
+// describe('GET /class_modules', function() {
+//   it('should respond with classes from API', function(done) {
+//     request(require('./app.js'))
+//         .get('/class_modules')
+//         .expect(200, function(err, res) {
+//           expect(res.body).to.not.equal({});
+//           done();
+//         });
+//   });
+// });
 
 describe('POST /home_login', function() {
   it('responds with json of email, position, number', function(done) {
@@ -95,16 +95,16 @@ describe('POST /home_login', function() {
 
 
 // unit test to see if the albert scraper runs an appropriate value at a certain index of the expected json object
-describe('Scraping function for Albert', function() {
-  this.timeout(30000);
-  it('result[0].sections[0].instructors[0] should return \'C Sinan Gunturk\'', async function() {
-    this.timeout(300000);
-    // setTimeout(done,30000);
-    const res= await scraper.albert_scraper();
-    assert.equal(res[0].sections[0].instructors[0], 'C Sinan Gunturk');
+// describe('Scraping function for Albert', function() {
+//   this.timeout(30000);
+//   it('result[0].sections[0].instructors[0] should return \'C Sinan Gunturk\'', async function() {
+//     this.timeout(300000);
+//     // setTimeout(done,30000);
+//     const res= await scraper.albert_scraper();
+//     assert.equal(res[0].sections[0].instructors[0], 'C Sinan Gunturk');
     
-  });
-});
+//   });
+// });
 
 // unit test for class info
 describe('GET /class_info', function() {
