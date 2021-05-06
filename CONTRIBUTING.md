@@ -25,4 +25,12 @@
 - will be updated later when we have a database setup
 
 ## Instructions for building and testing the project (update with that information once the project reaches that stage)
-- TBD
+- You'll need a .env in the global folder with contesnts :
+mongoUSER="whDev"
+mongoPWD="whDevagilenyu"
+-You'll also need a .env in the front-end folder outside of src with:
+REACT_APP_WEBHOST=http://localhost
+-You'll also need a .env in the back-end folder with:
+webhost=http://localhost
+-cd into back-end npm install, and then do the same for front-end
+-Run npm start in back-end before running it in front-end
